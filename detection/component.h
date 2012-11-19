@@ -9,7 +9,7 @@ class Component {
     public:
         typedef std::set<T> MemberList;
         typedef typename std::remove_pointer<T>::type Pixel;
-        typedef typename Pixel::PixelType Color;
+        typedef typename Pixel::ColorType Color;
     public:
         Component( ): _max_weight(0) { }
         Component( T first_pixel): _max_weight(0) {

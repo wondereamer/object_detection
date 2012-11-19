@@ -71,35 +71,35 @@ namespace m_opencv {
             }
     }; 
 
-    struct RgbPixel{
+    struct RgbColor{
         unsigned char b,g,r;
-        bool operator==(const RgbPixel& other) const {
+        bool operator==(const RgbColor& other) const {
             return b == other.b && g == other.g && r == other.r;
         }
 
-        bool operator!=(const RgbPixel& other) const {
+        bool operator!=(const RgbColor& other) const {
             return !(*this ==(other));
         }
     } ;
 
-    struct GrayPixel{
+    struct GrayColor{
         unsigned char v;
-        bool operator==(const GrayPixel& other) const {
+        bool operator==(const GrayColor& other) const {
             return (v == other.v);
         }
     };
 
-    struct HsvPixel{
+    struct HsvColor{
         double h;        /* Hue degree between 0.0 and 360.0 */
         double s;        /* Saturation between 0.0 (gray) and 1.0 */
         double v;        /* Value between 0.0 (black) and 1.0 */
     };
 
 
-    typedef Image<RgbPixel> RgbImage;
-    typedef Image<GrayPixel> GrayImage;
+    typedef Image<RgbColor> RgbImage;
+    typedef Image<GrayColor> GrayImage;
     //    RgbImage  imgR(pSrc);
-    struct LuvPixel
+    struct LuvColor
     {
         float l;
         float u;
@@ -108,16 +108,16 @@ namespace m_opencv {
 
     int blur(IplImage *input);
     //
-    void      rgb2luv(int R,int G, int B, LuvPixel &luvdata);
+    void      rgb2luv(int R,int G, int B, LuvColor &luvdata);
     IplImage* create_gray_image(const IplImage* psrc);
-    LuvPixel* create_luv_image(const IplImage *pSrc);
+    LuvColor* create_luv_image(const IplImage *pSrc);
     void    output_img_info(const IplImage *img);
     void    show_image(const IplImage *image);
     void    draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray);
     void    draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray);
 //    void    fill_rectangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int ctrst0, int ctrst1);
     void    fill_rectangle(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max);
-    void rgb2hsv(RgbPixel rgb, HsvPixel& hsv);
+    void rgb2hsv(RgbColor rgb, HsvColor& hsv);
 
 //    //! fill rectangle, including point (x0,x0), (x1,y1)
 //    template < typename T >
@@ -130,11 +130,11 @@ namespace m_opencv {
 //    }
 
     
-    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel);
-    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel);
+    std::ostream& operator<<(std::ostream& out, const RgbColor& pixel);
+    std::ostream& operator<<(std::ostream& out, const GrayColor& pixel);
     std::ostream& operator<<(std::ostream& out, const RgbImage& image);
     std::ostream& operator<<(std::ostream& out, const GrayImage& image);
-    std::ostream& operator<<(std::ostream& out, const LuvPixel& pixel);
+    std::ostream& operator<<(std::ostream& out, const LuvColor& pixel);
 }; /* m_opencv */
 #endif /* end of include guard: M_OPENCV.H */
 

@@ -220,7 +220,7 @@ PixelWorld3D<T>::PixelWorld3D(bool isGrid)
     // create 3dpixel pool
     for (int i = 0; i < xList.size(); i++) {
         material_types.insert(materialList[i]);
-        RgbPixel color;
+        RgbColor color;
         color.r = rList[i];
         color.g = gList[i];
         color.b = bList[i];
@@ -334,7 +334,7 @@ void PixelWorld3D<T>::save_segmentation( ){
     server.register_method(segMethod, "get_segmentation_result");
     server.run();
 
-    /*typename T::PixelType segmentColor = comp.compute_average_color();*/
+    /*typename T::ColorType segmentColor = comp.compute_average_color();*/
     /*for(GrayPixel3D *pixel : comp.get_members()){*/
     /*gray_img[pixel->_y][pixel->_x] = segmentColor;*/
     /*}*/

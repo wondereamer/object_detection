@@ -54,7 +54,7 @@ namespace m_util  {
     //IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U,1);
 
 ////         GaussianBlur( src, dst, Size( i, i ), 0, 0 );
-    //GrayPixel white;
+    //GrayColor white;
     //white.v = 255;
     //GrayImage gray_img(temp);
     //gray_img.set_color(white);

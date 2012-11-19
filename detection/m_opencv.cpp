@@ -39,7 +39,7 @@ namespace m_opencv {
     void fill_rectangle(GrayImage &img, int x0, int y0, int x1, int y1, int min, int max){
         int height = y1 - y0;
         int width = x1 - x0;
-        GrayPixel v;
+        GrayColor v;
         for (int row = 0; row <= height; row++) 
             for (int col = 0; col <= width; col++){
                 //            v.v = m_math::rand_int(min, max);
@@ -47,7 +47,7 @@ namespace m_opencv {
                 img[y0 + row][x0 + col] = v;
             }
     }
-    void rgb2luv(int R,int G, int B, LuvPixel& luvdata)
+    void rgb2luv(int R,int G, int B, LuvColor& luvdata)
     {
         float r, g, b,  X, Y, Z,  yr;
         float L;
@@ -117,7 +117,7 @@ namespace m_opencv {
     }
 
 
-    LuvPixel* create_luv_image(const IplImage *pSrc)
+    LuvColor* create_luv_image(const IplImage *pSrc)
     {
         long xstart=0;
         long deltapos=0;
@@ -125,7 +125,7 @@ namespace m_opencv {
         RgbImage img(temp);
         int width = pSrc->width;
         int height = pSrc->height;
-        LuvPixel *luvData = new LuvPixel[width * height];
+        LuvColor *luvData = new LuvColor[width * height];
         for (int i = 0; i < height; i++)
         {
             xstart = i*width;
@@ -148,12 +148,12 @@ namespace m_opencv {
         cvDestroyAllWindows();
         //    cvReleaseImage(&img);
     }
-    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel){
+    std::ostream& operator<<(std::ostream& out, const RgbColor& pixel){
         out<<"["<<(int)pixel.r<<", "<<(int)pixel.g<<", "<<(int)pixel.b<<"]";
         return out;
     }
 
-    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel){
+    std::ostream& operator<<(std::ostream& out, const GrayColor& pixel){
         out<<"["<<(int)pixel.v<<"]";
         return out;
     }
@@ -178,7 +178,7 @@ namespace m_opencv {
         return out;
     }
 
-    std::ostream& operator<<(std::ostream& out, const LuvPixel& pixel){
+    std::ostream& operator<<(std::ostream& out, const LuvColor& pixel){
         out<<"["<<(int)pixel.l<<", "<<(int)pixel.u<<", "<<(int)pixel.v<<"]";
         return out;
     }
@@ -277,7 +277,7 @@ namespace m_opencv {
 
 
     // convert rgb to hsv
-    void rgb2hsv(RgbPixel rgb, HsvPixel& hsv) {
+    void rgb2hsv(RgbColor rgb, HsvColor& hsv) {
         double rgb_min, rgb_max;
         rgb_min = MIN3(rgb.r, rgb.g, rgb.b);
         rgb_max = MAX3(rgb.r, rgb.g, rgb.b);

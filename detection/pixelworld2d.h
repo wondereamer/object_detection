@@ -263,14 +263,14 @@ void PixelWorld2D<T>::save_segmentation( ){
     IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U,1);
     std::cout<<"**************************"<<std::endl;
     typename T::Image img(temp);
-    typename T::PixelType white = T::get_white();
+    typename T::ColorType white = T::get_white();
     img.set_color(white);
     std::cout<<"**************************"<<std::endl;
     for(auto &comp : _components){
         /*if (comp.get_members().size() < 70) {*/
         /*continue;*/
         /*}*/
-        /*typename T::PixelType segmentColor;*/
+        /*typename T::ColorType segmentColor;*/
         /*segmentColor.r = 0;*/
         /*segmentColor.g = 0;*/
         /*segmentColor.b = 0;*/
