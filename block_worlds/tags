@@ -1,0 +1,79 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+EIGEN_ALIGN16	main.cpp	/^} EIGEN_ALIGN16;$/;"	v	typeref:struct:PointXYZRGBIM
+PointXYZRGBIM	main.cpp	/^struct PointXYZRGBIM$/;"	s	file:
+PointXYZRGBIM::__anon1::__anon2::imX	main.cpp	/^      float imX;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::__anon2::imY	main.cpp	/^      float imY;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::__anon2::rgb	main.cpp	/^      float rgb;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::__anon2::x	main.cpp	/^      float x;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::__anon2::y	main.cpp	/^      float y;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::__anon2::z	main.cpp	/^      float z;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+PointXYZRGBIM::__anon1::data	main.cpp	/^    float data[6];$/;"	m	union:PointXYZRGBIM::__anon1	file:	access:public
+VIZBLOCKWORLD_H	vizblockworld.h	3;"	d
+VizBlockWorld	vizblockworld.h	/^        VizBlockWorld ():_cloud(new pcl::PointCloud<pcl::PointXYZRGB>){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld	vizblockworld.h	/^        VizBlockWorld (pcl::PointCloud<pcl::PointXYZRGB>::Ptr  cloud){$/;"	f	class:VizBlockWorld	access:public	signature:(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud)
+VizBlockWorld	vizblockworld.h	/^class VizBlockWorld {$/;"	c
+VizBlockWorld::VizBlockWorld	vizblockworld.h	/^        VizBlockWorld ():_cloud(new pcl::PointCloud<pcl::PointXYZRGB>){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld::VizBlockWorld	vizblockworld.h	/^        VizBlockWorld (pcl::PointCloud<pcl::PointXYZRGB>::Ptr  cloud){$/;"	f	class:VizBlockWorld	access:public	signature:(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud)
+VizBlockWorld::_cloud	vizblockworld.h	/^        pcl::PointCloud<pcl::PointXYZRGB>::Ptr _cloud;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::_objId	vizblockworld.h	/^        int _objId;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::_viewer	vizblockworld.h	/^        pcl::visualization::PCLVisualizer *_viewer;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::_x_offset	vizblockworld.h	/^        float _x_offset;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::_y_offset	vizblockworld.h	/^        float _y_offset;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::_z_offset	vizblockworld.h	/^        float _z_offset;$/;"	m	class:VizBlockWorld	access:private
+VizBlockWorld::add_cube	vizblockworld.h	/^        void add_cube(float x, float y, float z, int r, int g, int b, float cubeSize = 1, int STYLE = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, float cubeSize = 1, int STYLE = 1)
+VizBlockWorld::add_cube	vizblockworld.h	/^        void add_cube(float x, float y, float z, int r, int g, int b, int &viewport, float cubeSize = 1, int STYLE = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, int &viewport, float cubeSize = 1, int STYLE = 1)
+VizBlockWorld::add_point	vizblockworld.h	/^        void  add_point(float x, float y, float z, int r, int g, int b, float unit){ $/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, float unit)
+VizBlockWorld::create_h_viewport	vizblockworld.h	/^        void create_h_viewport(int &v1, int &v2){$/;"	f	class:VizBlockWorld	access:public	signature:(int &v1, int &v2)
+VizBlockWorld::create_v_viewport	vizblockworld.h	/^        void create_v_viewport(int &v1, int &v2){$/;"	f	class:VizBlockWorld	access:public	signature:(int &v1, int &v2)
+VizBlockWorld::create_viewport	vizblockworld.h	/^        void create_viewport(float xmin, float ymin, float xmax, float ymax, int &viewport){$/;"	f	class:VizBlockWorld	access:public	signature:(float xmin, float ymin, float xmax, float ymax, int &viewport)
+VizBlockWorld::display	vizblockworld.h	/^        static void display(std::vector<pcl::visualization::PCLVisualizer*> viewers){$/;"	f	class:VizBlockWorld	access:public	signature:(std::vector<pcl::visualization::PCLVisualizer*> viewers)
+VizBlockWorld::display	vizblockworld.h	/^        void display(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld::draw	vizblockworld.h	/^        void draw(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld::get_viewer	vizblockworld.h	/^        pcl::visualization::PCLVisualizer *get_viewer(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld::push_pointCloud	vizblockworld.h	/^        std::string push_pointCloud(int &viewport, int pointSize = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(int &viewport, int pointSize = 1)
+VizBlockWorld::push_pointCloud	vizblockworld.h	/^        std::string push_pointCloud(int pointSize = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(int pointSize = 1)
+VizBlockWorld::register_keyboard_event	vizblockworld.h	/^        void register_keyboard_event(void (*callback) (const pcl::visualization::KeyboardEvent &event,$/;"	f	class:VizBlockWorld	access:public	signature:(void (*callback) (const pcl::visualization::KeyboardEvent &event, void *viewer_void))
+VizBlockWorld::register_mouse_event	vizblockworld.h	/^        void register_mouse_event(void (*callback) (const pcl::visualization::MouseEvent &event,$/;"	f	class:VizBlockWorld	access:public	signature:(void (*callback) (const pcl::visualization::MouseEvent &event, void *viewer_void))
+VizBlockWorld::set_offset	vizblockworld.h	/^        void set_offset(float x, float y, float z){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z)
+VizBlockWorld::set_render	vizblockworld.h	/^        void set_render(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+VizBlockWorld::set_view	vizblockworld.h	/^        void set_view(std::string object){$/;"	f	class:VizBlockWorld	access:public	signature:(std::string object)
+_cloud	vizblockworld.h	/^        pcl::PointCloud<pcl::PointXYZRGB>::Ptr _cloud;$/;"	m	class:VizBlockWorld	access:private
+_objId	vizblockworld.h	/^        int _objId;$/;"	m	class:VizBlockWorld	access:private
+_viewer	vizblockworld.h	/^        pcl::visualization::PCLVisualizer *_viewer;$/;"	m	class:VizBlockWorld	access:private
+_x_offset	vizblockworld.h	/^        float _x_offset;$/;"	m	class:VizBlockWorld	access:private
+_y_offset	vizblockworld.h	/^        float _y_offset;$/;"	m	class:VizBlockWorld	access:private
+_z_offset	vizblockworld.h	/^        float _z_offset;$/;"	m	class:VizBlockWorld	access:private
+add_cube	vizblockworld.h	/^        void add_cube(float x, float y, float z, int r, int g, int b, float cubeSize = 1, int STYLE = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, float cubeSize = 1, int STYLE = 1)
+add_cube	vizblockworld.h	/^        void add_cube(float x, float y, float z, int r, int g, int b, int &viewport, float cubeSize = 1, int STYLE = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, int &viewport, float cubeSize = 1, int STYLE = 1)
+add_point	vizblockworld.h	/^        void  add_point(float x, float y, float z, int r, int g, int b, float unit){ $/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z, int r, int g, int b, float unit)
+camera_info	vizblockworld.h	/^inline void camera_info(pcl::visualization::Camera &camera)$/;"	f	signature:(pcl::visualization::Camera &camera)
+create_h_viewport	vizblockworld.h	/^        void create_h_viewport(int &v1, int &v2){$/;"	f	class:VizBlockWorld	access:public	signature:(int &v1, int &v2)
+create_point	vizblockworld.h	/^inline pcl::PointXYZRGB create_point(float x, float y, float z, int r, int g, int b, float step = 1){$/;"	f	signature:(float x, float y, float z, int r, int g, int b, float step = 1)
+create_v_viewport	vizblockworld.h	/^        void create_v_viewport(int &v1, int &v2){$/;"	f	class:VizBlockWorld	access:public	signature:(int &v1, int &v2)
+create_viewport	vizblockworld.h	/^        void create_viewport(float xmin, float ymin, float xmax, float ymax, int &viewport){$/;"	f	class:VizBlockWorld	access:public	signature:(float xmin, float ymin, float xmax, float ymax, int &viewport)
+data	main.cpp	/^    float data[6];$/;"	m	union:PointXYZRGBIM::__anon1	file:	access:public
+display	vizblockworld.h	/^        static void display(std::vector<pcl::visualization::PCLVisualizer*> viewers){$/;"	f	class:VizBlockWorld	access:public	signature:(std::vector<pcl::visualization::PCLVisualizer*> viewers)
+display	vizblockworld.h	/^        void display(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+draw	vizblockworld.h	/^        void draw(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+get_viewer	vizblockworld.h	/^        pcl::visualization::PCLVisualizer *get_viewer(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+imX	main.cpp	/^      float imX;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+imY	main.cpp	/^      float imY;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+keyboardEventOccurred	main.cpp	/^void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,$/;"	f	signature:(const pcl::visualization::KeyboardEvent &event, void* viewer_void)
+main	main.cpp	/^main (int argc, char** argv)$/;"	f	signature:(int argc, char** argv)
+mouseEventOccurred	main.cpp	/^void mouseEventOccurred (const pcl::visualization::MouseEvent &event,$/;"	f	signature:(const pcl::visualization::MouseEvent &event, void* viewer_void)
+push_pointCloud	vizblockworld.h	/^        std::string push_pointCloud(int &viewport, int pointSize = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(int &viewport, int pointSize = 1)
+push_pointCloud	vizblockworld.h	/^        std::string push_pointCloud(int pointSize = 1){$/;"	f	class:VizBlockWorld	access:public	signature:(int pointSize = 1)
+register_keyboard_event	vizblockworld.h	/^        void register_keyboard_event(void (*callback) (const pcl::visualization::KeyboardEvent &event,$/;"	f	class:VizBlockWorld	access:public	signature:(void (*callback) (const pcl::visualization::KeyboardEvent &event, void *viewer_void))
+register_mouse_event	vizblockworld.h	/^        void register_mouse_event(void (*callback) (const pcl::visualization::MouseEvent &event,$/;"	f	class:VizBlockWorld	access:public	signature:(void (*callback) (const pcl::visualization::MouseEvent &event, void *viewer_void))
+rgb	main.cpp	/^      float rgb;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+set_offset	vizblockworld.h	/^        void set_offset(float x, float y, float z){$/;"	f	class:VizBlockWorld	access:public	signature:(float x, float y, float z)
+set_render	vizblockworld.h	/^        void set_render(){$/;"	f	class:VizBlockWorld	access:public	signature:()
+set_view	vizblockworld.h	/^        void set_view(std::string object){$/;"	f	class:VizBlockWorld	access:public	signature:(std::string object)
+x	main.cpp	/^      float x;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+y	main.cpp	/^      float y;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public
+z	main.cpp	/^      float z;$/;"	m	struct:PointXYZRGBIM::__anon1::__anon2	file:	access:public

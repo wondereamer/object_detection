@@ -1,0 +1,579 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AttrVector	data.h	/^typedef std::vector<xmlrpc_c::value> AttrVector;$/;"	t
+AttrVector	main.cpp	/^typedef std::vector<xmlrpc_c::value> AttrVector;$/;"	t	file:
+COMPONENT_H	component.h	4;"	d
+Color	component.h	/^        typedef typename Pixel::PixelType Color;$/;"	t	class:Component	access:public
+Component	component.h	/^        Component( ): _k(SCALE),_max_weight(0) { }$/;"	f	class:Component	access:public	signature:( )
+Component	component.h	/^        Component( T first_pixel): _k(SCALE),_max_weight(0) {$/;"	f	class:Component	access:public	signature:( T first_pixel)
+Component	component.h	/^class Component {$/;"	c
+Component2D	pixelworld2d.h	/^        typedef Component<T*> Component2D;$/;"	t	class:PixelWorld2D	access:public
+Component3D	pixelworld3d.h	/^        typedef Component<T*> Component3D;$/;"	t	class:PixelWorld3D	access:public
+Component::Color	component.h	/^        typedef typename Pixel::PixelType Color;$/;"	t	class:Component	access:public
+Component::Component	component.h	/^        Component( ): _k(SCALE),_max_weight(0) { }$/;"	f	class:Component	access:public	signature:( )
+Component::Component	component.h	/^        Component( T first_pixel): _k(SCALE),_max_weight(0) {$/;"	f	class:Component	access:public	signature:( T first_pixel)
+Component::MemberList	component.h	/^        typedef std::set<T> MemberList;$/;"	t	class:Component	access:public
+Component::Pixel	component.h	/^        typedef typename std::remove_pointer<T>::type Pixel;$/;"	t	class:Component	access:public
+Component::_component_color	component.h	/^        Color _component_color;$/;"	m	class:Component	access:private
+Component::_if_merge	component.h	/^        static bool _if_merge(double comp_diff, const Component &a, const Component &b) {$/;"	f	class:Component	access:public	signature:(double comp_diff, const Component &a, const Component &b)
+Component::_k	component.h	/^        double _k;          \/\/ the larger _k, the larger component$/;"	m	class:Component	access:private
+Component::_max_weight	component.h	/^        double _max_weight;$/;"	m	class:Component	access:private
+Component::_members	component.h	/^        MemberList _members;$/;"	m	class:Component	access:private
+Component::add_member	component.h	/^        void add_member(T mem){$/;"	f	class:Component	access:public	signature:(T mem)
+Component::compute_average_color	component.h	/^        Color compute_average_color();$/;"	p	class:Component	access:public	signature:()
+Component::compute_average_color	component.h	/^typename Component<T>::Color Component<T>::compute_average_color(){$/;"	f	class:Component	signature:()
+Component::contains	component.h	/^        bool contains(const T &pixel){$/;"	f	class:Component	access:public	signature:(const T &pixel)
+Component::get_members	component.h	/^        MemberList& get_members(){$/;"	f	class:Component	access:public	signature:()
+Component::internal_diff	component.h	/^        double internal_diff() const{$/;"	f	class:Component	access:public	signature:() const
+Component::merge	component.h	/^        static int merge(double component_diff,   Component &s, Component &t){$/;"	f	class:Component	access:public	signature:(double component_diff, Component &s, Component &t)
+Component::set_max_weight	component.h	/^        void set_max_weight(double w){$/;"	f	class:Component	access:public	signature:(double w)
+Component::size	component.h	/^        int size(){$/;"	f	class:Component	access:public	signature:()
+DATA_H	data.h	2;"	d
+DELAY_BLUR	m_opencv.cpp	/^    int DELAY_BLUR = 100;$/;"	m	namespace:m_opencv	file:
+DELAY_CAPTION	m_opencv.cpp	/^    int DELAY_CAPTION = 1500;$/;"	m	namespace:m_opencv	file:
+Edge	m_graph.h	/^                typedef std::pair<T, T> Edge;$/;"	t	class:m_graph::UWGraph	access:public
+GrayImage	m_opencv.h	/^    typedef Image<GrayPixel> GrayImage;$/;"	t	namespace:m_opencv
+GrayPixel	m_opencv.h	/^    struct GrayPixel{$/;"	s	namespace:m_opencv
+GrayPixel2D	pixel.h	/^        GrayPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }$/;"	f	class:GrayPixel2D	access:public	signature:(int x = 0 , int y = 0)
+GrayPixel2D	pixel.h	/^class GrayPixel2D{$/;"	c
+GrayPixel2D::GrayPixel2D	pixel.h	/^        GrayPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }$/;"	f	class:GrayPixel2D	access:public	signature:(int x = 0 , int y = 0)
+GrayPixel2D::Image	pixel.h	/^        typedef GrayImage Image;$/;"	t	class:GrayPixel2D	access:public
+GrayPixel2D::PixelType	pixel.h	/^        typedef GrayPixel PixelType;$/;"	t	class:GrayPixel2D	access:public
+GrayPixel2D::_color	pixel.h	/^        GrayPixel _color;$/;"	m	class:GrayPixel2D	access:protected
+GrayPixel2D::_x	pixel.h	/^        int _x;$/;"	m	class:GrayPixel2D	access:public
+GrayPixel2D::_y	pixel.h	/^        int _y;$/;"	m	class:GrayPixel2D	access:public
+GrayPixel2D::density_distance	pixel.h	/^        static double density_distance(const GrayPixel2D &a, const GrayPixel2D &b){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel2D &a, const GrayPixel2D &b)
+GrayPixel2D::get_color	pixel.h	/^        GrayPixel  get_color() const{$/;"	f	class:GrayPixel2D	access:public	signature:() const
+GrayPixel2D::get_density	pixel.h	/^        double get_density() const{$/;"	f	class:GrayPixel2D	access:public	signature:() const
+GrayPixel2D::get_white	pixel.h	/^        static GrayPixel get_white(){$/;"	f	class:GrayPixel2D	access:public	signature:()
+GrayPixel2D::set_color	pixel.h	/^        void set_color(const GrayPixel &gray){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel &gray)
+GrayPixel2D::set_location	pixel.h	/^        void set_location(int x, int y){$/;"	f	class:GrayPixel2D	access:public	signature:(int x, int y)
+GrayPixel2D::spatial_distance	pixel.h	/^        static double spatial_distance(const GrayPixel2D &a, const GrayPixel2D &b){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel2D &a, const GrayPixel2D &b)
+GrayPixel3D	pixel.h	/^        GrayPixel3D(int x = 0 , int y = 0, int z = 0):_x(x), _y(y), _z(z) { }$/;"	f	class:GrayPixel3D	access:public	signature:(int x = 0 , int y = 0, int z = 0)
+GrayPixel3D	pixel.h	/^class GrayPixel3D{$/;"	c
+GrayPixel3D::GrayPixel3D	pixel.h	/^        GrayPixel3D(int x = 0 , int y = 0, int z = 0):_x(x), _y(y), _z(z) { }$/;"	f	class:GrayPixel3D	access:public	signature:(int x = 0 , int y = 0, int z = 0)
+GrayPixel3D::PixelType	pixel.h	/^        typedef GrayPixel PixelType;$/;"	t	class:GrayPixel3D	access:public
+GrayPixel3D::_color	pixel.h	/^        GrayPixel _color;$/;"	m	class:GrayPixel3D	access:protected
+GrayPixel3D::_x	pixel.h	/^        int _x;$/;"	m	class:GrayPixel3D	access:public
+GrayPixel3D::_y	pixel.h	/^        int _y;$/;"	m	class:GrayPixel3D	access:public
+GrayPixel3D::_z	pixel.h	/^        int _z;$/;"	m	class:GrayPixel3D	access:public
+GrayPixel3D::density_distance	pixel.h	/^        static double density_distance(const GrayPixel3D &a, const GrayPixel3D &b){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &a, const GrayPixel3D &b)
+GrayPixel3D::get_color	pixel.h	/^        GrayPixel  get_color() const{$/;"	f	class:GrayPixel3D	access:public	signature:() const
+GrayPixel3D::get_density	pixel.h	/^        double get_density() const{$/;"	f	class:GrayPixel3D	access:public	signature:() const
+GrayPixel3D::get_white	pixel.h	/^        static GrayPixel get_white(){$/;"	f	class:GrayPixel3D	access:public	signature:()
+GrayPixel3D::operator <	pixel.h	/^        bool operator < (const GrayPixel3D &other) const{$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &other) const
+GrayPixel3D::set_color	pixel.h	/^        void set_color(const GrayPixel &gray){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel &gray)
+GrayPixel3D::set_location	pixel.h	/^        void set_location(int x, int y, int z){$/;"	f	class:GrayPixel3D	access:public	signature:(int x, int y, int z)
+GrayPixel3D::spatial_distance	pixel.h	/^        static double spatial_distance(const GrayPixel3D &a, const GrayPixel3D &b){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &a, const GrayPixel3D &b)
+Image	m_opencv.h	/^            Image(IplImage* img):_pSrc(img) {}$/;"	f	class:m_opencv::Image	access:public	signature:(IplImage* img)
+Image	m_opencv.h	/^    template<class T> class Image$/;"	c	namespace:m_opencv
+Image	pixel.h	/^        typedef GrayImage Image;$/;"	t	class:GrayPixel2D	access:public
+Image	pixel.h	/^        typedef RgbImage Image;$/;"	t	class:RgbPixel2D	access:public
+LuvPixel	m_opencv.h	/^    struct LuvPixel$/;"	s	namespace:m_opencv
+MAX_KERNEL_LENGTH	m_opencv.cpp	/^    int MAX_KERNEL_LENGTH = 5;$/;"	m	namespace:m_opencv	file:
+MGraph	m_graph.h	/^                typedef adjacency_list<vecS, vecS, undirectedS, no_property, property<edge_weight_t, double> > MGraph;$/;"	t	class:m_graph::UWGraph	access:public
+M_ALGORITHM	m_algorithm.h	10;"	d
+M_GEOMETRY_H	m_geometry.h	3;"	d
+M_MATH_H	m_math.h	3;"	d
+M_OPENCV_H	m_opencv.h	11;"	d
+M_PLOT_H	m_plot.h	3;"	d
+M_UTIL_H	m_util.h	11;"	d
+MemberList	component.h	/^        typedef std::set<T> MemberList;$/;"	t	class:Component	access:public
+PIXELWORLD2D_H	pixelworld2d.h	9;"	d
+PIXELWORLD3D_H	pixelworld3d.h	9;"	d
+PIXEL_H	pixel.h	11;"	d
+Pi	m_math.h	/^    const double Pi = 3.1415926;$/;"	m	namespace:m_math
+Pixel	component.h	/^        typedef typename std::remove_pointer<T>::type Pixel;$/;"	t	class:Component	access:public
+PixelSet	pixelworld3d.h	/^        typedef std::set<T> PixelSet;$/;"	t	class:PixelWorld3D	access:public
+PixelType	pixel.h	/^        typedef GrayPixel PixelType;$/;"	t	class:GrayPixel2D	access:public
+PixelType	pixel.h	/^        typedef GrayPixel PixelType;$/;"	t	class:GrayPixel3D	access:public
+PixelType	pixel.h	/^        typedef RgbPixel PixelType;$/;"	t	class:RgbPixel2D	access:public
+PixelType	pixel.h	/^        typedef RgbPixel PixelType;$/;"	t	class:RgbPixel3D	access:public
+PixelWorld2D	pixelworld2d.h	/^        explicit PixelWorld2D(string filename, bool isRgb = false, bool isGrid = true);$/;"	p	class:PixelWorld2D	access:public	signature:(string filename, bool isRgb = false, bool isGrid = true)
+PixelWorld2D	pixelworld2d.h	/^PixelWorld2D<T>::PixelWorld2D(string filename, bool isRgb, bool isGrid)$/;"	f	class:PixelWorld2D	signature:(string filename, bool isRgb, bool isGrid)
+PixelWorld2D	pixelworld2d.h	/^class PixelWorld2D {$/;"	c
+PixelWorld2D::Component2D	pixelworld2d.h	/^        typedef Component<T*> Component2D;$/;"	t	class:PixelWorld2D	access:public
+PixelWorld2D::PixelWorld2D	pixelworld2d.h	/^        explicit PixelWorld2D(string filename, bool isRgb = false, bool isGrid = true);$/;"	p	class:PixelWorld2D	access:public	signature:(string filename, bool isRgb = false, bool isGrid = true)
+PixelWorld2D::PixelWorld2D	pixelworld2d.h	/^PixelWorld2D<T>::PixelWorld2D(string filename, bool isRgb, bool isGrid)$/;"	f	class:PixelWorld2D	signature:(string filename, bool isRgb, bool isGrid)
+PixelWorld2D::WeightEdge2D	pixelworld2d.h	/^        typedef WeightEdge<T*> WeightEdge2D;$/;"	t	class:PixelWorld2D	access:public
+PixelWorld2D::_components	pixelworld2d.h	/^        std::list<Component2D> _components;$/;"	m	class:PixelWorld2D	access:private
+PixelWorld2D::_edge_weight	pixelworld2d.h	/^        double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}$/;"	f	class:PixelWorld2D	access:protected	signature:(const T &a, const T &b)
+PixelWorld2D::_feature_neighbors	pixelworld2d.h	/^        std::vector<T*> _feature_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(const T &t) const
+PixelWorld2D::_feature_neighbors	pixelworld2d.h	/^std::vector<T*> PixelWorld2D<T>::_feature_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+PixelWorld2D::_gaussian	pixelworld2d.h	/^        void _gaussian(){ }$/;"	f	class:PixelWorld2D	access:protected	signature:()
+PixelWorld2D::_grid_neighbors	pixelworld2d.h	/^        std::vector<T*> _grid_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(const T &t) const
+PixelWorld2D::_grid_neighbors	pixelworld2d.h	/^inline std::vector<T*> PixelWorld2D<T>::_grid_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+PixelWorld2D::_height	pixelworld2d.h	/^        int             _height;$/;"	m	class:PixelWorld2D	access:private
+PixelWorld2D::_isGrid	pixelworld2d.h	/^        bool            _isGrid;$/;"	m	class:PixelWorld2D	access:private
+PixelWorld2D::_pixels	pixelworld2d.h	/^        T        **_pixels;    $/;"	m	class:PixelWorld2D	access:private
+PixelWorld2D::_width	pixelworld2d.h	/^        int             _width;$/;"	m	class:PixelWorld2D	access:private
+PixelWorld2D::construct_graph	pixelworld2d.h	/^        void construct_graph();$/;"	p	class:PixelWorld2D	access:public	signature:()
+PixelWorld2D::construct_graph	pixelworld2d.h	/^void PixelWorld2D<T>::construct_graph(){$/;"	f	class:PixelWorld2D	signature:()
+PixelWorld2D::get_height	pixelworld2d.h	/^        int             get_height( ) const                    { return _height;             }$/;"	f	class:PixelWorld2D	access:public	signature:( ) const
+PixelWorld2D::get_neighbors	pixelworld2d.h	/^        std::vector<T*> get_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:public	signature:(const T &t) const
+PixelWorld2D::get_neighbors	pixelworld2d.h	/^inline std::vector<T*> PixelWorld2D<T>::get_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+PixelWorld2D::get_width	pixelworld2d.h	/^        int             get_width( ) const                     { return _width;              }$/;"	f	class:PixelWorld2D	access:public	signature:( ) const
+PixelWorld2D::is_inside	pixelworld2d.h	/^        bool is_inside(int x, int y) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(int x, int y) const
+PixelWorld2D::is_inside	pixelworld2d.h	/^inline bool PixelWorld2D<T>::is_inside(int x, int y) const{$/;"	f	class:PixelWorld2D	signature:(int x, int y) const
+PixelWorld2D::operator []	pixelworld2d.h	/^        T* operator[](int rowIndx) { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld2D	access:public	signature:(int rowIndx)
+PixelWorld2D::operator []	pixelworld2d.h	/^        const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld2D	access:public	signature:(int rowIndx) const
+PixelWorld2D::save_segmentation	pixelworld2d.h	/^        void save_segmentation( );$/;"	p	class:PixelWorld2D	access:public	signature:( )
+PixelWorld2D::save_segmentation	pixelworld2d.h	/^void PixelWorld2D<T>::save_segmentation( ){$/;"	f	class:PixelWorld2D	signature:( )
+PixelWorld2D::~PixelWorld2D	pixelworld2d.h	/^        ~PixelWorld2D();$/;"	p	class:PixelWorld2D	access:public	signature:()
+PixelWorld2D::~PixelWorld2D	pixelworld2d.h	/^PixelWorld2D<T>::~PixelWorld2D()$/;"	f	class:PixelWorld2D	signature:()
+PixelWorld3D	pixelworld3d.h	/^        explicit PixelWorld3D(bool isGrid = true);$/;"	p	class:PixelWorld3D	access:public	signature:(bool isGrid = true)
+PixelWorld3D	pixelworld3d.h	/^PixelWorld3D<T>::PixelWorld3D(bool isGrid)$/;"	f	class:PixelWorld3D	signature:(bool isGrid)
+PixelWorld3D	pixelworld3d.h	/^class PixelWorld3D {$/;"	c
+PixelWorld3D::Component3D	pixelworld3d.h	/^        typedef Component<T*> Component3D;$/;"	t	class:PixelWorld3D	access:public
+PixelWorld3D::PixelSet	pixelworld3d.h	/^        typedef std::set<T> PixelSet;$/;"	t	class:PixelWorld3D	access:public
+PixelWorld3D::PixelWorld3D	pixelworld3d.h	/^        explicit PixelWorld3D(bool isGrid = true);$/;"	p	class:PixelWorld3D	access:public	signature:(bool isGrid = true)
+PixelWorld3D::PixelWorld3D	pixelworld3d.h	/^PixelWorld3D<T>::PixelWorld3D(bool isGrid)$/;"	f	class:PixelWorld3D	signature:(bool isGrid)
+PixelWorld3D::WeightEdge3D	pixelworld3d.h	/^        typedef WeightEdge<T*> WeightEdge3D;$/;"	t	class:PixelWorld3D	access:public
+PixelWorld3D::_components	pixelworld3d.h	/^        std::list<Component3D> _components;$/;"	m	class:PixelWorld3D	access:private
+PixelWorld3D::_edge_weight	pixelworld3d.h	/^        double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}$/;"	f	class:PixelWorld3D	access:protected	signature:(const T &a, const T &b)
+PixelWorld3D::_feature_neighbors	pixelworld3d.h	/^        std::vector<T*> _feature_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(const T &t) const
+PixelWorld3D::_feature_neighbors	pixelworld3d.h	/^std::vector<T*> PixelWorld3D<T>::_feature_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+PixelWorld3D::_gaussian	pixelworld3d.h	/^        void _gaussian(){ }$/;"	f	class:PixelWorld3D	access:protected	signature:()
+PixelWorld3D::_grid_neighbors	pixelworld3d.h	/^        std::vector<T*> _grid_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(const T &t) const
+PixelWorld3D::_grid_neighbors	pixelworld3d.h	/^inline std::vector<T*> PixelWorld3D<T>::_grid_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+PixelWorld3D::_isGrid	pixelworld3d.h	/^        bool            _isGrid;$/;"	m	class:PixelWorld3D	access:private
+PixelWorld3D::_pixels	pixelworld3d.h	/^        PixelSet     _pixels;    $/;"	m	class:PixelWorld3D	access:private
+PixelWorld3D::construct_graph	pixelworld3d.h	/^        void construct_graph();$/;"	p	class:PixelWorld3D	access:public	signature:()
+PixelWorld3D::construct_graph	pixelworld3d.h	/^void PixelWorld3D<T>::construct_graph(){$/;"	f	class:PixelWorld3D	signature:()
+PixelWorld3D::get_neighbors	pixelworld3d.h	/^        std::vector<T*> get_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:public	signature:(const T &t) const
+PixelWorld3D::get_neighbors	pixelworld3d.h	/^inline std::vector<T*> PixelWorld3D<T>::get_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+PixelWorld3D::is_inside	pixelworld3d.h	/^        bool is_inside(int x, int y) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(int x, int y) const
+PixelWorld3D::is_inside	pixelworld3d.h	/^inline bool PixelWorld3D<T>::is_inside(int x, int y) const{$/;"	f	class:PixelWorld3D	signature:(int x, int y) const
+PixelWorld3D::operator []	pixelworld3d.h	/^        T* operator[](int rowIndx) { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld3D	access:public	signature:(int rowIndx)
+PixelWorld3D::operator []	pixelworld3d.h	/^        const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld3D	access:public	signature:(int rowIndx) const
+PixelWorld3D::save_segmentation	pixelworld3d.h	/^        void save_segmentation( );$/;"	p	class:PixelWorld3D	access:public	signature:( )
+PixelWorld3D::save_segmentation	pixelworld3d.h	/^void PixelWorld3D<T>::save_segmentation( ){$/;"	f	class:PixelWorld3D	signature:( )
+PixelWorld3D::~PixelWorld3D	pixelworld3d.h	/^        ~PixelWorld3D();$/;"	p	class:PixelWorld3D	access:public	signature:()
+PixelWorld3D::~PixelWorld3D	pixelworld3d.h	/^PixelWorld3D<T>::~PixelWorld3D()$/;"	f	class:PixelWorld3D	signature:()
+Point	m_geometry.h	/^        Point( const Point &other ){ *this = other; }   $/;"	f	struct:Point	access:public	signature:( const Point &other )
+Point	m_geometry.h	/^        Point():x(0),y(0) { }$/;"	f	struct:Point	access:public	signature:()
+Point	m_geometry.h	/^        Point(int x0, int y0){ x = x0; y = y0; }$/;"	f	struct:Point	access:public	signature:(int x0, int y0)
+Point	m_geometry.h	/^    struct Point {$/;"	s
+Point::Point	m_geometry.h	/^        Point( const Point &other ){ *this = other; }   $/;"	f	struct:Point	access:public	signature:( const Point &other )
+Point::Point	m_geometry.h	/^        Point():x(0),y(0) { }$/;"	f	struct:Point	access:public	signature:()
+Point::Point	m_geometry.h	/^        Point(int x0, int y0){ x = x0; y = y0; }$/;"	f	struct:Point	access:public	signature:(int x0, int y0)
+Point::operator *	m_geometry.h	/^        Point operator * (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+Point::operator *=	m_geometry.h	/^        Point& operator *= (int num){$/;"	f	struct:Point	access:public	signature:(int num)
+Point::operator +	m_geometry.h	/^        Point operator + (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+Point::operator +=	m_geometry.h	/^        Point& operator += (const Point &other){$/;"	f	struct:Point	access:public	signature:(const Point &other)
+Point::operator <	m_geometry.h	/^        bool operator < (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+Point::operator =	m_geometry.h	/^        Point& operator = ( const Point &other ) { x = other.x; y = other.y; return *this; }$/;"	f	struct:Point	access:public	signature:( const Point &other )
+Point::x	m_geometry.h	/^        int x;$/;"	m	struct:Point	access:public
+Point::y	m_geometry.h	/^        int y;$/;"	m	struct:Point	access:public
+PointF	m_geometry.h	/^        PointF( const PointF &other ){ *this = other; }   $/;"	f	struct:PointF	access:public	signature:( const PointF &other )
+PointF	m_geometry.h	/^        PointF():x(0),y(0) { }$/;"	f	struct:PointF	access:public	signature:()
+PointF	m_geometry.h	/^        PointF(const Point &other):x(other.x), y(other.y){ }$/;"	f	struct:PointF	access:public	signature:(const Point &other)
+PointF	m_geometry.h	/^        PointF(int x0, int y0):x(x0), y(y0){ }$/;"	f	struct:PointF	access:public	signature:(int x0, int y0)
+PointF	m_geometry.h	/^    struct PointF {$/;"	s
+PointF::PointF	m_geometry.h	/^        PointF( const PointF &other ){ *this = other; }   $/;"	f	struct:PointF	access:public	signature:( const PointF &other )
+PointF::PointF	m_geometry.h	/^        PointF():x(0),y(0) { }$/;"	f	struct:PointF	access:public	signature:()
+PointF::PointF	m_geometry.h	/^        PointF(const Point &other):x(other.x), y(other.y){ }$/;"	f	struct:PointF	access:public	signature:(const Point &other)
+PointF::PointF	m_geometry.h	/^        PointF(int x0, int y0):x(x0), y(y0){ }$/;"	f	struct:PointF	access:public	signature:(int x0, int y0)
+PointF::operator *	m_geometry.h	/^        PointF operator * (const Point &other) const{$/;"	f	struct:PointF	access:public	signature:(const Point &other) const
+PointF::operator *=	m_geometry.h	/^        PointF& operator *= (double num){$/;"	f	struct:PointF	access:public	signature:(double num)
+PointF::operator +	m_geometry.h	/^        PointF operator + (const Point &other) const{$/;"	f	struct:PointF	access:public	signature:(const Point &other) const
+PointF::operator +=	m_geometry.h	/^        PointF& operator += (const PointF &other){$/;"	f	struct:PointF	access:public	signature:(const PointF &other)
+PointF::operator <	m_geometry.h	/^        bool operator < (const PointF &other) const{$/;"	f	struct:PointF	access:public	signature:(const PointF &other) const
+PointF::operator =	m_geometry.h	/^        PointF& operator = ( const PointF &other ) { x = other.x; y = other.y; return *this; }$/;"	f	struct:PointF	access:public	signature:( const PointF &other )
+PointF::x	m_geometry.h	/^        double x;$/;"	m	struct:PointF	access:public
+PointF::y	m_geometry.h	/^        double y;$/;"	m	struct:PointF	access:public
+RgbImage	m_opencv.h	/^    typedef Image<RgbPixel> RgbImage;$/;"	t	namespace:m_opencv
+RgbPixel	m_opencv.h	/^    struct RgbPixel{$/;"	s	namespace:m_opencv
+RgbPixel2D	pixel.h	/^        RgbPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }$/;"	f	class:RgbPixel2D	access:public	signature:(int x = 0 , int y = 0)
+RgbPixel2D	pixel.h	/^class RgbPixel2D {$/;"	c
+RgbPixel2D::Image	pixel.h	/^        typedef RgbImage Image;$/;"	t	class:RgbPixel2D	access:public
+RgbPixel2D::PixelType	pixel.h	/^        typedef RgbPixel PixelType;$/;"	t	class:RgbPixel2D	access:public
+RgbPixel2D::RgbPixel2D	pixel.h	/^        RgbPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }$/;"	f	class:RgbPixel2D	access:public	signature:(int x = 0 , int y = 0)
+RgbPixel2D::_color	pixel.h	/^        RgbPixel _color;$/;"	m	class:RgbPixel2D	access:protected
+RgbPixel2D::_x	pixel.h	/^        int _x;$/;"	m	class:RgbPixel2D	access:public
+RgbPixel2D::_y	pixel.h	/^        int _y;$/;"	m	class:RgbPixel2D	access:public
+RgbPixel2D::density_distance	pixel.h	/^        static double density_distance(const RgbPixel2D &a, const RgbPixel2D &b){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel2D &a, const RgbPixel2D &b)
+RgbPixel2D::get_color	pixel.h	/^        RgbPixel  get_color() const{$/;"	f	class:RgbPixel2D	access:public	signature:() const
+RgbPixel2D::get_density	pixel.h	/^        double get_density( ) const{$/;"	f	class:RgbPixel2D	access:public	signature:( ) const
+RgbPixel2D::get_white	pixel.h	/^        static RgbPixel get_white(){$/;"	f	class:RgbPixel2D	access:public	signature:()
+RgbPixel2D::set_color	pixel.h	/^        void set_color(const RgbPixel &rgb){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel &rgb)
+RgbPixel2D::set_location	pixel.h	/^        void set_location(int x, int y){$/;"	f	class:RgbPixel2D	access:public	signature:(int x, int y)
+RgbPixel2D::spatial_distance	pixel.h	/^        static double spatial_distance(const RgbPixel2D &a, const RgbPixel2D &b){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel2D &a, const RgbPixel2D &b)
+RgbPixel3D	pixel.h	/^        RgbPixel3D(int x = 0 , int y = 0, int z = 0):_x(x), _y(y), _z(z) { }$/;"	f	class:RgbPixel3D	access:public	signature:(int x = 0 , int y = 0, int z = 0)
+RgbPixel3D	pixel.h	/^class RgbPixel3D {$/;"	c
+RgbPixel3D::PixelType	pixel.h	/^        typedef RgbPixel PixelType;$/;"	t	class:RgbPixel3D	access:public
+RgbPixel3D::RgbPixel3D	pixel.h	/^        RgbPixel3D(int x = 0 , int y = 0, int z = 0):_x(x), _y(y), _z(z) { }$/;"	f	class:RgbPixel3D	access:public	signature:(int x = 0 , int y = 0, int z = 0)
+RgbPixel3D::_color	pixel.h	/^        RgbPixel _color;$/;"	m	class:RgbPixel3D	access:protected
+RgbPixel3D::_x	pixel.h	/^        int _x;$/;"	m	class:RgbPixel3D	access:public
+RgbPixel3D::_y	pixel.h	/^        int _y;$/;"	m	class:RgbPixel3D	access:public
+RgbPixel3D::_z	pixel.h	/^        int _z;$/;"	m	class:RgbPixel3D	access:public
+RgbPixel3D::density_distance	pixel.h	/^        static double density_distance(const RgbPixel3D &a, const RgbPixel3D &b){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &a, const RgbPixel3D &b)
+RgbPixel3D::get_color	pixel.h	/^        RgbPixel  get_color() const{$/;"	f	class:RgbPixel3D	access:public	signature:() const
+RgbPixel3D::get_density	pixel.h	/^        double get_density( ) const{$/;"	f	class:RgbPixel3D	access:public	signature:( ) const
+RgbPixel3D::get_white	pixel.h	/^        static RgbPixel get_white(){$/;"	f	class:RgbPixel3D	access:public	signature:()
+RgbPixel3D::operator <	pixel.h	/^        bool operator < (const RgbPixel3D &other) const{$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &other) const
+RgbPixel3D::set_color	pixel.h	/^        void set_color(const RgbPixel &rgb){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel &rgb)
+RgbPixel3D::set_location	pixel.h	/^        void set_location(int x, int y, int z){$/;"	f	class:RgbPixel3D	access:public	signature:(int x, int y, int z)
+RgbPixel3D::spatial_distance	pixel.h	/^        static double spatial_distance(const RgbPixel3D &a, const RgbPixel3D &b){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &a, const RgbPixel3D &b)
+RgbPixelFloat	m_opencv.h	/^    } RgbPixelFloat; $/;"	t	namespace:m_opencv	typeref:struct:m_opencv::__anon1
+SCALE	component.h	/^static const double SCALE = 50;$/;"	v
+UWGraph	m_graph.h	/^                UWGraph (Edge *e_begin, Edge *e_end, int num_nodes, double weights[]){$/;"	f	class:m_graph::UWGraph	access:public	signature:(Edge *e_begin, Edge *e_end, int num_nodes, double weights[])
+UWGraph	m_graph.h	/^        class UWGraph {$/;"	c	namespace:m_graph
+WeightEdge	component.h	/^        WeightEdge (double weight, T b, T e):_weight(weight), _b(b), _e(e){ };$/;"	f	class:WeightEdge	access:public	signature:(double weight, T b, T e)
+WeightEdge	component.h	/^class WeightEdge {$/;"	c
+WeightEdge2D	pixelworld2d.h	/^        typedef WeightEdge<T*> WeightEdge2D;$/;"	t	class:PixelWorld2D	access:public
+WeightEdge3D	pixelworld3d.h	/^        typedef WeightEdge<T*> WeightEdge3D;$/;"	t	class:PixelWorld3D	access:public
+WeightEdge::WeightEdge	component.h	/^        WeightEdge (double weight, T b, T e):_weight(weight), _b(b), _e(e){ };$/;"	f	class:WeightEdge	access:public	signature:(double weight, T b, T e)
+WeightEdge::_b	component.h	/^        T _b;$/;"	m	class:WeightEdge	access:public
+WeightEdge::_e	component.h	/^        T _e;$/;"	m	class:WeightEdge	access:public
+WeightEdge::_weight	component.h	/^        double _weight;$/;"	m	class:WeightEdge	access:public
+WeightEdge::m	component.h	/^        int m;$/;"	m	class:WeightEdge	access:public
+WeightEdge::operator <	component.h	/^        bool operator < (const WeightEdge &r) const{$/;"	f	class:WeightEdge	access:public	signature:(const WeightEdge &r) const
+_b	component.h	/^        T _b;$/;"	m	class:WeightEdge	access:public
+_color	pixel.h	/^        GrayPixel _color;$/;"	m	class:GrayPixel2D	access:protected
+_color	pixel.h	/^        GrayPixel _color;$/;"	m	class:GrayPixel3D	access:protected
+_color	pixel.h	/^        RgbPixel _color;$/;"	m	class:RgbPixel2D	access:protected
+_color	pixel.h	/^        RgbPixel _color;$/;"	m	class:RgbPixel3D	access:protected
+_component_color	component.h	/^        Color _component_color;$/;"	m	class:Component	access:private
+_components	pixelworld2d.h	/^        std::list<Component2D> _components;$/;"	m	class:PixelWorld2D	access:private
+_components	pixelworld3d.h	/^        std::list<Component3D> _components;$/;"	m	class:PixelWorld3D	access:private
+_e	component.h	/^        T _e;$/;"	m	class:WeightEdge	access:public
+_edge_weight	pixelworld2d.h	/^        double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}$/;"	f	class:PixelWorld2D	access:protected	signature:(const T &a, const T &b)
+_edge_weight	pixelworld3d.h	/^        double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}$/;"	f	class:PixelWorld3D	access:protected	signature:(const T &a, const T &b)
+_feature_neighbors	pixelworld2d.h	/^        std::vector<T*> _feature_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(const T &t) const
+_feature_neighbors	pixelworld2d.h	/^std::vector<T*> PixelWorld2D<T>::_feature_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+_feature_neighbors	pixelworld3d.h	/^        std::vector<T*> _feature_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(const T &t) const
+_feature_neighbors	pixelworld3d.h	/^std::vector<T*> PixelWorld3D<T>::_feature_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+_gaussian	pixelworld2d.h	/^        void _gaussian(){ }$/;"	f	class:PixelWorld2D	access:protected	signature:()
+_gaussian	pixelworld3d.h	/^        void _gaussian(){ }$/;"	f	class:PixelWorld3D	access:protected	signature:()
+_get_block_attrs	data.cpp	/^void _get_block_attrs(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV)$/;"	f	signature:(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV)
+_get_block_attrs	data.h	/^void _get_block_attrs(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV);$/;"	p	signature:(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV)
+_graph	m_graph.h	/^                MGraph *_graph;$/;"	m	class:m_graph::UWGraph	access:private
+_grid_neighbors	pixelworld2d.h	/^        std::vector<T*> _grid_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(const T &t) const
+_grid_neighbors	pixelworld2d.h	/^inline std::vector<T*> PixelWorld2D<T>::_grid_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+_grid_neighbors	pixelworld3d.h	/^        std::vector<T*> _grid_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(const T &t) const
+_grid_neighbors	pixelworld3d.h	/^inline std::vector<T*> PixelWorld3D<T>::_grid_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+_height	pixelworld2d.h	/^        int             _height;$/;"	m	class:PixelWorld2D	access:private
+_if_merge	component.h	/^        static bool _if_merge(double comp_diff, const Component &a, const Component &b) {$/;"	f	class:Component	access:public	signature:(double comp_diff, const Component &a, const Component &b)
+_isGrid	pixelworld2d.h	/^        bool            _isGrid;$/;"	m	class:PixelWorld2D	access:private
+_isGrid	pixelworld3d.h	/^        bool            _isGrid;$/;"	m	class:PixelWorld3D	access:private
+_k	component.h	/^        double _k;          \/\/ the larger _k, the larger component$/;"	m	class:Component	access:private
+_max_weight	component.h	/^        double _max_weight;$/;"	m	class:Component	access:private
+_members	component.h	/^        MemberList _members;$/;"	m	class:Component	access:private
+_pSrc	m_opencv.h	/^            IplImage* _pSrc;$/;"	m	class:m_opencv::Image	access:private
+_pixels	pixelworld2d.h	/^        T        **_pixels;    $/;"	m	class:PixelWorld2D	access:private
+_pixels	pixelworld3d.h	/^        PixelSet     _pixels;    $/;"	m	class:PixelWorld3D	access:private
+_weight	component.h	/^        double _weight;$/;"	m	class:WeightEdge	access:public
+_width	pixelworld2d.h	/^        int             _width;$/;"	m	class:PixelWorld2D	access:private
+_x	pixel.h	/^        int _x;$/;"	m	class:GrayPixel2D	access:public
+_x	pixel.h	/^        int _x;$/;"	m	class:GrayPixel3D	access:public
+_x	pixel.h	/^        int _x;$/;"	m	class:RgbPixel2D	access:public
+_x	pixel.h	/^        int _x;$/;"	m	class:RgbPixel3D	access:public
+_y	pixel.h	/^        int _y;$/;"	m	class:GrayPixel2D	access:public
+_y	pixel.h	/^        int _y;$/;"	m	class:GrayPixel3D	access:public
+_y	pixel.h	/^        int _y;$/;"	m	class:RgbPixel2D	access:public
+_y	pixel.h	/^        int _y;$/;"	m	class:RgbPixel3D	access:public
+_z	pixel.h	/^        int _z;$/;"	m	class:GrayPixel3D	access:public
+_z	pixel.h	/^        int _z;$/;"	m	class:RgbPixel3D	access:public
+add_edge	m_graph.h	/^                void add_edge(T a, T b){$/;"	f	class:m_graph::UWGraph	access:public	signature:(T a, T b)
+add_member	component.h	/^        void add_member(T mem){$/;"	f	class:Component	access:public	signature:(T mem)
+angle_vector	m_math.h	/^        inline double angle_vector(const T &vec){$/;"	f	namespace:m_math	signature:(const T &vec)
+b	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+b	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+blur	m_opencv.cpp	/^    int blur(IplImage *input){$/;"	f	namespace:m_opencv	signature:(IplImage *input)
+blur	m_opencv.h	/^    int blur(IplImage *input);$/;"	p	namespace:m_opencv	signature:(IplImage *input)
+call_py	m_util.cpp	/^    xmlrpc_c::value call_py( const string &method_name, xmlrpc_c::paramList params, $/;"	f	namespace:m_util	signature:( const string &method_name, xmlrpc_c::paramList params, const string& port, const string &server_url)
+compute_average_color	component.h	/^        Color compute_average_color();$/;"	p	class:Component	access:public	signature:()
+compute_average_color	component.h	/^typename Component<T>::Color Component<T>::compute_average_color(){$/;"	f	class:Component	signature:()
+construct_graph	pixelworld2d.h	/^        void construct_graph();$/;"	p	class:PixelWorld2D	access:public	signature:()
+construct_graph	pixelworld2d.h	/^void PixelWorld2D<T>::construct_graph(){$/;"	f	class:PixelWorld2D	signature:()
+construct_graph	pixelworld3d.h	/^        void construct_graph();$/;"	p	class:PixelWorld3D	access:public	signature:()
+construct_graph	pixelworld3d.h	/^void PixelWorld3D<T>::construct_graph(){$/;"	f	class:PixelWorld3D	signature:()
+contains	component.h	/^        bool contains(const T &pixel){$/;"	f	class:Component	access:public	signature:(const T &pixel)
+create_gray_image	m_opencv.cpp	/^    IplImage* create_gray_image(const IplImage* pSrc)$/;"	f	namespace:m_opencv	signature:(const IplImage* pSrc)
+create_gray_image	m_opencv.h	/^    IplImage* create_gray_image(const IplImage* psrc);$/;"	p	namespace:m_opencv	signature:(const IplImage* psrc)
+create_luv_image	m_opencv.cpp	/^    LuvPixel* create_luv_image(const IplImage *pSrc)$/;"	f	namespace:m_opencv	signature:(const IplImage *pSrc)
+create_luv_image	m_opencv.h	/^    LuvPixel* create_luv_image(const IplImage *pSrc);$/;"	p	namespace:m_opencv	signature:(const IplImage *pSrc)
+density_distance	pixel.h	/^        static double density_distance(const GrayPixel2D &a, const GrayPixel2D &b){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel2D &a, const GrayPixel2D &b)
+density_distance	pixel.h	/^        static double density_distance(const GrayPixel3D &a, const GrayPixel3D &b){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &a, const GrayPixel3D &b)
+density_distance	pixel.h	/^        static double density_distance(const RgbPixel2D &a, const RgbPixel2D &b){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel2D &a, const RgbPixel2D &b)
+density_distance	pixel.h	/^        static double density_distance(const RgbPixel3D &a, const RgbPixel3D &b){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &a, const RgbPixel3D &b)
+discrete_differential	m_algorithm.h	/^void discrete_differential(const T &y, T &rst){$/;"	f	namespace:m_lib	signature:(const T &y, T &rst)
+display_caption	m_opencv.cpp	/^    int display_caption( char* caption )$/;"	f	namespace:m_opencv	signature:( char* caption )
+display_dst	m_opencv.cpp	/^    int display_dst( int delay )$/;"	f	namespace:m_opencv	signature:( int delay )
+draw_circle	m_opencv.cpp	/^    void draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray){$/;"	f	namespace:m_opencv	signature:(IplImage *pSrc, int x, int y, int radius, int color_gray)
+draw_circle	m_opencv.h	/^    void    draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray);$/;"	p	namespace:m_opencv	signature:(IplImage *pSrc, int x, int y, int radius, int color_gray)
+draw_rentangle	m_opencv.cpp	/^    void draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray){$/;"	f	namespace:m_opencv	signature:(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray)
+draw_rentangle	m_opencv.h	/^    void    draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray);$/;"	p	namespace:m_opencv	signature:(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray)
+dst	m_opencv.cpp	/^    cv::Mat src, dst; $/;"	m	namespace:m_opencv	file:
+edge_iterator	m_graph.h	/^                typedef graph_traits<MGraph>::edge_iterator edge_iterator;$/;"	t	class:m_graph::UWGraph	access:public
+fill_rectangle	m_opencv.cpp	/^    void fill_rectangle(GrayImage &img, int x0, int y0, int x1, int y1, int min, int max){$/;"	f	namespace:m_opencv	signature:(GrayImage &img, int x0, int y0, int x1, int y1, int min, int max)
+fill_rectangle	m_opencv.h	/^    void    fill_rectangle(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max);$/;"	p	namespace:m_opencv	signature:(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max)
+g	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+g	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+get__pSrc	m_opencv.h	/^            const IplImage* get__pSrc() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+get_block_attrs	data.cpp	/^void get_block_attrs(vector<float> &xList, vector<float> &yList, vector<float> &zList,$/;"	f	signature:(vector<float> &xList, vector<float> &yList, vector<float> &zList, vector<int> &rList, vector<int> &gList, vector<int> &bList, vector<int> &sizeList)
+get_block_attrs	data.h	/^void get_block_attrs(vector<float> &xList, vector<float> &yList, vector<float> &zList,$/;"	p	signature:(vector<float> &xList, vector<float> &yList, vector<float> &zList, vector<int> &rList, vector<int> &gList, vector<int> &bList, vector<int> &sizeList)
+get_block_attrs	main.cpp	/^void get_block_attrs(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV)$/;"	f	signature:(AttrVector &posV, AttrVector &sizeV, AttrVector& colorV)
+get_color	pixel.h	/^        GrayPixel  get_color() const{$/;"	f	class:GrayPixel2D	access:public	signature:() const
+get_color	pixel.h	/^        GrayPixel  get_color() const{$/;"	f	class:GrayPixel3D	access:public	signature:() const
+get_color	pixel.h	/^        RgbPixel  get_color() const{$/;"	f	class:RgbPixel2D	access:public	signature:() const
+get_color	pixel.h	/^        RgbPixel  get_color() const{$/;"	f	class:RgbPixel3D	access:public	signature:() const
+get_density	pixel.h	/^        double get_density( ) const{$/;"	f	class:RgbPixel2D	access:public	signature:( ) const
+get_density	pixel.h	/^        double get_density( ) const{$/;"	f	class:RgbPixel3D	access:public	signature:( ) const
+get_density	pixel.h	/^        double get_density() const{$/;"	f	class:GrayPixel2D	access:public	signature:() const
+get_density	pixel.h	/^        double get_density() const{$/;"	f	class:GrayPixel3D	access:public	signature:() const
+get_depth	m_opencv.h	/^            int get_depth() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+get_edges	m_graph.h	/^                std::vector<edge_iterator>  get_edges()const$/;"	f	class:m_graph::UWGraph	access:public	signature:() const
+get_elemnts_along_circle	m_algorithm.cpp	/^std::set<Point> get_elemnts_along_circle(int x0, int y0, int radius)$/;"	f	namespace:m_lib	signature:(int x0, int y0, int radius)
+get_elemnts_along_circle	m_algorithm.h	/^std::set<Point> get_elemnts_along_circle(int x0, int y0, int radius);$/;"	p	namespace:m_lib	signature:(int x0, int y0, int radius)
+get_height	m_opencv.h	/^            int get_height() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+get_height	pixelworld2d.h	/^        int             get_height( ) const                    { return _height;             }$/;"	f	class:PixelWorld2D	access:public	signature:( ) const
+get_members	component.h	/^        MemberList& get_members(){$/;"	f	class:Component	access:public	signature:()
+get_nChannels	m_opencv.h	/^            int get_nChannels() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+get_neighbors	pixelworld2d.h	/^        std::vector<T*> get_neighbors(const T &t) const;$/;"	p	class:PixelWorld2D	access:public	signature:(const T &t) const
+get_neighbors	pixelworld2d.h	/^inline std::vector<T*> PixelWorld2D<T>::get_neighbors(const T &t) const{$/;"	f	class:PixelWorld2D	signature:(const T &t) const
+get_neighbors	pixelworld3d.h	/^        std::vector<T*> get_neighbors(const T &t) const;$/;"	p	class:PixelWorld3D	access:public	signature:(const T &t) const
+get_neighbors	pixelworld3d.h	/^inline std::vector<T*> PixelWorld3D<T>::get_neighbors(const T &t) const{$/;"	f	class:PixelWorld3D	signature:(const T &t) const
+get_white	pixel.h	/^        static GrayPixel get_white(){$/;"	f	class:GrayPixel2D	access:public	signature:()
+get_white	pixel.h	/^        static GrayPixel get_white(){$/;"	f	class:GrayPixel3D	access:public	signature:()
+get_white	pixel.h	/^        static RgbPixel get_white(){$/;"	f	class:RgbPixel2D	access:public	signature:()
+get_white	pixel.h	/^        static RgbPixel get_white(){$/;"	f	class:RgbPixel3D	access:public	signature:()
+get_width	m_opencv.h	/^            int get_width() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+get_width	pixelworld2d.h	/^        int             get_width( ) const                     { return _width;              }$/;"	f	class:PixelWorld2D	access:public	signature:( ) const
+internal_diff	component.h	/^        double internal_diff() const{$/;"	f	class:Component	access:public	signature:() const
+is_inside	pixelworld2d.h	/^        bool is_inside(int x, int y) const;$/;"	p	class:PixelWorld2D	access:protected	signature:(int x, int y) const
+is_inside	pixelworld2d.h	/^inline bool PixelWorld2D<T>::is_inside(int x, int y) const{$/;"	f	class:PixelWorld2D	signature:(int x, int y) const
+is_inside	pixelworld3d.h	/^        bool is_inside(int x, int y) const;$/;"	p	class:PixelWorld3D	access:protected	signature:(int x, int y) const
+is_inside	pixelworld3d.h	/^inline bool PixelWorld3D<T>::is_inside(int x, int y) const{$/;"	f	class:PixelWorld3D	signature:(int x, int y) const
+l	m_opencv.h	/^        float l;$/;"	m	struct:m_opencv::LuvPixel	access:public
+length_edge	m_math.h	/^        inline double length_edge(const T &begin, const T &end){$/;"	f	namespace:m_math	signature:(const T &begin, const T &end)
+length_vector	m_math.h	/^        inline double length_vector(const T &v){$/;"	f	namespace:m_math	signature:(const T &v)
+m	component.h	/^        int m;$/;"	m	class:WeightEdge	access:public
+m_graph	m_graph.h	/^namespace m_graph {$/;"	n
+m_graph::UWGraph	m_graph.h	/^        class UWGraph {$/;"	c	namespace:m_graph
+m_graph::UWGraph::Edge	m_graph.h	/^                typedef std::pair<T, T> Edge;$/;"	t	class:m_graph::UWGraph	access:public
+m_graph::UWGraph::MGraph	m_graph.h	/^                typedef adjacency_list<vecS, vecS, undirectedS, no_property, property<edge_weight_t, double> > MGraph;$/;"	t	class:m_graph::UWGraph	access:public
+m_graph::UWGraph::UWGraph	m_graph.h	/^                UWGraph (Edge *e_begin, Edge *e_end, int num_nodes, double weights[]){$/;"	f	class:m_graph::UWGraph	access:public	signature:(Edge *e_begin, Edge *e_end, int num_nodes, double weights[])
+m_graph::UWGraph::_graph	m_graph.h	/^                MGraph *_graph;$/;"	m	class:m_graph::UWGraph	access:private
+m_graph::UWGraph::add_edge	m_graph.h	/^                void add_edge(T a, T b){$/;"	f	class:m_graph::UWGraph	access:public	signature:(T a, T b)
+m_graph::UWGraph::edge_iterator	m_graph.h	/^                typedef graph_traits<MGraph>::edge_iterator edge_iterator;$/;"	t	class:m_graph::UWGraph	access:public
+m_graph::UWGraph::get_edges	m_graph.h	/^                std::vector<edge_iterator>  get_edges()const$/;"	f	class:m_graph::UWGraph	access:public	signature:() const
+m_lib	m_algorithm.cpp	/^namespace m_lib  {$/;"	n	file:
+m_lib	m_algorithm.h	/^namespace m_lib{$/;"	n
+m_lib::discrete_differential	m_algorithm.h	/^void discrete_differential(const T &y, T &rst){$/;"	f	namespace:m_lib	signature:(const T &y, T &rst)
+m_lib::get_elemnts_along_circle	m_algorithm.cpp	/^std::set<Point> get_elemnts_along_circle(int x0, int y0, int radius)$/;"	f	namespace:m_lib	signature:(int x0, int y0, int radius)
+m_lib::get_elemnts_along_circle	m_algorithm.h	/^std::set<Point> get_elemnts_along_circle(int x0, int y0, int radius);$/;"	p	namespace:m_lib	signature:(int x0, int y0, int radius)
+m_lib::previous_sum	m_algorithm.h	/^void previous_sum(T &container){$/;"	f	namespace:m_lib	signature:(T &container)
+m_math	m_math.h	/^namespace m_math {$/;"	n
+m_math::Pi	m_math.h	/^    const double Pi = 3.1415926;$/;"	m	namespace:m_math
+m_math::angle_vector	m_math.h	/^        inline double angle_vector(const T &vec){$/;"	f	namespace:m_math	signature:(const T &vec)
+m_math::length_edge	m_math.h	/^        inline double length_edge(const T &begin, const T &end){$/;"	f	namespace:m_math	signature:(const T &begin, const T &end)
+m_math::length_vector	m_math.h	/^        inline double length_vector(const T &v){$/;"	f	namespace:m_math	signature:(const T &v)
+m_math::math_vector	m_math.h	/^        inline T math_vector(const T &begin, const T &end){$/;"	f	namespace:m_math	signature:(const T &begin, const T &end)
+m_math::rand_int	m_math.h	/^    inline int rand_int(int min, int max){$/;"	f	namespace:m_math	signature:(int min, int max)
+m_opencv	m_opencv.cpp	/^namespace m_opencv {$/;"	n	file:
+m_opencv	m_opencv.h	/^namespace m_opencv {$/;"	n
+m_opencv::DELAY_BLUR	m_opencv.cpp	/^    int DELAY_BLUR = 100;$/;"	m	namespace:m_opencv	file:
+m_opencv::DELAY_CAPTION	m_opencv.cpp	/^    int DELAY_CAPTION = 1500;$/;"	m	namespace:m_opencv	file:
+m_opencv::GrayImage	m_opencv.h	/^    typedef Image<GrayPixel> GrayImage;$/;"	t	namespace:m_opencv
+m_opencv::GrayPixel	m_opencv.h	/^    struct GrayPixel{$/;"	s	namespace:m_opencv
+m_opencv::GrayPixel::operator ==	m_opencv.h	/^        bool operator==(const GrayPixel& other) const {$/;"	f	struct:m_opencv::GrayPixel	access:public	signature:(const GrayPixel& other) const
+m_opencv::GrayPixel::v	m_opencv.h	/^        unsigned char v;$/;"	m	struct:m_opencv::GrayPixel	access:public
+m_opencv::Image	m_opencv.h	/^    template<class T> class Image$/;"	c	namespace:m_opencv
+m_opencv::Image::Image	m_opencv.h	/^            Image(IplImage* img):_pSrc(img) {}$/;"	f	class:m_opencv::Image	access:public	signature:(IplImage* img)
+m_opencv::Image::_pSrc	m_opencv.h	/^            IplImage* _pSrc;$/;"	m	class:m_opencv::Image	access:private
+m_opencv::Image::get__pSrc	m_opencv.h	/^            const IplImage* get__pSrc() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::get_depth	m_opencv.h	/^            int get_depth() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::get_height	m_opencv.h	/^            int get_height() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::get_nChannels	m_opencv.h	/^            int get_nChannels() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::get_width	m_opencv.h	/^            int get_width() const{$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::operator =	m_opencv.h	/^            void operator = (IplImage* img) {_pSrc = img;}$/;"	f	class:m_opencv::Image	access:public	signature:(IplImage* img)
+m_opencv::Image::operator []	m_opencv.h	/^            T* operator[](const int rowIndx) {$/;"	f	class:m_opencv::Image	access:public	signature:(const int rowIndx)
+m_opencv::Image::operator []	m_opencv.h	/^            const T* operator[](const int rowIndx) const{$/;"	f	class:m_opencv::Image	access:public	signature:(const int rowIndx) const
+m_opencv::Image::output_img_info	m_opencv.h	/^            void output_img_info() const {$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::save	m_opencv.h	/^            void save(const string &filename){$/;"	f	class:m_opencv::Image	access:public	signature:(const string &filename)
+m_opencv::Image::set_color	m_opencv.h	/^            void set_color(const T &color) {$/;"	f	class:m_opencv::Image	access:public	signature:(const T &color)
+m_opencv::Image::show	m_opencv.h	/^            void show()const {$/;"	f	class:m_opencv::Image	access:public	signature:() const
+m_opencv::Image::~Image	m_opencv.h	/^            ~Image(){};$/;"	f	class:m_opencv::Image	access:public	signature:()
+m_opencv::LuvPixel	m_opencv.h	/^    struct LuvPixel$/;"	s	namespace:m_opencv
+m_opencv::LuvPixel::l	m_opencv.h	/^        float l;$/;"	m	struct:m_opencv::LuvPixel	access:public
+m_opencv::LuvPixel::u	m_opencv.h	/^        float u;$/;"	m	struct:m_opencv::LuvPixel	access:public
+m_opencv::LuvPixel::v	m_opencv.h	/^        float v;$/;"	m	struct:m_opencv::LuvPixel	access:public
+m_opencv::MAX_KERNEL_LENGTH	m_opencv.cpp	/^    int MAX_KERNEL_LENGTH = 5;$/;"	m	namespace:m_opencv	file:
+m_opencv::RgbImage	m_opencv.h	/^    typedef Image<RgbPixel> RgbImage;$/;"	t	namespace:m_opencv
+m_opencv::RgbPixel	m_opencv.h	/^    struct RgbPixel{$/;"	s	namespace:m_opencv
+m_opencv::RgbPixel::b	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+m_opencv::RgbPixel::g	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+m_opencv::RgbPixel::operator ==	m_opencv.h	/^        bool operator==(const RgbPixel& other) const {$/;"	f	struct:m_opencv::RgbPixel	access:public	signature:(const RgbPixel& other) const
+m_opencv::RgbPixel::r	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+m_opencv::RgbPixelFloat	m_opencv.h	/^    } RgbPixelFloat; $/;"	t	namespace:m_opencv	typeref:struct:m_opencv::__anon1
+m_opencv::__anon1::b	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+m_opencv::__anon1::g	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+m_opencv::__anon1::r	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+m_opencv::blur	m_opencv.cpp	/^    int blur(IplImage *input){$/;"	f	namespace:m_opencv	signature:(IplImage *input)
+m_opencv::blur	m_opencv.h	/^    int blur(IplImage *input);$/;"	p	namespace:m_opencv	signature:(IplImage *input)
+m_opencv::create_gray_image	m_opencv.cpp	/^    IplImage* create_gray_image(const IplImage* pSrc)$/;"	f	namespace:m_opencv	signature:(const IplImage* pSrc)
+m_opencv::create_gray_image	m_opencv.h	/^    IplImage* create_gray_image(const IplImage* psrc);$/;"	p	namespace:m_opencv	signature:(const IplImage* psrc)
+m_opencv::create_luv_image	m_opencv.cpp	/^    LuvPixel* create_luv_image(const IplImage *pSrc)$/;"	f	namespace:m_opencv	signature:(const IplImage *pSrc)
+m_opencv::create_luv_image	m_opencv.h	/^    LuvPixel* create_luv_image(const IplImage *pSrc);$/;"	p	namespace:m_opencv	signature:(const IplImage *pSrc)
+m_opencv::display_caption	m_opencv.cpp	/^    int display_caption( char* caption )$/;"	f	namespace:m_opencv	signature:( char* caption )
+m_opencv::display_dst	m_opencv.cpp	/^    int display_dst( int delay )$/;"	f	namespace:m_opencv	signature:( int delay )
+m_opencv::draw_circle	m_opencv.cpp	/^    void draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray){$/;"	f	namespace:m_opencv	signature:(IplImage *pSrc, int x, int y, int radius, int color_gray)
+m_opencv::draw_circle	m_opencv.h	/^    void    draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray);$/;"	p	namespace:m_opencv	signature:(IplImage *pSrc, int x, int y, int radius, int color_gray)
+m_opencv::draw_rentangle	m_opencv.cpp	/^    void draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray){$/;"	f	namespace:m_opencv	signature:(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray)
+m_opencv::draw_rentangle	m_opencv.h	/^    void    draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray);$/;"	p	namespace:m_opencv	signature:(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray)
+m_opencv::dst	m_opencv.cpp	/^    cv::Mat src, dst; $/;"	m	namespace:m_opencv	file:
+m_opencv::fill_rectangle	m_opencv.cpp	/^    void fill_rectangle(GrayImage &img, int x0, int y0, int x1, int y1, int min, int max){$/;"	f	namespace:m_opencv	signature:(GrayImage &img, int x0, int y0, int x1, int y1, int min, int max)
+m_opencv::fill_rectangle	m_opencv.h	/^    void    fill_rectangle(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max);$/;"	p	namespace:m_opencv	signature:(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max)
+m_opencv::operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const GrayImage& image){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const GrayImage& image)
+m_opencv::operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const GrayPixel& pixel)
+m_opencv::operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const RgbImage& image){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const RgbImage& image)
+m_opencv::operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const RgbPixel& pixel)
+m_opencv::operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const GrayImage& image);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const GrayImage& image)
+m_opencv::operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const GrayPixel& pixel)
+m_opencv::operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const RgbImage& image);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const RgbImage& image)
+m_opencv::operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const RgbPixel& pixel)
+m_opencv::output_img_info	m_opencv.cpp	/^    void output_img_info(const IplImage *img)$/;"	f	namespace:m_opencv	signature:(const IplImage *img)
+m_opencv::output_img_info	m_opencv.h	/^    void    output_img_info(const IplImage *img);$/;"	p	namespace:m_opencv	signature:(const IplImage *img)
+m_opencv::rgb2luv	m_opencv.cpp	/^    void rgb2luv(int R,int G, int B, LuvPixel& luvdata)$/;"	f	namespace:m_opencv	signature:(int R,int G, int B, LuvPixel& luvdata)
+m_opencv::rgb2luv	m_opencv.h	/^    void      rgb2luv(int R,int G, int B, LuvPixel* luvdata);$/;"	p	namespace:m_opencv	signature:(int R,int G, int B, LuvPixel* luvdata)
+m_opencv::show_image	m_opencv.cpp	/^    void show_image(const IplImage *image){$/;"	f	namespace:m_opencv	signature:(const IplImage *image)
+m_opencv::show_image	m_opencv.h	/^    void    show_image(const IplImage *image);$/;"	p	namespace:m_opencv	signature:(const IplImage *image)
+m_opencv::src	m_opencv.cpp	/^    cv::Mat src, dst; $/;"	m	namespace:m_opencv	file:
+m_opencv::test_rgbimage	m_opencv.cpp	/^    void test_rgbimage(const std::string &filename){$/;"	f	namespace:m_opencv	signature:(const std::string &filename)
+m_opencv::window_name	m_opencv.cpp	/^    char window_name[] = "Filter Demo 1";$/;"	m	namespace:m_opencv	file:
+m_plot	m_plot.h	/^namespace m_plot {$/;"	n
+m_plot::plot_force_field	m_plot.h	/^        void plot_force_field(const std::vector<T> &y, int width, int height){$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y, int width, int height)
+m_plot::plot_vectors	m_plot.h	/^        void plot_vectors(const std::vector<T> &y )$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y )
+m_plot::translate_format	m_plot.h	/^        xmlrpc_c::paramList translate_format(const std::vector<T> &y){$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y)
+m_util	m_util.cpp	/^namespace m_util  {$/;"	n	file:
+m_util	m_util.h	/^namespace m_util {$/;"	n
+m_util::call_py	m_util.cpp	/^    xmlrpc_c::value call_py( const string &method_name, xmlrpc_c::paramList params, $/;"	f	namespace:m_util	signature:( const string &method_name, xmlrpc_c::paramList params, const string& port, const string &server_url)
+m_util::remove_pointer	m_util.h	/^        struct remove_pointer$/;"	s	namespace:m_util
+m_util::remove_pointer	m_util.h	/^        struct remove_pointer<T*>$/;"	s	namespace:m_util
+m_util::remove_pointer::type	m_util.h	/^            typedef T type;$/;"	t	struct:m_util::remove_pointer	access:public
+m_util::remove_pointer::type	m_util.h	/^            typedef typename remove_pointer<T>::type type;$/;"	t	struct:m_util::remove_pointer	access:public
+m_util::split	m_util.h	/^    inline std::vector<std::string> split(std::string s, const string &symbol){ $/;"	f	namespace:m_util	signature:(std::string s, const string &symbol)
+m_util::sth2string	m_util.h	/^        inline string sth2string(T i){$/;"	f	namespace:m_util	signature:(T i)
+m_util::string2sth	m_util.h	/^        inline T string2sth(const std::string& str){$/;"	f	namespace:m_util	signature:(const std::string& str)
+m_util::string_format	m_util.cpp	/^    std::string string_format(const std::string &fmt, ...) {$/;"	f	namespace:m_util	signature:(const std::string &fmt, ...)
+m_util::string_format	m_util.h	/^    std::string string_format(const std::string &fmt, ...);$/;"	p	namespace:m_util	signature:(const std::string &fmt, ...)
+main	main.cpp	/^int main(int argc, char** argv)$/;"	f	signature:(int argc, char** argv)
+math_vector	m_math.h	/^        inline T math_vector(const T &begin, const T &end){$/;"	f	namespace:m_math	signature:(const T &begin, const T &end)
+merge	component.h	/^        static int merge(double component_diff,   Component &s, Component &t){$/;"	f	class:Component	access:public	signature:(double component_diff, Component &s, Component &t)
+operator *	m_geometry.h	/^        Point operator * (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+operator *	m_geometry.h	/^        PointF operator * (const Point &other) const{$/;"	f	struct:PointF	access:public	signature:(const Point &other) const
+operator *=	m_geometry.h	/^        Point& operator *= (int num){$/;"	f	struct:Point	access:public	signature:(int num)
+operator *=	m_geometry.h	/^        PointF& operator *= (double num){$/;"	f	struct:PointF	access:public	signature:(double num)
+operator +	m_geometry.h	/^        Point operator + (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+operator +	m_geometry.h	/^        PointF operator + (const Point &other) const{$/;"	f	struct:PointF	access:public	signature:(const Point &other) const
+operator +=	m_geometry.h	/^        Point& operator += (const Point &other){$/;"	f	struct:Point	access:public	signature:(const Point &other)
+operator +=	m_geometry.h	/^        PointF& operator += (const PointF &other){$/;"	f	struct:PointF	access:public	signature:(const PointF &other)
+operator <	component.h	/^        bool operator < (const WeightEdge &r) const{$/;"	f	class:WeightEdge	access:public	signature:(const WeightEdge &r) const
+operator <	m_geometry.h	/^        bool operator < (const Point &other) const{$/;"	f	struct:Point	access:public	signature:(const Point &other) const
+operator <	m_geometry.h	/^        bool operator < (const PointF &other) const{$/;"	f	struct:PointF	access:public	signature:(const PointF &other) const
+operator <	pixel.h	/^        bool operator < (const GrayPixel3D &other) const{$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &other) const
+operator <	pixel.h	/^        bool operator < (const RgbPixel3D &other) const{$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &other) const
+operator <<	m_geometry.cpp	/^    std::ostream& operator<<(std::ostream& out, const Point &t){$/;"	f	signature:(std::ostream& out, const Point &t)
+operator <<	m_geometry.cpp	/^    std::ostream& operator<<(std::ostream& out, const PointF &t){$/;"	f	signature:(std::ostream& out, const PointF &t)
+operator <<	m_geometry.h	/^    std::ostream& operator<<(std::ostream& out, const Point &t);$/;"	p	signature:(std::ostream& out, const Point &t)
+operator <<	m_geometry.h	/^    std::ostream& operator<<(std::ostream& out, const PointF &t);$/;"	p	signature:(std::ostream& out, const PointF &t)
+operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const GrayImage& image){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const GrayImage& image)
+operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const GrayPixel& pixel)
+operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const RgbImage& image){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const RgbImage& image)
+operator <<	m_opencv.cpp	/^    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel){$/;"	f	namespace:m_opencv	signature:(std::ostream& out, const RgbPixel& pixel)
+operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const GrayImage& image);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const GrayImage& image)
+operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const GrayPixel& pixel);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const GrayPixel& pixel)
+operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const RgbImage& image);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const RgbImage& image)
+operator <<	m_opencv.h	/^    std::ostream& operator<<(std::ostream& out, const RgbPixel& pixel);$/;"	p	namespace:m_opencv	signature:(std::ostream& out, const RgbPixel& pixel)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const GrayPixel2D& t){$/;"	f	signature:(std::ostream& out, const GrayPixel2D& t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const GrayPixel2D* t){$/;"	f	signature:(std::ostream& out, const GrayPixel2D* t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const GrayPixel3D& t){$/;"	f	signature:(std::ostream& out, const GrayPixel3D& t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const GrayPixel3D* t){$/;"	f	signature:(std::ostream& out, const GrayPixel3D* t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const RgbPixel2D& t){$/;"	f	signature:(std::ostream& out, const RgbPixel2D& t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const RgbPixel2D* t){$/;"	f	signature:(std::ostream& out, const RgbPixel2D* t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const RgbPixel3D& t){$/;"	f	signature:(std::ostream& out, const RgbPixel3D& t)
+operator <<	pixel.cpp	/^std::ostream& operator << (std::ostream& out, const RgbPixel3D* t){$/;"	f	signature:(std::ostream& out, const RgbPixel3D* t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const GrayPixel2D& t);$/;"	p	signature:(std::ostream& out, const GrayPixel2D& t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const GrayPixel2D* t);$/;"	p	signature:(std::ostream& out, const GrayPixel2D* t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const GrayPixel3D& t);$/;"	p	signature:(std::ostream& out, const GrayPixel3D& t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const GrayPixel3D* t);$/;"	p	signature:(std::ostream& out, const GrayPixel3D* t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const RgbPixel2D& t);$/;"	p	signature:(std::ostream& out, const RgbPixel2D& t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const RgbPixel2D* t);$/;"	p	signature:(std::ostream& out, const RgbPixel2D* t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const RgbPixel3D& t);$/;"	p	signature:(std::ostream& out, const RgbPixel3D& t)
+operator <<	pixel.h	/^std::ostream& operator << (std::ostream& out, const RgbPixel3D* t);$/;"	p	signature:(std::ostream& out, const RgbPixel3D* t)
+operator =	m_geometry.h	/^        Point& operator = ( const Point &other ) { x = other.x; y = other.y; return *this; }$/;"	f	struct:Point	access:public	signature:( const Point &other )
+operator =	m_geometry.h	/^        PointF& operator = ( const PointF &other ) { x = other.x; y = other.y; return *this; }$/;"	f	struct:PointF	access:public	signature:( const PointF &other )
+operator =	m_opencv.h	/^            void operator = (IplImage* img) {_pSrc = img;}$/;"	f	class:m_opencv::Image	access:public	signature:(IplImage* img)
+operator ==	m_opencv.h	/^        bool operator==(const GrayPixel& other) const {$/;"	f	struct:m_opencv::GrayPixel	access:public	signature:(const GrayPixel& other) const
+operator ==	m_opencv.h	/^        bool operator==(const RgbPixel& other) const {$/;"	f	struct:m_opencv::RgbPixel	access:public	signature:(const RgbPixel& other) const
+operator []	m_opencv.h	/^            T* operator[](const int rowIndx) {$/;"	f	class:m_opencv::Image	access:public	signature:(const int rowIndx)
+operator []	m_opencv.h	/^            const T* operator[](const int rowIndx) const{$/;"	f	class:m_opencv::Image	access:public	signature:(const int rowIndx) const
+operator []	pixelworld2d.h	/^        T* operator[](int rowIndx) { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld2D	access:public	signature:(int rowIndx)
+operator []	pixelworld2d.h	/^        const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld2D	access:public	signature:(int rowIndx) const
+operator []	pixelworld3d.h	/^        T* operator[](int rowIndx) { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld3D	access:public	signature:(int rowIndx)
+operator []	pixelworld3d.h	/^        const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }$/;"	f	class:PixelWorld3D	access:public	signature:(int rowIndx) const
+output_img_info	m_opencv.cpp	/^    void output_img_info(const IplImage *img)$/;"	f	namespace:m_opencv	signature:(const IplImage *img)
+output_img_info	m_opencv.h	/^            void output_img_info() const {$/;"	f	class:m_opencv::Image	access:public	signature:() const
+output_img_info	m_opencv.h	/^    void    output_img_info(const IplImage *img);$/;"	p	namespace:m_opencv	signature:(const IplImage *img)
+plot_force_field	m_plot.h	/^        void plot_force_field(const std::vector<T> &y, int width, int height){$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y, int width, int height)
+plot_vectors	m_plot.h	/^        void plot_vectors(const std::vector<T> &y )$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y )
+previous_sum	m_algorithm.h	/^void previous_sum(T &container){$/;"	f	namespace:m_lib	signature:(T &container)
+r	m_opencv.h	/^        float b,g,r;$/;"	m	struct:m_opencv::__anon1	access:public
+r	m_opencv.h	/^        unsigned char b,g,r;$/;"	m	struct:m_opencv::RgbPixel	access:public
+rand_int	m_math.h	/^    inline int rand_int(int min, int max){$/;"	f	namespace:m_math	signature:(int min, int max)
+remove_pointer	m_util.h	/^        struct remove_pointer$/;"	s	namespace:m_util
+remove_pointer	m_util.h	/^        struct remove_pointer<T*>$/;"	s	namespace:m_util
+rgb2luv	m_opencv.cpp	/^    void rgb2luv(int R,int G, int B, LuvPixel& luvdata)$/;"	f	namespace:m_opencv	signature:(int R,int G, int B, LuvPixel& luvdata)
+rgb2luv	m_opencv.h	/^    void      rgb2luv(int R,int G, int B, LuvPixel* luvdata);$/;"	p	namespace:m_opencv	signature:(int R,int G, int B, LuvPixel* luvdata)
+save	m_opencv.h	/^            void save(const string &filename){$/;"	f	class:m_opencv::Image	access:public	signature:(const string &filename)
+save_segmentation	pixelworld2d.h	/^        void save_segmentation( );$/;"	p	class:PixelWorld2D	access:public	signature:( )
+save_segmentation	pixelworld2d.h	/^void PixelWorld2D<T>::save_segmentation( ){$/;"	f	class:PixelWorld2D	signature:( )
+save_segmentation	pixelworld3d.h	/^        void save_segmentation( );$/;"	p	class:PixelWorld3D	access:public	signature:( )
+save_segmentation	pixelworld3d.h	/^void PixelWorld3D<T>::save_segmentation( ){$/;"	f	class:PixelWorld3D	signature:( )
+set_color	m_opencv.h	/^            void set_color(const T &color) {$/;"	f	class:m_opencv::Image	access:public	signature:(const T &color)
+set_color	pixel.h	/^        void set_color(const GrayPixel &gray){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel &gray)
+set_color	pixel.h	/^        void set_color(const GrayPixel &gray){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel &gray)
+set_color	pixel.h	/^        void set_color(const RgbPixel &rgb){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel &rgb)
+set_color	pixel.h	/^        void set_color(const RgbPixel &rgb){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel &rgb)
+set_location	pixel.h	/^        void set_location(int x, int y){$/;"	f	class:GrayPixel2D	access:public	signature:(int x, int y)
+set_location	pixel.h	/^        void set_location(int x, int y){$/;"	f	class:RgbPixel2D	access:public	signature:(int x, int y)
+set_location	pixel.h	/^        void set_location(int x, int y, int z){$/;"	f	class:GrayPixel3D	access:public	signature:(int x, int y, int z)
+set_location	pixel.h	/^        void set_location(int x, int y, int z){$/;"	f	class:RgbPixel3D	access:public	signature:(int x, int y, int z)
+set_max_weight	component.h	/^        void set_max_weight(double w){$/;"	f	class:Component	access:public	signature:(double w)
+show	m_opencv.h	/^            void show()const {$/;"	f	class:m_opencv::Image	access:public	signature:() const
+show_image	m_opencv.cpp	/^    void show_image(const IplImage *image){$/;"	f	namespace:m_opencv	signature:(const IplImage *image)
+show_image	m_opencv.h	/^    void    show_image(const IplImage *image);$/;"	p	namespace:m_opencv	signature:(const IplImage *image)
+size	component.h	/^        int size(){$/;"	f	class:Component	access:public	signature:()
+spatial_distance	pixel.h	/^        static double spatial_distance(const GrayPixel2D &a, const GrayPixel2D &b){$/;"	f	class:GrayPixel2D	access:public	signature:(const GrayPixel2D &a, const GrayPixel2D &b)
+spatial_distance	pixel.h	/^        static double spatial_distance(const GrayPixel3D &a, const GrayPixel3D &b){$/;"	f	class:GrayPixel3D	access:public	signature:(const GrayPixel3D &a, const GrayPixel3D &b)
+spatial_distance	pixel.h	/^        static double spatial_distance(const RgbPixel2D &a, const RgbPixel2D &b){$/;"	f	class:RgbPixel2D	access:public	signature:(const RgbPixel2D &a, const RgbPixel2D &b)
+spatial_distance	pixel.h	/^        static double spatial_distance(const RgbPixel3D &a, const RgbPixel3D &b){$/;"	f	class:RgbPixel3D	access:public	signature:(const RgbPixel3D &a, const RgbPixel3D &b)
+split	m_util.h	/^    inline std::vector<std::string> split(std::string s, const string &symbol){ $/;"	f	namespace:m_util	signature:(std::string s, const string &symbol)
+src	m_opencv.cpp	/^    cv::Mat src, dst; $/;"	m	namespace:m_opencv	file:
+sth2string	m_util.h	/^        inline string sth2string(T i){$/;"	f	namespace:m_util	signature:(T i)
+string2sth	m_util.h	/^        inline T string2sth(const std::string& str){$/;"	f	namespace:m_util	signature:(const std::string& str)
+string_format	m_util.cpp	/^    std::string string_format(const std::string &fmt, ...) {$/;"	f	namespace:m_util	signature:(const std::string &fmt, ...)
+string_format	m_util.h	/^    std::string string_format(const std::string &fmt, ...);$/;"	p	namespace:m_util	signature:(const std::string &fmt, ...)
+test_rgbimage	m_opencv.cpp	/^    void test_rgbimage(const std::string &filename){$/;"	f	namespace:m_opencv	signature:(const std::string &filename)
+translate_format	m_plot.h	/^        xmlrpc_c::paramList translate_format(const std::vector<T> &y){$/;"	f	namespace:m_plot	signature:(const std::vector<T> &y)
+type	m_util.h	/^            typedef T type;$/;"	t	struct:m_util::remove_pointer	access:public
+type	m_util.h	/^            typedef typename remove_pointer<T>::type type;$/;"	t	struct:m_util::remove_pointer	access:public
+u	m_opencv.h	/^        float u;$/;"	m	struct:m_opencv::LuvPixel	access:public
+v	m_opencv.h	/^        float v;$/;"	m	struct:m_opencv::LuvPixel	access:public
+v	m_opencv.h	/^        unsigned char v;$/;"	m	struct:m_opencv::GrayPixel	access:public
+window_name	m_opencv.cpp	/^    char window_name[] = "Filter Demo 1";$/;"	m	namespace:m_opencv	file:
+x	m_geometry.h	/^        double x;$/;"	m	struct:PointF	access:public
+x	m_geometry.h	/^        int x;$/;"	m	struct:Point	access:public
+y	m_geometry.h	/^        double y;$/;"	m	struct:PointF	access:public
+y	m_geometry.h	/^        int y;$/;"	m	struct:Point	access:public
+~Image	m_opencv.h	/^            ~Image(){};$/;"	f	class:m_opencv::Image	access:public	signature:()
+~PixelWorld2D	pixelworld2d.h	/^        ~PixelWorld2D();$/;"	p	class:PixelWorld2D	access:public	signature:()
+~PixelWorld2D	pixelworld2d.h	/^PixelWorld2D<T>::~PixelWorld2D()$/;"	f	class:PixelWorld2D	signature:()
+~PixelWorld3D	pixelworld3d.h	/^        ~PixelWorld3D();$/;"	p	class:PixelWorld3D	access:public	signature:()
+~PixelWorld3D	pixelworld3d.h	/^PixelWorld3D<T>::~PixelWorld3D()$/;"	f	class:PixelWorld3D	signature:()
