@@ -7,19 +7,18 @@ project(block_worlds_visiualization)
     #"*.cpp"
     #"../m_util.cpp" 
 #)
-find_package(PCL 1.2 REQUIRED)
 
-include_directories(${PCL_INCLUDE_DIRS})
-include_directories(${M_LIBRARY})
-link_directories(${PCL_LIBRARY_DIRS})
-add_definitions(${PCL_DEFINITIONS})
+ADD_EXECUTABLE (block_worlds main.cpp)
+# my library
+INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+TARGET_LINK_LIBRARIES(block_worlds ${M_LIBRARY_BIN}/libm_library.a)
+#
+FIND_PACKAGE(PCL 1.2 REQUIRED)
+INCLUDE_DIRECTORIES(${PCL_INCLUDE_DIRS})
+LINK_DIRECTORIES(${PCL_LIBRARY_DIRS})
+ADD_DEFINITIONS(${PCL_DEFINITIONS})
 
-add_executable (block_worlds
-    main.cpp
-    ${M_LIBRARY}/m_util.cpp
-    ${M_LIBRARY}/data.cpp
-    )
-target_link_libraries (block_worlds
+TARGET_LINK_LIBRARIES (block_worlds
     /usr/lib/libxmlrpc++.so
     /usr/lib/libxmlrpc_client++.so
     /usr/lib/libxmlrpc.so.3

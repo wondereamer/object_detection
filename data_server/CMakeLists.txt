@@ -18,17 +18,12 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 #add_definitions("-std=c99 -g -w -Winline")
 
-INCLUDE_DIRECTORIES(
-    ${OPENCOG_LOCATION}
-    ${M_LIBRARY}
-    /usr/include/opencv
-    )
+ADD_EXECUTABLE(data_server main)
 
-ADD_EXECUTABLE(data_server
-    main
-    ${M_LIBRARY}/m_util
-    )
+INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+TARGET_LINK_LIBRARIES(data_server ${M_LIBRARY_BIN}/libm_library.a)
 
+INCLUDE_DIRECTORIES( /usr/include/opencv)
 TARGET_LINK_LIBRARIES(data_server
     ${OPENCOG_LOCATION}/build/opencog/server/libserver.so
     ${OPENCOG_LOCATION}/build/opencog/guile/libsmob.so
@@ -42,7 +37,6 @@ TARGET_LINK_LIBRARIES(data_server
     /usr/lib/libxmlrpc_client++.so
     /usr/lib/libxmlrpc_server_abyss++.so
     /usr/lib/libxmlrpc_server++.so
-    /usr/lib/libopencv_highgui.so
 
     #${Boost_FILESYSTEM_LIBRARY}
     #${Boost_THREAD_LIBRARY}

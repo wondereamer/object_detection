@@ -1,0 +1,26 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+#file(GLOB source
+    #"*.cpp"
+    #)
+
+ADD_LIBRARY(m_library
+    m_algorithm
+    m_geometry
+    m_opencv
+    m_util
+    data
+    )
+INCLUDE_DIRECTORIES(/usr/include/opencv)
+TARGET_LINK_LIBRARIES(m_library
+    /usr/lib/libxmlrpc_abyss.so
+    /usr/lib/libxmlrpc_client++.so
+    /usr/lib/libxmlrpc++.so
+    /usr/lib/libxmlrpc.so.3
+    /usr/lib/libboost_graph.so
+    /usr/lib/libopencv_highgui.so
+    /usr/lib/libxmlrpc_server_abyss++.so
+    /usr/lib/libxmlrpc_server++.so
+    /usr/lib/libboost_system.so
+    /usr/lib/libopencv_core.so
+    /usr/lib/libopencv_imgproc.so
+    /usr/lib/libboost_regex.so)

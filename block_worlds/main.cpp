@@ -14,7 +14,7 @@
 #include "m_util.h"
 #include <xmlrpc-c/base.hpp>
 #include <cassert>
-#include "data.h"
+#include <data.h>
 using std::vector;
 VizBlockWorld viz;
 int v1(0);

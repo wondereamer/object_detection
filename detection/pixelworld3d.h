@@ -22,7 +22,7 @@
 #include <map>
 #include "m_opencv.h"
 #include "component.h"
-#include "data.h"
+#include <data.h>
 #include "segmentation_server.h"
 #include "m_util.h"
 #include <string>

@@ -6,9 +6,11 @@ file(GLOB source
 
 #${M_LIBRARY}/data.cpp
 ADD_EXECUTABLE(object_detection ${source})
+# my library
+INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+TARGET_LINK_LIBRARIES(object_detection ${M_LIBRARY_BIN}/libm_library.a)
+# third party library
 INCLUDE_DIRECTORIES(/usr/include/opencv)
-#INCLUDE_DIRECTORIES(/usr/include/qt4/QtCore)
-
 TARGET_LINK_LIBRARIES(object_detection 
     /usr/lib/libxmlrpc_abyss.so
     /usr/lib/libxmlrpc_client++.so
