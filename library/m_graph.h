@@ -4,6 +4,8 @@
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
+#include <ogdf/basic/Graph.h>
+//#include <ogdf/basic/GraphAttributes.h>
 
 using namespace boost;
 
@@ -38,14 +40,14 @@ namespace m_graph {
                 }
                 std::vector<edge_iterator>  get_edges()const
                 {
-//                    std::vector<edge_iterator> edge_iterators;
-//                    edge_iterator ei, ei_end;
-//                    for (tie(ei, ei_end) =  boost::edges(*_graph); ei != ei_end; ++ei){
-////                        std::cout << "(" << source(*ei, *_graph) << "," << target(*ei, *_graph) << ") ";
-//                        edge_iterators.push_back(ei);
-//                        auto a = source(*ei, *_graph);
-//                    }
-//                    return edge_iterators;
+                    //                    std::vector<edge_iterator> edge_iterators;
+                    //                    edge_iterator ei, ei_end;
+                    //                    for (tie(ei, ei_end) =  boost::edges(*_graph); ei != ei_end; ++ei){
+                    ////                        std::cout << "(" << source(*ei, *_graph) << "," << target(*ei, *_graph) << ") ";
+                    //                        edge_iterators.push_back(ei);
+                    //                        auto a = source(*ei, *_graph);
+                    //                    }
+                    //                    return edge_iterators;
                 }
 
             private:
@@ -53,17 +55,90 @@ namespace m_graph {
 
         };
 
-//    template < typename T >
-//        std::ostream& operator << (std::ostream& out, const UWGraph<T>& g){
-//
-////            typename UWGraph<T>::edge_iterator ei, ei_end;
-////            for (tie(ei, ei_end) =  boost::edges(*_graph); ei != ei_end; ++ei){
-////                std::cout << "(" << source(*ei, *_graph) << "," << target(*ei, *_graph) << ") ";
-////            }
-////            std::cout<<std::endl;
-////            std::cout << std::endl;
-////            return out;
-//        }
+    //    template < typename T >
+    //        std::ostream& operator << (std::ostream& out, const UWGraph<T>& g){
+    //
+    ////            typename UWGraph<T>::edge_iterator ei, ei_end;
+    ////            for (tie(ei, ei_end) =  boost::edges(*_graph); ei != ei_end; ++ei){
+    ////                std::cout << "(" << source(*ei, *_graph) << "," << target(*ei, *_graph) << ") ";
+    ////            }
+    ////            std::cout<<std::endl;
+    ////            std::cout << std::endl;
+    ////            return out;
+    //        }
+
+    template < typename NodeAttrs, typename EdgeAttrs = bool>
+        class VizGraph {
+
+            /*---------------------------  lifecycle  ------------------------------------------------ */
+            public:
+                //VizGraph():_graph(), _viz_attrs(_graph, ogdf::GraphAttributes::nodeGraphics |
+                //ogdf::GraphAttributes::edgeGraphics){ } 
+                // visualisation attributes of nodes and edges 
+                //ogdf::GraphAttributes _viz_attrs;
+                VizGraph():_graph(), _nodes_attrs(_graph), _edges_attrs(_graph){ }
+                ~VizGraph(){ } 
+                //! node handle type
+                typedef ogdf::node NodeH;
+                //! edge handle type
+                typedef ogdf::edge EdgeH;
+
+
+            public:
+                //! add a new node with node attributes, return handle of the node
+                NodeH add_node(NodeAttrs node){
+                    NodeH nh = _graph.newNode();
+                    _nodes_attrs[nh] = node;
+                    return nh;
+                }
+                //! add a new node, return handle of the node 
+                NodeH add_node(){
+                    return _graph.newNode();
+                }
+                //! add a new edge with edge attributes, return handle of the edge
+                EdgeH add_edge(NodeH source, NodeH target, EdgeAttrs etr){
+                    EdgeH eh = _graph.newEdge(source, target);
+                    _edges_attrs[eh] = etr;
+                    return eh;
+                }
+                //! add a new edge, return handle of the edge
+                EdgeH add_edge(NodeH source, NodeH target){
+                    return _graph.newEdge(source, target);
+                }
+                //! set attributes of an node
+                void set_node_attrs(NodeH nh, NodeAttrs attrs){
+                    _nodes_attrs[nh] = attrs;
+                }
+
+                //! get attributes of an node
+                NodeAttrs get_node_attrs(NodeH nh){
+                    return _nodes_attrs[nh];
+                }
+
+                //! set attributes of an edge
+                void set_edge_attrs(EdgeH nh, EdgeAttrs attrs){
+                    _edges_attrs[nh] = attrs;
+                }
+
+                //! get attributes of an edge
+                EdgeAttrs get_edge_attrs(EdgeH nh){
+                    return _edges_attrs[nh];
+                }
+
+
+                /*-----------------------  attributes  ------------------------------------------------ */
+            private:
+                ogdf::Graph _graph;
+                // custom attributes of nodes and edges
+                ogdf::NodeArray<NodeAttrs> _nodes_attrs;
+                ogdf::EdgeArray<EdgeAttrs> _edges_attrs;
+
+                //GraphAttributes GA(G, GraphAttributes::nodeGraphics |	
+                //GraphAttributes::edgeGraphics );
+
+
+        }; 
+
 
 } /* m_graph */
 

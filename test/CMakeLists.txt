@@ -1,19 +1,18 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-#file(GLOB source
-    #"*.cpp"
-    #)
+file(GLOB source
+    "*.h"
+    "*.cpp"
+    )
 
-ADD_LIBRARY(m_library
-    m_algorithm
-    m_geometry
-    m_opencv
-    m_util
-    data
-    )
+#${M_LIBRARY}/data.cpp
+ADD_EXECUTABLE(test_project ${source})
+# my library
+INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+TARGET_LINK_LIBRARIES(test_project ${M_LIBRARY_LIB}/libm_library.a)
+# third party library
 INCLUDE_DIRECTORIES(/usr/include/opencv 
-    ${LOCAL_HEADERS}
-    )
-TARGET_LINK_LIBRARIES(m_library
+    ${LOCAL_HEADERS})
+TARGET_LINK_LIBRARIES(test_project
     ${LOCAL_LIB}/libOGDF.a
     /usr/lib/libxmlrpc_abyss.so
     /usr/lib/libxmlrpc_client++.so
@@ -27,3 +26,9 @@ TARGET_LINK_LIBRARIES(m_library
     /usr/lib/libopencv_core.so
     /usr/lib/libopencv_imgproc.so
     /usr/lib/libboost_regex.so)
+#TARGET_LINK_LIBRARIES(object_detection /usr/lib/qt4/
+
+#INSTALL (TARGETS object_detection
+    #RUNTIME DESTINATION ..
+    #)
+#INSTALL_TARGETS(.. object_detection)

@@ -11,7 +11,7 @@ project(block_worlds_visiualization)
 ADD_EXECUTABLE (block_worlds main.cpp)
 # my library
 INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
-TARGET_LINK_LIBRARIES(block_worlds ${M_LIBRARY_BIN}/libm_library.a)
+TARGET_LINK_LIBRARIES(block_worlds ${M_LIBRARY_LIB}/libm_library.a)
 #
 FIND_PACKAGE(PCL 1.2 REQUIRED)
 INCLUDE_DIRECTORIES(${PCL_INCLUDE_DIRS})

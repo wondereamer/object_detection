@@ -2,16 +2,19 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 file(GLOB source
     "*.h"
     "*.cpp"
+    "../test/test.cpp" 
     )
 
 #${M_LIBRARY}/data.cpp
 ADD_EXECUTABLE(object_detection ${source})
 # my library
 INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
-TARGET_LINK_LIBRARIES(object_detection ${M_LIBRARY_BIN}/libm_library.a)
+TARGET_LINK_LIBRARIES(object_detection ${M_LIBRARY_LIB}/libm_library.a)
 # third party library
-INCLUDE_DIRECTORIES(/usr/include/opencv)
+INCLUDE_DIRECTORIES(/usr/include/opencv 
+    ${LOCAL_HEADERS})
 TARGET_LINK_LIBRARIES(object_detection 
+    ${LOCAL_LIB}/libOGDF.a
     /usr/lib/libxmlrpc_abyss.so
     /usr/lib/libxmlrpc_client++.so
     /usr/lib/libxmlrpc++.so

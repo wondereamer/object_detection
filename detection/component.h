@@ -74,20 +74,22 @@ class Component {
         // which is going to be used as the color
         // of the component in segmented picture.
         /// @todo return an color rather than density
-        Color compute_average_color();
+        /*Color compute_average_color();*/
     public:
         static double K;          // the larger K, the larger component
     private:
         //! pixels in the component
         MemberList _members;
-        //! scale argument
-        Color _component_color;
         //! the latest pixel edge triggering merge
         double _max_weight;
 
 };
 template < typename T >
 double Component<T>::K = SCALE;
+//! attribution of the 
+struct ComponentNode{
+
+}
 
 template < typename T >
 class WeightEdge {
@@ -103,8 +105,8 @@ class WeightEdge {
         int m;
 };
 
-template < typename T >
-typename Component<T>::Color Component<T>::compute_average_color(){
+/*template < typename T >*/
+/*typename Component<T>::Color Component<T>::compute_average_color(){*/
     /*double sum = 0;*/
     /*for(T p : _members){*/
     /*// so T must be a  pointer!*/
@@ -113,5 +115,5 @@ typename Component<T>::Color Component<T>::compute_average_color(){
     /*double average_density = sum/_members.size();*/
     /*_component_color.v = average_density;*/
     /*return **_members.begin();*/
-}
+/*}*/
 #endif /* end of include guard: COMPONENT_H */
