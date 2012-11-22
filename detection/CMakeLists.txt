@@ -2,7 +2,6 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 file(GLOB source
     "*.h"
     "*.cpp"
-    "../test/test.cpp" 
     )
 
 #${M_LIBRARY}/data.cpp
@@ -26,6 +25,7 @@ TARGET_LINK_LIBRARIES(object_detection
     /usr/lib/libboost_system.so
     /usr/lib/libopencv_core.so
     /usr/lib/libopencv_imgproc.so
+    /usr/lib/i386-linux-gnu/libpthread.so
     /usr/lib/libboost_regex.so)
 #TARGET_LINK_LIBRARIES(object_detection /usr/lib/qt4/
 

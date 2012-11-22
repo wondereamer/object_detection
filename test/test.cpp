@@ -1,15 +1,17 @@
+
 #include "m_graph.h"
 using namespace m_graph;
+
+//struct ComponentH
+struct Node{
+    int id;
+    std::string name;
+};
+struct Edge{
+    int weight;
+    std::string name;
+};
 void test_VizGraph(){
-    //struct ComponentH
-    struct Node{
-        int id;
-        std::string name;
-    };
-    struct Edge{
-        int weight;
-        std::string name;
-    };
 
     VizGraph<Node, Edge> graph;
     Node node1;

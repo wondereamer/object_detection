@@ -43,10 +43,8 @@
 
 //return 0;
 //}
-#include "../test/test.h" 
 int main()
 {
-    test_VizGraph();
     //Graph G;
     //GraphAttributes GA(G, GraphAttributes::nodeGraphics |	
     //GraphAttributes::edgeGraphics );
