@@ -12,6 +12,7 @@ static const char* DEFAULT_MODULE_PATHS[] =
 #endif // !WIN32
     NULL
 };
+
 int main(int argc, char *argv[])
 {
     parse_args(argc, argv);

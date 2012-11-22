@@ -9,8 +9,8 @@
 #include <map>
 #include <string>
 #include <xmlrpc-c/base.hpp>
-#include "pixelworld3d.h" 
-#include "pixelworld2d.h" 
+#include "segment3d.h" 
+#include "segment2d.h" 
 #include "m_util.h"
 
 using namespace std;
@@ -20,16 +20,16 @@ using namespace m_lib;
 int main(int argc, char** argv)
 { 
     if (argc != 2) {
-        PixelWorld3D<RgbPixel3D> image;
+        Segment3D<RgbPixel3D> image;
         //printf("Usage: %s <image>\n", argv[0]);
         //return 1;
-        image.construct_graph();
+        image.segment();
         image.save_segmentation();
 
     }else{
 
-        PixelWorld2D<GrayPixel2D> image(argv[1], false);
-        image.construct_graph();
+        Segment2D<GrayPixel2D> image(argv[1], false);
+        image.segment();
         image.save_segmentation();
     }
 
