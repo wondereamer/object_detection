@@ -1,3 +1,10 @@
+/**
+ * @file m_plot.h
+ * @brief plot interface to MatPlotlib
+ * @author Dignjie.Wang (dingjie.wang@gmail.com)
+ * @version 0.1
+ * @date 2012-10-10
+ */
 #ifndef M_PLOT_H
 
 #define M_PLOT_H

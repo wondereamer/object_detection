@@ -1,3 +1,16 @@
+/**
+ * @file m_graph.h
+ * @brief 
+ * @author Dingjie.Wang(dingjie.wang@gmail.com)
+ * @version 0.1
+ * @date 2012-11-22
+ */
+#ifndef M_GRAPH_H
+
+#define M_GRAPH_H
+
+
+
 #include <iostream>                  
 #include <utility>                   
 #include <algorithm>                 
@@ -5,7 +18,8 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 #include <ogdf/basic/Graph.h>
-//#include <ogdf/basic/GraphAttributes.h>
+#include <ogdf/basic/graph_generators.h>
+#include <ogdf/basic/GraphAttributes.h>
 
 using namespace boost;
 
@@ -75,8 +89,13 @@ namespace m_graph {
                 //VizGraph():_graph(), _viz_attrs(_graph, ogdf::GraphAttributes::nodeGraphics |
                 //ogdf::GraphAttributes::edgeGraphics){ } 
                 // visualisation attributes of nodes and edges 
-                //ogdf::GraphAttributes _viz_attrs;
-                VizGraph():_graph(), _nodes_attrs(_graph), _edges_attrs(_graph){ }
+                VizGraph(bool directed = false):_graph(), _nodes_attrs(_graph), _edges_attrs(_graph),
+                                            _viz_attrs(_graph, ogdf::GraphAttributes::nodeGraphics|
+                                                    ogdf::GraphAttributes::edgeGraphics){
+
+                    _viz_attrs.directed(false);
+
+                }
                 ~VizGraph(){ } 
                 //! node handle type
                 typedef ogdf::node NodeH;
@@ -85,6 +104,10 @@ namespace m_graph {
 
 
             public:
+                //! construct an random graph
+                bool random_graph(int numNodes, int numEdges){
+                    return ogdf::randomSimpleGraph(_graph, numNodes, numEdges);
+                }
                 //! add a new node with node attributes, return handle of the node
                 NodeH add_node(NodeAttrs node){
                     NodeH nh = _graph.newNode();
@@ -124,6 +147,10 @@ namespace m_graph {
                 EdgeAttrs get_edge_attrs(EdgeH nh){
                     return _edges_attrs[nh];
                 }
+                //! save the graph to gml file
+                void write(std::string filename){
+                    _viz_attrs.writeGML((filename + ".gml").c_str());
+                }
 
 
                 /*-----------------------  attributes  ------------------------------------------------ */
@@ -132,6 +159,8 @@ namespace m_graph {
                 // custom attributes of nodes and edges
                 ogdf::NodeArray<NodeAttrs> _nodes_attrs;
                 ogdf::EdgeArray<EdgeAttrs> _edges_attrs;
+                // visualisation attributes of graph
+                ogdf::GraphAttributes _viz_attrs;
 
                 //GraphAttributes GA(G, GraphAttributes::nodeGraphics |	
                 //GraphAttributes::edgeGraphics );
@@ -142,3 +171,4 @@ namespace m_graph {
 
 } /* m_graph */
 
+#endif /* end of include guard: M_GRAPH_H */

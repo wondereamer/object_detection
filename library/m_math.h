@@ -1,3 +1,11 @@
+/**
+ * @file m_math.h
+ * @brief 
+ * @author Dingjie.Wang(dingjie.wang@gmail.com)
+ * @version 0.1
+ * @date 2012-11-22
+ */
+
 #ifndef M_MATH_H
 
 #define M_MATH_H

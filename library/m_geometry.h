@@ -1,3 +1,10 @@
+/**
+ * @file m_geometry.h
+ * @brief some useful algorithms
+ * @author Dignjie.Wang (dingjie.wang@gmail.com)
+ * @version 0.1
+ * @date 2012-10-10
+ */
 #ifndef M_GEOMETRY_H
 
 #define M_GEOMETRY_H

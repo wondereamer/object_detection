@@ -1,3 +1,10 @@
+/**
+ * @file data.h
+ * @brief 
+ * @author Dingjie.Wang(dingjie.wang@gmail.com)
+ * @version 0.1
+ * @date 2012-11-22
+ */
 #ifndef DATA_H
 #define DATA_H
 
