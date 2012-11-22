@@ -86,10 +86,6 @@ class Component {
 };
 template < typename T >
 double Component<T>::K = SCALE;
-//! attribution of the 
-struct ComponentNode{
-
-}
 
 template < typename T >
 class WeightEdge {

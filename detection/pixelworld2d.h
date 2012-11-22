@@ -124,7 +124,6 @@ PixelWorld2D<T>::PixelWorld2D(string filename, bool isRgb, bool isGrid)
     typename T::Image image(temp);
     //allocate memory for pixels
     _pixels = new T*[_height];
-    image.output_img_info();
     for (int i = 0; i < _height; i++) {
         _pixels[i] = new T[ _width ];
     }
@@ -135,6 +134,7 @@ PixelWorld2D<T>::PixelWorld2D(string filename, bool isRgb, bool isGrid)
 
             _pixels[row][col].set_location(col, row);
         }
+    image.output_img_info();
 
 }
 
@@ -260,28 +260,35 @@ void PixelWorld2D<T>::save_segmentation( ){
     CvSize size;
     size.width = _width;
     size.height = _height;
+    /// @todo rgb and gray image have different channels
     IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U,1);
     std::cout<<"**************************"<<std::endl;
     typename T::Image img(temp);
     typename T::ColorType white = T::get_white();
     img.set_color(white);
     std::cout<<"**************************"<<std::endl;
+    typename T::ColorType segmentColor;
+    segmentColor.v = 0;
+    /*segmentColor.r = 0;*/
+    /*segmentColor.g = 0;*/
+    /*segmentColor.b = 0;*/
     for(auto &comp : _components){
         /*if (comp.get_members().size() < 70) {*/
         /*continue;*/
         /*}*/
-        /*typename T::ColorType segmentColor;*/
-        /*segmentColor.r = 0;*/
-        /*segmentColor.g = 0;*/
-        /*segmentColor.b = 0;*/
-        /*for(RgbPixel2D *pixel : comp.get_members()){*/
+        // assign segmentation color
+        std::cout<<"**************************"<<std::endl;
+        segmentColor.v += 10;
+
         /*segmentColor.r += 10;*/
         /*segmentColor.g += 10;*/
         /*segmentColor.b += 10;*/
-        /*img[pixel->_y][pixel->_x] = segmentColor;*/
-        /*}*/
+        for(GrayPixel2D *pixel : comp.get_members()){
+            img[pixel->_y][pixel->_x] = segmentColor;
+            std::cout<<(int)segmentColor.v<<std::endl;
+        }
     }
-    // restore some component composed of one single pixel
+    /*// restore some component composed of one single pixel*/
     /*for (int row = 0; row < _height; row++) */
     /*for (int col = 0; col < _width; col++){*/
     /*if(img[row][col] == white)*/

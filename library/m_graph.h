@@ -93,15 +93,15 @@ namespace m_graph {
                                             _viz_attrs(_graph, ogdf::GraphAttributes::nodeGraphics|
                                                     ogdf::GraphAttributes::edgeGraphics){
 
-                    _viz_attrs.directed(false);
+                    _viz_attrs.directed(directed);
 
                 }
                 ~VizGraph(){ } 
+            public:
                 //! node handle type
                 typedef ogdf::node NodeH;
                 //! edge handle type
                 typedef ogdf::edge EdgeH;
-
 
             public:
                 //! construct an random graph
@@ -118,16 +118,28 @@ namespace m_graph {
                 NodeH add_node(){
                     return _graph.newNode();
                 }
+                //! add a new edge, return handle of the edge
+                EdgeH add_edge(NodeH source, NodeH target){
+                    return _graph.newEdge(source, target);
+                }
+
                 //! add a new edge with edge attributes, return handle of the edge
                 EdgeH add_edge(NodeH source, NodeH target, EdgeAttrs etr){
                     EdgeH eh = _graph.newEdge(source, target);
                     _edges_attrs[eh] = etr;
                     return eh;
                 }
-                //! add a new edge, return handle of the edge
-                EdgeH add_edge(NodeH source, NodeH target){
-                    return _graph.newEdge(source, target);
+                //! add a new edge with NodeAttrs directly
+                EdgeH add_edge(NodeAttrs source, NodeAttrs target, EdgeAttrs etr){
+                    EdgeH eh = _graph.newEdge(add_node(source), add_node(target));
+                    _edges_attrs[eh] = etr;
+                    return eh;
                 }
+                //
+                EdgeH add_edge(NodeAttrs source, NodeAttrs target){
+                    return _graph.newEdge(add_node(source), add_node(target));
+                }
+
                 //! set attributes of an node
                 void set_node_attrs(NodeH nh, NodeAttrs attrs){
                     _nodes_attrs[nh] = attrs;
