@@ -157,17 +157,28 @@ void Segment3D<T>::segment( ){
             }
             else if(rst == 1){
                 _components.push_back(tempE);
+            }else{
+                // failed to merge two pixel
+                // add two single pixel components
+                // single pixel component is actually treated as
+                // noise, and would be merged to other components during later 
+                // optimizing
+                /*_components.push_back(tempB);*/
+                /*_components.push_back(tempE);*/
             }
         }
         else if( i_b == _components.end()){
             // merge pixel edge._b to component i_e
             Component3D temp(edge._b);
-            Component3D::merge(edge._weight, temp, *i_e);
+            if(Component3D::merge(edge._weight, temp, *i_e) == -1);
+                // add signle pixel comonent
+                /*_components.push_back(temp);*/
         }
         else{
             // merge pixel edge._e to component i_b
             Component3D temp(edge._e);
-           Component3D::merge(edge._weight, *i_b, temp);
+            if(Component3D::merge(edge._weight, *i_b, temp) == -1);
+                /*_components.push_back(temp);*/
         }
 
     }

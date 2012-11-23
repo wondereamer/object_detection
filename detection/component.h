@@ -4,10 +4,15 @@
 #define COMPONENT_H
 #include <type_traits>
 static const double SCALE = 0;
+
+/**
+ * @brief a set of pixel pointers
+ *
+ * @tparam T a pointer to pixel
+ */
 template < typename T >
 class Component {
     public:
-        typedef std::set<T> MemberList;
         typedef typename std::remove_pointer<T>::type Pixel;
         typedef typename Pixel::ColorType Color;
     public:
@@ -20,7 +25,7 @@ class Component {
         /**
          * @brief merge small componet to bigger component  
          *
-         * @return 0: merge to s; 1: merge s to t; -1: can't merge 
+         * @return 0: merge t to s; 1: merge s to t; -1: can't merge 
          */
         static int merge(double component_diff,   Component &s, Component &t){
             if(_if_merge(component_diff, s, t)){
@@ -55,13 +60,13 @@ class Component {
             //            std::cout<<"weight: "<<_max_weight<< " size: "<<_members.size()<<std::endl;
             return _max_weight + K / _members.size();
         }
-        bool contains(const T &pixel){
+        bool contains(T pixel) const{
             return true ? _members.find(pixel) != _members.end() : false; 
         }
         void add_member(T mem){
             _members.insert(mem);
         }
-        MemberList& get_members(){
+        std::set<T>& get_members(){
             return _members;
         }
         void set_max_weight(double w){
@@ -79,7 +84,7 @@ class Component {
         static double K;          // the larger K, the larger component
     private:
         //! pixels in the component
-        MemberList _members;
+        std::set<T> _members;
         //! the latest pixel edge triggering merge
         double _max_weight;
 
