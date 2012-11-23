@@ -19,7 +19,8 @@
 #include <iostream>
 #include <numeric>
 #include <map>
-#include "m_algorithm.h"
+#include <m_algorithm.h>
+
 /**
  * @brief 
  */
@@ -30,13 +31,13 @@ class Segment2D: public PixelWorld2D<T> {
     public:
         typedef Component<T*> Component2D;
         typedef WeightEdge<T*> WeightEdge2D;
-        explicit Segment2D(std::string filename, bool isRgb = false, bool isGrid = true);
+        explicit Segment2D(std::string filename, bool isGrid = true);
         virtual ~Segment2D(){ };
 
         /*------------------------------------------------------------------------------------ */
         std::vector<T*> get_neighbors(const T &t) const;
         void segment();
-        void save_segmentation( );
+        void save(std::string filename);
 
     protected:
         //
@@ -57,7 +58,7 @@ class Segment2D: public PixelWorld2D<T> {
 }; 
 
 template < typename T >
-Segment2D<T>::Segment2D(std::string filename, bool isRgb, bool isGrid):PixelWorld2D<T>(filename, isRgb)
+Segment2D<T>::Segment2D(std::string filename, bool isGrid):PixelWorld2D<T>(filename)
 {
     Component2D::K = 50;
     _isGrid = isGrid;
@@ -212,18 +213,16 @@ std::vector<T*> Segment2D<T>::_feature_neighbors(const T &t) const{
     return std::vector<T*>();
 }
 template < typename T >
-void Segment2D<T>::save_segmentation( ){
-    /*save_segmentation_helper(_pixels, _width, _height, _components);*/
+void Segment2D<T>::save(std::string filename ){
+    // create an image, and set the image color white
     CvSize size;
     size.width = this->_width;
     size.height = this->_height;
-    /// @todo rgb and gray image have different channels
-    IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U,1);
-    std::cout<<"**************************"<<std::endl;
-    typename T::Image img(temp);
-    typename T::ColorType white = T::get_white();
+    IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U, T::CHANELS);
+    typename T::ImageType img(temp);
+    typename T::ColorType white = T::white_color();
     img.set_color(white);
-    std::cout<<"**************************"<<std::endl;
+    //
     typename T::ColorType segmentColor;
     segmentColor.v = 0;
     /*segmentColor.r = 0;*/
@@ -252,7 +251,7 @@ void Segment2D<T>::save_segmentation( ){
     /*img[row][col] = _pixels[row][col].get_color();*/
     /*}*/
     img.show();
-    img.save("segmentation.jpg");
+    img.save(filename + ".jpg");
 }
 
 #endif /* end of include guard: SEGMENT2D_H */

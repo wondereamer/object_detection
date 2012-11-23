@@ -16,7 +16,7 @@
 template < typename T >
 class PixelWorld2D {
     public:
-        PixelWorld2D (std::string filename = "" , bool isRgb = false);
+        PixelWorld2D (std::string filename = "");
         virtual ~PixelWorld2D ();
 
         T* operator[](int rowIndx) { return _pixels[rowIndx]; }
@@ -31,13 +31,13 @@ class PixelWorld2D {
 };
 
 template < typename T >
-PixelWorld2D<T>::PixelWorld2D(std::string filename, bool isRgb)
+PixelWorld2D<T>::PixelWorld2D(std::string filename)
 {
-    IplImage* temp =  cvLoadImage(filename.data(), isRgb);
+    IplImage* temp =  cvLoadImage(filename.data(), T::ISRGB);
     assert(temp);
     _height = temp->height;
     _width = temp->width;
-    typename T::Image image(temp);
+    typename T::ImageType image(temp);
     //allocate memory for pixels
     _pixels = new T*[_height];
     for (int i = 0; i < _height; i++) {

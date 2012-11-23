@@ -71,17 +71,19 @@ class GrayPixel2D{
     public:
         int _x;
         int _y;
+        static const int CHANELS = 1;
+        static const bool ISRGB = false;
     protected:
         GrayColor _color;
     public:
-        typedef GrayImage Image;
+        typedef GrayImage ImageType;
         typedef GrayColor ColorType;
         GrayPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
         void set_location(int x, int y){
             _x = x;
             _y = y;
         }
-        static GrayColor get_white(){
+        static GrayColor white_color(){
             GrayColor white;
             white.v = 255;
             return white;
@@ -103,15 +105,16 @@ class GrayPixel2D{
             return _color;
         }
 };
-
 class RgbPixel2D {
 
     protected:
         RgbColor _color;
+        static const bool ISRGB = true;
     public:
         int _x;
         int _y;
         LuvColor _luvColor;
+        static const int CHANELS = 3;
 
     public:
         RgbPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
@@ -124,7 +127,7 @@ class RgbPixel2D {
         }
     public:
 
-        typedef RgbImage Image;
+        typedef RgbImage ImageType;
         typedef RgbColor ColorType;
         void set_color(const RgbColor &rgb){
             _color = rgb;
@@ -143,7 +146,7 @@ class RgbPixel2D {
                     b._luvColor.l, b._luvColor.u, b._luvColor.v);
         }
 
-        static RgbColor get_white(){
+        static RgbColor white_color(){
             RgbColor white;
             white.r = 255;
             white.g = 255;
@@ -192,7 +195,7 @@ class GrayPixel3D{
             else 
                 return false;
         }
-        static GrayColor get_white(){
+        static GrayColor white_color(){
             GrayColor white;
             white.v = 255;
             return white;
@@ -271,7 +274,7 @@ class RgbPixel3D {
             return 0;
         }
 
-        static RgbColor get_white(){
+        static RgbColor white_color(){
             RgbColor white;
             white.r = 255;
             white.g = 255;

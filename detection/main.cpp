@@ -28,9 +28,9 @@ int main(int argc, char** argv)
 
     }else{
 
-        Segment2D<GrayPixel2D> image(argv[1], false);
+        Segment2D<GrayPixel2D> image(argv[1]);
         image.segment();
-        image.save_segmentation();
+        image.save("segmentation");
     }
 
 
