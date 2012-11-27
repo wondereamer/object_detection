@@ -3,6 +3,7 @@
 
 #define COMPONENT_H
 #include <type_traits>
+#include <cassert>
 static const double SCALE = 0;
 
 /**
@@ -20,6 +21,11 @@ class Component {
         Component( T first_pixel): _max_weight(0) {
             // an single pixel componnet
             add_member(first_pixel);
+        }
+        // compare operation for componets that only have one pixel
+        bool operator < (const Component &r) const{
+            assert(r.get_members().size() == 1 && _members.size() == 1);
+            return *(r.get_members().begin()) < *_members.begin();
         }
         // @speed this function may not be inlined!
         /**
@@ -69,10 +75,14 @@ class Component {
         std::set<T>& get_members(){
             return _members;
         }
+
+        std::set<T>& get_members() const {
+            return _members;
+        }
         void set_max_weight(double w){
             _max_weight = w;
         }
-        int size(){
+        int size() const{
             return _members.size();
         }
         // return the average value of density

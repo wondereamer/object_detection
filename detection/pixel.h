@@ -83,6 +83,18 @@ class GrayPixel2D{
             _x = x;
             _y = y;
         }
+
+        bool operator < (const GrayPixel2D &other) const{
+            if (_x < other._x)
+                return true;
+            else if (_x > other._x)
+                return false;
+            else if (_y < other._y)
+                return true;
+            else 
+                return false;
+        }
+
         static GrayColor white_color(){
             GrayColor white;
             white.v = 255;
@@ -124,6 +136,17 @@ class RgbPixel2D {
         void set_location(int x, int y){
             _x = x;
             _y = y;
+        }
+
+        bool operator < (const RgbPixel2D &other) const{
+            if (_x < other._x)
+                return true;
+            else if (_x > other._x)
+                return false;
+            else if (_y < other._y)
+                return true;
+            else 
+                return false;
         }
     public:
 

@@ -53,6 +53,8 @@ class Segment2D: public PixelWorld2D<T> {
         double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}
         //
         void _gaussian(){ }
+        //! 
+        void _extract_model( );
 
         bool is_inside(int x, int y) const;
         std::vector<T*> _grid_neighbors(const T &t) const;
@@ -63,11 +65,14 @@ class Segment2D: public PixelWorld2D<T> {
     private:
         bool            _isGrid;
         std::list<Component2D> _components;
+        std::set<Component2D> _noises;
+        ImageModel _imgModel;
 
 }; 
 
     template < typename T >
-Segment2D<T>::Segment2D(std::string filename, bool isGrid):PixelWorld2D<T>(filename)
+Segment2D<T>::Segment2D(std::string filename, bool isGrid):PixelWorld2D<T>(filename),
+    _imgModel(false)
 {
     Component2D::K = 50;
     _isGrid = isGrid;
@@ -193,21 +198,22 @@ void Segment2D<T>::segment(){
                 // single pixel component is actually treated as
                 // noise, and would be merged to other components during later 
                 // optimizing
-                /*_components.push_back(tempB);*/
-                /*_components.push_back(tempE);*/
+                /*_noises.insert(tempB);*/
+                /*_noises.insert(tempE);*/
+
             }
         }
         else if( i_b == _components.end()){
             // merge pixel edge._b to component i_e
             Component2D temp(edge._b);
             if(Component2D::merge(edge._weight, temp, *i_e) == -1);
-                /*_components.push_back(temp);*/
+            /*_noises.insert(temp);*/
         }
         else{
             // merge pixel edge._e to component i_b
             Component2D temp(edge._e);
             if(Component2D::merge(edge._weight, *i_b, temp) == -1);
-                /*_components.push_back(temp);*/
+            /*_noises.insert(temp);*/
         }
 
     }
@@ -224,35 +230,27 @@ template < typename T >
 std::vector<T*> Segment2D<T>::_feature_neighbors(const T &t) const{
     return std::vector<T*>();
 }
-
 template < typename T >
-void Segment2D<T>::save(std::string filename ){
-    std::cout<<"constructing region graph...."<<std::endl;
-    // create an image, and set the image color white
-    CvSize size;
-    size.width = this->_width;
-    size.height = this->_height;
-    IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U, T::CHANELS);
-    typename T::ImageType img(temp);
-    typename T::ColorType white = T::white_color();
-    img.set_color(white);
-
+void Segment2D<T>::_extract_model( ){
     // construt region graph, vertexs are segmentation components
     // edge between two vertexs, means two components are adjacent
-    ImageModel imgModel(false);
     typedef std::map<Component2D*, typename ImageModel::NodeH> CompNodeMap;
     CompNodeMap comp2node;
+    // data related to current region
+    Region2D region;
+    double centr_x = 0;
+    double centr_y = 0;
     for(auto &comp : _components){
         // get or create an handle of current region in the  model
         typename CompNodeMap::iterator i = comp2node.find(&comp);
         if(i == comp2node.end()){
-            comp2node[&comp] = imgModel.add_node();
+            // for visualisation
+            int size = comp.get_members().size() * 0.1;
+            size = size == 0?1:size;
+            //
+            comp2node[&comp] = _imgModel.add_node(size);
         }
         typename ImageModel::NodeH regH = comp2node[&comp];
-        // data related to current region
-        Region2D region;
-        double centr_x = 0;
-        double centr_y = 0;
         /*std::set<*/
         for(T *pixel : comp.get_members()){
             // calculating centroid
@@ -276,10 +274,14 @@ void Segment2D<T>::save(std::string filename ){
                             // get or create neighbor handle
                             typename CompNodeMap::iterator i = comp2node.find(&nbComp);
                             if(i == comp2node.end()){
-                                comp2node[&nbComp] = imgModel.add_node();
+                                // for visualisation
+                                int size = nbComp.get_members().size() * 0.1;
+                                size = size == 0?1:size;
+                                //
+                                comp2node[&nbComp] = _imgModel.add_node(size);
                             }
                             // add adjacent relation to image model
-                            imgModel.add_edge(regH, comp2node[&nbComp]);
+                            _imgModel.add_edge(regH, comp2node[&nbComp]);
                             break;
                         }
                     }
@@ -292,10 +294,27 @@ void Segment2D<T>::save(std::string filename ){
             }
         } //end of pixel iterate
         // set current region property
-        imgModel.set_node_attrs(regH, region);
+        centr_x /= comp.size();
+        centr_y /= comp.size();
+        region._centroid = PointF(centr_x, centr_y);
+        _imgModel.set_node_attrs(regH, region);
     } //end of component iterate
+
+}
+template < typename T >
+void Segment2D<T>::save(std::string filename ){
+    std::cout<<"constructing region graph...."<<std::endl;
+    // create an image, and set the image color white
+    CvSize size;
+    size.width = this->_width;
+    size.height = this->_height;
+    IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U, T::CHANELS);
+    typename T::ImageType img(temp);
+    typename T::ColorType white = T::white_color();
+    img.set_color(white);
+    // extract graph model from components of segmentation
+    _extract_model();
     std::cout<<_components.size()<<std::endl;
-    std::cout<<comp2node.size()<<std::endl;
     int sum = 0;
     int sum2 = 0;
     for(auto &comp : _components){
@@ -303,9 +322,18 @@ void Segment2D<T>::save(std::string filename ){
             sum++;
         sum2 += comp.size();
     }
+    typename ImageModel::NodeH nh  = _imgModel.first_node();
+    Region2D &rgn = _imgModel.get_node_attrs(nh);
+    nh++;
+    Region2D &rgn2 = _imgModel.get_node_attrs(nh);
+    /*for(Component2D comp : _noises){*/
+    /*std::cout<<*(comp.get_members().begin());*/
+    /*}*/
     std::cout<<sum<<std::endl;
     std::cout<<sum2<<std::endl;
-    imgModel.write("hello");
+    /*std::cout<<_noises.size()<<std::endl;*/
+
+    _imgModel.write("hello");
     /*img[pixel->_y][pixel->_x] = segmentColor;*/
     /*// restore some component composed of one single pixel*/
     /*for (int row = 0; row < _height; row++) */
