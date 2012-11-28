@@ -9,6 +9,7 @@ ADD_LIBRARY(m_library
     m_opencv
     m_util
     data
+    vertex_color
     )
 INCLUDE_DIRECTORIES(/usr/include/opencv 
     ${LOCAL_HEADERS}

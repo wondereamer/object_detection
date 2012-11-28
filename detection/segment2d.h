@@ -122,7 +122,7 @@ inline std::vector<T*> Segment2D<T>::_grid_neighbors(const T &t) const{
 template < typename T >
 void Segment2D<T>::segment(){
     // map pixel to it's component 
-    std::multiset<WeightEdge2D> graph;
+    std::set<WeightEdge2D> graph;
     // construt the graph, sort edges in nondecreasing order
     for (int row = 0; row < this->_height; row++) 
         for (int col = 0; col < this->_width; col++){
@@ -130,12 +130,12 @@ void Segment2D<T>::segment(){
             // get neighbor pixels, it could be at most 8 nearest grid pixel,
             // or nearest neighbors in the feature space
             std::vector<T*> neighbors = get_neighbors(*t);
-            //                std::cout<<neighbors.size()<<std::endl;
             for(T *nb : neighbors){
-                /// @todo reduce symmetric edge
+                if( graph.find(WeightEdge2D(_edge_weight(*nb, *t), nb, t)) != graph.end() )
+                    // exist symmetrical edge
+                    continue;
                 // create weight edges
                 graph.insert(WeightEdge2D(_edge_weight(*t, *nb), t, nb));
-
             }
         }
     // statics
@@ -314,6 +314,15 @@ void Segment2D<T>::save(std::string filename ){
     img.set_color(white);
     // extract graph model from components of segmentation
     _extract_model();
+    // coloring components of segmentation
+    _imgModel.vertex_coloring();
+
+
+
+
+
+
+
     std::cout<<_components.size()<<std::endl;
     int sum = 0;
     int sum2 = 0;

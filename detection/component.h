@@ -107,7 +107,16 @@ class WeightEdge {
     public:
         WeightEdge (double weight, T b, T e):_weight(weight), _b(b), _e(e){ };
         bool operator < (const WeightEdge &r) const{
-            return _weight < r._weight;
+            if(_weight < r._weight)
+                return true;
+            else if(_weight > r._weight)
+                return false;
+            else if(_b < r._b)
+                return true;
+            else if(_b > r._b)
+                return false;
+            else
+                return _e < r._e;
         }
     public:
         double _weight;
