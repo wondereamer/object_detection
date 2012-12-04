@@ -38,16 +38,14 @@ class Component {
                 // merge to bigger component
                 if( t.size() > s.size()){
                     // merge s to t
-                    auto new_members = s.get_members();
-                    for(T m : new_members){
+                    for(T m : s.get_members()){
                         // move r' member to s
                         t.add_member(m);
                     }
                     t.set_max_weight(component_diff);
                     return 1;
                 }else{
-                    auto new_members = t.get_members();
-                    for(T m : new_members){
+                    for(T m : t.get_members()){
                         s.add_member(m);
                     }
                     s.set_max_weight(component_diff);
@@ -56,6 +54,11 @@ class Component {
             }
             return -1;
         }    
+        void merge_from(const Component &r){
+            for(T pixel: r.get_members()){
+                _members.insert(pixel);
+            }
+        }
         //! check if two component close enough to merge
         static bool _if_merge(double comp_diff, const Component &a, const Component &b) {
             //            std::cout<<"comp_diff: "<<comp_diff<<" a.diff: "<<a.internal_diff()<<" b.diff: "<<b.internal_diff()<<std::endl;
@@ -76,7 +79,7 @@ class Component {
             return _members;
         }
 
-        std::set<T>& get_members() const {
+        const std::set<T>& get_members() const {
             return _members;
         }
         void set_max_weight(double w){

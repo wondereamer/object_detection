@@ -21,23 +21,33 @@ class PixelWorld2D {
 
         T* operator[](int rowIndx) { return _pixels[rowIndx]; }
         const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }
+        void show();
 
 
     protected:
         T        **_pixels;    
         int             _height;
         int             _width;
+        IplImage* _temp;
         /* data */
 };
 
 template < typename T >
+void PixelWorld2D<T>::show(){
+    cvNamedWindow("original image", 1);
+    cvShowImage("original image", _temp);
+    /*cvWaitKey(0);*/
+    /*cvDestroyAllWindows();*/
+}
+template < typename T >
 PixelWorld2D<T>::PixelWorld2D(std::string filename)
 {
-    IplImage* temp =  cvLoadImage(filename.data(), T::ISRGB);
-    assert(temp);
-    _height = temp->height;
-    _width = temp->width;
-    typename T::ImageType image(temp);
+    _temp =  cvLoadImage(filename.data(), T::ISRGB);
+    /*m_opencv::blur(_temp);*/
+    assert(_temp);
+    _height = _temp->height;
+    _width = _temp->width;
+    typename T::ImageType image(_temp);
     //allocate memory for pixels
     _pixels = new T*[_height];
     for (int i = 0; i < _height; i++) {
@@ -54,7 +64,7 @@ PixelWorld2D<T>::PixelWorld2D(std::string filename)
 
 }
 
-template < typename T >
+    template < typename T >
 PixelWorld2D<T>::~PixelWorld2D()
 {
     for (int i = 0; i < _height; i++) {

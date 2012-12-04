@@ -13,6 +13,7 @@
 #include <highgui.h>
 #include <string>
 #include <iostream>
+#include <cmath>
 namespace m_opencv {
     using std::string;
     template<class T> class Image
@@ -80,6 +81,14 @@ namespace m_opencv {
         bool operator!=(const RgbColor& other) const {
             return !(*this ==(other));
         }
+
+        static RgbColor white_color(){
+            RgbColor white;
+            white.r = 255;
+            white.g = 255;
+            white.b = 255;
+            return white;
+        }
     } ;
 
     struct GrayColor{
@@ -87,6 +96,29 @@ namespace m_opencv {
         bool operator==(const GrayColor& other) const {
             return (v == other.v);
         }
+        static unsigned char color_distance(const GrayColor& a, 
+                                              const GrayColor &b){
+            return abs(a.v - b.v);
+        }
+        static void add2colorpool(const GrayColor &c){
+            sum += (double)c.v;
+        }
+        static GrayColor calcu_average_color(int size){
+            GrayColor color;
+            color.v = sum / size;
+            // clear the color pool
+            sum = 0;
+            return color;
+        }
+
+        static GrayColor white_color(){
+            GrayColor white;
+            white.v = 255;
+            return white;
+        }
+
+        //! help to calculate average color of a color pool
+        static double sum;
     };
 
     struct HsvColor{
@@ -104,6 +136,40 @@ namespace m_opencv {
         float l;
         float u;
         float v;
+        LuvColor(float l_ = 0, float u_ = 0, float v_ = 0){
+            l = l_;
+            u = u_;
+            v = v_;
+        }
+        bool operator==(const LuvColor& other) const {
+            return (v == other.v);
+        }
+        static double color_distance(const LuvColor& a, 
+                                              const LuvColor &b){
+            return sqrt(pow(a.l - b.l, 2) +  pow(a.v - b.v, 2) + pow(a.u - b.u, 2));
+        }
+        static void add2colorpool(const LuvColor &c){
+            sum.l += c.l;
+            sum.u += c.u;
+            sum.v += c.v;
+        }
+        static LuvColor calcu_average_color(int size){
+            LuvColor color;
+            color.l = sum.l / size;
+            color.u = sum.u / size;
+            color.v = sum.v / size;
+            // clear the color pool
+            sum.l = 0;
+            sum.u = 0;
+            sum.v = 0;
+            return color;
+        }
+        //! help to calculate average color of a color pool
+        static LuvColor sum;
+        /*static void color_pool(RgbColor &c){*/
+        /*static double  */
+        /*}*/
+        /*static RgbColor averageColor;*/
     };
 
     int blur(IplImage *input);

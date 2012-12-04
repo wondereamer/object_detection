@@ -73,11 +73,11 @@ class GrayPixel2D{
         int _y;
         static const int CHANELS = 1;
         static const bool ISRGB = false;
-    protected:
         GrayColor _color;
     public:
         typedef GrayImage ImageType;
         typedef GrayColor ColorType;
+        typedef GrayColor MeasureColorType;
         GrayPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
         void set_location(int x, int y){
             _x = x;
@@ -101,7 +101,7 @@ class GrayPixel2D{
             return white;
         }
         static double density_distance(const GrayPixel2D &a, const GrayPixel2D &b){
-            return abs(a.get_density() - b.get_density());
+            return GrayColor::color_distance(a._color, b._color);
         }
         static double spatial_distance(const GrayPixel2D &a, const GrayPixel2D &b){
             return (double)sqrt(pow(a._x - b._x, 2) +  pow(a._y - b._y, 2));
@@ -113,20 +113,22 @@ class GrayPixel2D{
         void set_color(const GrayColor &gray){
             _color = gray;
         }
-        GrayColor  get_color() const{
+        const GrayColor&  get_color() const{
+            return _color;
+        }
+        const GrayColor&  get_measure_color() const{
             return _color;
         }
 };
 class RgbPixel2D {
 
-    protected:
-        RgbColor _color;
-        static const bool ISRGB = true;
     public:
         int _x;
         int _y;
         LuvColor _luvColor;
         static const int CHANELS = 3;
+        static const bool ISRGB = true;
+        RgbColor _color;
 
     public:
         RgbPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
@@ -152,6 +154,7 @@ class RgbPixel2D {
 
         typedef RgbImage ImageType;
         typedef RgbColor ColorType;
+        typedef LuvColor MeasureColorType;
         void set_color(const RgbColor &rgb){
             _color = rgb;
             rgb2luv(_color.r, _color.g, _color.b, _luvColor);
@@ -160,8 +163,11 @@ class RgbPixel2D {
             /*return _co*/
             return 0;
         }
-        RgbColor  get_color() const{
+        const RgbColor&  get_color() const{
             return _color;
+        }
+        const LuvColor& get_measure_color()const {
+            return _luvColor;
         }
         static double density_distance(const RgbPixel2D &a, const RgbPixel2D &b){
             /// @todo ...
@@ -169,13 +175,6 @@ class RgbPixel2D {
                     b._luvColor.l, b._luvColor.u, b._luvColor.v);
         }
 
-        static RgbColor white_color(){
-            RgbColor white;
-            white.r = 255;
-            white.g = 255;
-            white.b = 255;
-            return white;
-        }
 
 };
 
@@ -217,11 +216,6 @@ class GrayPixel3D{
                 return true;
             else 
                 return false;
-        }
-        static GrayColor white_color(){
-            GrayColor white;
-            white.v = 255;
-            return white;
         }
         static double density_distance(const GrayPixel3D &a, const GrayPixel3D &b){
             return abs(a.get_density() - b.get_density());
@@ -297,13 +291,6 @@ class RgbPixel3D {
             return 0;
         }
 
-        static RgbColor white_color(){
-            RgbColor white;
-            white.r = 255;
-            white.g = 255;
-            white.b = 255;
-            return white;
-        }
 
 };
 typedef GrayPixel3D Block;

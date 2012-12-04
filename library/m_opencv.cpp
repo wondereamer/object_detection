@@ -15,6 +15,8 @@
         ((x) >= (z) ? (x) : (z)))
 namespace m_opencv {
 
+    double GrayColor::sum = 0;
+    LuvColor LuvColor::sum = LuvColor();
     using namespace cv;
     void draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray){
         CvPoint center;
