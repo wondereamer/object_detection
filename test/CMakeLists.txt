@@ -7,13 +7,14 @@ file(GLOB source
 #${M_LIBRARY}/data.cpp
 ADD_EXECUTABLE(test_module ${source})
 # my library
-INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+INCLUDE_DIRECTORIES(${M_LIBRARY_INCLUDE})
 TARGET_LINK_LIBRARIES(test_module ${M_LIBRARY_LIB}/libm_library.a)
 # third party library
-INCLUDE_DIRECTORIES(/usr/include/opencv 
-    ${LOCAL_HEADERS})
+INCLUDE_DIRECTORIES(
+    ${LOCAL_INCLUDE}/opencv 
+    ${USER_INCLUDE})
 TARGET_LINK_LIBRARIES(test_module 
-    ${LOCAL_LIB}/libOGDF.a
+    ${USER_LIB}/libOGDF.a
     /usr/lib/i386-linux-gnu/libpthread.so)
     #/usr/lib/libxmlrpc_abyss.so
     #/usr/lib/libxmlrpc_client++.so

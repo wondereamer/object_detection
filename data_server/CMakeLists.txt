@@ -20,10 +20,10 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 ADD_EXECUTABLE(data_server main)
 
-INCLUDE_DIRECTORIES(${M_LIBRARY_HEADERS})
+INCLUDE_DIRECTORIES(${M_LIBRARY_INCLUDE})
 TARGET_LINK_LIBRARIES(data_server ${M_LIBRARY_LIB}/libm_library.a)
 
-INCLUDE_DIRECTORIES( /usr/include/opencv)
+INCLUDE_DIRECTORIES( ${LOCAL_INCLUDE}/opencv)
 TARGET_LINK_LIBRARIES(data_server
     ${OPENCOG_LOCATION}/build/opencog/server/libserver.so
     ${OPENCOG_LOCATION}/build/opencog/guile/libsmob.so

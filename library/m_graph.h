@@ -309,7 +309,6 @@ namespace m_graph {
                 //! save the graph to gml file
                 void write(std::string filename){
                     _viz_attrs.writeGML((filename + ".gml").c_str());
-                    _viz_attrs.writeSVG((filename + ".svg").c_str());
                 }
                 //! return first node in the node list
                 NodeH first_node() const{ return _graph.firstNode();}

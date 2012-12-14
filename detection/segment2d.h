@@ -87,7 +87,7 @@ class Segment2D: public PixelWorld2D<T> {
 Segment2D<T>::Segment2D(std::string filename, bool isGrid):PixelWorld2D<T>(filename),
     _imgModel(false)
 {
-    Component2D::K = 50;
+    Component2D::K = 70;
     _isGrid = isGrid;
 
 }
@@ -161,6 +161,7 @@ void Segment2D<T>::segment(){
     float a_com_pixel = 0;
     double count = 0;
     int display = 0;
+    double lengthComponents = 0;
     // create and merge components from edge list
     // as the number of components is always small, means the convertion from
     // Pixel to Component won't cost that much, the total number of covertions
@@ -211,9 +212,11 @@ void Segment2D<T>::segment(){
             // the only place insert elements to #_components
             if(rst == 0){
                 _components.push_back(tempB);
+                lengthComponents++;
             }
             else if(rst == 1){
                 _components.push_back(tempE);
+                lengthComponents++;
             }else{
                 // failed to merge two pixel
                 // add two single pixel components
@@ -244,6 +247,7 @@ void Segment2D<T>::segment(){
     for(Component2D &comp: _components){
         std::cout<<"[ "<< comp.get_members().size()<<" ]";
     }
+    std::cout<<"length of components:"<<lengthComponents<<std::endl;
     std::cout<<std::endl;
 }
 
@@ -280,7 +284,7 @@ void Segment2D<T>::_extract_model(int noise){
         if(i == comp2node.end()){
             // for visualisation
             int size = comp.get_members().size() * 0.1 ;
-            size = size == 0? 3: size;
+            size = size == 0? 5: size;
             //
             comp2node[&comp] = _imgModel.add_node(size);
         }
@@ -313,7 +317,7 @@ void Segment2D<T>::_extract_model(int noise){
                             if(i == comp2node.end()){
                                 // for visualisation
                                 int size = nbComp.get_members().size() * 0.1;
-                                size = size == 0? 3: size;
+                                size = size == 0? 5: size;
                                 //
                                 comp2node[&nbComp] = _imgModel.add_node(size);
                             }
@@ -571,7 +575,7 @@ void Segment2D<T>::save(std::string filename, int optScale, int filterSize){
     }
     _imgModel.write("hello");
     /*this->show();*/
-    /*img.show();*/
+    img.show();
     img.save(filename + ".jpg");
 }
 

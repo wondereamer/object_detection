@@ -11,11 +11,12 @@ ADD_LIBRARY(m_library
     data
     vertex_color
     )
-INCLUDE_DIRECTORIES(/usr/include/opencv 
-    ${LOCAL_HEADERS}
+INCLUDE_DIRECTORIES(
+    ${LOCAL_INCLUDE}/opencv 
+    ${USER_INCLUDE}
     )
 TARGET_LINK_LIBRARIES(m_library
-    ${LOCAL_LIB}/libOGDF.a
+    ${USER_LIB}/libOGDF.a
     /usr/lib/libxmlrpc_abyss.so
     /usr/lib/libxmlrpc_client++.so
     /usr/lib/libxmlrpc++.so
@@ -25,6 +26,6 @@ TARGET_LINK_LIBRARIES(m_library
     /usr/lib/libxmlrpc_server_abyss++.so
     /usr/lib/libxmlrpc_server++.so
     /usr/lib/libboost_system.so
-    /usr/lib/libopencv_core.so
-    /usr/lib/libopencv_imgproc.so
+    ${LOCAL_LIB}/libopencv_core.so
+    ${LOCAL_LIB}/libopencv_imgproc.so
     /usr/lib/libboost_regex.so)
