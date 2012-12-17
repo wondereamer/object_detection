@@ -22,6 +22,8 @@ class PixelWorld2D {
         T* operator[](int rowIndx) { return _pixels[rowIndx]; }
         const T* operator[](int rowIndx)const { return _pixels[rowIndx]; }
         void show();
+        /// @todo get_neighbors
+        
 
 
     protected:

@@ -22,6 +22,7 @@ add_definitions(-DDATA_SERVER_PORT=8000)
 add_definitions(-DDETECTION_SERVER_PORT=8001)
 add_definitions(-DDATADIR="${OPENCOG_LOCATION}/opencog")
 
+
 if(debug_mode)
     add_definitions(-DDEBUG)
 endif()

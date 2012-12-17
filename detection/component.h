@@ -4,6 +4,7 @@
 #define COMPONENT_H
 #include <type_traits>
 #include <cassert>
+#include <set>
 static const double SCALE = 0;
 
 /**

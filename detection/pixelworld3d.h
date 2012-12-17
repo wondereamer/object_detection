@@ -15,7 +15,7 @@ class PixelWorld3D {
     /*---------------------------  lifecycle  ------------------------------------------------ */
     public:
         typedef std::set<T> PixelSet;
-        explicit PixelWorld3D(bool isGrid = true){ };
+        explicit PixelWorld3D(bool isGrid = true):_isGrid(isGrid){ };
         virtual ~PixelWorld3D(){ };
 
         /*------------------------------------------------------------------------------------ */

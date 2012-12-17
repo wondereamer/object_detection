@@ -23,13 +23,13 @@ int main(int argc, char** argv)
         Segment3D<RgbPixel3D> image;
         //printf("Usage: %s <image>\n", argv[0]);
         //return 1;
-        image.segment();
-        image.save_segmentation();
+        image.segment(0);
+        image.save("3d_world, 15");
 
     }else{
 
         Segment2D<RgbPixel2D> image(argv[1]);
-        image.segment();
+        image.segment(70);
         image.save("Rgbsegmentation", 15);
     }
 

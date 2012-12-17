@@ -190,6 +190,7 @@ class GrayPixel3D{
     public:
         /*typedef GrayImage Image;*/
         typedef GrayColor ColorType;
+        typedef GrayColor MeasureColorType;
         GrayPixel3D(int x = 0, int y = 0, int z = 0):_x(x), _y(y), _z(z){ }
 
         GrayPixel3D(const GrayColor &color, int x = 0 , int y = 0, int z = 0, int size = 0):_x(x), _y(y), _z(z),
@@ -201,6 +202,10 @@ class GrayPixel3D{
             _x = x;
             _y = y;
             _x = z;
+        }
+
+        const GrayColor& get_measure_color()const {
+            return _color;
         }
 
         bool operator < (const GrayPixel3D &other) const{
@@ -241,6 +246,7 @@ class RgbPixel3D {
         int _z;
         int _size;
         RgbColor _color;
+        LuvColor _luvColor;
 
     public:
 
@@ -273,6 +279,7 @@ class RgbPixel3D {
     public:
 
         typedef RgbColor ColorType;
+        typedef LuvColor MeasureColorType;
         void set_color(const RgbColor &rgb){
             _color = rgb;
         }
@@ -282,6 +289,10 @@ class RgbPixel3D {
         }
         RgbColor  get_color() const{
             return _color;
+        }
+
+        const LuvColor& get_measure_color()const {
+            return _luvColor;
         }
         static double density_distance(const RgbPixel3D &a, const RgbPixel3D &b){
             // @bug temporal use, before find a way to measure the difference between two colors

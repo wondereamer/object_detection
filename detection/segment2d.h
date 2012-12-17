@@ -22,6 +22,7 @@
 #include <m_algorithm.h>
 #include <m_graph.h>
 #include <algorithm>
+#include "util.h" 
 
 /**
  * @brief 
@@ -49,7 +50,7 @@ class Segment2D: public PixelWorld2D<T> {
 
         /*------------------------------------------------------------------------------------ */
         std::vector<T*> get_neighbors(const T &t) const;
-        void segment();
+        void segment(int arg = 70);
 
         /**
          * @brief 
@@ -87,7 +88,6 @@ class Segment2D: public PixelWorld2D<T> {
 Segment2D<T>::Segment2D(std::string filename, bool isGrid):PixelWorld2D<T>(filename),
     _imgModel(false)
 {
-    Component2D::K = 70;
     _isGrid = isGrid;
 
 }
@@ -133,7 +133,9 @@ inline std::vector<T*> Segment2D<T>::_grid_neighbors(const T &t) const{
 
 
 template < typename T >
-void Segment2D<T>::segment(){
+void Segment2D<T>::segment(int arg){
+
+    Component2D::K = arg;
     // map pixel to it's component 
     std::set<WeightEdge2D> graph;
     // construt the graph, sort edges in nondecreasing order
@@ -358,6 +360,7 @@ void Segment2D<T>::_extract_model(int noise){
         weightSet.insert(weight);
         _imgModel.set_edge_weight(edge, weight);
     }
+    std::cout<<"******** wight of edges ********" <<std::endl;
     for(auto w : weightSet){
         std::cout<<w<<" ";
     }
@@ -473,67 +476,20 @@ void Segment2D<T>::_optimze_model(int scale){
 
 }
 
-std::vector<RgbColor>& components_color( ){
-    static std::vector<RgbColor> marks;
-    if(marks.size() == 0){
-
-        RgbColor color;
-        color.r = 234;
-        color.g = 16;
-        color.b = 7;
-        marks.push_back(color);
-
-        color.r = 162;
-        color.g = 210;
-        color.b = 101;
-        marks.push_back(color);
-
-        color.r = 28;
-        color.g = 166;
-        color.b = 205;
-        marks.push_back(color);
-
-        color.r = 69;
-        color.g = 183;
-        color.b = 17;
-        marks.push_back(color);
-
-        color.r = 255;
-        color.g = 112;
-        color.b = 117;
-        marks.push_back(color);
-
-        color.r = 184;
-        color.g = 255;
-        color.b = 92;
-        marks.push_back(color);
-
-        color.r = 162;
-        color.g = 92;
-        color.b = 255;
-        marks.push_back(color);
-
-        color.r = 137;
-        color.g = 242;
-        color.b = 218;
-        marks.push_back(color);
-    }
-    return marks;
-}
 template < typename T >
 void Segment2D<T>::save(std::string filename, int optScale, int filterSize){
-    std::cout<<"constructing region graph...."<<std::endl;
-    // create an image, and set the image color white
+    // create an white color image
     CvSize size;
     size.width = this->_width;
     size.height = this->_height;
-    /*IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U, T::CHANELS);*/
     IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U, 3);
     m_opencv::RgbImage img(temp);
     m_opencv::RgbColor white = m_opencv::RgbColor::white_color();
     img.set_color(white);
+
     // extract graph model from components of segmentation
     _extract_model(filterSize);
+
     // optimizing model
     _optimze_model(optScale);
 
