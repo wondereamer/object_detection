@@ -416,7 +416,6 @@ namespace m_graph {
                 //! color the vertex of graph to using vertex coloring algorithm
                 bool vertex_coloring(std::map<int, std::string> &colormap, 
                         std::map<int, std::string> &vertex2color){
-                    std::cout<<"vertex coloring...."<<std::endl;
                     MatrixGraph mGraph;
                     matrix_graph(mGraph);
                     /*print_graph(mGraph);*/

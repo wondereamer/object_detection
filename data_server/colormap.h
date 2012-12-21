@@ -37,6 +37,10 @@ inline std::string material2color(std::string material){
         str2colorMap.insert(std::make_pair("TallGrass", make_color(0,0.9,0)));
         str2colorMap.insert(std::make_pair("TopSoil", make_color(0.5,0.7,0.1)));
         str2colorMap.insert(std::make_pair("Wood", make_color(0.6,0.3,0.1)));
+        str2colorMap.insert(std::make_pair("Wheel", make_color(0.5,1.5,0.5)));
+        str2colorMap.insert(std::make_pair("GlassPane", make_color(0.8,0.8,0.9)));
+        str2colorMap.insert(std::make_pair("BlockOfIron", make_color(0.1,0.1,0.1)));
+        str2colorMap.insert(std::make_pair("IronDoor", make_color(0.1,0.1,0.2)));
 
     }
     std::string rst = str2colorMap[material];

@@ -494,41 +494,22 @@ void Segment2D<T>::save(std::string filename, int optScale, int filterSize){
     _optimze_model(optScale);
 
     // coloring components of segmentation
-    std::map<int, std::string> colormap;
-    std::map<int, std::string> vertex2strColor;
-    std::map<std::string, m_opencv::RgbColor> strColor2color;
-    colormap[0] = "#66BBAE";
-    colormap[1] = "#8FBC8F";
-    colormap[2] = "#9DD4FF";
-    colormap[3] = "#D53533";
-    colormap[4] = "#509467";
-    colormap[5] = "#A6CD1B";
-    colormap[6] = "#ED9F9F";
-    colormap[7] = "#373A7F";
-    strColor2color["#66BBAE"] = components_color()[0];
-    strColor2color["#8FBC8F"] = components_color()[1];
-    strColor2color["#9DD4FF"] = components_color()[2];
-    strColor2color["#D53533"] = components_color()[3];
-    strColor2color["#509467"] = components_color()[4];
-    strColor2color["#A6CD1B"] = components_color()[5];
-    strColor2color["#ED9F9F"] = components_color()[6];
-    strColor2color["#373A7F"] = components_color()[7];
-    if(!_imgModel.vertex_coloring(colormap, vertex2strColor))
+    if(!vertex_coloring(_imgModel)){
         std::cout<<"Failed to color vertex!!!"<<std::endl;
+        return;
+    }
 
-    // mark regions with different colors
-    std::cout<<"mark regions with different colors..."<<std::endl;
+    // copy pixels from pixelWorld to image
     std::vector<typename ImageModel::NodeH> nodeHandles;
     _imgModel.all_nodes(nodeHandles);
-    int index = 0;
     for(auto node: nodeHandles){
         Region2D &region = _imgModel.get_node_attrs(node);
-        region._regionColor = strColor2color[vertex2strColor[index++]];
         for(auto *pixel : region._comp->get_members()){
             img[pixel->_y][pixel->_x] = region._regionColor;
         }
 
     }
+
     _imgModel.write("hello");
     /*this->show();*/
     img.show();

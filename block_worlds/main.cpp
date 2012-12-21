@@ -97,14 +97,15 @@ int main (int argc, char** argv)
     // register event
     viz.register_keyboard_event(keyboardEventOccurred);
     viz.register_mouse_event(mouseEventOccurred);
-    viz.create_v_viewport(v1, v2);
+//    viz.create_v_viewport(v1, v2);
     // add origin blocks to visualizer
     for (int i = 0; i < xList.size(); i++) {
         viz.add_point(xList[i], yList[i], zList[i], rList[i], gList[i], bList[i], 0.1);
         //viz.add_cube(xList[i], yList[i], zList[i], 0, 255, 0, 0.1, 2);
         //viz.add_cube(xList[i], yList[i], zList[i], 255, 255, 255, 0.1, 1);
     }
-    viz.push_pointCloud(v1, 30);
+//    viz.push_pointCloud(v1, 30);
+    viz.push_pointCloud(30);
 
     // add segmentation result to visualizer
     xList.clear();

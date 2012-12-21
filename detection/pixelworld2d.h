@@ -31,6 +31,7 @@ class PixelWorld2D {
         int             _height;
         int             _width;
         IplImage* _temp;
+        typename T::ImageType _image;
         /* data */
 };
 
@@ -42,14 +43,14 @@ void PixelWorld2D<T>::show(){
     /*cvDestroyAllWindows();*/
 }
 template < typename T >
-PixelWorld2D<T>::PixelWorld2D(std::string filename)
+PixelWorld2D<T>::PixelWorld2D(std::string filename):_image(NULL)
 {
     _temp =  cvLoadImage(filename.data(), T::ISRGB);
     /*m_opencv::blur(_temp);*/
     assert(_temp);
     _height = _temp->height;
     _width = _temp->width;
-    typename T::ImageType image(_temp);
+    _image = typename T::ImageType(_temp);
     //allocate memory for pixels
     _pixels = new T*[_height];
     for (int i = 0; i < _height; i++) {
@@ -58,11 +59,11 @@ PixelWorld2D<T>::PixelWorld2D(std::string filename)
     //fetch gray/rgb value of pixels
     for (int row = 0; row < _height; row++) 
         for (int col = 0; col < _width; col++){
-            _pixels[row][col].set_color(image[row][col]);
+            _pixels[row][col].set_color(_image[row][col]);
 
             _pixels[row][col].set_location(col, row);
         }
-    image.output_img_info();
+    _image.output_img_info();
 
 }
 

@@ -181,9 +181,9 @@ class RgbPixel2D {
 class GrayPixel3D{
 
     public:
-        int _x;
-        int _y;
-        int _z;
+        float _x;
+        float _y;
+        float _z;
         int _size;
     protected:
         GrayColor _color;
@@ -191,14 +191,14 @@ class GrayPixel3D{
         /*typedef GrayImage Image;*/
         typedef GrayColor ColorType;
         typedef GrayColor MeasureColorType;
-        GrayPixel3D(int x = 0, int y = 0, int z = 0):_x(x), _y(y), _z(z){ }
+        GrayPixel3D(float x = 0, float y = 0, float z = 0):_x(x), _y(y), _z(z){ }
 
-        GrayPixel3D(const GrayColor &color, int x = 0 , int y = 0, int z = 0, int size = 0):_x(x), _y(y), _z(z),
+        GrayPixel3D(const GrayColor &color, float x = 0 , float y = 0, float z = 0, int size = 0):_x(x), _y(y), _z(z),
         _size(size), _color(color) { }
         static double spatial_distance(const GrayPixel3D &a, const GrayPixel3D &b){
             return (double)sqrt(pow(a._x - b._x, 2) +  pow(a._y - b._y, 2) + pow(a._z - b._z, 2));
         }
-        void set_location(int x, int y, int z){
+        void set_location(float x, float y, float z){
             _x = x;
             _y = y;
             _x = z;
@@ -241,23 +241,23 @@ class GrayPixel3D{
 class RgbPixel3D {
 
     public:
-        int _x;
-        int _y;
-        int _z;
+        float _x;
+        float _y;
+        float _z;
         int _size;
         RgbColor _color;
         LuvColor _luvColor;
 
     public:
 
-        RgbPixel3D(int x = 0, int y = 0, int z = 0):_x(x), _y(y), _z(z){ }
+        RgbPixel3D(float x = 0, float y = 0, float z = 0):_x(x), _y(y), _z(z){ }
 
-        RgbPixel3D(const RgbColor &color, int x = 0 , int y = 0, int z = 0, int size = 0):_x(x), _y(y), _z(z),
+        RgbPixel3D(const RgbColor &color, float x = 0 , float y = 0, float z = 0, int size = 0):_x(x), _y(y), _z(z),
         _size(size), _color(color) { }
         static double spatial_distance(const RgbPixel3D &a, const RgbPixel3D &b){
             return (double)sqrt(pow(a._x - b._x, 2) +  pow(a._y - b._y, 2) + pow(a._z - b._z, 2));
         }
-        void set_location(int x, int y, int z){
+        void set_location(float x, float y, float z){
             _x = x;
             _y = y;
             _x = z;

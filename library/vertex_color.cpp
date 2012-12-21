@@ -35,7 +35,7 @@ bool vertex_coloring(const vector< vector<int> > &Graph, map<int, string> &color
     // number of vertex
     int N = Graph.size();
     // #info
-    std::cout<<" coloring vertex... "<<std::endl
+    std::cout<<"coloring vertex... "<<std::endl
              <<"with "<< colorNum<<" color"<<std::endl
              <<"width "<< N<<" nodes"<<std::endl;
     std::map<int, int> vtx2colorIndex;

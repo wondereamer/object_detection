@@ -10,6 +10,8 @@ SET(USER_LIB "/home/wondereamer/local/lib")
 SET(USER_INCLUDE "/home/wondereamer/local/include") 
 SET(LOCAL_LIB "/usr/local/lib") 
 SET(LOCAL_INCLUDE "/usr/local/include") 
+SET(GLOBAL_INCLUDE "/usr/include") 
+SET(GLOBAL_LIB "/usr/lib") 
 #set(CMAKE_C_COMPILER   "/usr/bin/gcc-4.7")
 #set( CMAKE_CXX_COMPILER "/usr/bin/g++-4.7")
 #set(CMAKE_CXX_FLAGS                "-Wall -std=c++11 -Winline")
@@ -21,6 +23,7 @@ SET(LOCAL_INCLUDE "/usr/local/include")
 add_definitions(-DDATA_SERVER_PORT=8000)
 add_definitions(-DDETECTION_SERVER_PORT=8001)
 add_definitions(-DDATADIR="${OPENCOG_LOCATION}/opencog")
+
 
 
 if(debug_mode)

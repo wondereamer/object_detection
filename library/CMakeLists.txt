@@ -9,11 +9,11 @@ ADD_LIBRARY(m_library
     m_opencv
     m_util
     data
-    vertex_color
-    )
+    vertex_color)
 INCLUDE_DIRECTORIES(
     ${LOCAL_INCLUDE}/opencv 
     ${USER_INCLUDE}
+    ${GLOBAL_INCLUDE}
     )
 TARGET_LINK_LIBRARIES(m_library
     ${USER_LIB}/libOGDF.a
@@ -28,4 +28,5 @@ TARGET_LINK_LIBRARIES(m_library
     /usr/lib/libboost_system.so
     ${LOCAL_LIB}/libopencv_core.so
     ${LOCAL_LIB}/libopencv_imgproc.so
+    /usr/lib/libflann_cpp.so
     /usr/lib/libboost_regex.so)
