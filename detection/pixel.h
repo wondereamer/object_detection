@@ -14,8 +14,8 @@
 #include "m_opencv.h" 
 #include <cmath>
 #include "m_math.h"
+#include "component.h"
 using namespace m_opencv;
-
 /**
  * @brief 
  */
@@ -74,11 +74,13 @@ class GrayPixel2D{
         static const int CHANELS = 1;
         static const bool ISRGB = false;
         GrayColor _color;
+        Component<GrayPixel2D*> *_parent;
     public:
         typedef GrayImage ImageType;
         typedef GrayColor ColorType;
         typedef GrayColor MeasureColorType;
-        GrayPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
+        GrayPixel2D(int x = 0 , int y = 0, Component<GrayPixel2D*> *parent = NULL)
+                                                     :_x(x), _y(y), _parent(parent) { }
         void set_location(int x, int y){
             _x = x;
             _y = y;
@@ -129,9 +131,12 @@ class RgbPixel2D {
         static const int CHANELS = 3;
         static const bool ISRGB = true;
         RgbColor _color;
+        Component<RgbPixel2D*> *_parent;
 
     public:
-        RgbPixel2D(int x = 0 , int y = 0):_x(x), _y(y) { }
+        RgbPixel2D(int x = 0 , int y = 0, Component<RgbPixel2D*> *parent = NULL)
+                                                :_x(x), _y(y), _parent(parent) { }
+
         static double spatial_distance(const RgbPixel2D &a, const RgbPixel2D &b){
             return (double)sqrt(pow(a._x - b._x, 2) +  pow(a._y - b._y, 2));
         }
@@ -185,13 +190,16 @@ class GrayPixel3D{
         float _y;
         float _z;
         int _size;
+        Component<GrayPixel3D*> *_parent;
     protected:
         GrayColor _color;
     public:
         /*typedef GrayImage Image;*/
         typedef GrayColor ColorType;
         typedef GrayColor MeasureColorType;
-        GrayPixel3D(float x = 0, float y = 0, float z = 0):_x(x), _y(y), _z(z){ }
+
+        GrayPixel3D(float x = 0, float y = 0, float z = 0, Component<GrayPixel3D*> *parent = NULL)
+                                                    :_x(x), _y(y), _z(z), _parent(parent){ }
 
         GrayPixel3D(const GrayColor &color, float x = 0 , float y = 0, float z = 0, int size = 0):_x(x), _y(y), _z(z),
         _size(size), _color(color) { }
@@ -247,10 +255,12 @@ class RgbPixel3D {
         int _size;
         RgbColor _color;
         LuvColor _luvColor;
+        Component<RgbPixel3D*> *_parent;
 
     public:
 
-        RgbPixel3D(float x = 0, float y = 0, float z = 0):_x(x), _y(y), _z(z){ }
+        RgbPixel3D(float x = 0, float y = 0, float z = 0, Component<RgbPixel3D*> *parent = NULL)
+                                                    :_x(x), _y(y), _z(z), _parent(parent){ }
 
         RgbPixel3D(const RgbColor &color, float x = 0 , float y = 0, float z = 0, int size = 0):_x(x), _y(y), _z(z),
         _size(size), _color(color) { }

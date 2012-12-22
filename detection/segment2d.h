@@ -35,6 +35,14 @@ class Segment2D: public PixelWorld2D<T> {
         typedef Component<T*> Component2D;
         typedef WeightEdge<T*> WeightEdge2D;
 
+        struct Filter : public unary_function<Component2D, bool> {
+            Filter(int n = 1):_scale(n){ }
+            bool  operator()(const Component2D& arg1) const{
+                return arg1.size() < _scale;
+            };
+            int _scale;
+        };
+
         struct Region2D{
             PointF  _centroid;
             std::vector<T*> _boundary;
@@ -60,14 +68,21 @@ class Segment2D: public PixelWorld2D<T> {
          * @param filterSize: filter component size less than filterSize
          */
         void save(std::string filename, int optScale = 0, int filterSize = 0);
+        void filter(int noise = 1);
+        void model_info( );
 
     protected:
         //
         double _edge_weight(const T &a, const T &b){ return T::density_distance(a,b) ;}
         //
         void _gaussian(){ }
-        //! 
-        void _extract_model(int noise = 0);
+
+        /**
+         * @brief 
+         *
+         * @param noise filter out components whose size less than #noise
+         */
+        void _extract_model(int noise = 1);
         void _optimze_model(int scale );
 
         bool _is_inside(int x, int y) const;
@@ -78,7 +93,7 @@ class Segment2D: public PixelWorld2D<T> {
 
     private:
         bool            _isGrid;
-        std::list<Component2D> _components;
+        std::vector<Component2D> _components;
         std::set<Component2D> _noises;
         ImageModel _imgModel;
 
@@ -134,7 +149,6 @@ inline std::vector<T*> Segment2D<T>::_grid_neighbors(const T &t) const{
 
 template < typename T >
 void Segment2D<T>::segment(int arg){
-
     Component2D::K = arg;
     // map pixel to it's component 
     std::set<WeightEdge2D> graph;
@@ -154,59 +168,25 @@ void Segment2D<T>::segment(int arg){
             }
         }
     std::cout<<"size of graph:"<<graph.size()<<std::endl;
-    // statics
-    float com_com = 0;
-    float pixel_pixel = 0;
-    float com_pixel = 0;
-    float a_com_com = 0;
-    float a_pixel_pixel = 0;
-    float a_com_pixel = 0;
-    double count = 0;
-    int display = 0;
-    double lengthComponents = 0;
+    m_util::EveryDisplay display(1000);
     // create and merge components from edge list
     // as the number of components is always small, means the convertion from
     // Pixel to Component won't cost that much, the total number of covertions
     // will be num(pixels) + max length of components;
     for(const WeightEdge2D &edge : graph){
-        count++;
-        display++;
-        if(display > 1000){
-            // output the number of edges dealed with every 1000
-            std::cout<<count<<std::endl;
-            display = 0;
-        }
-        auto i_b = _components.end();    
-        auto i_e = _components.end();    
         // for every pixel
-        for (auto i = _components.begin(); i != _components.end() ; i++) {
-            if( i->contains(edge._b)){
-                i_b = i;
+        display.every_display();
+        auto *compOfb = edge._b->_parent;
+        auto *compOfe = edge._e->_parent;
+        // both component exist
+        assert(edge._b != edge._e);
+        if (compOfb && compOfe ) {
+//            assert(compOfb->size() >=2 && compOfe->size() >= 2);
+            if(compOfb == compOfe)
                 continue;
-            }
-            if( i->contains(edge._e)){
-                i_e = i;
-                continue;
-            }
-            if (i_b != _components.end() && i_e != _components.end() )
-                break;
-        }
-        if (i_b != _components.end() && i_e != _components.end()) {
-            // both component exist
-            int rst = Component2D::merge(edge._weight, *i_b, *i_e);
-            if (rst == 0){
-                // have merged i_e to i_b, so remove component i_e
-                // from #_components list.
-                _components.erase(i_e);
-                com_com++;
-            }
-            else if(rst == 1){
-                _components.erase(i_b);
-                com_com++;
-            }
-            a_com_com++;
-        }
-        else if( i_b == _components.end() && i_e == _components.end()) {
+            Component2D::merge(edge._weight, *compOfb, *compOfe);
+//            assert(compOfb->size() >=2 || compOfe->size() >= 2);
+        } else if( !compOfb  && !compOfe) {
             // merge two pixels
             Component2D tempB(edge._b);
             Component2D tempE(edge._e);
@@ -214,11 +194,15 @@ void Segment2D<T>::segment(int arg){
             // the only place insert elements to #_components
             if(rst == 0){
                 _components.push_back(tempB);
-                lengthComponents++;
+//                assert(edge._b->_parent == &_components.back());
+//                assert(edge._e->_parent == &_components.back());
+//                assert(_components.back().size() == 2);
             }
             else if(rst == 1){
                 _components.push_back(tempE);
-                lengthComponents++;
+//                assert(edge._b->_parent == &_components.back());
+//                assert(edge._e->_parent == &_components.back());
+//                assert(_components.back().size() == 2);
             }else{
                 // failed to merge two pixel
                 // add two single pixel components
@@ -230,32 +214,51 @@ void Segment2D<T>::segment(int arg){
 
             }
         }
-        else if( i_b == _components.end()){
-            // merge pixel edge._b to component i_e
+        else if( !compOfb){
+            // merge pixel edge._b to component compOfe
             Component2D temp(edge._b);
-            if(Component2D::merge(edge._weight, temp, *i_e) == -1);
-            /*_noises.insert(temp);*/
+            int t = compOfe->size();
+//            if(Component2D::merge(edge._weight, *compOfe, temp) != -1)
+                /*_noises.insert(temp);*/
+//                assert(compOfe->size() == t + 1 && compOfe->size() > 2);
+                Component2D::merge(edge._weight, *compOfe, temp);
         }
         else{
-            // merge pixel edge._e to component i_b
+            // merge pixel edge._e to component compOfb
             Component2D temp(edge._e);
-            if(Component2D::merge(edge._weight, *i_b, temp) == -1);
+//            if(Component2D::merge(edge._weight, *compOfb, temp) == -1);
             /*_noises.insert(temp);*/
+            Component2D::merge(edge._weight, *compOfb, temp);
         }
 
     }
 
-    std::cout<<"**************size of _components: "<<_components.size()<<std::endl;
+
+}
+template < typename T >
+void Segment2D<T>::model_info(){
+    int size = 0;
     for(Component2D &comp: _components){
         std::cout<<"[ "<< comp.get_members().size()<<" ]";
+        size += comp.get_members().size();
     }
-    std::cout<<"length of components:"<<lengthComponents<<std::endl;
+    std::cout<<std::endl<<"************size of _components: "<<_components.size()<<std::endl;
+    std::cout<<"missing pixels: "<<this->_width * this->_height - size<<std::endl;
+    std::cout<<"move num: "<<Component2D::MOVE_NUM<<std::endl;
     std::cout<<std::endl;
 }
-
 template < typename T >
 std::vector<T*> Segment2D<T>::_feature_neighbors(const T &t) const{
     return std::vector<T*>();
+}
+template < typename T >
+void Segment2D<T>::filter(int noise){
+    // fill out small component whose size less than noise 
+    // get an smaller graph model
+    std::cout<<"Filtering regions whose size less than "<<noise<<std::endl;
+    Filter filter(noise);
+    auto end = std::remove_if(_components.begin(), _components.end(), filter);
+    _components.resize(end - _components.begin());
 }
 
 /**
@@ -268,6 +271,8 @@ template < typename T >
 void Segment2D<T>::_extract_model(int noise){
     // construt region graph, vertexs are segmentation components
     // edge between two vertexs, means two components are adjacent
+    filter(noise);
+    model_info( );
     std::cout<<"extracting graph model...."<<std::endl;
     std::multiset<double> weightSet;
     typedef std::map<Component2D*, typename ImageModel::NodeH> CompNodeMap;
@@ -276,11 +281,9 @@ void Segment2D<T>::_extract_model(int noise){
     Region2D region;
     double centr_x = 0;
     double centr_y = 0;
+    m_util::EveryDisplay display(50);
     for(auto &comp : _components){
-        // fill out small component whose size less than noise 
-        // get an smaller graph model
-        if(comp.size() < noise)
-            continue;
+        display.every_display(); 
         // get or create an handle of current region in the  model
         typename CompNodeMap::iterator i = comp2node.find(&comp);
         if(i == comp2node.end()){
@@ -311,9 +314,6 @@ void Segment2D<T>::_extract_model(int noise){
                 if(!comp.contains(nb)){
                     for(auto &nbComp : _components){
                         if(nbComp.contains(nb)){
-                            // filter out small componets
-                            if(nbComp.size() < noise)
-                                break;
                             // get or create neighbor handle
                             typename CompNodeMap::iterator i = comp2node.find(&nbComp);
                             if(i == comp2node.end()){
@@ -457,8 +457,8 @@ void Segment2D<T>::_optimze_model(int scale){
                     }
 
                 }
-                    new_model = true;
-                    break;
+                new_model = true;
+                break;
 
             } //end of merge (if)
 
@@ -486,12 +486,15 @@ void Segment2D<T>::save(std::string filename, int optScale, int filterSize){
     m_opencv::RgbImage img(temp);
     m_opencv::RgbColor white = m_opencv::RgbColor::white_color();
     img.set_color(white);
-
+    ///// @todo ... have the ability to save segmentation result here
     // extract graph model from components of segmentation
     _extract_model(filterSize);
 
     // optimizing model
     _optimze_model(optScale);
+    /// @todo model info is in _imgModel here, not _components
+    
+    model_info();
 
     // coloring components of segmentation
     if(!vertex_coloring(_imgModel)){

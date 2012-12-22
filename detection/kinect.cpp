@@ -96,7 +96,7 @@ main(int argc, char** argv)
     {
         Segment2D<RgbPixel2D> image(argv[2]);
         image.segment(70);
-        image.save("Rgbsegmentation", 15);
+        image.save("Rgbsegmentation", 15, 10);
     }
     if (console::find_argument(argc, argv, "-h") >= 0)
     {

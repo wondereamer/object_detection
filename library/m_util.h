@@ -100,6 +100,29 @@ namespace m_util {
             int _port;
     };
 
+    //! output every #every loop
+    class EveryDisplay{
+        public:
+            EveryDisplay(int every):_every(every), _count(0), _display(0){ }
+            void every_display (){
+                _display++;
+                _count++;
+                if(_display >= _every){
+                    // output the number of edges dealed with every 1000
+                    std::cout<<_count<<std::endl;
+                    _display = 0;
+                }
+            }
+            void reset(){
+                _count = 0;
+                _display = 0;
+            }
+        private:
+            double _count;
+            double _display;
+            double _every;
+    };
+
 
 
 }; /* m_lib */
