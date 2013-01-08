@@ -78,6 +78,8 @@ namespace m_graph {
      */
     template < typename T>
         class UWGraph {
+            /// @todo ...use graph as argument template, 
+            
             public:
                 typedef adjacency_list<vecS, vecS, undirectedS, no_property, property<edge_weight_t, double> > MGraph;
                 typedef std::pair<T, T> Edge;

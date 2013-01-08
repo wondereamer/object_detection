@@ -18,6 +18,27 @@
 #include <string>
 #include <sstream>
 #include <boost/regex.hpp>
+
+#ifdef SPECIAL_LEXICAL_CAST
+namespace boost {
+    template<>
+        inline int lexical_cast(const std::string& arg)
+        {
+            char* stop;
+            int res = strtol( arg.c_str(), &stop, 10 );
+            if ( *stop != 0 ) throw_exception(bad_lexical_cast(typeid(int), typeid(std::string)));
+            return res;
+        }
+    template<>
+        inline std::string lexical_cast(const int& arg)
+        {
+            char buffer[20]; 
+//            itoa( arg, buffer, 10 );
+             sprintf(buffer, "%i", arg);
+            return std::string( buffer );
+        }
+}
+#endif
 namespace m_util {
     using std::string;
 
@@ -52,6 +73,7 @@ namespace m_util {
             ss>>val;
             return val;
         }
+
 
     inline std::vector<std::string> split(std::string s, const string &symbol){ 
         std::vector<std::string> rst;

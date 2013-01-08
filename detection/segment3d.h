@@ -29,6 +29,7 @@
 #include "vizblockworld.h"
 #include "util.h" 
 #include "nearnest_neighbor.h"
+#include <pcl/io/pcd_io.h>
 
 template < typename T >
 struct Region3D_{
@@ -146,7 +147,13 @@ class Segment3D:public PixelWorld3D<T> {
 }; 
 
 
-
+/// @todo itergrate this function to data server
+/**
+ * @brief get data from data server, and save to pcd files
+ *
+ * @tparam T
+ * @param isGrid
+ */
     template < typename T >
 Segment3D<T>::Segment3D(bool isGrid):PixelWorld3D<T>(isGrid)
 {
@@ -159,9 +166,11 @@ Segment3D<T>::Segment3D(bool isGrid):PixelWorld3D<T>(isGrid)
     std::vector<int> sizeList;
     std::vector<std::string> materialList;
     std::set<std::string> material_types;
+    VizBlockWorld viz;
     // set the segmentation scale;
     // get blocks from data server
     get_block_attrs(xList, yList, zList, rList, gList, bList, materialList, sizeList, "get_block_attrs", DATA_SERVER_PORT);
+    std::cout<<"*********************************"<<std::endl;    
     // create 3dpixel pool
     for (int i = 0; i < xList.size(); i++) {
         material_types.insert(materialList[i]);
@@ -170,8 +179,15 @@ Segment3D<T>::Segment3D(bool isGrid):PixelWorld3D<T>(isGrid)
         color.g = gList[i];
         color.b = bList[i];
         this->_pixels.insert(T(color, xList[i], yList[i], zList[i], sizeList[i]));
+        viz.add_point(xList[i], yList[i], zList[i], rList[i], gList[i], bList[i], 0.1);
 
     }
+//    viz.add_point(0,0,0, 0, 255,0, 0.1);
+    viz.push_pointCloud(30);
+    viz.draw();
+    viz.save("cars.pcd");
+//        if (io::savePCDFile(filename, *cloud, true) == 0)
+    viz.display();
     // tracing code
     std::copy(material_types.begin(), material_types.end(),    
             std::ostream_iterator<std::string>(std::cout, "\n"));
@@ -180,6 +196,13 @@ Segment3D<T>::Segment3D(bool isGrid):PixelWorld3D<T>(isGrid)
 
 }
 
+/**
+ * @brief get data from point cloud
+ *
+ * @tparam T
+ * @param cloud
+ * @param isGrid
+ */
     template < typename T >
 Segment3D<T>::Segment3D(const pcl::PointCloud<pcl::PointXYZRGBA>::ConstPtr& cloud, 
         bool isGrid):PixelWorld3D<T>(isGrid)

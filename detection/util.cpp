@@ -56,7 +56,7 @@ std::vector<RgbColor>& components_color( ){
     return marks;
 }
 
-void keyboardEventOccurred2 (const pcl::visualization::KeyboardEvent &event,
+void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         void* viewer_void)
 {
     static bool existSight = false;

@@ -149,6 +149,6 @@ void nearest_k_search2(std::vector<T> &points, const T& searchPoint, int nn = 10
 void mouseEventOccurred (const pcl::visualization::MouseEvent &event,
         void* viewer_void);
 
-void keyboardEventOccurred2 (const pcl::visualization::KeyboardEvent &event,
+void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         void* viewer_void);
 #endif /* end of include guard: UTIL_H */

@@ -11,8 +11,9 @@
 #include <pcl/console/parse.h>
 #include "m_util.h"
 // helper function  to create point 
-inline pcl::PointXYZRGB create_point(float x, float y, float z, int r, int g, int b, float step = 1){
-    pcl::PointXYZRGB point;
+typedef pcl::PointXYZRGB PointT;
+inline PointT create_point(float x, float y, float z, int r, int g, int b, float step = 1){
+    PointT point;
     //point.x = x * step;
     point.x = x * step;
     point.y = y * step;
@@ -59,20 +60,20 @@ inline void camera_info(pcl::visualization::Camera &camera)
 //***************************************************************
 class VizBlockWorld {
     public:
-        VizBlockWorld ():_cloud(new pcl::PointCloud<pcl::PointXYZRGB>){
+        VizBlockWorld ():_cloud(new pcl::PointCloud<PointT>){
             _viewer = new pcl::visualization::PCLVisualizer ("3D _viewer");
             // will increase object id automatically, when add new visual element
             _objId = 0;
             set_offset(0, 0, 0);
         };
-        VizBlockWorld (pcl::PointCloud<pcl::PointXYZRGB>::Ptr  cloud){
+        VizBlockWorld (pcl::PointCloud<PointT>::Ptr  cloud){
             _cloud = cloud;
             _viewer = new pcl::visualization::PCLVisualizer ("3D _viewer");
             _objId = 0;
 
             std::string pointId = m_util::sth2string<int>(_objId);
-            pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgbs(_cloud);
-            _viewer->addPointCloud<pcl::PointXYZRGB> (_cloud, rgbs, pointId);
+            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
+            _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId);
             /*_viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);*/
             _objId++;
             set_offset(0, 0, 0);
@@ -80,7 +81,7 @@ class VizBlockWorld {
 
         void draw(){
             _viewer->initCameraParameters ();
-//            _viewer->addCoordinateSystem(1.0);
+            //            _viewer->addCoordinateSystem(1.0);
         }
         // display multiwindow viewer
         static void display(std::vector<pcl::visualization::PCLVisualizer*> viewers){
@@ -113,6 +114,12 @@ class VizBlockWorld {
             //_viewer->setRepresentationToPointsForAllActors();
             //_viewer->setRepresentationToWireframeForAllActors();
         }
+        void save(std::string filename){
+            if (pcl::io::savePCDFile(filename, *_cloud, true) == 0) {
+                cout << "Saved " << filename << "." << endl;
+            }
+            else PCL_ERROR("Problem saving %s.\n", filename.c_str());
+        }
 
         /**
          * @brief 
@@ -140,28 +147,28 @@ class VizBlockWorld {
         }
         // register event
         void register_keyboard_event(void (*callback) (const pcl::visualization::KeyboardEvent &event,
-                                                                                    void *viewer_void)){
+                    void *viewer_void)){
             _viewer->registerKeyboardCallback (callback, (void*)_viewer);
         }
         void register_mouse_event(void (*callback) (const pcl::visualization::MouseEvent &event,
-                                                                                    void *viewer_void)){
+                    void *viewer_void)){
             _viewer->registerMouseCallback (callback, (void*)_viewer);
         }
         //! add point to point cloud
-        void  add_point(float x, float y, float z, int r, int g, int b, float unit){ 
+        inline void  add_point(float x, float y, float z, int r, int g, int b, float unit){ 
             x = (x  - _x_offset) * unit;
             y = (y  - _y_offset) * unit;
             z = (z  - _z_offset) * unit;
             _cloud->points.push_back(create_point(x, y, z, r, g, b));
         }
-        void add_point(const pcl::PointXYZRGB &p){
+        inline void add_point(const PointT &p){
             _cloud->points.push_back(p);
         }
         //! add point cloud to viewport
         std::string push_pointCloud(int &viewport, int pointSize = 1){
             std::string pointId = m_util::sth2string<int>(_objId);
-            pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgbs(_cloud);
-            _viewer->addPointCloud<pcl::PointXYZRGB> (_cloud, rgbs, pointId, viewport);
+            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
+            _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId, viewport);
             _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
             _objId++;
             _cloud->clear();
@@ -171,13 +178,35 @@ class VizBlockWorld {
         //! add point cloud to default viewport(the only one)
         std::string push_pointCloud(int pointSize = 1){
             std::string pointId = m_util::sth2string<int>(_objId);
-            pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> rgbs(_cloud);
-            _viewer->addPointCloud<pcl::PointXYZRGB> (_cloud, rgbs, pointId);
+            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
+            _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId);
             _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
             _objId++;
             return pointId;
 
         }
+        //! add point pointcloud to viewport(the only one)
+        std::string update_pointCloud(pcl::PointCloud<PointT>::Ptr cloud, int &viewport, int pointSize = 1){
+            std::string pointId = m_util::sth2string<int>(_objId);
+//            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(cloud);
+//            _viewer->addPointCloud<PointT> (cloud, rgbs, pointId, viewport);
+            _viewer->addPointCloud<PointT> (cloud, pointId, viewport);
+            _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
+            _objId++;
+            return pointId;
+
+        }
+
+//        //! add point pointcloud to viewport
+//        std::string update_pointCloud(pcl::PointCloud<PointT>::Ptr cloud, int pointSize = 1){
+//            std::string pointId = m_util::sth2string<int>(_objId);
+//            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(cloud);
+//            _viewer->addPointCloud<PointT> (cloud, rgbs, pointId);
+//            _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
+//            _objId++;
+//            return pointId;
+//        }
+
         pcl::visualization::PCLVisualizer *get_viewer(){
             return _viewer;
         }
@@ -213,7 +242,7 @@ class VizBlockWorld {
         }
     private:
         pcl::visualization::PCLVisualizer *_viewer;
-        pcl::PointCloud<pcl::PointXYZRGB>::Ptr _cloud;
+        pcl::PointCloud<PointT>::Ptr _cloud;
         // cube_id
         int _objId;
         // offset to the center of the world

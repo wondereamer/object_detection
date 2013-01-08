@@ -2,3 +2,10 @@
 get_neighbors argument pass
 inline template
 library namespace
+
+construct mesh graph
+drawback: have to see the whole object as an connected part
+
+idea 1: continous, state a could reach c through b!
+flann use_speed std 0x
+optimize code -02
