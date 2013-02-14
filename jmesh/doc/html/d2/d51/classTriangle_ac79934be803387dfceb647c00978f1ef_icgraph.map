@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#acec74b744af17b41e6de902fbe4163b6" title="Triangulation::checkGeometry" alt="" coords="233,5,436,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#ab014cdac249b4e5b34dbbe2ca4a5c2e7" title="Angle between the normals of the two incident triangles." alt="" coords="277,59,392,88"/>
+<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a334250a8478a69bb1adcbb9317f63ee7" title="Discriminant Angle for triangulating 3D polygons." alt="" coords="225,112,444,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a5a10a92c852553276b5871981e4bee4b" title="Return TRUE iff one of the adjacent triangles overlaps with this one." alt="" coords="269,165,400,195"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#ae6e4787755d66d5e803770b99ca75513" title="Triangulation::removeOverlappingTriangles" alt="" coords="196,219,473,248"/>
+</map>

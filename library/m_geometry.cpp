@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iterator>
 #include "m_geometry.h"
+
+namespace m_geometry {
     std::ostream& operator<<(std::ostream& out, const Point &t){
         out<<"[x:"<<t.x<<" "<<"y:"<<t.y<<"]" ;
         return out;
@@ -14,3 +16,4 @@
         out<<"[x:"<<t.x<<" "<<"y:"<<t.y<<"z:"<<t.z<<"]";
         return out;
     }
+}

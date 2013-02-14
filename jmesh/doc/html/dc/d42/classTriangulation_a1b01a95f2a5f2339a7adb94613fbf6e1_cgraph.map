@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="673,57,799,87"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#ab26b12640c866bafb29b03b2061cbd21" title="Appends a new node storing &#39;d&#39; to the tail. &#160;&#160;O(1)." alt="" coords="425,416,540,445"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a42e3d87b90251c958abe310830303ac5" title="Triangulation::duplicateNonManifoldVertices" alt="" coords="343,5,623,35"/>
+<area shape="rect" id="node10" href="$dc/d42/classTriangulation.html#ab9694f134bbc51c81b8dfe675fa8ecd4" title="Updates the values of n_boundaries, n_handles and n_shells. O(N)." alt="" coords="393,211,572,240"/>
+<area shape="rect" id="node13" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="689,112,783,141"/>
+<area shape="rect" id="node15" href="$d6/da9/classList.html#a8167cffb890b7c640c1f0af7bbc67dd9" title="Deletes and removes the first node. Returns its data. &#160;&#160;O(1)." alt="" coords="684,168,788,197"/>
+<area shape="rect" id="node17" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="692,227,780,256"/>
+<area shape="rect" id="node19" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="692,289,780,319"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="692,363,780,392"/>
+<area shape="rect" id="node28" href="$dc/d42/classTriangulation.html#a56118103ad86aa7b37d7a005892bfeca" title="Empty triangulation. Should be used only prior to a call to load()." alt="" coords="392,469,573,499"/>
+<area shape="rect" id="node30" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="436,523,529,552"/>
+<area shape="rect" id="node32" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="436,576,529,605"/>
+<area shape="rect" id="node34" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="436,629,529,659"/>
+</map>

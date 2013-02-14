@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a786993d7f87eebdd35033fc99580a7a8" title="Triangulation::CreateIndexedTriangle" alt="" coords="233,5,476,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ae6106620e0853f98aded0112640dea4d" title="Creates a new Edge &#39;e&#39; and an oriented Triangle bounded by &#39;e&#39;, &#39;e1&#39; and &#39;e2&#39;." alt="" coords="247,59,463,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a72286a574cfdeaa66fa8d3fbd3d7b9a8" title="Loads STL." alt="" coords="276,112,433,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ac83bd24ec2fd54196f64f9a238342049" title="Triangulation::StarTriangulateHole" alt="" coords="244,165,465,195"/>
+</map>

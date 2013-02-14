@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="259,5,371,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="207,59,423,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="220,112,409,141"/>
+</map>

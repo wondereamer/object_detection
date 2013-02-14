@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a190d0b85de28fe01aaa57bf77e67a169" title="Line&#45;line closest point computation." alt="" coords="188,5,327,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a454a3b45bd9cbddabf85d0a692700132" title="Dihedral angle at the edge." alt="" coords="185,59,329,88"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#ab5b75d0f827c242cf1f0b2ed555fc0cb" title="Distance from segment a&#45;b." alt="" coords="172,112,343,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="191,165,324,195"/>
+<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a334250a8478a69bb1adcbb9317f63ee7" title="Discriminant Angle for triangulating 3D polygons." alt="" coords="397,244,616,273"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#afe64cff48a7497d4a1ee59c2f6745106" title="Discriminant Angle for triangulating flat (or nearly flat) polygons." alt="" coords="395,456,619,485"/>
+<area shape="rect" id="node15" href="$d2/da0/classVertex.html#a3bc6dd213cb85dbc8e2a06f7f1aeb2d1" title="Returns the angle between the two incident boundary edges. If the vertex is not on the boundary..." alt="" coords="168,323,347,352"/>
+<area shape="rect" id="node17" href="$d2/d51/classTriangle.html#ac79934be803387dfceb647c00978f1ef" title="Angle between the normal vector of this and the one of &#39;t&#39;. Return &#45;1 if one or both the triangles ar..." alt="" coords="187,269,328,299"/>
+<area shape="rect" id="node20" href="$d2/d51/classTriangle.html#a17b7f98dd3494b525e4875ea558bc903" title="TRUE iff the projection of &#39;p&#39; on the plane of the triangle is inside the triangle." alt="" coords="195,429,320,459"/>
+<area shape="rect" id="node22" href="$dc/d4f/classPoint.html#a49d02457cdb648dc836316808fe2d504" title="TRUE iff &#39;a&#39;, this vector and &#39;b&#39; are not collinear." alt="" coords="196,483,319,512"/>
+<area shape="rect" id="node24" href="$dc/d4f/classPoint.html#a92d745e495ed5a93f1d187aa50f702c1" title="Side test." alt="" coords="207,376,308,405"/>
+<area shape="rect" id="node27" href="$dc/d42/classTriangulation.html#ac2da805322c62ca6092c082327636443" title="Triangulation::splitTriangle" alt="" coords="168,587,347,616"/>
+</map>

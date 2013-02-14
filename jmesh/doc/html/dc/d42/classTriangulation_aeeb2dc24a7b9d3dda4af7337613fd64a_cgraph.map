@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="313,5,439,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="332,59,420,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="332,112,420,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="332,165,420,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="329,219,423,248"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="329,272,423,301"/>
+<area shape="rect" id="node15" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="329,325,423,355"/>
+</map>

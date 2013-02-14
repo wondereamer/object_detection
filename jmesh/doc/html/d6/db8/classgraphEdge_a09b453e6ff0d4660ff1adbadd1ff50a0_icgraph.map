@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="265,5,409,35"/>
+<area shape="rect" id="node5" href="$d2/d85/classdijkstraGraph.html#a42cda4f778ce8d68c168a1a484db8cf2" title="dijkstraGraph::computeDistance" alt="" coords="232,59,443,88"/>
+<area shape="rect" id="node7" href="$d2/d85/classdijkstraGraph.html#a88dfaaa40534b81ca2227b4d4181b318" title="dijkstraGraph::runDijkstra" alt="" coords="253,112,421,141"/>
+</map>

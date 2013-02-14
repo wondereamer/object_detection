@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#abe3766add2ba9ebd51cc5e15d86d8893" title="Degeneracy check. Return TRUE iff isCap() or isNeedle()." alt="" coords="169,5,327,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="377,32,655,61"/>
+</map>

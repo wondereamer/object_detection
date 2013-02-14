@@ -1,0 +1,35 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a86ef5d6dc2a592fa6cbfbdd4a9810bd1" title="Triangulation::checkConnectivity" alt="" coords="184,5,397,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#acec74b744af17b41e6de902fbe4163b6" title="Triangulation::checkGeometry" alt="" coords="491,64,693,93"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a1b01a95f2a5f2339a7adb94613fbf6e1" title="Creates a new Triangulation out of an existing selection containing &#39;t0&#39;. O(output)." alt="" coords="148,315,433,344"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="484,341,700,371"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="224,160,357,189"/>
+<area shape="rect" id="node14" href="$d2/d51/classTriangle.html#a3ee0e02ba8880e40aea8ee3f2ffa3a0e" title="Cap&#45;like degeneracy check." alt="" coords="536,129,648,159"/>
+<area shape="rect" id="node16" href="$d2/d51/classTriangle.html#ad0ceabf8a4ee4875a29e387ebe625ed3" title="Needle&#45;like degeneracy check." alt="" coords="525,207,659,236"/>
+<area shape="rect" id="node18" href="$d2/d51/classTriangle.html#a75ccdf1d5198ab4fadd20e37af746ec8" title="Return the triangle&#39;s barycenter." alt="" coords="221,368,360,397"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#ab2ac767c6c1f21ca24703b5c43ed0c83" title="Return the center of the triangle&#39;s bounding sphere." alt="" coords="204,525,377,555"/>
+<area shape="rect" id="node23" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="221,731,360,760"/>
+<area shape="rect" id="node25" href="$d2/d51/classTriangle.html#a652697b9aac6a52596735d7cc93d1402" title="Triangle&#45;edge intersection." alt="" coords="508,599,676,628"/>
+<area shape="rect" id="node27" href="$d2/d51/classTriangle.html#a17b7f98dd3494b525e4875ea558bc903" title="TRUE iff the projection of &#39;p&#39; on the plane of the triangle is inside the triangle." alt="" coords="529,653,655,683"/>
+<area shape="rect" id="node29" href="$d2/d51/classTriangle.html#a86a0f93ad2e799a12205fafb800dc942" title="Triangle::pointTriangleDistance" alt="" coords="489,709,695,739"/>
+<area shape="rect" id="node31" href="$dc/d42/classTriangulation.html#a73eb3e39a2a3e6f66156fb9557e49782" title="Saves STL." alt="" coords="512,768,672,797"/>
+<area shape="rect" id="node33" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="505,832,679,861"/>
+<area shape="rect" id="node35" href="$dc/d42/classTriangulation.html#a8233a27825be5772141a37cc74a53d32" title="Make a list of triangles within distance L from &#39;p&#39;. O(output)." alt="" coords="508,448,676,477"/>
+<area shape="rect" id="node37" href="$dc/d42/classTriangulation.html#aeeb2dc24a7b9d3dda4af7337613fd64a" title="Retrieve internal vertices of a region. O(l&#45;&gt;numels())." alt="" coords="161,885,420,915"/>
+<area shape="rect" id="node39" href="$d2/d51/classTriangle.html#a9d1c52e6441b5e43f48790637530df83" title="Return a vector orthogonal to the plane of the triangle. If triangle is degenerate return a null vect..." alt="" coords="223,939,359,968"/>
+<area shape="rect" id="node41" href="$dc/d42/classTriangulation.html#af715797065c998891527a4b614e56ce0" title="Enlarges the current selection of one triangle in width. O(N)." alt="" coords="196,992,385,1021"/>
+<area shape="rect" id="node47" href="$d2/d51/classTriangle.html#aca43144f8c02eabc57abaeff10963aec" title="Vertex next to &#39;v&#39; in the ordering or the triangle. NULL if &#39;v&#39; is not a vertex of the triangle..." alt="" coords="220,1045,361,1075"/>
+<area shape="rect" id="node49" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="207,421,375,451"/>
+<area shape="rect" id="node54" href="$d2/d51/classTriangle.html#a75484b3a73d69df810f5b4af6d5181ad" title="Squared distance of &#39;p&#39; from the closest point of the triangle. Return &#45;1 if triangle is degenerate..." alt="" coords="161,1099,420,1128"/>
+<area shape="rect" id="node56" href="$d2/d51/classTriangle.html#a5a33bea906189c5818c497844047f1c7" title="Vertex preceeding &#39;v&#39; in the ordering or the triangle. NULL if &#39;v&#39; is not a vertex of the triangle..." alt="" coords="220,1152,361,1181"/>
+<area shape="rect" id="node58" href="$d2/d51/classTriangle.html#a782d8976f79c160f1a80ca1cd6289e42" title="Print the coordinates of the three vertices to the file handler pointed to by &#39;f&#39; (stdout by default)..." alt="" coords="215,1205,367,1235"/>
+<area shape="rect" id="node61" href="$dc/d42/classTriangulation.html#af0122b661945c87f4d38b1690ab34dec" title="Saves Ver&#45;Tri." alt="" coords="205,1259,376,1288"/>
+<area shape="rect" id="node63" href="$dc/d42/classTriangulation.html#ac2162ac66e5c850a3daca833df51cee4" title="Triangulation::saveVRML1" alt="" coords="201,1312,380,1341"/>
+<area shape="rect" id="node65" href="$dc/d42/classTriangulation.html#a3ea0eb002bb4335b2dc4b636a53e49b5" title="Triangulation::selectBoundaryTriangles" alt="" coords="164,1365,417,1395"/>
+<area shape="rect" id="node68" href="$dc/d42/classTriangulation.html#a2d4a4c4990cc6c1ecfdcc1f9bab5d300" title="Shrinks the current selection of one triangle in width. O(N)." alt="" coords="192,1419,389,1448"/>
+<area shape="rect" id="node70" href="$dc/d42/classTriangulation.html#ac2da805322c62ca6092c082327636443" title="Triangulation::splitTriangle" alt="" coords="201,1472,380,1501"/>
+<area shape="rect" id="node73" href="$dc/d42/classTriangulation.html#a00601a13a837721206ee2333c4ef98fd" title="Transform the vertices of the shell containing &#39;t0&#39; using the matrix m. O(S)." alt="" coords="196,1525,385,1555"/>
+<area shape="rect" id="node75" href="$dc/d42/classTriangulation.html#a607737a00642fa9a2485b01b314ddf24" title="Clones an existing connected component." alt="" coords="200,1579,381,1608"/>
+<area shape="rect" id="node77" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="196,1632,385,1661"/>
+<area shape="rect" id="node79" href="$dc/d42/classTriangulation.html#adc24c811ba3d8689e82ab208faf171c7" title="Triangulation::watsonInsert" alt="" coords="201,1685,380,1715"/>
+</map>

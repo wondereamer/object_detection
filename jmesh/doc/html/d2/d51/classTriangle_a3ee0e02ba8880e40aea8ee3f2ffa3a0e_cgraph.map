@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="168,101,301,131"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="349,5,443,35"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="349,64,443,93"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="349,129,443,159"/>
+<area shape="rect" id="node11" href="$d8/d8c/classEdge.html#ad17bb4381bc6d385384b39da49209bfe" title="Euclidean length of the edge." alt="" coords="185,205,284,235"/>
+</map>

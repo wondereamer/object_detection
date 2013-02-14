@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#afc8133018bd98eaf049783f5c0eeb93d" title="TRUE iff edge is isolated (i.e., both the two incident triangles are NULL)." alt="" coords="328,5,445,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a202f46fc3cf83b02de34e6861f698856" title="Replace incident triangle &#39;a&#39; with &#39;b&#39; and return TRUE. If &#39;a&#39; is not incident to the edge return FAL..." alt="" coords="309,59,464,88"/>
+</map>

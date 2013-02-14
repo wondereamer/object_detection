@@ -3,11 +3,16 @@
 #include <xmlrpc-c/girerr.hpp>
 #include <xmlrpc-c/base.hpp>
 #include <xmlrpc-c/client_simple.hpp>
+#include <boost/filesystem.hpp>
 #include <string>
+#include <algorithm>
+#include <vector>
+#include <limits>
+using namespace std;
 namespace m_util  {
     using namespace std;
     xmlrpc_c::value call_py( const string &method_name, xmlrpc_c::paramList params, 
-                                                int port, const string &server_url)
+            int port, const string &server_url)
     {
         // set the limit size of xmlrpc
         xmlrpc_limit_set(XMLRPC_XML_SIZE_LIMIT_ID, 5e6);
@@ -45,15 +50,58 @@ namespace m_util  {
                 size*=2;
         }
     }
-     
 
-//void make_pixel_force_jpg(){
+    bool is_nun(double a){
+        return a != a;
+    }
+    double create_nun()
+    {
+
+//        unsigned long nan[2]={0xffffffff, 0x7fffffff};    // code representing a NaN
+//        return *( double*)nan;    
+        return numeric_limits<double>::quiet_NaN();
+    }
+
+    //*********************************************************************
+    using namespace boost::filesystem;
+    void files_in_path(const std::string &fname){
+        path p (fname);   // p reads clearer than argv[1] in the following code
+        try {
+            if (exists(p))    // does p actually exist?
+            {
+                if (is_regular_file(p))        // is p a regular file?
+                    cout << p << " size is " << file_size(p) << '\n';
+                else if (is_directory(p))      // is p a directory?
+                {
+                    cout << p << " is a directory containing:\n";
+                    typedef vector<path> vec;             // store paths,
+                    vec v;                                // so we can sort them later
+                    copy(directory_iterator(p), directory_iterator(), back_inserter(v));
+                    sort(v.begin(), v.end());             // sort, since directory iteration
+                    // is not ordered on some file systems
+                    for (vec::const_iterator it(v.begin()), it_end(v.end()); it != it_end; ++it)
+                    {
+                        cout << "   " << *it << '\n';
+                    }
+                }
+                else
+                    cout << p << " exists, but is neither a regular file nor a directory\n";
+            }
+            else
+                cout << p << " does not exist\n";
+        }catch (const filesystem_error& ex)
+        {
+            cout << ex.what() << '\n';
+        }
+
+    }
+    //void make_pixel_force_jpg(){
     //CvSize size;
     //size.width = 400;
     //size.height = 400;
     //IplImage* temp  = cvCreateImage(size, IPL_DEPTH_8U,1);
 
-////         GaussianBlur( src, dst, Size( i, i ), 0, 0 );
+    ////         GaussianBlur( src, dst, Size( i, i ), 0, 0 );
     //GrayColor white;
     //white.v = 255;
     //GrayImage gray_img(temp);
@@ -68,7 +116,7 @@ namespace m_util  {
     //gray_img.show();
     //gray_img.save("test_force.jpg");
     //gray_img.output_img_info();
-//}
+    //}
 
 } /* m_lib  */    
 

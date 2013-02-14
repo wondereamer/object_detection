@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="244,5,388,35"/>
+<area shape="rect" id="node5" href="$d4/df5/classclusterGraph.html#a07463a1a420708aaa9a9321ac62bf96f" title="clusterGraph::collapseFirstEdge" alt="" coords="471,32,681,61"/>
+<area shape="rect" id="node8" href="$d2/d62/classGraph.html#a73f17c0e1e4ec89984ecf62b7dbccfbd" title="Graph::deleteUnlinkedElements" alt="" coords="211,109,421,139"/>
+<area shape="rect" id="node10" href="$d4/df5/classclusterGraph.html#a6d3dbc7140545c511b73ed67c986c8a9" title="clusterGraph::getFirstEdge" alt="" coords="225,163,407,192"/>
+</map>

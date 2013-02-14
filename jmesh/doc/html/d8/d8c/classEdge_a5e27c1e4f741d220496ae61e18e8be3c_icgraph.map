@@ -1,0 +1,28 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a86ef5d6dc2a592fa6cbfbdd4a9810bd1" title="Triangulation::checkConnectivity" alt="" coords="507,608,720,638"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="805,663,917,692"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#aa3ca90390788c236da8f150c56b09f12" title="Creates an Edge connecting two existing mesh Extended vertices." alt="" coords="224,90,403,119"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ae6106620e0853f98aded0112640dea4d" title="Creates a new Edge &#39;e&#39; and an oriented Triangle bounded by &#39;e&#39;, &#39;e1&#39; and &#39;e2&#39;." alt="" coords="205,143,421,172"/>
+<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a334250a8478a69bb1adcbb9317f63ee7" title="Discriminant Angle for triangulating 3D polygons." alt="" coords="504,143,723,172"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#afe64cff48a7497d4a1ee59c2f6745106" title="Discriminant Angle for triangulating flat (or nearly flat) polygons." alt="" coords="501,196,725,226"/>
+<area shape="rect" id="node15" href="$d2/da0/classVertex.html#a3bc6dd213cb85dbc8e2a06f7f1aeb2d1" title="Returns the angle between the two incident boundary edges. If the vertex is not on the boundary..." alt="" coords="524,250,703,279"/>
+<area shape="rect" id="node17" href="$d2/da0/classVertex.html#acfe8029993aaa98ad126ddb652960cf0" title="Returns the edge connecting this vertex to &#39;v&#39;. NULL if such an edge does not exist." alt="" coords="555,768,672,798"/>
+<area shape="rect" id="node20" href="$d8/d8c/classEdge.html#a9a16c300b9ce110b5bf49b5c35295699" title="Merge with another boundary edge." alt="" coords="811,871,912,900"/>
+<area shape="rect" id="node22" href="$d2/da0/classVertex.html#a7075fe6e7f42a4f9025e0cc6b44c974c" title="Vertex::getTopology" alt="" coords="541,662,685,691"/>
+<area shape="rect" id="node24" href="$d2/da0/classVertex.html#ad821d74b897de34cafd75351ea04fe5f" title="Vertex::inverseCollapse" alt="" coords="531,715,696,744"/>
+<area shape="rect" id="node26" href="$d2/da0/classVertex.html#a48bf625b550d53b26111b2cd12d4ebc3" title="TRUE iff vertex is on boundary." alt="" coords="237,556,389,586"/>
+<area shape="rect" id="node29" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="505,504,721,534"/>
+<area shape="rect" id="node31" href="$dc/d42/classTriangulation.html#a9a45bd3e358f02c9f1f13c435cdd9c57" title="TRUE iff the set of selected triangles in &#39;l&#39; is simply connected. O(l&#45;&gt;numels())." alt="" coords="507,923,720,952"/>
+<area shape="rect" id="node34" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="223,300,404,330"/>
+<area shape="rect" id="node39" href="$d2/da0/classVertex.html#aa39f34a08953a1a6b7954852d4a5ea9d" title="Returns the vertex following this one on the boundary." alt="" coords="531,388,696,418"/>
+<area shape="rect" id="node43" href="$dc/d42/classTriangulation.html#ae6929b477d611367ddd790667c8ad4dd" title="Get the vertex next to &#39;v&#39; on the boundary of the region. O(1)." alt="" coords="471,976,756,1006"/>
+<area shape="rect" id="node45" href="$dc/d42/classTriangulation.html#ae07118d06defaf868b4e30c62c889d8e" title="Duplicates edges and vertices to make the mesh homeomorphic to a disk. O(N)." alt="" coords="524,1030,703,1059"/>
+<area shape="rect" id="node47" href="$d2/da0/classVertex.html#a9c9d8ea886b2652489837321b8a4bb97" title="Returns the edge preceeding this vertex on the boundary." alt="" coords="223,196,404,226"/>
+<area shape="rect" id="node52" href="$d2/da0/classVertex.html#a28b5ac469433fa30e7f548cb6521b1e8" title="Returns the vertex preceeding this one on the boundary." alt="" coords="529,314,697,343"/>
+<area shape="rect" id="node56" href="$d8/d8c/classEdge.html#ae6e3b615cccc49a9d3e73897379ee200" title="Stitching primitive." alt="" coords="268,1018,359,1047"/>
+<area shape="rect" id="node58" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="227,1071,400,1100"/>
+<area shape="rect" id="node60" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="271,812,356,842"/>
+<area shape="rect" id="node71" href="$d2/da0/classVertex.html#a0d9ca6b027ce5175c281256310c36db0" title="Zips the gap starting from here." alt="" coords="571,1115,656,1144"/>
+<area shape="rect" id="node74" href="$d2/da0/classVertex.html#ab4e43fc6bf5eb192cd16cf8ac0bb544d" title="List of incident triangles." alt="" coords="271,1226,356,1255"/>
+<area shape="rect" id="node76" href="$d2/da0/classVertex.html#ae0fd7e8ff464527f12ece83b44bbbc66" title="List of adjacent vertices." alt="" coords="271,1279,356,1308"/>
+</map>

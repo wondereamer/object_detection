@@ -23,7 +23,7 @@
 #include <m_graph.h>
 #include <algorithm>
 #include "util.h" 
-
+#define  PointF m_geometry::PointF
 /**
  * @brief 
  */

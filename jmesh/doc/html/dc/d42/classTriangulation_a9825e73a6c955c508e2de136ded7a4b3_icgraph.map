@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="313,5,591,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ae6e4787755d66d5e803770b99ca75513" title="Triangulation::removeOverlappingTriangles" alt="" coords="313,59,591,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a93257ef041530dfad1f65250c956fadc" title="Removes triangles within distance L from &#39;p&#39;. O(N)." alt="" coords="355,112,549,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a30ec8e3bdb03c46861ff625eead3a002" title="Removes all the selected triangles. O(N)." alt="" coords="321,165,583,195"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#a7de461faf1807bd76e9333a9bdee1eeb" title="Remove all the triangles belonging to the shell containing &#39;t0&#39;. O(N)." alt="" coords="361,219,543,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#a080843cfc9fe475455a291cad3c84edf" title="Triangulation::removeSmallestComponents" alt="" coords="313,272,591,301"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#a78cbd19e283c83ed9e18e857c9a9f033" title="Removes a triangle from the mesh. O(N)." alt="" coords="352,325,552,355"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a1de82634da47e41a2cd34a0b25dd999e" title="Re&#45;triangulates the currently selected region using a Delaunay&#45;like approach. O(SlogS)." alt="" coords="315,379,589,408"/>
+</map>

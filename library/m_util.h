@@ -19,6 +19,15 @@
 #include <sstream>
 #include <boost/regex.hpp>
 
+//#include <boost/foreach.hpp>
+//namespace boost
+//{
+//
+//    // Suggested work-around for https://svn.boost.org/trac/boost/ticket/6131
+//    namespace BOOST_FOREACH =  foreach;
+//    //    namespace BOOST_REVERSE_FOREACH = reverse_each;
+//};
+#define foreach   BOOST_FOREACH
 #ifdef SPECIAL_LEXICAL_CAST
 namespace boost {
     template<>
@@ -39,6 +48,7 @@ namespace boost {
         }
 }
 #endif
+
 namespace m_util {
     using std::string;
 
@@ -144,6 +154,11 @@ namespace m_util {
             double _display;
             double _every;
     };
+    //
+    void files_in_path(const std::string &fname);
+
+    bool is_nun(double a);
+    double create_nun();
 
 
 

@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a63613c87061cd892d2cb135651b8f492" title="TRUE iff &#39;v&#39; is an end&#45;point of the edge." alt="" coords="168,5,288,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="155,59,301,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="160,112,296,141"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a5c88747d474460c5a40886088ace4afb" title="Incident triangle opposite to &#39;t&#39;. NULL if &#39;t&#39; is not incident to the edge." alt="" coords="147,165,309,195"/>
+<area shape="rect" id="node11" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="153,219,303,248"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#a44240662b57bc9a1de0dab33c746ea7a" title="Replace edge &#39;a&#39; with edge &#39;b&#39; in the triangle and return TRUE. If &#39;a&#39; is not an edge of the triangle..." alt="" coords="151,272,305,301"/>
+<area shape="rect" id="node15" href="$d8/d8c/classEdge.html#a202f46fc3cf83b02de34e6861f698856" title="Replace incident triangle &#39;a&#39; with &#39;b&#39; and return TRUE. If &#39;a&#39; is not incident to the edge return FAL..." alt="" coords="151,325,305,355"/>
+</map>

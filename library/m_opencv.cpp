@@ -18,6 +18,28 @@ namespace m_opencv {
     double GrayColor::sum = 0;
     LuvColor LuvColor::sum = LuvColor();
     using namespace cv;
+    unsigned rgb2uint(unsigned char r, unsigned char g, unsigned char b){
+        return  (static_cast<unsigned>(r) << 16 | static_cast<unsigned>(g) << 8 | 
+                 static_cast<unsigned>(b));
+    }
+    void uint2rgb(unsigned input, unsigned *r, unsigned *g, unsigned *b){
+
+    }
+    unsigned int random_color()
+    {
+        double r, g, b, l, n;
+        r = ((double)rand())/RAND_MAX;
+        g = ((double)rand())/RAND_MAX;
+        b = ((double)rand())/RAND_MAX;
+        l=sqrt(r*r+g*g+b*b);
+        n = 1.0/l;
+        r *= n; g *= n; b *= n;
+        unsigned int ir = (unsigned int)(r*256); if (ir>256) ir=256;
+        unsigned int ig = (unsigned int)(g*256); if (ig>256) ig=256;
+        unsigned int ib = (unsigned int)(b*256); if (ib>256) ib=256;
+        return ((ir<<24) + (ig<<16) + (ib<<8) + 0x000000ff);
+    }
+
     void draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray){
         CvPoint center;
         center.x = x;

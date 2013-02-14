@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="260,101,393,131"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="448,5,541,35"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="448,71,541,100"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="448,148,541,177"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#ac79934be803387dfceb647c00978f1ef" title="Angle between the normal vector of this and the one of &#39;t&#39;. Return &#45;1 if one or both the triangles ar..." alt="" coords="256,205,397,235"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#acfe8029993aaa98ad126ddb652960cf0" title="Returns the edge connecting this vertex to &#39;v&#39;. NULL if such an edge does not exist." alt="" coords="268,259,385,288"/>
+<area shape="rect" id="node15" href="$d3/dab/classJMesh.html#a08a2c6222bd080ef8777c7ad96a8a052" title="JMesh::info" alt="" coords="281,312,372,341"/>
+<area shape="rect" id="node17" href="$d4/d9c/jqsort_8h.html#a0e0a5046ed4b995bf879d4701347df74" title="jqsort" alt="" coords="300,365,353,395"/>
+<area shape="rect" id="node19" href="$db/dc3/edge_8h.html#abc9e4a3f2faf76b04f6cb47dff211961" title="Lexycographic edge comparison to be used with jqsort() or abstractHeap." alt="" coords="264,419,389,448"/>
+<area shape="rect" id="node21" href="$d2/d91/point_8h.html#a03cdc50fe0228d7e864e3876653850f3" title="Lexycographic comparison to be used with jqsort() or abstractHeap." alt="" coords="445,444,544,473"/>
+<area shape="rect" id="node23" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="280,523,373,552"/>
+<area shape="rect" id="node25" href="$d6/da9/classList.html#a639070d48fa0e2ba4949d681a5a538e8" title="Creates an array out of the list. &#160;&#160;O(numels())." alt="" coords="281,576,372,605"/>
+<area shape="rect" id="node30" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="269,629,384,659"/>
+</map>

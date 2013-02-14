@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="188,5,321,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="185,59,324,88"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a41f4004d88e228cb0b974d0541eca087" title="TRUE if vector is (0,0,0)" alt="" coords="209,112,300,141"/>
+<area shape="rect" id="node9" href="$dc/d4f/classPoint.html#aef2212b0f31228e803ecbf389bfe7302" title="Divides the vector by its length. If isNull() the application exits with an error." alt="" coords="196,165,313,195"/>
+<area shape="rect" id="node11" href="$dc/d4f/classPoint.html#ad92f2337b839a94ce97dcdb439b4325a" title="Creates a new point with coordinates (0,0,0)." alt="" coords="211,219,299,248"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#ab4e43fc6bf5eb192cd16cf8ac0bb544d" title="List of incident triangles." alt="" coords="212,272,297,301"/>
+</map>

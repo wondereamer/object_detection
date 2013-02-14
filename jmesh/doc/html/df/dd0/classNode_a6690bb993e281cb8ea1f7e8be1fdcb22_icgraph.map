@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#ab8c88745bff02c6fdeacde1d8f3841de" title="Appends a list &#39;l&#39; to the head by duplicating nodes in &#39;l&#39;. &#160;&#160;O(l&#45;&gt;numels())." alt="" coords="227,5,341,35"/>
+<area shape="rect" id="node5" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="212,59,356,88"/>
+<area shape="rect" id="node7" href="$d2/d62/classGraph.html#a73f17c0e1e4ec89984ecf62b7dbccfbd" title="Graph::deleteUnlinkedElements" alt="" coords="179,112,389,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a4d66fa2ec649b4d9f05ca3e5693d22aa" title="Iteratively swaps edges to minimize the Delaunay minimum angle. O(N)." alt="" coords="173,165,395,195"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#ad8bdc6989d15950a95ad6a7dd217a0aa" title="Removes all the unlinked edges from List E. Returns the number of removed edges. O(N)." alt="" coords="189,219,379,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#ae6e4787755d66d5e803770b99ca75513" title="Triangulation::removeOverlappingTriangles" alt="" coords="145,272,423,301"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#a93257ef041530dfad1f65250c956fadc" title="Removes triangles within distance L from &#39;p&#39;. O(N)." alt="" coords="187,325,381,355"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#aeedefd413ed4bf00beb971cc7f7a29af" title="Removes all the unlinked triangles from List T. Returns the number of removed triangles. O(N)." alt="" coords="180,379,388,408"/>
+<area shape="rect" id="node19" href="$dc/d42/classTriangulation.html#a88faaa85a54d3999157d13b2775a1a8e" title="Removes all the unlinked vertices from List V. Returns the number of removed vertices. O(N)." alt="" coords="184,432,384,461"/>
+<area shape="rect" id="node21" href="$dc/d42/classTriangulation.html#af0122b661945c87f4d38b1690ab34dec" title="Saves Ver&#45;Tri." alt="" coords="199,485,369,515"/>
+<area shape="rect" id="node23" href="$dc/d42/classTriangulation.html#a777e577009b7e36cb1eb2d764979f2c6" title="Triangulation::TriangulateHole" alt="" coords="184,539,384,568"/>
+<area shape="rect" id="node25" href="$dc/d42/classTriangulation.html#adc24c811ba3d8689e82ab208faf171c7" title="Triangulation::watsonInsert" alt="" coords="195,592,373,621"/>
+</map>

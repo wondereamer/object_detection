@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="201,5,289,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="201,59,289,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="201,112,289,141"/>
+</map>

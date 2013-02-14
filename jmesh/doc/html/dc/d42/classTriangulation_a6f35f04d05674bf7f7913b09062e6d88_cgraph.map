@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a05c3964cb90559996d93566c263e86c5" title="Approximate bounding ball radius. O(N)." alt="" coords="261,5,507,35"/>
+<area shape="rect" id="node5" href="$d2/da0/classVertex.html#a9511252ee9532d689d0a26e0dec4b8fc" title="Normal at the vertex computed as the sum of incident triangle normals weighted on their incidence ang..." alt="" coords="320,59,448,88"/>
+<area shape="rect" id="node7" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="337,112,431,141"/>
+</map>

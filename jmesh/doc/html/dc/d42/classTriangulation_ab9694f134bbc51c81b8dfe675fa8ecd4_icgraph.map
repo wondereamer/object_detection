@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#aa365f6a94fd13b55da377503beaa3d29" title="Append another triangle mesh to the existing one." alt="" coords="579,26,728,56"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a6a4076a70a0d214f472e92a298eeb03c" title="Get the number of boundary loops of the triangle mesh. O(1) or O(N)." alt="" coords="291,316,461,345"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#aa1f7a61a81d98fd2fd43c97a0dbc2b45" title="Triangulation::printReport" alt="" coords="569,236,737,265"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a1b01a95f2a5f2339a7adb94613fbf6e1" title="Creates a new Triangulation out of an existing selection containing &#39;t0&#39;. O(output)." alt="" coords="233,156,519,185"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#a0e75501a03e2f163f5eefc2d2d7099e0" title="Get the number of handles of the triangle mesh. O(1) or O(N)." alt="" coords="300,262,452,292"/>
+<area shape="rect" id="node14" href="$dc/d42/classTriangulation.html#a173f2bb222c6098098289d91f239832a" title="Initialize the triangle mesh from the file &#39;filename&#39;." alt="" coords="311,52,441,81"/>
+<area shape="rect" id="node18" href="$dc/d42/classTriangulation.html#af06a73bd1d73fea08bd6893f9b253ba5" title="Get the number of connected components of the triangle mesh. O(1) or O(N)." alt="" coords="305,209,447,238"/>
+<area shape="rect" id="node21" href="$dc/d42/classTriangulation.html#a607737a00642fa9a2485b01b314ddf24" title="Clones an existing connected component." alt="" coords="285,369,467,398"/>
+</map>

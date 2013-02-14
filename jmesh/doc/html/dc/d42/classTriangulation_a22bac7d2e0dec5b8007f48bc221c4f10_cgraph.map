@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#aa74ed09360f28cdbf3aad374d97311e7" title="Area of the triangle (Heron&#39;s formula)." alt="" coords="224,5,328,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a75ccdf1d5198ab4fadd20e37af746ec8" title="Return the triangle&#39;s barycenter." alt="" coords="207,59,345,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="207,112,345,141"/>
+</map>

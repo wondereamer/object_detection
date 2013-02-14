@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a86a0f93ad2e799a12205fafb800dc942" title="Triangle::pointTriangleDistance" alt="" coords="204,5,409,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a75484b3a73d69df810f5b4af6d5181ad" title="Squared distance of &#39;p&#39; from the closest point of the triangle. Return &#45;1 if triangle is degenerate..." alt="" coords="459,84,717,113"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a2454e0e46fa5742a2e28b503e9d55ade" title="Squared distance from &#39;*b&#39;." alt="" coords="228,109,385,139"/>
+</map>

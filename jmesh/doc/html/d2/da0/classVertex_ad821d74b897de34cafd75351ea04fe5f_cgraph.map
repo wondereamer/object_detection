@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a738058575f00e6e2106cd93c9b198612" title="Triangle adjacent to the previous edge of &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="224,47,368,77"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="453,9,541,38"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="453,87,541,117"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="423,231,572,261"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a44240662b57bc9a1de0dab33c746ea7a" title="Replace edge &#39;a&#39; with edge &#39;b&#39; in the triangle and return TRUE. If &#39;a&#39; is not an edge of the triangle..." alt="" coords="219,202,373,231"/>
+<area shape="rect" id="node13" href="$d8/d8c/classEdge.html#a202f46fc3cf83b02de34e6861f698856" title="Replace incident triangle &#39;a&#39; with &#39;b&#39; and return TRUE. If &#39;a&#39; is not incident to the edge return FAL..." alt="" coords="219,255,373,285"/>
+<area shape="rect" id="node15" href="$d8/d8c/classEdge.html#a1fd6aa6d0b8435d0087625f695e0be18" title="Replace vertex &#39;a&#39; with vertex &#39;b&#39; in the edge and return TRUE. If &#39;a&#39; is not a vertex of the edge re..." alt="" coords="224,309,368,338"/>
+<area shape="rect" id="node17" href="$d8/d8c/classEdge.html#a9d96fdbb2f8c4b792b3c1a50a533165e" title="Triangle on the right of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="429,387,565,417"/>
+<area shape="rect" id="node21" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="253,362,339,391"/>
+</map>

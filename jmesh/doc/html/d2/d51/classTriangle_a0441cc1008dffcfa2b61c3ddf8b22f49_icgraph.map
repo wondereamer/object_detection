@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#ab0f1bf66a268442532ccd86482d320cf" title="TRUE if the oriantation is consistent with the one of &#39;t&#39; OR if this and &#39;t&#39; do not share any edge..." alt="" coords="221,63,376,93"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a028f4bb4300855b6d1b80e9632bc8267" title="Triangulation::forceNormalConsistence" alt="" coords="469,38,723,67"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a86ef5d6dc2a592fa6cbfbdd4a9810bd1" title="Triangulation::checkConnectivity" alt="" coords="192,117,405,146"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="243,221,355,250"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="457,221,735,250"/>
+<area shape="rect" id="node13" href="$d8/d8c/classEdge.html#a9c2a7ff97f8c3acc3132ae7b8405b528" title="Return the minimum among the six angles of the two incident triangles.2PI if on boundary." alt="" coords="213,378,384,407"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#a4d66fa2ec649b4d9f05ca3e5693d22aa" title="Iteratively swaps edges to minimize the Delaunay minimum angle. O(N)." alt="" coords="485,326,707,355"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#ae6106620e0853f98aded0112640dea4d" title="Creates a new Edge &#39;e&#39; and an oriented Triangle bounded by &#39;e&#39;, &#39;e1&#39; and &#39;e2&#39;." alt="" coords="191,482,407,511"/>
+<area shape="rect" id="node22" href="$dc/d42/classTriangulation.html#ae6e4787755d66d5e803770b99ca75513" title="Triangulation::removeOverlappingTriangles" alt="" coords="457,405,735,434"/>
+<area shape="rect" id="node24" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="201,535,396,565"/>
+<area shape="rect" id="node26" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="191,589,407,618"/>
+<area shape="rect" id="node28" href="$dc/d42/classTriangulation.html#a13f309a90aa39558bba62f10cab9d911" title="Triangulation::splitEdge" alt="" coords="219,642,379,671"/>
+<area shape="rect" id="node30" href="$d8/d8c/classEdge.html#ae6e3b615cccc49a9d3e73897379ee200" title="Stitching primitive." alt="" coords="253,695,344,725"/>
+<area shape="rect" id="node32" href="$d8/d8c/classEdge.html#af7bb5960be35c8c7e7e9484e930926d0" title="Combinatorial edge&#45;swap." alt="" coords="253,274,344,303"/>
+</map>

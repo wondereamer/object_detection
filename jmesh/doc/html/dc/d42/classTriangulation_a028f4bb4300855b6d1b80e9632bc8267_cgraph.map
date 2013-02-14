@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="541,5,667,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#ab0f1bf66a268442532ccd86482d320cf" title="TRUE if the oriantation is consistent with the one of &#39;t&#39; OR if this and &#39;t&#39; do not share any edge..." alt="" coords="316,413,471,443"/>
+<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#ae04b301dfba704f5a545b2e14874227a" title="Vertex shared with edge &#39;b&#39;. NULL if this and &#39;b&#39; do not share any vertex." alt="" coords="528,376,680,405"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="536,452,672,481"/>
+<area shape="rect" id="node12" href="$dc/d42/classTriangulation.html#a49bd77069541bb23f87674e1cc6bb21a" title="Invert all the triangle and edge orientations. O(N)." alt="" coords="308,568,479,597"/>
+<area shape="rect" id="node14" href="$d2/d51/classTriangle.html#a97fcb5e4aa239bc80ef8bbcfef0a9b3b" title="Inverts the orientation of the triangle." alt="" coords="549,620,659,649"/>
+<area shape="rect" id="node16" href="$d3/da2/j__mesh_8h.html#a96b6af742bc069d3543013146e211fb2" title="p_swap" alt="" coords="728,568,795,597"/>
+<area shape="rect" id="node19" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="535,60,673,89"/>
+<area shape="rect" id="node21" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="353,672,433,701"/>
+<area shape="rect" id="node24" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="320,725,467,755"/>
+<area shape="rect" id="node27" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="557,116,651,145"/>
+<area shape="rect" id="node30" href="$d6/da9/classList.html#af6a32880f6c3d84f82869c5976de1841" title="Deletes and removes the node &#39;n&#39; from the list. &#160;&#160;O(1)." alt="" coords="333,779,453,808"/>
+<area shape="rect" id="node32" href="$d2/d51/classTriangle.html#a44240662b57bc9a1de0dab33c746ea7a" title="Replace edge &#39;a&#39; with edge &#39;b&#39; in the triangle and return TRUE. If &#39;a&#39; is not an edge of the triangle..." alt="" coords="316,832,471,861"/>
+<area shape="rect" id="node34" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="560,175,648,204"/>
+<area shape="rect" id="node36" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="560,237,648,267"/>
+<area shape="rect" id="node38" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="560,311,648,340"/>
+<area shape="rect" id="node40" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="307,157,480,187"/>
+<area shape="rect" id="node48" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="336,885,451,915"/>
+</map>

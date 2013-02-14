@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="280,5,392,35"/>
+<area shape="rect" id="node5" href="$d2/da0/classVertex.html#ad821d74b897de34cafd75351ea04fe5f" title="Vertex::inverseCollapse" alt="" coords="253,59,419,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a13f309a90aa39558bba62f10cab9d911" title="Triangulation::splitEdge" alt="" coords="256,112,416,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ac2da805322c62ca6092c082327636443" title="Triangulation::splitTriangle" alt="" coords="512,139,691,168"/>
+<area shape="rect" id="node12" href="$d8/d8c/classEdge.html#ae6e3b615cccc49a9d3e73897379ee200" title="Stitching primitive." alt="" coords="291,216,381,245"/>
+<area shape="rect" id="node14" href="$d8/d8c/classEdge.html#af7bb5960be35c8c7e7e9484e930926d0" title="Combinatorial edge&#45;swap." alt="" coords="291,269,381,299"/>
+<area shape="rect" id="node16" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="241,323,431,352"/>
+<area shape="rect" id="node18" href="$dc/d42/classTriangulation.html#a8f482a51bb802c2eabc45310016e2fe3" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="208,376,464,405"/>
+<area shape="rect" id="node20" href="$d2/da0/classVertex.html#a0d9ca6b027ce5175c281256310c36db0" title="Zips the gap starting from here." alt="" coords="293,453,379,483"/>
+</map>

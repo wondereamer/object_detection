@@ -19,6 +19,28 @@ file(GLOB source
 ADD_EXECUTABLE(object_detection ${source})
 # my library
 INCLUDE_DIRECTORIES(${M_LIBRARY_INCLUDE})
+include_directories("../jmesh/include")
+link_directories("/usr/local/lib")
+link_directories("/usr/lib/i386-linux-gnu")
+
+# Check for boost. We need dynamic-linked, threaded libs by default.
+SET(Boost_USE_STATIC_LIBS OFF)
+SET(Boost_USE_MULTITHREADED ON)
+
+# Required boost packages
+# hypertable requires boost iostreams
+# boost-1.49 no longer has a libboost_iostreams
+#FIND_PACKAGE(Boost 1.45 COMPONENTS date_time filesystem regex serialization signals system thread REQUIRED)
+
+## Optional boost packages; can build without these.
+## Arghhh. Except cmake is treating these as required, not optional. #$%**&
+#FIND_PACKAGE(Boost 1.45 COMPONENTS python program_options QUIET)
+#FIND_PACKAGE(Boost 1.45 COMPONENTS math_c99 QUIET)
+#IF(Boost_MATH_C99_FOUND)
+	#MESSAGE(STATUS "Found Boost::math")
+#ELSE(Boost_MATH_C99_FOUND)
+	#MESSAGE(STATUS "Boost math missing: needed to run combo learning tests.")
+#ENDIF(Boost_MATH_C99_FOUND)
 
 TARGET_LINK_LIBRARIES(object_detection ${M_LIBRARY_LIB}/libm_library.a)
 # third party library
@@ -42,6 +64,9 @@ TARGET_LINK_LIBRARIES(object_detection
     /usr/local/lib/libhdf5.so
     /usr/lib/libflann_cpp.so
     /usr/lib/libboost_regex.so 
+    ${JMesh}/libjmesh.a
+    /usr/lib/i386-linux-gnu/libXi.so
+    ${Boost_GRAPH_LIBRARY}
     ${PCL_LIBRARIES})
 message("${PCL_LIBRARIES}")
 #TARGET_LINK_LIBRARIES(object_detection /usr/lib/qt4/

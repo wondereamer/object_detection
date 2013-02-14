@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="636,104,761,134"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#aa74ed09360f28cdbf3aad374d97311e7" title="Area of the triangle (Heron&#39;s formula)." alt="" coords="405,467,509,496"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="388,520,527,550"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#aeeb2dc24a7b9d3dda4af7337613fd64a" title="Retrieve internal vertices of a region. O(l&#45;&gt;numels())." alt="" coords="328,51,587,80"/>
+<area shape="rect" id="node12" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="659,210,739,239"/>
+<area shape="rect" id="node14" href="$dc/d42/classTriangulation.html#a9a45bd3e358f02c9f1f13c435cdd9c57" title="TRUE iff the set of selected triangles in &#39;l&#39; is simply connected. O(l&#45;&gt;numels())." alt="" coords="351,158,564,187"/>
+<area shape="rect" id="node18" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="652,263,745,292"/>
+<area shape="rect" id="node20" href="$df/dd0/classNode.html#a2ee94e96b37e230872f96cc345f1cc44" title="Returns the next node in the list, possibly NULL." alt="" coords="655,328,743,358"/>
+<area shape="rect" id="node23" href="$dc/d42/classTriangulation.html#a9825e73a6c955c508e2de136ded7a4b3" title="Removes all the unlinked elements from the lists. Returns the number of removed elements. O(N)." alt="" coords="328,574,587,603"/>
+<area shape="rect" id="node25" href="$dc/d42/classTriangulation.html#a777e577009b7e36cb1eb2d764979f2c6" title="Triangulation::TriangulateHole" alt="" coords="357,262,557,291"/>
+<area shape="rect" id="node31" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="641,404,756,434"/>
+<area shape="rect" id="node33" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="363,104,552,134"/>
+</map>

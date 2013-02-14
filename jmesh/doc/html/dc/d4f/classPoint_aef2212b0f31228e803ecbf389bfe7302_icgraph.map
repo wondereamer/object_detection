@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a190d0b85de28fe01aaa57bf77e67a169" title="Line&#45;line closest point computation." alt="" coords="224,5,363,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a05c3964cb90559996d93566c263e86c5" title="Approximate bounding ball radius. O(N)." alt="" coords="171,59,416,88"/>
+<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a9511252ee9532d689d0a26e0dec4b8fc" title="Normal at the vertex computed as the sum of incident triangle normals weighted on their incidence ang..." alt="" coords="229,112,357,141"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a7d5e6cb9e439b3575336025ac203735b" title="Return the normal at the edge as the average of the normals of the two incident triangles." alt="" coords="232,165,355,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a652697b9aac6a52596735d7cc93d1402" title="Triangle&#45;edge intersection." alt="" coords="209,219,377,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="196,272,391,301"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#ad90c6217b57e3f9730da3b99942ed5af" title="Triangulation::TriangulateHole" alt="" coords="193,325,393,355"/>
+</map>

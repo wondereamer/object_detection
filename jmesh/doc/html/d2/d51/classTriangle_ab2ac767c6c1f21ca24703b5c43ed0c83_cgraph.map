@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#acc03d92d5f9f84a73cb837e4b913b573" title="Return the edge&#39;s mid&#45;point." alt="" coords="229,5,360,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a206184eb95518144a34a3bdb0e992f5b" title="Returns the solution of the linear system Ax = d, where A is a 3x3 matrix whose rows are row1..." alt="" coords="227,59,363,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="248,112,341,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="248,165,341,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="248,219,341,248"/>
+</map>

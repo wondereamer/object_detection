@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="160,5,285,35"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#ab26b12640c866bafb29b03b2061cbd21" title="Appends a new node storing &#39;d&#39; to the tail. &#160;&#160;O(1)." alt="" coords="165,59,280,88"/>
+<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a3b8ea712f0ab29932345dc3c0e75c012" title="Triangle on the left of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="159,112,287,141"/>
+<area shape="rect" id="node9" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="176,165,269,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a387f90a0a9e849c2b283299e72055781" title="Triangle&#39;s edge opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the triangle." alt="" coords="141,219,304,248"/>
+<area shape="rect" id="node13" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="148,272,297,301"/>
+<area shape="rect" id="node15" href="$d6/da9/classList.html#a8167cffb890b7c640c1f0af7bbc67dd9" title="Deletes and removes the first node. Returns its data. &#160;&#160;O(1)." alt="" coords="171,325,275,355"/>
+<area shape="rect" id="node17" href="$d8/d8c/classEdge.html#a9d96fdbb2f8c4b792b3c1a50a533165e" title="Triangle on the right of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="155,379,291,408"/>
+</map>

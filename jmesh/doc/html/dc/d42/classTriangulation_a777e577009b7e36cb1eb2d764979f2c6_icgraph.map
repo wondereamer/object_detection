@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a1de82634da47e41a2cd34a0b25dd999e" title="Re&#45;triangulates the currently selected region using a Delaunay&#45;like approach. O(SlogS)." alt="" coords="253,5,528,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="293,59,488,88"/>
+</map>

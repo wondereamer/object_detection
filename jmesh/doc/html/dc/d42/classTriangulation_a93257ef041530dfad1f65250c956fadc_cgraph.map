@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="556,333,681,362"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#ae40abf7aec2f2f3ca282dbe57bd18dc6" title="Distance from &#39;b&#39;." alt="" coords="323,65,432,94"/>
+<area shape="rect" id="node7" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="337,118,417,147"/>
+<area shape="rect" id="node9" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="331,171,424,201"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="293,225,461,254"/>
+<area shape="rect" id="node13" href="$df/dd0/classNode.html#a6690bb993e281cb8ea1f7e8be1fdcb22" title="Returns the previous node in the list, possibly NULL." alt="" coords="333,278,421,307"/>
+<area shape="rect" id="node15" href="$d6/da9/classList.html#af6a32880f6c3d84f82869c5976de1841" title="Deletes and removes the node &#39;n&#39; from the list. &#160;&#160;O(1)." alt="" coords="317,331,437,361"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a9825e73a6c955c508e2de136ded7a4b3" title="Removes all the unlinked elements from the lists. Returns the number of removed elements. O(N)." alt="" coords="248,385,507,414"/>
+<area shape="rect" id="node19" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="333,438,421,467"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="333,491,421,521"/>
+<area shape="rect" id="node23" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="333,545,421,574"/>
+<area shape="rect" id="node25" href="$d6/da9/classList.html#ad2dee0e28745416172149fcd6302b818" title="Gets the last node, NULL if empty. &#160;&#160;O(1)." alt="" coords="344,598,411,627"/>
+<area shape="rect" id="node27" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="283,651,472,681"/>
+</map>

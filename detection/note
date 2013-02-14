@@ -1,0 +1,2 @@
+when #cluster() end, ClusterNode would be freed;
+when #MyTriangulation out of scope, triangles would be freed;

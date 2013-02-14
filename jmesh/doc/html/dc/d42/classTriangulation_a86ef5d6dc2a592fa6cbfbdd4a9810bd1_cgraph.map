@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#ae04b301dfba704f5a545b2e14874227a" title="Vertex shared with edge &#39;b&#39;. NULL if this and &#39;b&#39; do not share any vertex." alt="" coords="453,280,605,309"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#a39fdb8f5c7f4feae8e53bc74646f1248" title="Returns the node storing &#39;d&#39;. NULL if not found. &#160;&#160;O(numels())." alt="" coords="272,40,403,69"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#aad4ea1f720054c3ff1c0b1cdd32d7b11" title="TRUE iff &#39;e&#39; is an edge of the triangle." alt="" coords="272,93,403,123"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a63613c87061cd892d2cb135651b8f492" title="TRUE iff &#39;v&#39; is an end&#45;point of the edge." alt="" coords="277,147,397,176"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="269,200,405,229"/>
+<area shape="rect" id="node13" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="455,437,604,467"/>
+<area shape="rect" id="node15" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="291,253,384,283"/>
+<area shape="rect" id="node18" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="291,307,384,336"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="291,360,384,389"/>
+<area shape="rect" id="node24" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="295,464,380,493"/>
+</map>

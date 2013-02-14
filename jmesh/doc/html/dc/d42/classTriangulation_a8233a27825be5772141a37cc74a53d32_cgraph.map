@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="243,5,368,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#ae40abf7aec2f2f3ca282dbe57bd18dc6" title="Distance from &#39;b&#39;." alt="" coords="251,59,360,88"/>
+<area shape="rect" id="node7" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="265,112,345,141"/>
+<area shape="rect" id="node9" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="259,165,352,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="221,269,389,299"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="437,224,531,253"/>
+<area shape="rect" id="node15" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="437,283,531,312"/>
+<area shape="rect" id="node17" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="437,348,531,377"/>
+<area shape="rect" id="node19" href="$d6/da9/classList.html#af6a32880f6c3d84f82869c5976de1841" title="Deletes and removes the node &#39;n&#39; from the list. &#160;&#160;O(1)." alt="" coords="245,424,365,453"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="261,477,349,507"/>
+<area shape="rect" id="node23" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="261,531,349,560"/>
+<area shape="rect" id="node25" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="261,584,349,613"/>
+</map>

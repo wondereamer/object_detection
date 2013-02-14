@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a3229fdc847408c4684dc91aab03802ee" title="If this triangle shares an edge with &#39;b&#39;, then such an edge is returned. NULL otherwise." alt="" coords="211,5,373,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#ae04b301dfba704f5a545b2e14874227a" title="Vertex shared with edge &#39;b&#39;. NULL if this and &#39;b&#39; do not share any vertex." alt="" coords="216,59,368,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="224,112,360,141"/>
+</map>

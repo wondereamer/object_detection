@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a47e58ea45560422cfc1062ffb8631308" title="Distance from straight line through &#39;a&#39; and &#39;b&#39;." alt="" coords="192,5,357,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a8ebcce847b8c214b7351904ce60f5518" title="Distance from origin." alt="" coords="407,84,500,113"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="219,109,331,139"/>
+<area shape="rect" id="node11" href="$dc/d4f/classPoint.html#aef2212b0f31228e803ecbf389bfe7302" title="Divides the vector by its length. If isNull() the application exits with an error." alt="" coords="216,163,333,192"/>
+<area shape="rect" id="node14" href="$dc/d4f/classPoint.html#a0dc0ae0f78b3e63fac59ee239396577a" title="Set the coordinates to (a,b,c)." alt="" coords="220,216,329,245"/>
+</map>

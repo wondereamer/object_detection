@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d4/df5/classclusterGraph.html#a07463a1a420708aaa9a9321ac62bf96f" title="clusterGraph::collapseFirstEdge" alt="" coords="196,5,407,35"/>
+<area shape="rect" id="node5" href="$d4/df5/classclusterGraph.html#aa636c239d971b01f19698dc2ec2f683d" title="Creates a new edge out of a pair of nodes. O(degree of nodes)." alt="" coords="215,59,388,88"/>
+</map>

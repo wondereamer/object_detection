@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a454a3b45bd9cbddabf85d0a692700132" title="Dihedral angle at the edge." alt="" coords="176,5,320,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a1e23b0894d658355b7d62588de56fcb1" title="Distance from straight line through &#39;a&#39; and &#39;b&#39;. *cc is set to the closest line point." alt="" coords="165,59,331,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a40c01fcf36e609ebd597e433fc4b03e7" title="Distance of &#39;p&#39; from the plane of the triangle. Return &#45;1 if triangle is degenerate." alt="" coords="153,112,343,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ac79934be803387dfceb647c00978f1ef" title="Angle between the normal vector of this and the one of &#39;t&#39;. Return &#45;1 if one or both the triangles ar..." alt="" coords="400,217,541,247"/>
+<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a9511252ee9532d689d0a26e0dec4b8fc" title="Normal at the vertex computed as the sum of incident triangle normals weighted on their incidence ang..." alt="" coords="184,216,312,245"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#a9d1c52e6441b5e43f48790637530df83" title="Return a vector orthogonal to the plane of the triangle. If triangle is degenerate return a null vect..." alt="" coords="180,269,316,299"/>
+<area shape="rect" id="node16" href="$d2/d51/classTriangle.html#a17b7f98dd3494b525e4875ea558bc903" title="TRUE iff the projection of &#39;p&#39; on the plane of the triangle is inside the triangle." alt="" coords="185,323,311,352"/>
+<area shape="rect" id="node18" href="$d2/d51/classTriangle.html#a86a0f93ad2e799a12205fafb800dc942" title="Triangle::pointTriangleDistance" alt="" coords="145,376,351,405"/>
+<area shape="rect" id="node20" href="$d2/d51/classTriangle.html#a8c439efcd8bca0527eaafc4af769f8c6" title="Projection of &#39;p&#39; on the plane of the triangle. Return INFINITE_POINT if triangle is degenerate..." alt="" coords="189,429,307,459"/>
+<area shape="rect" id="node22" href="$dc/d42/classTriangulation.html#ad90c6217b57e3f9730da3b99942ed5af" title="Triangulation::TriangulateHole" alt="" coords="148,483,348,512"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a561b74c033a365b623e482b1b86089fd" title="Triangulation::coordBackApproximation" alt="" coords="191,5,444,35"/>
+<area shape="rect" id="node5" href="$d5/d5a/io_8cpp.html#afa409a9b0813c328ef9b1152ae555239" title="Returns TRUE if the two strings are equal in a case&#45;insensitive sense /////." alt="" coords="273,59,361,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a2aaf94b5e10c5853da8cdd2513a55934" title="Saves IV." alt="" coords="244,112,391,141"/>
+<area shape="rect" id="node9" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="493,296,608,325"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#a975c20ecefc4d587ac98639a0e2dc30d" title="Saves OBJ." alt="" coords="237,216,397,245"/>
+<area shape="rect" id="node14" href="$dc/d42/classTriangulation.html#a145439b801f27abd288955046911b72b" title="Saves OFF 1.0." alt="" coords="237,269,397,299"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a1bcb97b562083f6cedcbce11fab0df83" title="Saves PLY 1.0 (ascii or binary)" alt="" coords="239,323,396,352"/>
+<area shape="rect" id="node20" href="$dc/d42/classTriangulation.html#a73eb3e39a2a3e6f66156fb9557e49782" title="Saves STL." alt="" coords="237,376,397,405"/>
+<area shape="rect" id="node23" href="$dc/d42/classTriangulation.html#af0122b661945c87f4d38b1690ab34dec" title="Saves Ver&#45;Tri." alt="" coords="232,429,403,459"/>
+<area shape="rect" id="node26" href="$dc/d42/classTriangulation.html#ac2162ac66e5c850a3daca833df51cee4" title="Triangulation::saveVRML1" alt="" coords="228,483,407,512"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="188,5,321,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="181,59,328,88"/>
+<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a3b8ea712f0ab29932345dc3c0e75c012" title="Triangle on the left of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="376,137,504,167"/>
+<area shape="rect" id="node9" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="212,163,297,192"/>
+</map>

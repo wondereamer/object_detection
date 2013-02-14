@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="709,71,835,100"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#ab26b12640c866bafb29b03b2061cbd21" title="Appends a new node storing &#39;d&#39; to the tail. &#160;&#160;O(1)." alt="" coords="715,127,829,156"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a42e3d87b90251c958abe310830303ac5" title="Triangulation::duplicateNonManifoldVertices" alt="" coords="233,72,513,101"/>
+<area shape="rect" id="node10" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="563,173,648,203"/>
+<area shape="rect" id="node14" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="725,185,819,215"/>
+<area shape="rect" id="node16" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="697,249,847,279"/>
+<area shape="rect" id="node18" href="$d6/da9/classList.html#a8167cffb890b7c640c1f0af7bbc67dd9" title="Deletes and removes the first node. Returns its data. &#160;&#160;O(1)." alt="" coords="720,324,824,353"/>
+<area shape="rect" id="node20" href="$d3/dab/classJMesh.html#a5cd94530c89520f54ba406a90f623cde" title="JMesh::error" alt="" coords="324,379,423,408"/>
+<area shape="rect" id="node22" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="333,432,413,461"/>
+<area shape="rect" id="node24" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="300,485,447,515"/>
+<area shape="rect" id="node26" href="$df/dd0/classNode.html#a2ee94e96b37e230872f96cc345f1cc44" title="Returns the next node in the list, possibly NULL." alt="" coords="329,539,417,568"/>
+<area shape="rect" id="node31" href="$d6/da9/classList.html#a50ead1d3e16bc1a1672eda5c2db6d4d5" title="Deletes and removes the node containing &#39;d&#39;. Returns its position, 0 if &#39;d&#39; is not in the list..." alt="" coords="309,592,437,621"/>
+<area shape="rect" id="node33" href="$d2/d51/classTriangle.html#a44240662b57bc9a1de0dab33c746ea7a" title="Replace edge &#39;a&#39; with edge &#39;b&#39; in the triangle and return TRUE. If &#39;a&#39; is not an edge of the triangle..." alt="" coords="296,645,451,675"/>
+<area shape="rect" id="node35" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="329,699,417,728"/>
+<area shape="rect" id="node37" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="329,752,417,781"/>
+<area shape="rect" id="node39" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="329,805,417,835"/>
+</map>

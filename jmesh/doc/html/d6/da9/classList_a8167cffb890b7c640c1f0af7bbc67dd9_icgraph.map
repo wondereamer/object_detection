@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="232,5,376,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a1b01a95f2a5f2339a7adb94613fbf6e1" title="Creates a new Triangulation out of an existing selection containing &#39;t0&#39;. O(output)." alt="" coords="500,123,785,152"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="836,123,1052,152"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a29409dc91c9d42d070a65c90d4903a50" title="Deselects all the triangles of the connected component containing t0. O(N)." alt="" coords="157,264,451,293"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#ab9694f134bbc51c81b8dfe675fa8ecd4" title="Updates the values of n_boundaries, n_handles and n_shells. O(N)." alt="" coords="215,109,393,139"/>
+<area shape="rect" id="node14" href="$dc/d42/classTriangulation.html#a83ba227521b587e76bddb5d48d1959d7" title="Invert the orientation of triangles and edges belonging to the shell containing &#39;t0&#39;. O(S)." alt="" coords="219,317,389,347"/>
+<area shape="rect" id="node16" href="$d2/da0/classVertex.html#a7075fe6e7f42a4f9025e0cc6b44c974c" title="Vertex::getTopology" alt="" coords="571,393,715,423"/>
+<area shape="rect" id="node18" href="$dc/d42/classTriangulation.html#a12d7b202b70c8ddba10f5d78a1428ceb" title="Inverts the selection status of all the triangles. O(N)." alt="" coords="545,200,740,229"/>
+<area shape="rect" id="node21" href="$dc/d42/classTriangulation.html#a9a45bd3e358f02c9f1f13c435cdd9c57" title="TRUE iff the set of selected triangles in &#39;l&#39; is simply connected. O(l&#45;&gt;numels())." alt="" coords="536,452,749,481"/>
+<area shape="rect" id="node23" href="$dc/d42/classTriangulation.html#ae07118d06defaf868b4e30c62c889d8e" title="Duplicates edges and vertices to make the mesh homeomorphic to a disk. O(N)." alt="" coords="553,517,732,547"/>
+<area shape="rect" id="node25" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="165,576,443,605"/>
+<area shape="rect" id="node27" href="$dc/d42/classTriangulation.html#a7de461faf1807bd76e9333a9bdee1eeb" title="Remove all the triangles belonging to the shell containing &#39;t0&#39;. O(N)." alt="" coords="213,629,395,659"/>
+<area shape="rect" id="node29" href="$dc/d42/classTriangulation.html#a371f93b6dee4058d7c126313339f011e" title="If &#39;t0&#39; is selected, deselect everything but the selected triangles connected to &#39;t0&#39;." alt="" coords="199,683,409,712"/>
+<area shape="rect" id="node31" href="$dc/d42/classTriangulation.html#aa3d0fc07d7eeb5ba08eb1878439e1043" title="Selects all the triangles of the connected component containing t0. O(N)." alt="" coords="165,736,443,765"/>
+<area shape="rect" id="node34" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="217,789,391,819"/>
+<area shape="rect" id="node36" href="$dc/d42/classTriangulation.html#a00601a13a837721206ee2333c4ef98fd" title="Transform the vertices of the shell containing &#39;t0&#39; using the matrix m. O(S)." alt="" coords="209,843,399,872"/>
+<area shape="rect" id="node38" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="261,472,347,501"/>
+<area shape="rect" id="node43" href="$d2/da0/classVertex.html#ae0fd7e8ff464527f12ece83b44bbbc66" title="List of adjacent vertices." alt="" coords="261,896,347,925"/>
+<area shape="rect" id="node45" href="$d2/d62/classGraph.html#a902c5b3eacb66d60752525ab23297a95" title="Graph::~Graph" alt="" coords="249,949,359,979"/>
+</map>

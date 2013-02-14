@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a53131b7806b44d673b61d17016c586dc" title="Vertex::inverseCollapse" alt="" coords="191,5,356,35"/>
+<area shape="rect" id="node5" href="$d2/da0/classVertex.html#a48bf625b550d53b26111b2cd12d4ebc3" title="TRUE iff vertex is on boundary." alt="" coords="197,59,349,88"/>
+<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="183,112,364,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ae6929b477d611367ddd790667c8ad4dd" title="Get the vertex next to &#39;v&#39; on the boundary of the region. O(1)." alt="" coords="415,177,700,207"/>
+<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a41b21e0a4afb0992153f39ff2499e27b" title="Sum of incident angles. Returns &#45;1 if on boundary." alt="" coords="495,243,620,272"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="231,216,316,245"/>
+<area shape="rect" id="node17" href="$d2/da0/classVertex.html#ab4e43fc6bf5eb192cd16cf8ac0bb544d" title="List of incident triangles." alt="" coords="231,320,316,349"/>
+<area shape="rect" id="node19" href="$d2/da0/classVertex.html#ae0fd7e8ff464527f12ece83b44bbbc66" title="List of adjacent vertices." alt="" coords="231,373,316,403"/>
+</map>

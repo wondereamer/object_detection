@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a190d0b85de28fe01aaa57bf77e67a169" title="Line&#45;line closest point computation." alt="" coords="208,5,347,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="221,59,333,88"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#ab08bd08e7a9c5aef46f3551644abde16" title="Distance from segment a&#45;b. *cc is set to the closest edge point." alt="" coords="192,112,363,141"/>
+<area shape="rect" id="node9" href="$d2/da0/classVertex.html#afe64cff48a7497d4a1ee59c2f6745106" title="Discriminant Angle for triangulating flat (or nearly flat) polygons." alt="" coords="165,165,389,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a652697b9aac6a52596735d7cc93d1402" title="Triangle&#45;edge intersection." alt="" coords="193,219,361,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#a72286a574cfdeaa66fa8d3fbd3d7b9a8" title="Loads STL." alt="" coords="199,272,356,301"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#aa641295fb6059236e1adbd71849a1819" title="Scale the mesh to make it fit within a cube [0,0,0]&#45;[s,s,s]. O(N)." alt="" coords="196,325,359,355"/>
+<area shape="rect" id="node17" href="$d2/d51/classTriangle.html#a86a0f93ad2e799a12205fafb800dc942" title="Triangle::pointTriangleDistance" alt="" coords="175,379,380,408"/>
+</map>

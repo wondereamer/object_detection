@@ -31,6 +31,10 @@
 #include "nearnest_neighbor.h"
 #include <pcl/io/pcd_io.h>
 
+//using namespace m_geometry;
+//        Segment2D<RgbPixel2D> image(argv[1]);
+//        image.segment(70);
+//        image.save("Rgbsegmentation", 15);
 template < typename T >
 struct Region3D_{
     PointF3D  _centroid;
@@ -183,7 +187,7 @@ Segment3D<T>::Segment3D(bool isGrid):PixelWorld3D<T>(isGrid)
 
     }
 //    viz.add_point(0,0,0, 0, 255,0, 0.1);
-    viz.push_pointCloud(30);
+    viz.push_def_cloud(30);
     viz.draw();
     viz.save("cars.pcd");
 //        if (io::savePCDFile(filename, *cloud, true) == 0)

@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a7075fe6e7f42a4f9025e0cc6b44c974c" title="Vertex::getTopology" alt="" coords="271,5,415,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a75484b3a73d69df810f5b4af6d5181ad" title="Squared distance of &#39;p&#39; from the closest point of the triangle. Return &#45;1 if triangle is degenerate..." alt="" coords="213,59,472,88"/>
+<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a75173a6ade897df1c15fca3e326bf87f" title="Squared length of the edge." alt="" coords="268,112,417,141"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a6763262beed011f0633bb364adf586eb" title="Total area of the mesh. O(N)." alt="" coords="232,5,363,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a1de82634da47e41a2cd34a0b25dd999e" title="Re&#45;triangulates the currently selected region using a Delaunay&#45;like approach. O(SlogS)." alt="" coords="160,59,435,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a22bac7d2e0dec5b8007f48bc221c4f10" title="Total volume of the mesh assuming that boundaries() = 0. O(N)." alt="" coords="223,112,372,141"/>
+<area shape="rect" id="node9" href="$d2/da0/classVertex.html#ab769197b8ba187d3464454f3de1c16fc" title="A third of the total area of incident triangles." alt="" coords="227,165,368,195"/>
+</map>

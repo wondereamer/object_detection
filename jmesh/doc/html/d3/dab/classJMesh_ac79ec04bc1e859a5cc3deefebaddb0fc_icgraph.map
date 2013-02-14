@@ -1,0 +1,31 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a07df98c37a8fc0b2cda085cb098e12e0" title="Triangulation::checkAndRepair" alt="" coords="507,57,709,87"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#acec74b744af17b41e6de902fbe4163b6" title="Triangulation::checkGeometry" alt="" coords="207,624,409,653"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#af4d69d4356f29ffffc1d6400038b928f" title="Triangulation::closeLoadingSession" alt="" coords="191,419,425,448"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ae2fff8dbec76aa811d101842add0ff68" title="Loads OBJ." alt="" coords="529,263,687,292"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#a3a08bf704a40678eaaaea079f245c683" title="Loads OFF." alt="" coords="529,316,687,345"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#aaa744936d4279a48643245254b8bae6b" title="Loads PLY." alt="" coords="531,369,685,399"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#a018c27a04bf9cfa53aaa3b6ec4743569" title="Loads VER&#45;TRI." alt="" coords="524,433,692,463"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a1dc4ce6d9483de73941ecb17306321fc" title="Loads VRML 1.0." alt="" coords="521,508,695,537"/>
+<area shape="rect" id="node19" href="$dc/d42/classTriangulation.html#a9e0843ac88d911ee98f956b7ae3b8054" title="Loads VRML 2.0." alt="" coords="521,567,695,596"/>
+<area shape="rect" id="node21" href="$dc/d42/classTriangulation.html#a028f4bb4300855b6d1b80e9632bc8267" title="Triangulation::forceNormalConsistence" alt="" coords="181,677,435,707"/>
+<area shape="rect" id="node23" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="252,832,364,861"/>
+<area shape="rect" id="node25" href="$d2/da0/classVertex.html#afe64cff48a7497d4a1ee59c2f6745106" title="Discriminant Angle for triangulating flat (or nearly flat) polygons." alt="" coords="496,832,720,861"/>
+<area shape="rect" id="node27" href="$dc/d42/classTriangulation.html#a777e577009b7e36cb1eb2d764979f2c6" title="Triangulation::TriangulateHole" alt="" coords="768,883,968,912"/>
+<area shape="rect" id="node29" href="$dc/d42/classTriangulation.html#a1de82634da47e41a2cd34a0b25dd999e" title="Re&#45;triangulates the currently selected region using a Delaunay&#45;like approach. O(SlogS)." alt="" coords="1016,793,1291,823"/>
+<area shape="rect" id="node31" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="1056,909,1251,939"/>
+<area shape="rect" id="node34" href="$dc/d42/classTriangulation.html#a4d66fa2ec649b4d9f05ca3e5693d22aa" title="Iteratively swaps edges to minimize the Delaunay minimum angle. O(N)." alt="" coords="197,987,419,1016"/>
+<area shape="rect" id="node39" href="$dc/d42/classTriangulation.html#a72286a574cfdeaa66fa8d3fbd3d7b9a8" title="Loads STL." alt="" coords="529,161,687,191"/>
+<area shape="rect" id="node44" href="$dc/d42/classTriangulation.html#afe57f115e3fad9e9ecf92134c779d416" title="Triangulation::mergeCoincidentEdges" alt="" coords="184,109,432,139"/>
+<area shape="rect" id="node48" href="$d5/d5a/io_8cpp.html#a3fb35921d7bbca8feb5b1e2d57c78706" title="readLineFromFile" alt="" coords="245,264,371,293"/>
+<area shape="rect" id="node54" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="169,5,447,35"/>
+<area shape="rect" id="node59" href="$dc/d42/classTriangulation.html#aa29f4d904a98fe297f5da9bb41dace53" title="Save the triangle mesh to file &#39;filename&#39;." alt="" coords="541,1227,675,1256"/>
+<area shape="rect" id="node61" href="$dc/d42/classTriangulation.html#a2aaf94b5e10c5853da8cdd2513a55934" title="Saves IV." alt="" coords="235,1040,381,1069"/>
+<area shape="rect" id="node64" href="$dc/d42/classTriangulation.html#a975c20ecefc4d587ac98639a0e2dc30d" title="Saves OBJ." alt="" coords="228,1093,388,1123"/>
+<area shape="rect" id="node67" href="$dc/d42/classTriangulation.html#a145439b801f27abd288955046911b72b" title="Saves OFF 1.0." alt="" coords="228,1147,388,1176"/>
+<area shape="rect" id="node70" href="$dc/d42/classTriangulation.html#a1bcb97b562083f6cedcbce11fab0df83" title="Saves PLY 1.0 (ascii or binary)" alt="" coords="229,1200,387,1229"/>
+<area shape="rect" id="node73" href="$dc/d42/classTriangulation.html#a73eb3e39a2a3e6f66156fb9557e49782" title="Saves STL." alt="" coords="228,1253,388,1283"/>
+<area shape="rect" id="node76" href="$dc/d42/classTriangulation.html#af0122b661945c87f4d38b1690ab34dec" title="Saves Ver&#45;Tri." alt="" coords="223,1307,393,1336"/>
+<area shape="rect" id="node79" href="$dc/d42/classTriangulation.html#ac2162ac66e5c850a3daca833df51cee4" title="Triangulation::saveVRML1" alt="" coords="219,1360,397,1389"/>
+<area shape="rect" id="node82" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="200,1464,416,1493"/>
+</map>

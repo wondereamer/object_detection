@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a86ef5d6dc2a592fa6cbfbdd4a9810bd1" title="Triangulation::checkConnectivity" alt="" coords="177,5,391,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ae6106620e0853f98aded0112640dea4d" title="Creates a new Edge &#39;e&#39; and an oriented Triangle bounded by &#39;e&#39;, &#39;e1&#39; and &#39;e2&#39;." alt="" coords="176,59,392,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a90e91f305f8206ecb82876bcc3a52edb" title="TRUE iff &#39;v&#39; is a vertex of the triangle." alt="" coords="215,112,353,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#aca43144f8c02eabc57abaeff10963aec" title="Vertex next to &#39;v&#39; in the ordering or the triangle. NULL if &#39;v&#39; is not a vertex of the triangle..." alt="" coords="213,165,355,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a387f90a0a9e849c2b283299e72055781" title="Triangle&#39;s edge opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the triangle." alt="" coords="203,219,365,248"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#aa2399622242560871da2cb33a1dda985" title="Adjacent triangle opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the triangle." alt="" coords="195,272,373,301"/>
+<area shape="rect" id="node15" href="$d2/d51/classTriangle.html#a5a33bea906189c5818c497844047f1c7" title="Vertex preceeding &#39;v&#39; in the ordering or the triangle. NULL if &#39;v&#39; is not a vertex of the triangle..." alt="" coords="213,325,355,355"/>
+<area shape="rect" id="node17" href="$d8/d8c/classEdge.html#ae6e3b615cccc49a9d3e73897379ee200" title="Stitching primitive." alt="" coords="239,379,329,408"/>
+<area shape="rect" id="node19" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="197,432,371,461"/>
+</map>

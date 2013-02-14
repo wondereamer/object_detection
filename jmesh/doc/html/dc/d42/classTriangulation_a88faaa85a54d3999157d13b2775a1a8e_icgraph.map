@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#af4d69d4356f29ffffc1d6400038b928f" title="Triangulation::closeLoadingSession" alt="" coords="265,5,500,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#afe57f115e3fad9e9ecf92134c779d416" title="Triangulation::mergeCoincidentEdges" alt="" coords="259,59,507,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a9825e73a6c955c508e2de136ded7a4b3" title="Removes all the unlinked elements from the lists. Returns the number of removed elements. O(N)." alt="" coords="253,112,512,141"/>
+</map>

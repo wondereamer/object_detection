@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="175,5,313,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="363,32,456,61"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a41f4004d88e228cb0b974d0541eca087" title="TRUE if vector is (0,0,0)" alt="" coords="199,109,289,139"/>
+<area shape="rect" id="node9" href="$dc/d4f/classPoint.html#a206184eb95518144a34a3bdb0e992f5b" title="Returns the solution of the linear system Ax = d, where A is a 3x3 matrix whose rows are row1..." alt="" coords="176,163,312,192"/>
+<area shape="rect" id="node11" href="$d8/d8c/classEdge.html#a58be6558c5ebe0cee5786198f6a819af" title="Convert to normalized vector (v2&#45;v1)/|v2&#45;v1|." alt="" coords="177,216,311,245"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="169,5,295,35"/>
+<area shape="rect" id="node5" href="$df/dd0/classNode.html#a6690bb993e281cb8ea1f7e8be1fdcb22" title="Returns the previous node in the list, possibly NULL." alt="" coords="188,59,276,88"/>
+</map>

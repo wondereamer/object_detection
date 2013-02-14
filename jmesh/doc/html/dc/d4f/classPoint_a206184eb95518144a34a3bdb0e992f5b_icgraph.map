@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#ab2ac767c6c1f21ca24703b5c43ed0c83" title="Return the center of the triangle&#39;s bounding sphere." alt="" coords="207,5,380,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a86a0f93ad2e799a12205fafb800dc942" title="Triangle::pointTriangleDistance" alt="" coords="191,59,396,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a8c439efcd8bca0527eaafc4af769f8c6" title="Projection of &#39;p&#39; on the plane of the triangle. Return INFINITE_POINT if triangle is degenerate..." alt="" coords="235,112,352,141"/>
+</map>

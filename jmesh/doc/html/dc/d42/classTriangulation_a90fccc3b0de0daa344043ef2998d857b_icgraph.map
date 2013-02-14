@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#ae88aedb818af1be6628b1420e3cbfa67" title="Bounding box longest diagonal. O(N)." alt="" coords="267,5,501,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a05c3964cb90559996d93566c263e86c5" title="Approximate bounding ball radius. O(N)." alt="" coords="261,59,507,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#aa641295fb6059236e1adbd71849a1819" title="Scale the mesh to make it fit within a cube [0,0,0]&#45;[s,s,s]. O(N)." alt="" coords="303,112,465,141"/>
+</map>

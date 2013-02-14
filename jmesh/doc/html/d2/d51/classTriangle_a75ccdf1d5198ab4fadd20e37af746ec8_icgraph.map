@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a5e14a177ca24af3188183293ec47c00a" title="Triangulation::removeDuplicatedTriangles" alt="" coords="193,5,463,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="220,59,436,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a22bac7d2e0dec5b8007f48bc221c4f10" title="Total volume of the mesh assuming that boundaries() = 0. O(N)." alt="" coords="253,112,403,141"/>
+</map>

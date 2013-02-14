@@ -10,6 +10,7 @@
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/console/parse.h>
 #include "m_util.h"
+#include <pcl/surface/gp3.h>
 // helper function  to create point 
 typedef pcl::PointXYZRGB PointT;
 inline PointT create_point(float x, float y, float z, int r, int g, int b, float step = 1){
@@ -58,57 +59,30 @@ inline void camera_info(pcl::visualization::Camera &camera)
 //}
 //}
 //***************************************************************
+
+/**
+ * @brief an wrapper class to display rgb points
+ */
 class VizBlockWorld {
     public:
-        VizBlockWorld ():_cloud(new pcl::PointCloud<PointT>){
+        VizBlockWorld (){
             _viewer = new pcl::visualization::PCLVisualizer ("3D _viewer");
             // will increase object id automatically, when add new visual element
             _objId = 0;
             set_offset(0, 0, 0);
         };
-        VizBlockWorld (pcl::PointCloud<PointT>::Ptr  cloud){
-            _cloud = cloud;
-            _viewer = new pcl::visualization::PCLVisualizer ("3D _viewer");
-            _objId = 0;
 
-            std::string pointId = m_util::sth2string<int>(_objId);
-            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
-            _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId);
-            /*_viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);*/
-            _objId++;
-            set_offset(0, 0, 0);
-        }
-
-        void draw(){
-            _viewer->initCameraParameters ();
-            //            _viewer->addCoordinateSystem(1.0);
-        }
+        void set_def_cloud(pcl::PointCloud<PointT>::Ptr cloud){ _cloud = cloud; }
+        void generte_mesh(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, pcl::PolygonMesh *triangles);
+        //            _viewer->addCoordinateSystem(1.0); 
+        void draw(){ _viewer->initCameraParameters (); }
         // display multiwindow viewer
-        static void display(std::vector<pcl::visualization::PCLVisualizer*> viewers){
-            while (!viewers[0]->wasStopped ())
-            {
-                viewers[0]->spinOnce (100);
-                boost::this_thread::sleep (boost::posix_time::microseconds (100000));
-            }
-
-        }
-        void display(){
-            while (!_viewer->wasStopped ())
-            {
-                _viewer->spinOnce (100);
-                boost::this_thread::sleep (boost::posix_time::microseconds (100000));
-            }
-
-        }
-        void set_view(std::string object){
-            // reset this point to the center of screen.
-            _viewer->resetCameraViewpoint(object);
-        }
-        void set_offset(float x, float y, float z){
-            _x_offset = x;
-            _y_offset = y;
-            _z_offset = z;
-        }
+        static void display(std::vector<pcl::visualization::PCLVisualizer*> viewers);
+        void display();
+        //! reset this point to the center of screen.
+        void set_view(std::string object){ _viewer->resetCameraViewpoint(object); }
+        //!
+        void set_offset(float x, float y, float z){ _x_offset = x; _y_offset = y; _z_offset = z; }
         void set_render(){
             _viewer->setRepresentationToSurfaceForAllActors ();
             //_viewer->setRepresentationToPointsForAllActors();
@@ -159,74 +133,39 @@ class VizBlockWorld {
             x = (x  - _x_offset) * unit;
             y = (y  - _y_offset) * unit;
             z = (z  - _z_offset) * unit;
+            assert(_cloud);
             _cloud->points.push_back(create_point(x, y, z, r, g, b));
         }
         inline void add_point(const PointT &p){
+            assert(_cloud);
             _cloud->points.push_back(p);
         }
-        //! add point cloud to viewport
-        std::string push_pointCloud(int &viewport, int pointSize = 1){
-            std::string pointId = m_util::sth2string<int>(_objId);
+        //! update default point cloud to viewport
+        std::string push_def_cloud(int viewport = 0, int pointSize = 1){
+            assert(_cloud);
+            std::string pointId = m_util::sth2string<int>(_objId++);
             pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
             _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId, viewport);
             _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
-            _objId++;
-            _cloud->clear();
             return pointId;
 
         }
-        //! add point cloud to default viewport(the only one)
-        std::string push_pointCloud(int pointSize = 1){
-            std::string pointId = m_util::sth2string<int>(_objId);
-            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(_cloud);
-            _viewer->addPointCloud<PointT> (_cloud, rgbs, pointId);
-            _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
-            _objId++;
-            return pointId;
-
-        }
-        //! add point pointcloud to viewport(the only one)
-        std::string update_pointCloud(pcl::PointCloud<PointT>::Ptr cloud, int &viewport, int pointSize = 1){
-            std::string pointId = m_util::sth2string<int>(_objId);
-//            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(cloud);
-//            _viewer->addPointCloud<PointT> (cloud, rgbs, pointId, viewport);
+        //! add point pointcloud to viewport
+        std::string add_cloud(const pcl::PointCloud<PointT>::Ptr cloud, int viewport = 0, int pointSize = 1){
+            std::string pointId = m_util::sth2string<int>(_objId++);
+            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(cloud);
+            _viewer->addPointCloud<PointT> (cloud, rgbs, pointId, viewport);
             _viewer->addPointCloud<PointT> (cloud, pointId, viewport);
             _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
-            _objId++;
             return pointId;
 
         }
-
-//        //! add point pointcloud to viewport
-//        std::string update_pointCloud(pcl::PointCloud<PointT>::Ptr cloud, int pointSize = 1){
-//            std::string pointId = m_util::sth2string<int>(_objId);
-//            pcl::visualization::PointCloudColorHandlerRGBField<PointT> rgbs(cloud);
-//            _viewer->addPointCloud<PointT> (cloud, rgbs, pointId);
-//            _viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, pointSize, pointId);
-//            _objId++;
-//            return pointId;
-//        }
 
         pcl::visualization::PCLVisualizer *get_viewer(){
             return _viewer;
         }
         /** @param SURFACE 0: point, 1: outline, 2: surface */
-        void add_cube(float x, float y, float z, int r, int g, int b, float cubeSize = 1, int STYLE = 1){
-            x = (x  - _x_offset) * cubeSize;
-            y = (y  - _y_offset) * cubeSize;
-            z = (z  - _z_offset) * cubeSize;
-            float xMin = x;
-            float xMax = x + cubeSize;
-            float yMin = y;
-            float yMax = y + cubeSize;
-            float zMin = z;
-            float zMax = z + cubeSize;
-            std::string cubeId = m_util::sth2string<int>(_objId++);
-            _viewer->addCube(xMin, xMax, yMin, yMax, zMin, zMax, r, g, b, cubeId);
-            _viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, STYLE, cubeId);
-        }
-        // add cube to specific viewport
-        void add_cube(float x, float y, float z, int r, int g, int b, int &viewport, float cubeSize = 1, int STYLE = 1){
+        std::string add_cube(float x, float y, float z, int r, int g, int b, int viewport = 0, float cubeSize = 1, int STYLE = 1){
             x = (x  - _x_offset) * cubeSize;
             y = (y  - _y_offset) * cubeSize;
             z = (z  - _z_offset) * cubeSize;
@@ -239,7 +178,22 @@ class VizBlockWorld {
             std::string cubeId = m_util::sth2string<int>(_objId++);
             _viewer->addCube(xMin, xMax, yMin, yMax, zMin, zMax, r, g, b, cubeId, viewport);
             _viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, STYLE, cubeId);
+            return cubeId;
         }
+        //! add an mesh
+        std::string  add_mesh(const pcl::PolygonMesh *mesh, int viewport = 0){
+            std::string id = m_util::sth2string<int>(_objId++);
+            _viewer->addPolygonMesh(*mesh, id, viewport);
+            return id;
+        }
+        void clear(int viewport = 0){
+            _objId = 0;
+            _viewer->removeAllPointClouds(viewport);
+            _viewer->removeAllShapes(viewport);
+            if(_cloud)
+                _cloud->points.clear();
+        }
+
     private:
         pcl::visualization::PCLVisualizer *_viewer;
         pcl::PointCloud<PointT>::Ptr _cloud;

@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#aa74ed09360f28cdbf3aad374d97311e7" title="Area of the triangle (Heron&#39;s formula)." alt="" coords="187,5,291,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a9c2a7ff97f8c3acc3132ae7b8405b528" title="Return the minimum among the six angles of the two incident triangles.2PI if on boundary." alt="" coords="153,59,324,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a3ee0e02ba8880e40aea8ee3f2ffa3a0e" title="Cap&#45;like degeneracy check." alt="" coords="183,112,295,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ad0ceabf8a4ee4875a29e387ebe625ed3" title="Needle&#45;like degeneracy check." alt="" coords="172,165,305,195"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a864f7a8224290b17d06e462712a83732" title="Perimeter of the triangle." alt="" coords="172,219,305,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#ab202930f0c1041cdf2378ba30b7170a3" title="Return the triangle with the maximum &#39;z&#39; coordinate in the shell containing &#39;t0&#39;. O(N)..." alt="" coords="152,272,325,301"/>
+</map>

@@ -8,6 +8,8 @@
 #ifndef M_GEOMETRY_H
 
 #define M_GEOMETRY_H
+namespace m_geometry {
+    
     struct Point {
         int x;
         int y;
@@ -141,4 +143,5 @@
     std::ostream& operator<<(std::ostream& out, const PointF &t);
     std::ostream& operator<<(std::ostream& out, const PointF3D &t);
 
+} /* m_geometry */
 #endif /* end of include guard: M_GEOMETRY_H */

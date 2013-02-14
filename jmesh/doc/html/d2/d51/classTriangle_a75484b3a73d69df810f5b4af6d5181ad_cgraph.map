@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a08481d7cb830b8d002dcb685b798a80b" title="Returns the projection of the point on the straight line though &#39;a&#39; and &#39;b&#39;." alt="" coords="373,5,491,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a2454e0e46fa5742a2e28b503e9d55ade" title="Squared distance from &#39;*b&#39;." alt="" coords="353,59,511,88"/>
+<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a91db38ffb7e4ae4f80de7bcafa1dbce9" title="Squared distance from origin." alt="" coords="601,85,748,115"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a8bc78c8aa442cc367ce46170d44fa1d2" title="Squared distance of &#39;p&#39; from the plane of the triangle. Return &#45;1 if triangle is degenerate." alt="" coords="313,163,551,192"/>
+<area shape="rect" id="node12" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="385,216,479,245"/>
+<area shape="rect" id="node14" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="385,269,479,299"/>
+<area shape="rect" id="node16" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="385,323,479,352"/>
+</map>

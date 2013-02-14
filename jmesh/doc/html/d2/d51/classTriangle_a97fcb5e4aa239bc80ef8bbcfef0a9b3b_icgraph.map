@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a49bd77069541bb23f87674e1cc6bb21a" title="Invert all the triangle and edge orientations. O(N)." alt="" coords="165,5,336,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a028f4bb4300855b6d1b80e9632bc8267" title="Triangulation::forceNormalConsistence" alt="" coords="384,32,637,61"/>
+<area shape="rect" id="node8" href="$d8/d8c/classEdge.html#af7bb5960be35c8c7e7e9484e930926d0" title="Combinatorial edge&#45;swap." alt="" coords="205,109,296,139"/>
+</map>

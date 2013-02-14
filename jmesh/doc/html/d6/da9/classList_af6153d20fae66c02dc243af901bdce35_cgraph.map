@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="131,5,256,35"/>
+<area shape="rect" id="node5" href="$d4/d9c/jqsort_8h.html#a0e0a5046ed4b995bf879d4701347df74" title="jqsort" alt="" coords="167,59,220,88"/>
+<area shape="rect" id="node7" href="$d6/da9/classList.html#aba50cb63a61052908a284d955a3862c6" title="Deletes and removes all the nodes. &#160;&#160;O(numels())." alt="" coords="125,112,261,141"/>
+<area shape="rect" id="node9" href="$d6/da9/classList.html#a639070d48fa0e2ba4949d681a5a538e8" title="Creates an array out of the list. &#160;&#160;O(numels())." alt="" coords="148,165,239,195"/>
+</map>

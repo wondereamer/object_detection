@@ -16,7 +16,7 @@
 //#include <flann/flann.hpp>
 //#include <flann/io/hdf5.h>
 namespace m_lib{
-
+using m_geometry::Point;
 //using namespace flann;
 /**
 * @brief midpoint circle algorithm

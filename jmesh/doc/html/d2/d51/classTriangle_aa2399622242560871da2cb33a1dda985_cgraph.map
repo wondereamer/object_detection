@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a63613c87061cd892d2cb135651b8f492" title="TRUE iff &#39;v&#39; is an end&#45;point of the edge." alt="" coords="233,5,353,35"/>
+<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="249,59,337,88"/>
+<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="249,112,337,141"/>
+<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="249,165,337,195"/>
+</map>

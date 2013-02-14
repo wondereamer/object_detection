@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a48bf625b550d53b26111b2cd12d4ebc3" title="TRUE iff vertex is on boundary." alt="" coords="232,5,384,35"/>
+<area shape="rect" id="node5" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="217,59,399,88"/>
+<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a9c9d8ea886b2652489837321b8a4bb97" title="Returns the edge preceeding this vertex on the boundary." alt="" coords="217,112,399,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="449,217,644,247"/>
+<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="265,216,351,245"/>
+<area shape="rect" id="node13" href="$d2/da0/classVertex.html#ab4e43fc6bf5eb192cd16cf8ac0bb544d" title="List of incident triangles." alt="" coords="265,269,351,299"/>
+<area shape="rect" id="node16" href="$d2/da0/classVertex.html#ae0fd7e8ff464527f12ece83b44bbbc66" title="List of adjacent vertices." alt="" coords="265,323,351,352"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#ae2fff8dbec76aa811d101842add0ff68" title="Loads OBJ." alt="" coords="200,5,357,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a3a08bf704a40678eaaaea079f245c683" title="Loads OFF." alt="" coords="425,84,583,113"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#aaa744936d4279a48643245254b8bae6b" title="Loads PLY." alt="" coords="427,243,581,272"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a72286a574cfdeaa66fa8d3fbd3d7b9a8" title="Loads STL." alt="" coords="200,163,357,192"/>
+<area shape="rect" id="node11" href="$d5/d5a/io_8cpp.html#a62833e4a6ad756ffea31b467133a9d1f" title="ply_getOverhead" alt="" coords="217,216,340,245"/>
+<area shape="rect" id="node14" href="$d5/d5a/io_8cpp.html#a39a51a747ea545206e74980e8a14e680" title="skipCommentAndBlankLines" alt="" coords="183,109,375,139"/>
+</map>

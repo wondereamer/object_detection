@@ -1,7 +1,6 @@
 #include "m_algorithm.h"
 #include <cstdlib>
 namespace m_lib  {
-    
 /**
  * @brief midpoint circle algorithm
  *

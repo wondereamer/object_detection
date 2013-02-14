@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="201,5,345,35"/>
+<area shape="rect" id="node5" href="$d2/d62/classGraph.html#a4b2e8a76fa44d59711a27544ceabf975" title="Creates a new edge out of a pair of nodes. O(degree of nodes)." alt="" coords="207,59,340,88"/>
+<area shape="rect" id="node7" href="$d2/d62/classGraph.html#a73f17c0e1e4ec89984ecf62b7dbccfbd" title="Graph::deleteUnlinkedElements" alt="" coords="168,112,379,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a028f4bb4300855b6d1b80e9632bc8267" title="Triangulation::forceNormalConsistence" alt="" coords="147,165,400,195"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#a8233a27825be5772141a37cc74a53d32" title="Make a list of triangles within distance L from &#39;p&#39;. O(output)." alt="" coords="189,219,357,248"/>
+<area shape="rect" id="node13" href="$dc/d42/classTriangulation.html#a9a45bd3e358f02c9f1f13c435cdd9c57" title="TRUE iff the set of selected triangles in &#39;l&#39; is simply connected. O(l&#45;&gt;numels())." alt="" coords="167,323,380,352"/>
+<area shape="rect" id="node15" href="$dc/d42/classTriangulation.html#a1de82634da47e41a2cd34a0b25dd999e" title="Re&#45;triangulates the currently selected region using a Delaunay&#45;like approach. O(SlogS)." alt="" coords="461,323,736,352"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a4d66fa2ec649b4d9f05ca3e5693d22aa" title="Iteratively swaps edges to minimize the Delaunay minimum angle. O(N)." alt="" coords="163,376,384,405"/>
+<area shape="rect" id="node19" href="$dc/d42/classTriangulation.html#ae07118d06defaf868b4e30c62c889d8e" title="Duplicates edges and vertices to make the mesh homeomorphic to a disk. O(N)." alt="" coords="184,429,363,459"/>
+<area shape="rect" id="node21" href="$dc/d42/classTriangulation.html#ad8bdc6989d15950a95ad6a7dd217a0aa" title="Removes all the unlinked edges from List E. Returns the number of removed edges. O(N)." alt="" coords="179,483,368,512"/>
+<area shape="rect" id="node23" href="$dc/d42/classTriangulation.html#a93257ef041530dfad1f65250c956fadc" title="Removes triangles within distance L from &#39;p&#39;. O(N)." alt="" coords="176,536,371,565"/>
+<area shape="rect" id="node25" href="$dc/d42/classTriangulation.html#a080843cfc9fe475455a291cad3c84edf" title="Triangulation::removeSmallestComponents" alt="" coords="135,589,412,619"/>
+<area shape="rect" id="node27" href="$dc/d42/classTriangulation.html#aeedefd413ed4bf00beb971cc7f7a29af" title="Removes all the unlinked triangles from List T. Returns the number of removed triangles. O(N)." alt="" coords="169,643,377,672"/>
+<area shape="rect" id="node29" href="$dc/d42/classTriangulation.html#a88faaa85a54d3999157d13b2775a1a8e" title="Removes all the unlinked vertices from List V. Returns the number of removed vertices. O(N)." alt="" coords="173,696,373,725"/>
+<area shape="rect" id="node32" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="501,801,696,831"/>
+<area shape="rect" id="node34" href="$dc/d42/classTriangulation.html#ac83bd24ec2fd54196f64f9a238342049" title="Triangulation::StarTriangulateHole" alt="" coords="163,803,384,832"/>
+<area shape="rect" id="node36" href="$dc/d42/classTriangulation.html#a777e577009b7e36cb1eb2d764979f2c6" title="Triangulation::TriangulateHole" alt="" coords="173,749,373,779"/>
+<area shape="rect" id="node40" href="$dc/d42/classTriangulation.html#adc24c811ba3d8689e82ab208faf171c7" title="Triangulation::watsonInsert" alt="" coords="184,907,363,936"/>
+<area shape="rect" id="node42" href="$d2/da0/classVertex.html#a0d9ca6b027ce5175c281256310c36db0" title="Zips the gap starting from here." alt="" coords="231,984,316,1013"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a86ef5d6dc2a592fa6cbfbdd4a9810bd1" title="Triangulation::checkConnectivity" alt="" coords="221,5,435,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a42e3d87b90251c958abe310830303ac5" title="Triangulation::duplicateNonManifoldVertices" alt="" coords="188,59,468,88"/>
+<area shape="rect" id="node7" href="$de/da1/classgraphNode.html#adfd8c411e984cb1f88cb746ad1fa27d9" title="Returns the edge connecting this with &#39;n&#39;. NULL if not connected. O(degree)." alt="" coords="255,112,401,141"/>
+<area shape="rect" id="node9" href="$d6/da9/classList.html#a3959f49d854bd01cfbd6c6554b5bbb90" title="Replaces old_n with new_n. The Node containing new_n is returned. &#160;&#160;O(numels())." alt="" coords="265,165,391,195"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="301,5,427,35"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#ab26b12640c866bafb29b03b2061cbd21" title="Appends a new node storing &#39;d&#39; to the tail. &#160;&#160;O(1)." alt="" coords="307,59,421,88"/>
+<area shape="rect" id="node7" href="$d3/dab/classJMesh.html#aa77f98e23d311cb8ba63900b0d1f1564" title="JMesh::begin_progress" alt="" coords="283,112,445,141"/>
+<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a9c2a7ff97f8c3acc3132ae7b8405b528" title="Return the minimum among the six angles of the two incident triangles.2PI if on boundary." alt="" coords="279,269,449,299"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="500,216,636,245"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#abf510b439d584050a9067f6ce411ca80" title="Edge preceeding &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="500,535,636,564"/>
+<area shape="rect" id="node15" href="$d3/dab/classJMesh.html#a5a38f845d326284196316e21ae8c93d4" title="JMesh::end_progress" alt="" coords="288,323,440,352"/>
+<area shape="rect" id="node17" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="295,376,433,405"/>
+<area shape="rect" id="node19" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="324,429,404,459"/>
+<area shape="rect" id="node21" href="$d2/d51/classTriangle.html#ad0ceabf8a4ee4875a29e387ebe625ed3" title="Needle&#45;like degeneracy check." alt="" coords="297,483,431,512"/>
+<area shape="rect" id="node23" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="291,536,437,565"/>
+<area shape="rect" id="node25" href="$df/dd0/classNode.html#a2ee94e96b37e230872f96cc345f1cc44" title="Returns the next node in the list, possibly NULL." alt="" coords="320,589,408,619"/>
+<area shape="rect" id="node28" href="$df/dd0/classNode.html#a6690bb993e281cb8ea1f7e8be1fdcb22" title="Returns the previous node in the list, possibly NULL." alt="" coords="320,643,408,672"/>
+<area shape="rect" id="node31" href="$d6/da9/classList.html#af6a32880f6c3d84f82869c5976de1841" title="Deletes and removes the node &#39;n&#39; from the list. &#160;&#160;O(1)." alt="" coords="304,696,424,725"/>
+<area shape="rect" id="node33" href="$d3/dab/classJMesh.html#a8a8ac002feb18f1646c059d745af15c2" title="JMesh::report_progress" alt="" coords="283,749,445,779"/>
+<area shape="rect" id="node35" href="$d8/d8c/classEdge.html#af7bb5960be35c8c7e7e9484e930926d0" title="Combinatorial edge&#45;swap." alt="" coords="319,216,409,245"/>
+<area shape="rect" id="node38" href="$d6/da9/classList.html#ad2dee0e28745416172149fcd6302b818" title="Gets the last node, NULL if empty. &#160;&#160;O(1)." alt="" coords="331,853,397,883"/>
+<area shape="rect" id="node40" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="307,907,421,936"/>
+</map>

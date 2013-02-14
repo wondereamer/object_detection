@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="177,5,316,35"/>
+<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a8ebcce847b8c214b7351904ce60f5518" title="Distance from origin." alt="" coords="367,57,460,87"/>
+<area shape="rect" id="node8" href="$dc/d4f/classPoint.html#aef2212b0f31228e803ecbf389bfe7302" title="Divides the vector by its length. If isNull() the application exits with an error." alt="" coords="188,109,305,139"/>
+</map>

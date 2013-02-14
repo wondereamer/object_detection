@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a9511252ee9532d689d0a26e0dec4b8fc" title="Normal at the vertex computed as the sum of incident triangle normals weighted on their incidence ang..." alt="" coords="217,5,345,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="143,59,420,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="184,112,379,141"/>
+<area shape="rect" id="node9" href="$d2/da0/classVertex.html#ab769197b8ba187d3464454f3de1c16fc" title="A third of the total area of incident triangles." alt="" coords="211,165,352,195"/>
+</map>

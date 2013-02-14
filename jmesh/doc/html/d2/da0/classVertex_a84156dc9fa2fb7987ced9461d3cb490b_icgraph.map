@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a334250a8478a69bb1adcbb9317f63ee7" title="Discriminant Angle for triangulating 3D polygons." alt="" coords="240,5,459,35"/>
+<area shape="rect" id="node5" href="$d2/da0/classVertex.html#afe64cff48a7497d4a1ee59c2f6745106" title="Discriminant Angle for triangulating flat (or nearly flat) polygons." alt="" coords="237,59,461,88"/>
+<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a3bc6dd213cb85dbc8e2a06f7f1aeb2d1" title="Returns the angle between the two incident boundary edges. If the vertex is not on the boundary..." alt="" coords="260,112,439,141"/>
+<area shape="rect" id="node9" href="$d2/da0/classVertex.html#aa39f34a08953a1a6b7954852d4a5ea9d" title="Returns the vertex following this one on the boundary." alt="" coords="267,165,432,195"/>
+<area shape="rect" id="node11" href="$dc/d42/classTriangulation.html#abd746c6f132a315f7556cdb9fc23b537" title="Triangulation::selectTinyHandles" alt="" coords="241,219,457,248"/>
+</map>

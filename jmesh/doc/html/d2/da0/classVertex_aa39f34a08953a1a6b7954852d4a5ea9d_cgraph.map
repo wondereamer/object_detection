@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="223,5,404,35"/>
+<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="455,32,604,61"/>
+</map>

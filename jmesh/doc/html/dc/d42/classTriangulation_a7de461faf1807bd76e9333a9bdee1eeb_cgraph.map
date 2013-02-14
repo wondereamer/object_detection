@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="545,190,671,219"/>
+<area shape="rect" id="node5" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="320,55,413,85"/>
+<area shape="rect" id="node7" href="$d6/da9/classList.html#a8167cffb890b7c640c1f0af7bbc67dd9" title="Deletes and removes the first node. Returns its data. &#160;&#160;O(1)." alt="" coords="315,109,419,138"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a9825e73a6c955c508e2de136ded7a4b3" title="Removes all the unlinked elements from the lists. Returns the number of removed elements. O(N)." alt="" coords="237,162,496,191"/>
+<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="323,215,411,245"/>
+<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="323,269,411,298"/>
+<area shape="rect" id="node15" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="323,322,411,351"/>
+<area shape="rect" id="node17" href="$dc/d42/classTriangulation.html#a69d233a34aaa2b3a343ef1f2bc5d1012" title="Unlinks a triangle from the mesh. O(1)." alt="" coords="272,375,461,405"/>
+</map>

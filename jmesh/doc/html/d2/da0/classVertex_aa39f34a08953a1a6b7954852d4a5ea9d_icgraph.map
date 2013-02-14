@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#ab9694f134bbc51c81b8dfe675fa8ecd4" title="Updates the values of n_boundaries, n_handles and n_shells. O(N)." alt="" coords="244,5,423,35"/>
+<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ac83bd24ec2fd54196f64f9a238342049" title="Triangulation::StarTriangulateHole" alt="" coords="223,59,444,88"/>
+<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a777e577009b7e36cb1eb2d764979f2c6" title="Triangulation::TriangulateHole" alt="" coords="233,112,433,141"/>
+<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#adc24c811ba3d8689e82ab208faf171c7" title="Triangulation::watsonInsert" alt="" coords="244,165,423,195"/>
+</map>
