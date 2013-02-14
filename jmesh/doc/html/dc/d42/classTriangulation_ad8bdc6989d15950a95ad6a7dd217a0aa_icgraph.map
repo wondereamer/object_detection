@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a8956b445359f2a273cf5ae4fd8a873d3" title="Convert to manifold." alt="" coords="285,5,464,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#afe57f115e3fad9e9ecf92134c779d416" title="Triangulation::mergeCoincidentEdges" alt="" coords="251,59,499,88"/>
-<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a9825e73a6c955c508e2de136ded7a4b3" title="Removes all the unlinked elements from the lists. Returns the number of removed elements. O(N)." alt="" coords="245,112,504,141"/>
-</map>

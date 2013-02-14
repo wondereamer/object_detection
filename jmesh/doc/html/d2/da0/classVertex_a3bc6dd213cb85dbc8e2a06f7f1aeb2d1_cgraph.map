@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="268,5,380,35"/>
-<area shape="rect" id="node5" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="233,59,415,88"/>
-<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="465,111,615,140"/>
-<area shape="rect" id="node10" href="$d2/da0/classVertex.html#a9c9d8ea886b2652489837321b8a4bb97" title="Returns the edge preceeding this vertex on the boundary." alt="" coords="233,163,415,192"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a3b8ea712f0ab29932345dc3c0e75c012" title="Triangle on the left of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="487,5,615,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="476,64,625,93"/>
-<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a9d96fdbb2f8c4b792b3c1a50a533165e" title="Triangle on the right of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="483,129,619,159"/>
-<area shape="rect" id="node9" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="341,51,427,80"/>
-</map>

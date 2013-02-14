@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a6a4076a70a0d214f472e92a298eeb03c" title="Get the number of boundary loops of the triangle mesh. O(1) or O(N)." alt="" coords="225,112,396,141"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ab9694f134bbc51c81b8dfe675fa8ecd4" title="Updates the values of n_boundaries, n_handles and n_shells. O(N)." alt="" coords="445,112,624,141"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="672,191,765,220"/>
-<area shape="rect" id="node10" href="$dc/d42/classTriangulation.html#a0e75501a03e2f163f5eefc2d2d7099e0" title="Get the number of handles of the triangle mesh. O(1) or O(N)." alt="" coords="235,5,387,35"/>
-<area shape="rect" id="node13" href="$d3/dab/classJMesh.html#a08a2c6222bd080ef8777c7ad96a8a052" title="JMesh::info" alt="" coords="265,216,356,245"/>
-<area shape="rect" id="node16" href="$dc/d42/classTriangulation.html#af06a73bd1d73fea08bd6893f9b253ba5" title="Get the number of connected components of the triangle mesh. O(1) or O(N)." alt="" coords="240,59,381,88"/>
-</map>

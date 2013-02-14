@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#acec74b744af17b41e6de902fbe4163b6" title="Triangulation::checkGeometry" alt="" coords="187,5,389,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a9c2a7ff97f8c3acc3132ae7b8405b528" title="Return the minimum among the six angles of the two incident triangles.2PI if on boundary." alt="" coords="203,59,373,88"/>
-<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a9511252ee9532d689d0a26e0dec4b8fc" title="Normal at the vertex computed as the sum of incident triangle normals weighted on their incidence ang..." alt="" coords="224,112,352,141"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a3ee0e02ba8880e40aea8ee3f2ffa3a0e" title="Cap&#45;like degeneracy check." alt="" coords="232,165,344,195"/>
-<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#ad0ceabf8a4ee4875a29e387ebe625ed3" title="Needle&#45;like degeneracy check." alt="" coords="221,219,355,248"/>
-<area shape="rect" id="node13" href="$d2/da0/classVertex.html#a41b21e0a4afb0992153f39ff2499e27b" title="Sum of incident angles. Returns &#45;1 if on boundary." alt="" coords="225,272,351,301"/>
-</map>

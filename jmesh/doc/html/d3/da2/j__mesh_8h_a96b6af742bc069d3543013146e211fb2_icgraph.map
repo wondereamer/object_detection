@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a49bd77069541bb23f87674e1cc6bb21a" title="Invert all the triangle and edge orientations. O(N)." alt="" coords="296,30,467,60"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a028f4bb4300855b6d1b80e9632bc8267" title="Triangulation::forceNormalConsistence" alt="" coords="515,30,768,60"/>
-<area shape="rect" id="node8" href="$d2/d51/classTriangle.html#a97fcb5e4aa239bc80ef8bbcfef0a9b3b" title="Inverts the orientation of the triangle." alt="" coords="129,81,239,110"/>
-<area shape="rect" id="node12" href="$d8/d8c/classEdge.html#ad575f5ae8374abb410f402eff56e093a" title="Invert the edge&#39;s orientation." alt="" coords="137,134,231,164"/>
-<area shape="rect" id="node14" href="$d3/df4/edge_8cpp.html#abc9e4a3f2faf76b04f6cb47dff211961" title="Lexycographic edge comparison to be used with jqsort() or abstractHeap." alt="" coords="121,188,247,217"/>
-</map>

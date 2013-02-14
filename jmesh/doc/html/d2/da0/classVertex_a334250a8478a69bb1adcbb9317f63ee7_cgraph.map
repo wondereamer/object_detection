@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#ae40abf7aec2f2f3ca282dbe57bd18dc6" title="Distance from &#39;b&#39;." alt="" coords="311,5,420,35"/>
-<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="527,111,639,140"/>
-<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a81467c10c4298237c4fa67120a3d774d" title="If the edge is on boundary return its only incident triangle. NULL otherwise." alt="" coords="272,109,459,139"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ac79934be803387dfceb647c00978f1ef" title="Angle between the normal vector of this and the one of &#39;t&#39;. Return &#45;1 if one or both the triangles ar..." alt="" coords="295,163,436,192"/>
-<area shape="rect" id="node12" href="$d2/da0/classVertex.html#a84156dc9fa2fb7987ced9461d3cb490b" title="Returns the edge following this vertex on the boundary." alt="" coords="275,216,456,245"/>
-<area shape="rect" id="node14" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="508,268,657,297"/>
-<area shape="rect" id="node17" href="$d2/da0/classVertex.html#a9c9d8ea886b2652489837321b8a4bb97" title="Returns the edge preceeding this vertex on the boundary." alt="" coords="275,320,456,349"/>
-</map>

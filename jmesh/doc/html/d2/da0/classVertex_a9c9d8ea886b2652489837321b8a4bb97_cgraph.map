@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a387f90a0a9e849c2b283299e72055781" title="Triangle&#39;s edge opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the triangle." alt="" coords="237,5,400,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a5e27c1e4f741d220496ae61e18e8be3c" title="Vertex opposite to &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge." alt="" coords="244,59,393,88"/>
-<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a9d96fdbb2f8c4b792b3c1a50a533165e" title="Triangle on the right of the edge when looking from &#39;v&#39;. NULL if &#39;v&#39; is not a vertex of the edge..." alt="" coords="251,112,387,141"/>
-</map>

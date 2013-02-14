@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="207,5,319,35"/>
-<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a9d1c52e6441b5e43f48790637530df83" title="Return a vector orthogonal to the plane of the triangle. If triangle is degenerate return a null vect..." alt="" coords="195,59,331,88"/>
-<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a41f4004d88e228cb0b974d0541eca087" title="TRUE if vector is (0,0,0)" alt="" coords="379,85,469,115"/>
-</map>

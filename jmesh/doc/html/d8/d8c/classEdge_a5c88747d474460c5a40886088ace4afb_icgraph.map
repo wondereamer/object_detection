@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="216,5,328,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="377,32,655,61"/>
-<area shape="rect" id="node8" href="$d8/d8c/classEdge.html#ae6e3b615cccc49a9d3e73897379ee200" title="Stitching primitive." alt="" coords="227,109,317,139"/>
-<area shape="rect" id="node10" href="$d2/d51/classTriangle.html#a2d3123c04622f990608448cb41952207" title="First adjacent triangle. NULL if boundary." alt="" coords="228,163,316,192"/>
-<area shape="rect" id="node12" href="$d2/d51/classTriangle.html#a5a1d8734dc47cdb2e317f04410576363" title="Second adjacent triangle. NULL if boundary." alt="" coords="228,216,316,245"/>
-<area shape="rect" id="node14" href="$d2/d51/classTriangle.html#ac3c504a381fb0fc4c5393dc836ef1e1c" title="Third adjacent triangle. NULL if boundary." alt="" coords="228,269,316,299"/>
-</map>

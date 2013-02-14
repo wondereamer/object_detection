@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#ad8bdc6989d15950a95ad6a7dd217a0aa" title="Removes all the unlinked edges from List E. Returns the number of removed edges. O(N)." alt="" coords="321,5,511,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#aeedefd413ed4bf00beb971cc7f7a29af" title="Removes all the unlinked triangles from List T. Returns the number of removed triangles. O(N)." alt="" coords="312,59,520,88"/>
-<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a88faaa85a54d3999157d13b2775a1a8e" title="Removes all the unlinked vertices from List V. Returns the number of removed vertices. O(N)." alt="" coords="316,112,516,141"/>
-</map>

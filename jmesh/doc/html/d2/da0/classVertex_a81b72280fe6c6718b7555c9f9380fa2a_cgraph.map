@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a454a3b45bd9cbddabf85d0a692700132" title="Dihedral angle at the edge." alt="" coords="231,5,375,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="229,59,376,88"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="424,137,517,167"/>
-<area shape="rect" id="node9" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="260,163,345,192"/>
-</map>

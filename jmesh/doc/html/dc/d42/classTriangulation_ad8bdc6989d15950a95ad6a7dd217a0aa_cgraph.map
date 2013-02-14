@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d6/da9/classList.html#a88e46f0fb087e1ea7a2fa86c2d692fc2" title="Gets the first node, NULL if empty. &#160;&#160;O(1)." alt="" coords="265,5,345,35"/>
-<area shape="rect" id="node5" href="$df/dd0/classNode.html#a2ee94e96b37e230872f96cc345f1cc44" title="Returns the next node in the list, possibly NULL." alt="" coords="261,59,349,88"/>
-<area shape="rect" id="node7" href="$df/dd0/classNode.html#a6690bb993e281cb8ea1f7e8be1fdcb22" title="Returns the previous node in the list, possibly NULL." alt="" coords="261,112,349,141"/>
-<area shape="rect" id="node9" href="$d6/da9/classList.html#af6a32880f6c3d84f82869c5976de1841" title="Deletes and removes the node &#39;n&#39; from the list. &#160;&#160;O(1)." alt="" coords="245,165,365,195"/>
-<area shape="rect" id="node11" href="$d6/da9/classList.html#ad2dee0e28745416172149fcd6302b818" title="Gets the last node, NULL if empty. &#160;&#160;O(1)." alt="" coords="272,219,339,248"/>
-</map>

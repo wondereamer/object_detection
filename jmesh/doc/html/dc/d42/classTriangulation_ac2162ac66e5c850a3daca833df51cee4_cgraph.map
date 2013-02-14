@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d3/dab/classJMesh.html#a5cd94530c89520f54ba406a90f623cde" title="JMesh::error" alt="" coords="283,5,381,35"/>
-<area shape="rect" id="node5" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="285,59,379,88"/>
-<area shape="rect" id="node7" href="$d5/d5a/io_8cpp.html#aff955078e0f545f53332d7050d575b07" title="PRINT_HEADING_COMMENT" alt="" coords="232,112,432,141"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="285,165,379,195"/>
-<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="285,219,379,248"/>
-<area shape="rect" id="node13" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="285,272,379,301"/>
-<area shape="rect" id="node15" href="$d3/dab/classJMesh.html#ac79ec04bc1e859a5cc3deefebaddb0fc" title="JMesh::warning" alt="" coords="275,325,389,355"/>
-</map>

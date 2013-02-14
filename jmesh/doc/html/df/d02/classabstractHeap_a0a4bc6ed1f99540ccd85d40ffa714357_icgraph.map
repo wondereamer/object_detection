@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$df/d02/classabstractHeap.html#a6b8997949f75638c8baccad990c8af56" title="Inserts &#39;e&#39; into the heap." alt="" coords="208,5,347,35"/>
-<area shape="rect" id="node5" href="$d2/db7/classdijkstraHeap.html#a621c435df91da935a6f7a696dc1b6a46" title="dijkstraHeap::remove" alt="" coords="203,59,352,88"/>
-<area shape="rect" id="node7" href="$d0/d04/classclusterHeap.html#a7f09568d9443616eb332e963c4db9c77" title="clusterHeap::remove" alt="" coords="204,112,351,141"/>
-<area shape="rect" id="node9" href="$d2/db7/classdijkstraHeap.html#a45397d56ec320a7f82847d6b53c35f58" title="dijkstraHeap::update" alt="" coords="207,165,348,195"/>
-<area shape="rect" id="node11" href="$d0/d04/classclusterHeap.html#aafdaca6c38e8f601f946159509c17fbb" title="clusterHeap::update" alt="" coords="208,219,347,248"/>
-</map>

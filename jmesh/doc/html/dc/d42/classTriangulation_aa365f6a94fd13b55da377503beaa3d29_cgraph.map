@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#ab9694f134bbc51c81b8dfe675fa8ecd4" title="Updates the values of n_boundaries, n_handles and n_shells. O(N)." alt="" coords="387,31,565,60"/>
-<area shape="rect" id="node5" href="$d6/da9/classList.html#abc03ea24209c4eb516e2505ef04f265f" title="Gets the number of elements. &#160;&#160;O(1)." alt="" coords="613,5,707,35"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#a456141b43acb6a78a05f62fe4189a1c1" title="Appends a list &#39;l&#39; to the tail by linking the first node of &#39;l&#39; to the last one of this list..." alt="" coords="216,81,328,111"/>
-<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#a173f2bb222c6098098289d91f239832a" title="Initialize the triangle mesh from the file &#39;filename&#39;." alt="" coords="207,135,337,164"/>
-</map>

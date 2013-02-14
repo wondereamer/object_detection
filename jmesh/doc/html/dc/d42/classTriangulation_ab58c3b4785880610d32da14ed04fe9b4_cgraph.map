@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a9d805022386068e20c98f2294fd09e3d" title="Deselects all the triangles. O(N)." alt="" coords="207,5,420,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a12d7b202b70c8ddba10f5d78a1428ceb" title="Inverts the selection status of all the triangles. O(N)." alt="" coords="216,59,411,88"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#a456141b43acb6a78a05f62fe4189a1c1" title="Appends a list &#39;l&#39; to the tail by linking the first node of &#39;l&#39; to the last one of this list..." alt="" coords="257,112,369,141"/>
-</map>

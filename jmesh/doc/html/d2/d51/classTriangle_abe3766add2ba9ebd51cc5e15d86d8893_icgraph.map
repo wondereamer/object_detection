@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#aab365ba8f1e9eaecddb8272d287617a8" title="Triangulation::removeDegenerateTriangles" alt="" coords="215,5,492,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ae6e4787755d66d5e803770b99ca75513" title="Triangulation::removeOverlappingTriangles" alt="" coords="215,59,492,88"/>
-<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#af62f787189c631ca1a8cd7115ded4e51" title="Triangulation::retriangulateVT" alt="" coords="256,112,451,141"/>
-</map>

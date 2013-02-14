@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/da0/classVertex.html#ad821d74b897de34cafd75351ea04fe5f" title="Vertex::inverseCollapse" alt="" coords="483,19,648,48"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#ae6929b477d611367ddd790667c8ad4dd" title="Get the vertex next to &#39;v&#39; on the boundary of the region. O(1)." alt="" coords="423,97,708,127"/>
-<area shape="rect" id="node7" href="$d2/da0/classVertex.html#a9c9d8ea886b2652489837321b8a4bb97" title="Returns the edge preceeding this vertex on the boundary." alt="" coords="191,97,372,127"/>
-<area shape="rect" id="node9" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="239,44,324,73"/>
-<area shape="rect" id="node13" href="$d2/da0/classVertex.html#ab4e43fc6bf5eb192cd16cf8ac0bb544d" title="List of incident triangles." alt="" coords="239,201,324,231"/>
-<area shape="rect" id="node15" href="$d2/da0/classVertex.html#ae0fd7e8ff464527f12ece83b44bbbc66" title="List of adjacent vertices." alt="" coords="239,255,324,284"/>
-</map>

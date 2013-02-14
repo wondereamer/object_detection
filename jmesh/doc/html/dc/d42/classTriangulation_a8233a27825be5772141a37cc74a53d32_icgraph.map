@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a1e694879f694e198ea880220a23a861e" title="Marks all the triangles within distance L from &#39;p&#39; as deselected. O(output)." alt="" coords="221,5,477,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#af66893e75432c67005891b7694198fef" title="Deselects all the triangles farther than L from &#39;p&#39;. O(N)." alt="" coords="224,59,475,88"/>
-<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a7a3755242ac31162d7f5e274b199a3e7" title="Marks all the triangles within distance L from &#39;p&#39; as selected. O(output)." alt="" coords="229,112,469,141"/>
-</map>

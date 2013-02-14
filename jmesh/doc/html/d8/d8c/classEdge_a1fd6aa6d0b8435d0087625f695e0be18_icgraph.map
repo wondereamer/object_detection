@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d8/d8c/classEdge.html#a06c96950a914fe03c7b7e133d984b3df" title="Edge collapse." alt="" coords="283,5,395,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a42e3d87b90251c958abe310830303ac5" title="Triangulation::duplicateNonManifoldVertices" alt="" coords="199,59,479,88"/>
-<area shape="rect" id="node7" href="$d2/da0/classVertex.html#ad821d74b897de34cafd75351ea04fe5f" title="Vertex::inverseCollapse" alt="" coords="256,112,421,141"/>
-<area shape="rect" id="node9" href="$d8/d8c/classEdge.html#a9a16c300b9ce110b5bf49b5c35295699" title="Merge with another boundary edge." alt="" coords="288,165,389,195"/>
-<area shape="rect" id="node11" href="$d2/da0/classVertex.html#a0d9ca6b027ce5175c281256310c36db0" title="Zips the gap starting from here." alt="" coords="296,243,381,272"/>
-</map>

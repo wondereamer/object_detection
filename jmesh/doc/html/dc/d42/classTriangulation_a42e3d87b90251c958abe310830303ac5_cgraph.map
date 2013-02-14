@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d6/da9/classList.html#a9f4271a0089b532e0b3ea0c74a1d177f" title="Appends a new node storing &#39;d&#39; to the head. &#160;&#160;O(1)." alt="" coords="529,53,655,83"/>
-<area shape="rect" id="node5" href="$d6/da9/classList.html#a39fdb8f5c7f4feae8e53bc74646f1248" title="Returns the node storing &#39;d&#39;. NULL if not found. &#160;&#160;O(numels())." alt="" coords="343,25,473,55"/>
-<area shape="rect" id="node7" href="$d8/d8c/classEdge.html#a1fd6aa6d0b8435d0087625f695e0be18" title="Replace vertex &#39;a&#39; with vertex &#39;b&#39; in the edge and return TRUE. If &#39;a&#39; is not a vertex of the edge re..." alt="" coords="336,79,480,108"/>
-<area shape="rect" id="node9" href="$d2/da0/classVertex.html#a7e8c43c6cd55a237d2f5b6373000a9fc" title="List of incident edges." alt="" coords="365,132,451,161"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a51f936888c1d9d7d6759ee9a366426d8" title="Angle at vertex &#39;v&#39;. Return &#45;1 if &#39;v&#39; is not a vertex of the triangle." alt="" coords="244,5,377,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#ad17bb4381bc6d385384b39da49209bfe" title="Euclidean length of the edge." alt="" coords="261,59,360,88"/>
-<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a0441cc1008dffcfa2b61c3ddf8b22f49" title="Edge next to &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="243,112,379,141"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="227,165,395,195"/>
-<area shape="rect" id="node11" href="$d2/d51/classTriangle.html#abf510b439d584050a9067f6ce411ca80" title="Edge preceeding &#39;e&#39; in the ordering or the triangle. NULL if &#39;e&#39; is not an edge of the triangle..." alt="" coords="243,219,379,248"/>
-</map>

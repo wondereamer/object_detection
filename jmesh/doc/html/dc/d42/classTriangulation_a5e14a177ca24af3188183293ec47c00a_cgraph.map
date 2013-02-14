@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a75ccdf1d5198ab4fadd20e37af746ec8" title="Return the triangle&#39;s barycenter." alt="" coords="345,5,484,35"/>
-<area shape="rect" id="node5" href="$d8/d8c/classEdge.html#a2aa28fac7c5299853aa683c744853d5b" title="TRUE iff edge is on the boundary (i.e., one of the two incident triangles is NULL)." alt="" coords="341,59,488,88"/>
-<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="331,112,499,141"/>
-<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ac2da805322c62ca6092c082327636443" title="Triangulation::splitTriangle" alt="" coords="325,165,504,195"/>
-</map>

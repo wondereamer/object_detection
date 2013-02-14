@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="272,5,416,35"/>
-<area shape="rect" id="node5" href="$d6/db8/classgraphEdge.html#ab927484d0e95627c744463d20a80db50" title="Returns TRUE if this edge does not connect points. O(1)." alt="" coords="469,32,627,61"/>
-<area shape="rect" id="node8" href="$d0/d04/classclusterHeap.html#af1206b5f6fcc981422ee8b20d0893256" title="clusterHeap::popHead" alt="" coords="267,109,421,139"/>
-<area shape="rect" id="node10" href="$d0/d04/classclusterHeap.html#aafdaca6c38e8f601f946159509c17fbb" title="clusterHeap::update" alt="" coords="275,163,413,192"/>
-</map>

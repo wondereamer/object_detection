@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#af4d69d4356f29ffffc1d6400038b928f" title="Triangulation::closeLoadingSession" alt="" coords="363,5,597,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a1b01a95f2a5f2339a7adb94613fbf6e1" title="Creates a new Triangulation out of an existing selection containing &#39;t0&#39;. O(output)." alt="" coords="337,59,623,88"/>
-<area shape="rect" id="node7" href="$dc/d42/classTriangulation.html#a72286a574cfdeaa66fa8d3fbd3d7b9a8" title="Loads STL." alt="" coords="401,112,559,141"/>
-<area shape="rect" id="node9" href="$dc/d42/classTriangulation.html#ae07118d06defaf868b4e30c62c889d8e" title="Duplicates edges and vertices to make the mesh homeomorphic to a disk. O(N)." alt="" coords="391,165,569,195"/>
-</map>

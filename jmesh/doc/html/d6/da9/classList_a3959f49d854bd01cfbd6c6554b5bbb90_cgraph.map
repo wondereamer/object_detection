@@ -1,4 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d6/da9/classList.html#ab26b12640c866bafb29b03b2061cbd21" title="Appends a new node storing &#39;d&#39; to the tail. &#160;&#160;O(1)." alt="" coords="191,5,305,35"/>
-<area shape="rect" id="node5" href="$d6/da9/classList.html#a39fdb8f5c7f4feae8e53bc74646f1248" title="Returns the node storing &#39;d&#39;. NULL if not found. &#160;&#160;O(numels())." alt="" coords="183,59,313,88"/>
-</map>

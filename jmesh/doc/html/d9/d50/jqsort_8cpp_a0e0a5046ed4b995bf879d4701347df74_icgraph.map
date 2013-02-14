@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#acec74b744af17b41e6de902fbe4163b6" title="Triangulation::checkGeometry" alt="" coords="132,5,335,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#afe57f115e3fad9e9ecf92134c779d416" title="Triangulation::mergeCoincidentEdges" alt="" coords="109,59,357,88"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#af6153d20fae66c02dc243af901bdce35" title="Sorts the list using &#39;comp&#39; as comparison function for two elements. &#160;&#160;O(numels()^2)." alt="" coords="197,112,269,141"/>
-</map>

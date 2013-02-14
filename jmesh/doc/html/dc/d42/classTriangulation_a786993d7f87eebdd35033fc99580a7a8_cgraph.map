@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#af7bbd9c669f416a29cd69aab40f2178f" title="Creates an Edge connecting two existing mesh vertices." alt="" coords="340,5,519,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a1587ff99be0f56a04cc2c07b7e131de8" title="Creates an arbitrarily oriented Triangle bounded by three existing mesh edges." alt="" coords="300,59,559,88"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#a54573a9ad5046e011ce68c6af5633828" title="Deletes and removes the node storing &#39;d&#39; and frees the memory occupied by &#39;d&#39; itself. &#160;&#160;O(numels())." alt="" coords="376,112,483,141"/>
-<area shape="rect" id="node9" href="$d6/da9/classList.html#a50ead1d3e16bc1a1672eda5c2db6d4d5" title="Deletes and removes the node containing &#39;d&#39;. Returns its position, 0 if &#39;d&#39; is not in the list..." alt="" coords="609,139,737,168"/>
-</map>

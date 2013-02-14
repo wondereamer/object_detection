@@ -1,4 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="244,5,383,35"/>
-<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#a41f4004d88e228cb0b974d0541eca087" title="TRUE if vector is (0,0,0)" alt="" coords="268,59,359,88"/>
-</map>

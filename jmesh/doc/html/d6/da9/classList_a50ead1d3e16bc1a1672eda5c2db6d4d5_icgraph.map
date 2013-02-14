@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d6/db8/classgraphEdge.html#af17d54737475c49c766a3709b6a9d272" title="Edge collapse. O(degree of neighbors)." alt="" coords="201,5,345,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a786993d7f87eebdd35033fc99580a7a8" title="Triangulation::CreateIndexedTriangle" alt="" coords="412,84,655,113"/>
-<area shape="rect" id="node7" href="$d6/da9/classList.html#a54573a9ad5046e011ce68c6af5633828" title="Deletes and removes the node storing &#39;d&#39; and frees the memory occupied by &#39;d&#39; itself. &#160;&#160;O(numels())." alt="" coords="220,109,327,139"/>
-<area shape="rect" id="node10" href="$dc/d42/classTriangulation.html#ae07118d06defaf868b4e30c62c889d8e" title="Duplicates edges and vertices to make the mesh homeomorphic to a disk. O(N)." alt="" coords="184,163,363,192"/>
-</map>

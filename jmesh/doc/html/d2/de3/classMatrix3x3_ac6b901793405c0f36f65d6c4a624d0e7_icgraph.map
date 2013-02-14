@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/de3/classMatrix3x3.html#aefeffc8eb7d5e4077bd66e14b332692d" title="Returns the product of this matrix with a scalar." alt="" coords="200,5,339,35"/>
-<area shape="rect" id="node5" href="$d2/de3/classMatrix3x3.html#aa22d24dc69cbaa7894093b13feebff63" title="Returns the sum of this and another matrix." alt="" coords="199,59,340,88"/>
-<area shape="rect" id="node7" href="$d2/de3/classMatrix3x3.html#a8d8f6642158b76905f82cdf20114f4f1" title="Returns the transpose of this matrix." alt="" coords="199,112,340,141"/>
-<area shape="rect" id="node9" href="$d2/de3/classMatrix3x3.html#a6d2a2b5c4d1876a72aeada3879dc507b" title="Return the matrix transpose." alt="" coords="197,165,341,195"/>
-</map>

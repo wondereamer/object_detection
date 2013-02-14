@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a52d0b7be4253acd254d5a615b9ba8289" title="Point::getAngle" alt="" coords="228,5,340,35"/>
-<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="215,59,353,88"/>
-<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a41f4004d88e228cb0b974d0541eca087" title="TRUE if vector is (0,0,0)" alt="" coords="239,112,329,141"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ae067272a5f326d48edddbfe3395b6e5f" title="Triangle&#39;s vertex opposite to &#39;e&#39;. NULL if &#39;e&#39; is not an edge of the triangle." alt="" coords="200,165,368,195"/>
-</map>

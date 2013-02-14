@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/d51/classTriangle.html#a6575384e5d5264a62cfa7c0ec98cd9ba" title="Return a normal vector with direction (v1&#45;v2) cross (v2&#45;v3). If triangle is degenerate return a null ..." alt="" coords="223,51,361,80"/>
-<area shape="rect" id="node5" href="$d2/d51/classTriangle.html#a5a7a50878cb130f56a3b8a36ab0a5fb7" title="First vertex." alt="" coords="411,5,504,35"/>
-<area shape="rect" id="node7" href="$d2/d51/classTriangle.html#a87e3655f517243d11e6920e5a99837c0" title="Second vertex." alt="" coords="411,64,504,93"/>
-<area shape="rect" id="node9" href="$d2/d51/classTriangle.html#ad9ac6a1add0fb55edc6d5372c3ceec69" title="Third vertex." alt="" coords="411,129,504,159"/>
-<area shape="rect" id="node11" href="$dc/d4f/classPoint.html#aef2212b0f31228e803ecbf389bfe7302" title="Divides the vector by its length. If isNull() the application exits with an error." alt="" coords="233,205,351,235"/>
-<area shape="rect" id="node13" href="$dc/d4f/classPoint.html#a0dc0ae0f78b3e63fac59ee239396577a" title="Set the coordinates to (a,b,c)." alt="" coords="237,259,347,288"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d4f/classPoint.html#a190d0b85de28fe01aaa57bf77e67a169" title="Line&#45;line closest point computation." alt="" coords="236,5,375,35"/>
-<area shape="rect" id="node5" href="$dc/d4f/classPoint.html#ab5b75d0f827c242cf1f0b2ed555fc0cb" title="Distance from segment a&#45;b." alt="" coords="220,59,391,88"/>
-<area shape="rect" id="node7" href="$dc/d4f/classPoint.html#a1e23b0894d658355b7d62588de56fcb1" title="Distance from straight line through &#39;a&#39; and &#39;b&#39;. *cc is set to the closest line point." alt="" coords="223,112,388,141"/>
-</map>

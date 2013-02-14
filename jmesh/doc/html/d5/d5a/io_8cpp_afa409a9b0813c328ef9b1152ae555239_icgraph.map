@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$dc/d42/classTriangulation.html#a173f2bb222c6098098289d91f239832a" title="Initialize the triangle mesh from the file &#39;filename&#39;." alt="" coords="361,5,492,35"/>
-<area shape="rect" id="node5" href="$dc/d42/classTriangulation.html#a018c27a04bf9cfa53aaa3b6ec4743569" title="Loads VER&#45;TRI." alt="" coords="144,31,312,60"/>
-<area shape="rect" id="node8" href="$dc/d42/classTriangulation.html#aa29f4d904a98fe297f5da9bb41dace53" title="Save the triangle mesh to file &#39;filename&#39;." alt="" coords="161,84,295,113"/>
-</map>

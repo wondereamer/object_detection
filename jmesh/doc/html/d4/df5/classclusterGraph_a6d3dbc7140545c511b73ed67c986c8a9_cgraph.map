@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$d0/d04/classclusterHeap.html#a941f6ea884f18a425fb63ee53c6b5bc1" title="clusterHeap::getFirst" alt="" coords="241,5,385,35"/>
-<area shape="rect" id="node5" href="$d0/d04/classclusterHeap.html#a24a734eb64c92aedc8047606dcb5db44" title="clusterHeap::isEmpty" alt="" coords="240,59,387,88"/>
-<area shape="rect" id="node7" href="$d6/db8/classgraphEdge.html#ab927484d0e95627c744463d20a80db50" title="Returns TRUE if this edge does not connect points. O(1)." alt="" coords="235,112,392,141"/>
-<area shape="rect" id="node9" href="$d0/d04/classclusterHeap.html#af1206b5f6fcc981422ee8b20d0893256" title="clusterHeap::popHead" alt="" coords="236,165,391,195"/>
-</map>
