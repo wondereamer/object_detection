@@ -18,7 +18,8 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
-
+#include "graph_draw.h" 
+/// @todo replace map with unordered_map
 enum vertex_node_t { vertex_node };
 namespace boost {
     BOOST_INSTALL_PROPERTY(vertex, node);
@@ -48,6 +49,8 @@ namespace m_graph {
   vertex_finish_time_t 
   */
 
+typedef std::vector<std::vector<int> > MatrixGraph;
+
 /**
  * @brief a helper class carring out some drawing function and algorithms related to graph
  *
@@ -55,7 +58,6 @@ namespace m_graph {
  */
 template < typename Graph >
 class GraphUtil {
-    typedef std::vector<std::vector<int> > MatrixGraph;
     public:
     GraphUtil (Graph *graph):_g(graph){
         assert(graph);  
@@ -64,20 +66,8 @@ class GraphUtil {
     /// @todo output node , output .gml
     //! save the graph to dot file
     void write2dot(std::string filename){
-        std::ofstream fout(filename);
-        fout << "digraph A {\n"
-            << "  rankdir=LR\n"
-            << "size=\"5,3\"\n"
-            << "ratio=\"fill\"\n"
-            << "edge[style=\"bold\"]\n" << "node[shape=\"circle\"]\n";
-
-        typename Graph::EdgeIter ei, ei_end;
-        typename Graph::EdgeWeightsMap edgeWeights = _g->edge_weights();
-        tie(ei, ei_end) = _g->get_all_edges();
-        for (; ei != ei_end; ei++)
-            fout <<_g->source(*ei) << " -> " << _g->target(*ei)
-                << "[label=" << edgeWeights[*ei] << "]\n";
-        fout << "}\n";
+        DottyOutput<Graph> dotty(_g);
+        dotty.write(filename);
     }
     //! calcuating the length of shortest path between all pairs
     void johnson_all_pairs_shortest_paths(){
@@ -85,10 +75,10 @@ class GraphUtil {
         boost::johnson_all_pairs_shortest_paths(_g->get_container(), _dMatrix);
     }
 
-    //! random Graph
+    //! if type is a directedS, then the result would be bidirectionalS!
     void random_graph(int num_vertex, int num_edge){
         boost::mt19937 gen;
-        boost::generate_random_graph(_g->get_container(), 10, 20, gen);
+        boost::generate_random_graph(_g->get_container(), num_vertex, num_edge, gen);
         //randomize_property<edge_weight_t>(g.get_container(), rand_int);
     }
     //! create an matrix related to *latest graph
@@ -133,7 +123,7 @@ class GraphUtil {
             typename Graph::OutEdgeRange outRange = _g->get_out_edges(*nodeRange.first);
             int row = id2index[*nodeRange.first];
             for(; outRange.first != outRange.second; outRange.first++){
-                int col = id2index[_g->target(*outRange.first)];
+                int col = id2index[_g->targetId(*outRange.first)];
                 // mark out edge
                 _dMatrix[row][col] = 1;
                 // mark in edge
@@ -155,9 +145,9 @@ using namespace boost;
 /**
  * @brief an wrapper class to operators of boost graph class,
  *  node is the vertex
- *
+ *  
  * usage example:
- *   typedef adjacency_list<vecS, vecS, undirectedS, no_property, 
+ *   typedef adjacency_list<vecS, vecS, undirectedS/directedS/bidirectionalS, no_property, 
  *                       property<edge_weight_t, int> > boostGraph;
  *   
  *   typedef BaseGraph<boostGraph> MyGraph;
@@ -246,19 +236,19 @@ class BaseGraph
 
         }
         //!
-        inline NodeId source(const EdgeId& id){
+        inline NodeId sourceId(const EdgeId& id){
             return boost::source(id,_g);
         }
         //!
-        inline NodeId source(const EdgeId& id) const{
+        inline NodeId sourceId(const EdgeId& id) const{
             return boost::source(id,_g);
         }
 
-        inline NodeId target(const EdgeId& id){
+        inline NodeId targetId(const EdgeId& id){
             return boost::target(id,_g);
         }
 
-        inline NodeId target(const EdgeId& id) const{
+        inline NodeId targetId(const EdgeId& id) const{
             return boost::target(id,_g);
         }
 
@@ -305,7 +295,7 @@ class BaseGraph
         {
             return boost::out_degree(id, _g);
         }
-
+        //! first == second if no in edges
         inline InEdgeRange get_in_edges(const NodeId& id) const{
             return boost::in_edges(id, _g);
         }
@@ -317,11 +307,16 @@ class BaseGraph
         inline EdgeRange get_all_edges() const{
             return boost::edges(_g);
         }
+        void set_container(GraphContainer *g){
+            /// @todo modify _g as a pointer, which make the class more easy to use with algorithms likelihood
+            /// breadth_first_search
+        }
 
     public:
     protected:
         GraphContainer _g;
 };
+/// @todo does "set" make sure unique?
 
 /**
  * @brief an wrapper class to operators of boost graph class
@@ -339,6 +334,9 @@ template < typename GraphContainer, typename Node>
 class AutoUniGraph :public BaseGraph<GraphContainer>{
     public:
         /* a bunch of graph-specific typedefs */
+        
+        /// @todo using
+//      using Registration<PointSource, PointTarget>::reg_name_;
         typedef typename BaseGraph<GraphContainer>::NodeId NodeId;
         typedef typename BaseGraph<GraphContainer>::EdgeId EdgeId;
         typedef typename BaseGraph<GraphContainer>::NodeIter NodeIter;
@@ -349,6 +347,7 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
         typedef typename BaseGraph<GraphContainer>::InEdgeIter InEdgeIter;
         typedef typename BaseGraph<GraphContainer>::DegreeSize DegreeSize;
         typedef typename BaseGraph<GraphContainer>::SizeType SizeType;
+        typedef Node NodeType;
 
         typedef std::pair<AdjIter, AdjIter> AdjRange;
         typedef std::pair<NodeIter, NodeIter> NodeRange;
@@ -397,7 +396,7 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
             // remove old value
             _node2id.erase(i->second);
             // add new
-            i->second = _node2id.insert(std::make_pair(node, id));
+            _id2nodeIdPairPtr[id]=_node2id.insert(std::make_pair(node, id)).first;
         }
         inline const Node& get_node(const NodeId& id)
         {
@@ -417,6 +416,7 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
         }
 
     private:
+        /// @todo replace with boost::bimap
         //! used in put function
         typename std::map<NodeId, typename std::map<Node, NodeId>::iterator>  
             _id2nodeIdPairPtr;
@@ -453,6 +453,7 @@ class ManualUniGraph :public BaseGraph<GraphContainer>{
         typedef typename BaseGraph<GraphContainer>::SizeType SizeType;
         typedef typename property_map<GraphContainer, vertex_node_t>::type NodesMap;
         typedef typename BaseGraph<GraphContainer>::EdgeWeightsMap EdgeWeightsMap;
+        typedef Node NodeType;
 
         typedef std::pair<AdjIter, AdjIter> AdjRange;
         typedef std::pair<NodeIter, NodeIter> NodeRange;
@@ -495,6 +496,12 @@ class ManualUniGraph :public BaseGraph<GraphContainer>{
 
 };
 
+    typedef std::vector< std::vector<int> > MatrixGraph;
+
+    //! read_graph
+    void read_graph(std::string filename, MatrixGraph &graph);
+    //! print graph
+    void print_graph(MatrixGraph &graph);
 } /* m_graph */
 
 #endif /* end of include guard: GRAPH_H */

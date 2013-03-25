@@ -14,8 +14,11 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <map>
 namespace m_opencv {
     using std::string;
+
+
     template<class T> class Image
     {
         private:
@@ -77,9 +80,25 @@ namespace m_opencv {
         bool operator==(const RgbColor& other) const {
             return b == other.b && g == other.g && r == other.r;
         }
+        RgbColor(){ }
+        RgbColor(unsigned char r_, unsigned char g_,
+                unsigned char b_):r(r_), g(g_), b(b_){ }
 
         bool operator!=(const RgbColor& other) const {
             return !(*this ==(other));
+        }
+        bool operator<(const RgbColor& other) const{
+            if( r < other.r)
+                return true;
+            else if(r > other.r)
+                return false;
+            else if(g < other.g)
+                return true;
+            else if(g > other.g)
+                return false;
+            else if(b < other.b)
+                return true;
+            else return false;
         }
 
         static RgbColor white_color(){
@@ -97,7 +116,7 @@ namespace m_opencv {
             return (v == other.v);
         }
         static unsigned char color_distance(const GrayColor& a, 
-                                              const GrayColor &b){
+                const GrayColor &b){
             return abs(a.v - b.v);
         }
         static void add2colorpool(const GrayColor &c){
@@ -145,7 +164,7 @@ namespace m_opencv {
             return (v == other.v);
         }
         static double color_distance(const LuvColor& a, 
-                                              const LuvColor &b){
+                const LuvColor &b){
             return sqrt(pow(a.l - b.l, 2) +  pow(a.v - b.v, 2) + pow(a.u - b.u, 2));
         }
         static void add2colorpool(const LuvColor &c){
@@ -172,30 +191,98 @@ namespace m_opencv {
         /*static RgbColor averageColor;*/
     };
 
+    void     rgb2luv(int R,int G, int B, LuvColor &luvdata);
+    LuvColor rgb2luv(const RgbColor &rgb);
+    class RandomColor{
+        public:
+
+            typedef std::map<std::string, RgbColor> ColorMap;
+            RandomColor(double dist){
+                _dist = dist;
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
+//                                                 RgbColor(234, 16, 7))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#9DD4FF",
+//                                                 RgbColor(28, 166, 205))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
+//                                                 RgbColor(69, 183, 17))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#509467",
+//                                                 RgbColor(255, 112, 117))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
+//                                                 RgbColor(184, 255,92))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#ED9F9F",
+//                                                 RgbColor(162, 92, 255))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
+//                                                   RgbColor(137, 242, 218))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#8FBC8F",
+//                                                 RgbColor(162, 210, 101))).first);
+
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
+                                                 RgbColor(0,0,0))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
+                                                 RgbColor(35,35,35))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#9DD4FF",
+                                                 RgbColor(70,70,70))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
+                                                 RgbColor(105,105,105))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#509467",
+                                                 RgbColor(140,140,140))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
+                                                 RgbColor(175,175,175))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#ED9F9F",
+                                                 RgbColor(210,210,210))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
+                                                   RgbColor(245,245,245))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#8FBC8F",
+//                                                 RgbColor(162, 210, 101))).first);
+            }
+            RgbColor random_color();
+            RgbColor diff_random_color();
+
+            void accept_color(const RgbColor &c){
+                LuvColor luv(rgb2luv(c));
+                _acceptedColors.push_back(luv);
+            }
+            void pop_color(){
+                _acceptedColors.pop_back();
+            }
+            void set_def_color(const ColorMap &t){
+                _idxDefColors.clear();
+                _defColors.clear();
+                for(auto &p : t){
+                   _idxDefColors.push_back(_defColors.insert(p).first);
+                }
+            }
+        public:
+            double _dist;
+            std::vector<LuvColor> _acceptedColors;
+            ColorMap _defColors;
+            std::vector<ColorMap::const_iterator> _idxDefColors;
+
+    };
+
     int blur(IplImage *input);
     //
-    void      rgb2luv(int R,int G, int B, LuvColor &luvdata);
     IplImage* create_gray_image(const IplImage* psrc);
     LuvColor* create_luv_image(const IplImage *pSrc);
     void    output_img_info(const IplImage *img);
     void    show_image(const IplImage *image);
     void    draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray);
     void    draw_rentangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int color_gray);
-//    void    fill_rectangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int ctrst0, int ctrst1);
+    //    void    fill_rectangle(IplImage *pSrc, int x0, int y0, int x1, int y1, int ctrst0, int ctrst1);
     void    fill_rectangle(GrayImage &pSrc, int x0, int y0, int x1, int y1, int min, int max);
     void rgb2hsv(RgbColor rgb, HsvColor& hsv);
 
-//    //! fill rectangle, including point (x0,x0), (x1,y1)
-//    template < typename T >
-//    void fill_rectangle(const T& img, int x0, int y0, int x1, int y1, T min, T max){
-//        int height = y1 - y0;
-//        int width = x1 - x0;
-//        for (int row = 0; row <= height; row++) 
-//            for (int col = 0; col <= width; col++)
-//                img[y0 + row][x0 + col] = min;
-//    }
+    //    //! fill rectangle, including point (x0,x0), (x1,y1)
+    //    template < typename T >
+    //    void fill_rectangle(const T& img, int x0, int y0, int x1, int y1, T min, T max){
+    //        int height = y1 - y0;
+    //        int width = x1 - x0;
+    //        for (int row = 0; row <= height; row++) 
+    //            for (int col = 0; col <= width; col++)
+    //                img[y0 + row][x0 + col] = min;
+    //    }
 
-    
+
     std::ostream& operator<<(std::ostream& out, const RgbColor& pixel);
     std::ostream& operator<<(std::ostream& out, const GrayColor& pixel);
     std::ostream& operator<<(std::ostream& out, const RgbImage& image);

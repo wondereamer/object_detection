@@ -1,2 +1,20 @@
+
 when #cluster() end, ClusterNode would be freed;
 when #MyTriangulation out of scope, triangles would be freed;
+prepare to remind something will happen,  to remind more clearly, may be replaced with comment
+
+
+try point cloud fitting
+
+the normal, error ,radius of point cloud fitting?
+define trace
+
+
+breadth first
+kinect
+
+how to set weights?
+how to allign?
+
+size of leaf nodes!
+

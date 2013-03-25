@@ -8,6 +8,7 @@
 #ifndef M_GEOMETRY_H
 
 #define M_GEOMETRY_H
+#include <iostream>
 namespace m_geometry {
     
     struct Point {

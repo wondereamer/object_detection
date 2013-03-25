@@ -30,6 +30,7 @@ namespace m_util  {
         }
         return result;
     }
+
     std::string string_format(const std::string &fmt, ...) {
         int size = 100;
         std::string str;

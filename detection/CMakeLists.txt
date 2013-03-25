@@ -66,6 +66,8 @@ TARGET_LINK_LIBRARIES(object_detection
     /usr/lib/libboost_regex.so 
     ${JMesh}/libjmesh.a
     /usr/lib/i386-linux-gnu/libXi.so
+    /usr/lib/libpython2.7.so
+    /usr/lib/libboost_python-py27.so
     ${Boost_GRAPH_LIBRARY}
     ${PCL_LIBRARIES})
 message("${PCL_LIBRARIES}")

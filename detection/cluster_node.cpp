@@ -1,4 +1,4 @@
-#include "shape_segment.h"
+#include "cluster_node.h"
 #include "graph.h" 
 #include <iostream>
 #include <fstream>
@@ -13,21 +13,69 @@
 #include <vector>
 #include <iomanip>
 #include "triangulate.h"
+#include <pcl/features/normal_3d.h>
+#include <pcl/sample_consensus/ransac.h>
+
+bool operator == (const TrNode& a, const TrNode &b) {
+    return a.id1 == b.id1 && a.id2 == b.id2;
+}
+std::size_t hash_value(TrNode const &b)
+{
+    std::size_t seed =  0;
+    boost::hash_combine(seed, b.id1);
+    boost::hash_combine(seed, b.id2);
+    return seed;
+}
+
+
+//    std::vector<int> inliers;
+//    std::vector<double> distances;
+//    pcl::SampleConsensusModelSphere<PointT>::Ptr
+//        model_s(new pcl::SampleConsensusModelSphere<PointT> (cloud));
+//    pcl::RandomSampleConsensus<PointT> ransac (model_s);
+//    ransac.setDistanceThreshold (.01);
+//    ransac.computeModel();
+//    ransac.getInliers(inliers);
+//    auto &p = cloud->points;
+//    for(int i : inliers){
+//        viz.add_point((float)p[i].x, (float)p[i].y, (float)p[i].z, 255, 255, 255, 1); 
+//    }
+//    Eigen::VectorXf modelCoefficient;
+//    ransac.getModelCoefficients(modelCoefficient);
+//    model_s->getDistancesToModel(modelCoefficient, distances);
+//    std::copy(distances.begin(), distances.end(),    
+//            std::ostream_iterator<double>(std::cout, "\n"));
+//
+//    viz.push_def_cloud();
+//    viz.add_sphere(modelCoefficient[0], modelCoefficient[1], modelCoefficient[2], modelCoefficient[3]);
+
+
 using namespace boost;
 const int LOWER_BOUND = 100;                     //!< the minmum number one component have 
 int TrNode::numLeafs = 0;
-std::set<TrNode> ClusterNode::edgeInfo;
-std::map<int, int> ClusterNode::gId2treeId;
-ClusterNode::HieraTree ClusterNode::hieracTree;
-ClusterNode::HieraTree::NodeId ClusterNode::rootId;
-ClusterNode::HieraTree::EdgeWeightsMap ClusterNode::weights = hieracTree.edge_weights();
-
+Coefficient TrNode::defaultCoef(Point(0,0,0), Point(0,0,1), 1);
+std::unordered_set<TrNode,boost::hash<TrNode>> ClusterNode::edgeInfo;
+std::unordered_map<int, int> ClusterNode::gId2treeId;
+BinaryTree ClusterNode::hierarchyTree;
+BinaryTree::NodeId ClusterNode::rootId;
+BinaryTree::EdgeWeightsMap ClusterNode::weights = hierarchyTree.edge_weights();
+TrNode BinaryTree::_currentNode;
+int ClusterNode::num_triangles = 0;
+//std::map<int, std::vector<double>> ClusterNode::size2costs;
+pcl::PointCloud<PointT>::Ptr ClusterNode::_cloud;
+Coefficient ClusterNode::coef1;
+Coefficient ClusterNode::coef2;
+Coefficient ClusterNode::coef3;
 void ClusterNode::reset(){
     TrNode::numLeafs = 0;
     edgeInfo.clear();
     gId2treeId.clear();
-    hieracTree.clear();
+    hierarchyTree.clear(); 
+    //    size2costs.clear();
 }
+//bool ClusterNode::have_reseted(){
+//    return TrNode::numLeafs && edgeInfo.size() == 0 && gId2treeId.size() == 0 && hierarchyTree.size() == 0;
+//}
 
 bool ClusterNode::bestFittingCircle(double *pts, int numpts, double& x0, double &y0, double& r)
 {
@@ -89,8 +137,12 @@ bool ClusterNode::bestFittingSphere(SymMatrix4x4& AtA, double *Atb, double& x0, 
 //
 //////////////////////////////////////////////////////////////////////////
 
-ClusterNode::ClusterNode(Triangle *t, int index)
+ClusterNode::ClusterNode(Triangle *t, int index, int cId)
 {
+
+    //coef1.resize(4);
+    //coef2.resize(4);
+    //coef3.resize(7);
     id = index;
     triangles.appendHead(t);
     double *a = new double(t->area());
@@ -101,6 +153,7 @@ ClusterNode::ClusterNode(Triangle *t, int index)
     Cov_v = (SymMatrix3x3(v1->x, v1->y, v1->z)+SymMatrix3x3(v2->x, v2->y, v2->z)+SymMatrix3x3(v3->x, v3->y, v3->z))*(tot_area/3.0);
     sum_ctr *= tot_area;
     Edge *e; double le; Point pe;
+    _centerIds.push_back(cId);
     for (e=t->e1; e!=NULL; e=(e==t->e1)?(t->e2):((e==t->e2)?(t->e3):(NULL)))
         if (!e->isOnBoundary())
         {
@@ -163,6 +216,8 @@ double ClusterNode::fittingPlaneCost(const void *cn1, const void *cn2)
         }
     }
 
+    coef1.point = app;
+    coef1.direction = nor;
     return lcost;
 }
 
@@ -204,6 +259,10 @@ double ClusterNode::fittingSphereCost(const void *cn1, const void *cn2)
         }
     }
 
+    coef2.point = center;
+    coef2.radius = radius;
+    //    std::cout<<center.x<<" "<<center.y<<" "<<center.z<<std::endl;
+    //    std::cout<<radius<<std::endl;
     return lcost;
 }
 
@@ -215,12 +274,15 @@ double ClusterNode::fittingCylinderCost(const void *cn1, const void *cn2)
 
     double lcost = 0;
     double tot_area = (n1->tot_area+n2->tot_area);
-    Point axis, center_of_mass;
     ClusterNode *gn;
     Triangle *t;
     Node *n, *o;
     Point p, b;
+    // radius, axis, center_of_mass
     double radius, area, d, x0, y0;
+    Point axis, center_of_mass;
+    // center of cylinder
+    Point center_of_cyl;
 
     double sevals[3], evals[3], evecs[9];
     SymMatrix3x3 Cov_c = n1->Cov_c+n2->Cov_c;
@@ -240,8 +302,6 @@ double ClusterNode::fittingCylinderCost(const void *cn1, const void *cn2)
     axis.setValue(evecs[3*index[0]], evecs[3*index[0]+1], evecs[3*index[0]+2]);
     //
     center_of_mass = (n1->sum_ctr+n2->sum_ctr)/tot_area;
-
-    Point center_of_cyl;
     Point ce1, ce2;
     ce1.setValue(evecs[3*index[1]], evecs[3*index[1]+1], evecs[3*index[1]+2]);
     ce2.setValue(evecs[3*index[2]], evecs[3*index[2]+1], evecs[3*index[2]+2]);
@@ -250,7 +310,8 @@ double ClusterNode::fittingCylinderCost(const void *cn1, const void *cn2)
     int i=0;
     for (gn=n1; gn!=NULL; gn=(gn==n1)?(n2):(NULL))
     {
-        o = gn->areas.head(); FOREACHVTTRIANGLE((&(gn->triangles)), t, n)
+        o = gn->areas.head(); 
+        FOREACHVTTRIANGLE((&(gn->triangles)), t, n)
         {
             area = (*((double *)o->data));
             b = (*(t->v1()))-center_of_mass; pts[i++] = b*ce1; pts[i++] = b*ce2; pts[i++] = area;
@@ -264,7 +325,7 @@ double ClusterNode::fittingCylinderCost(const void *cn1, const void *cn2)
     delete pts;
 
     if (tot_area/radius < 1.0e-9) return DBL_MAX;
-
+    //
     center_of_cyl = center_of_mass + ce1*x0 + ce2*y0;
 
     for (gn=n1; gn!=NULL; gn=(gn==n1)?(n2):(NULL))
@@ -280,6 +341,9 @@ double ClusterNode::fittingCylinderCost(const void *cn1, const void *cn2)
             o=o->next();
         }
     }
+    coef3.point = center_of_cyl;
+    coef3.direction = axis;
+    coef3.radius = radius;
 
     return lcost;
 }
@@ -316,8 +380,8 @@ void ClusterNode::merge(const void *n1, const void *n2)
     ClusterNode *c2 = (ClusterNode *)n2;
 
     // create leaf nodes
-    HieraTree::NodeId child1Id;
-    HieraTree::NodeId child2Id;
+    BinaryTree::NodeId child1Id;
+    BinaryTree::NodeId child2Id;
     int c2Size = c2->triangles.numels();
     int c1Size = c1->triangles.numels();
     if(c1Size >= LOWER_BOUND || c2Size >= LOWER_BOUND){
@@ -329,25 +393,29 @@ void ClusterNode::merge(const void *n1, const void *n2)
         }else{
             // insert a new leaf node
             // copy triangles data
+            TrNode me1(c1->id, c1->childId);
+            std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
             TrNode leaf;
+            leaf.type = i->type;
             leaf.triangles = c1->triangles.toArray();
             leaf.size = c1->triangles.numels();
             leaf.id1 = TrNode::numLeafs++;
-            // mark the node is a leaf
+            // mark the node  a leaf
             leaf.id2 = -1;
-            child1Id = hieracTree.add_node(leaf);
-            leaf.triangles = NULL;
+            child1Id = hierarchyTree.add_node(leaf);
         }
         if(i2 != gId2treeId.end()){
             child2Id = i2->second;
         }else{
+            TrNode me1(c2->id, c2->childId);
+            std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
             TrNode leaf;
+            leaf.type = i->type;
             leaf.triangles = c2->triangles.toArray();
             leaf.size = c2->triangles.numels();
             leaf.id1 = TrNode::numLeafs++;
             leaf.id2 = -1;
-            child2Id = hieracTree.add_node(leaf);
-            leaf.triangles = NULL;
+            child2Id = hierarchyTree.add_node(leaf);
         }
     }
     // merge c2 to c1, update c1 for further merging
@@ -360,29 +428,33 @@ void ClusterNode::merge(const void *n1, const void *n2)
     c1->Cov_v += c2->Cov_v;
     c1->Cov_c += c2->Cov_c;
     c1->AtA += c2->AtA;
+    c1->childId = c2->id;
     c1->Atb[0] += c2->Atb[0];
     c1->Atb[1] += c2->Atb[1];
     c1->Atb[2] += c2->Atb[2];
     c1->Atb[3] += c2->Atb[3];
+    // join two list
+    c1->_centerIds.splice(c1->_centerIds.end(), c2->_centerIds);
+    c2->_centerIds.clear();
+    //
+    int size = c1Size + c2Size;
+    TrNode me1(c1->id, c2->id);
+    std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
+    //    size2costs[size].push_back(i->cost);
+    //
     // create parent node 
     if(c1Size >= LOWER_BOUND || c2Size >= LOWER_BOUND){
-        TrNode me1, me2;
-        me1.id1 = c1->id;
-        me1.id2 = c2->id;
-        me2.id1 = c2->id;
-        me2.id2 = c1->id;
-        std::set<TrNode>::iterator i = edgeInfo.find(me1);
-        if (i == edgeInfo.end()) {
-            i = edgeInfo.find(me2);
-        }
+        TrNode me1(c1->id, c2->id);
+        std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
         // attributes of parent is set in function #edgeCostFunction
         // insert a new parent node
-        HieraTree::NodeId parentId = hieracTree.add_node(*i);
+        BinaryTree::NodeId parentId = hierarchyTree.add_node(*i);
+        hierarchyTree._inStack.push(parentId);
         rootId = parentId;
         gId2treeId[c1->id] = parentId;
         // insert edges between child and parent
-        auto edge1Id = hieracTree.add_edge(parentId, child1Id).first;
-        auto edge2Id = hieracTree.add_edge(parentId, child2Id).first;
+        auto edge1Id = hierarchyTree.add_edge(parentId, child1Id).first;
+        auto edge2Id = hierarchyTree.add_edge(parentId, child2Id).first;
         if (c1Size > c2Size) {
             weights[edge1Id] = 1;
             weights[edge2Id] = 0;
@@ -403,29 +475,40 @@ double ClusterNode::edgeCostFunction(const void *cn1, const void *cn2)
     //@@!
     ClusterNode *n1 = (ClusterNode *)cn1;
     ClusterNode *n2 = (ClusterNode *)cn2;
+    TrNode internalNode(n1->id, n2->id);
     double tot_area = n1->tot_area + n2->tot_area;
     double c1, c2, c3;
     // find the best fitting
     c1 = fittingPlaneCost(cn1, cn2);
     c2 = fittingSphereCost(cn1, cn2);
     c3 = fittingCylinderCost(cn1, cn2);
+    //    std::cout<<c1<<" "<<c2<<" "<<c3<<std::endl;
     double cost = c1;
-    if (c2 < cost) cost = c2;
-    if (c3 < cost) cost = c3;
+    if (c2 < cost)
+        cost = c2;
+    if (c3 < cost)
+        cost = c3;
     double temp = cost;
     // adjust cost
     if (cost < DBL_MAX) cost += tot_area*ACT_AREA_BIAS;
     // record the fitting cost
-    TrNode internalNode;
-    internalNode.id1 = int(n1->id);
-    internalNode.id2 = int(n2->id);
     // record the fitting primitive
-    if(temp == c1)
+    Coefficient coefficient;
+    if(temp == c1){
+        coefficient = coef1;
         internalNode.type = HFP_FIT_PLANES;
-    else if(temp == c2)
+        //        std::cout<<"plane"<<std::endl;
+    }
+    else if(temp == c2){
+        coefficient = coef2;
         internalNode.type = HFP_FIT_SPHERES;
-    else if(temp == c3)
-        internalNode.type = HFP_FIT_SPHERES;
+        //        std::cout<<"ball"<<std::endl;
+    }
+    else if(temp == c3){
+        coefficient = coef3;
+        internalNode.type = HFP_FIT_CYLINDERS;
+        //        std::cout<<"cylinder"<<std::endl;
+    }
     else{
         assert(false);
     }
@@ -433,21 +516,50 @@ double ClusterNode::edgeCostFunction(const void *cn1, const void *cn2)
     internalNode.cost0 = c1;
     internalNode.cost1 = c2;
     internalNode.cost2 = c3;
-    edgeInfo.insert(internalNode);
+    internalNode.coefficient = coefficient;
+    // update the latest before mergeing,
+    // after merging, there would be no cost calculation requirement,
+    // so this is always right
+    auto rst = edgeInfo.insert(internalNode);
+    if (!rst.second) {
+        edgeInfo.erase(rst.first);
+        edgeInfo.insert(rst.first, internalNode);
+    }
+    internalNode.id1 = n2->id;
+    internalNode.id2 = n1->id;
+    rst = edgeInfo.insert(internalNode);
+    if (!rst.second) {
+        edgeInfo.erase(rst.first);
+        edgeInfo.insert(rst.first, internalNode);
+    }
+
     return cost;
 }
 
-ClusterNode::HieraTree& ClusterNode::cluster(MyTriangulation *tin){
+BinaryTree& ClusterNode::cluster(MyTriangulation *tin){
     // triangle meshes info
     // the destruction function of clusterGraph will free ClusterNode
     clusterGraph cg(tin->E.numels(), &ClusterNode::edgeCostFunction);
+    hierarchyTree.clear();
+
     Triangle *t;
     Edge *e;
     Node *n;
     int i=0;
     // insert nodes to graph
-    FOREACHVTTRIANGLE((&(tin->T)), t, n)
-        t->info = cg.addNode(new ClusterNode(t, i++));
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr temp (new pcl::PointCloud<pcl::PointXYZRGB>);
+    _cloud = temp;
+
+    FOREACHVTTRIANGLE((&(tin->T)), t, n){
+        Point p = t->getCenter();
+        PointT p2;
+        p2.x = (float)p.x;
+        p2.y = (float)p.y;
+        p2.z = (float)p.z;
+        _cloud->points.push_back(p2);
+        t->info = cg.addNode(new ClusterNode(t, i++, _cloud->size() - 1));
+
+    }
     // insert edges to graph
     FOREACHVEEDGE((&(tin->E)), e, n){
         if (!e->isOnBoundary()) {
@@ -459,17 +571,145 @@ ClusterNode::HieraTree& ClusterNode::cluster(MyTriangulation *tin){
 
     // output info
     //    std::cout<<cg.nodes.numels()<<std::endl;
-    //    GraphUtil<HieraTree> gutil(&hieracTree);
+    //    GraphUtil<BinaryTree> gutil(&hierarchyTree);
     //    gutil.write2dot("hierarchy_tree.dot");
     //    std::cout<<"*************nodes:**************"<<std::endl;    
-    //    std::cout<<hieracTree.num_nodes()<<std::endl;
-    //    auto nodeRange = hieracTree.get_all_nodes();
+    //    std::cout<<hierarchyTree.num_nodes()<<std::endl;
+    //    auto nodeRange = hierarchyTree.get_all_nodes();
     //    for(; nodeRange.first != nodeRange.second; nodeRange.first++){
     //        int id = *nodeRange.first;
-    //        const TrNode &node =  hieracTree.get_node(id);
+    //        const TrNode &node =  hierarchyTree.get_node(id);
     //        std::cout<<node.size<<std::endl;
     //    }
     std::cout<<"num triangle:"<<cg.nodes.numels()<<std::endl;
-    std::cout<<"clustering done!" ;
-    return hieracTree;
+    num_triangles = cg.nodes.numels();
+    std::cout<<"clustering done!"<<std::endl;
+    return hierarchyTree;
 }
+
+//double ClusterNode::my_fittingCylinderCost(const void *cn1, const void *cn2){
+//
+//    std::vector<double> distances;
+//    ClusterNode *n1 = (ClusterNode *)cn1;
+//    ClusterNode *n2 = (ClusterNode *)cn2;
+//    // copy point indices
+//    std::vector<int> pointIndices(n1->_centerIds.size() + n2->_centerIds.size());
+//    int count = 0;
+//    for(int p : n1->_centerIds)
+//        pointIndices[count++] = p;
+//    for(int p : n2->_centerIds)
+//        pointIndices[count++] = p;
+//    // 
+//
+//    if (pointIndices.size() <= 20) {
+//        return 1000000;
+//    }
+//    pcl::SampleConsensusModelCylinder<PointT, pcl::Normal>::Ptr
+//        model(new pcl::SampleConsensusModelCylinder<PointT,pcl::Normal> (_cloud, pointIndices));
+//
+//    // Estimate point normals
+//    pcl::NormalEstimation<PointT, pcl::Normal> ne;
+//    pcl::search::KdTree<PointT>::Ptr tree (new pcl::search::KdTree<PointT> ());
+//    pcl::PointCloud<pcl::Normal>::Ptr cloud_normals (new pcl::PointCloud<pcl::Normal>);
+//    ne.setSearchMethod (tree);
+//    ne.setInputCloud (_cloud);
+//    ne.setKSearch (50);
+//    ne.compute (*cloud_normals);
+//    //     
+//    model->setInputNormals(cloud_normals); 
+//    pcl::RandomSampleConsensus<PointT> ransac (model);
+//    ransac.setDistanceThreshold (.01);
+//    ransac.computeModel();
+//    ransac.getModelCoefficients(coef3);
+//    model->getDistancesToModel(coef3, distances);
+//
+//    double sum = 0;
+//    for(double d : distances){
+//        if(m_util::is_nun(d))
+//            d = 0;
+//        sum += d; 
+//    }
+//    assert(distances.size() > 0);
+//    return sum / distances.size();
+//}
+////! x y z radius
+//double ClusterNode::my_fittingSphereCost(const void *cn1, const void *cn2)
+//{
+//    std::vector<double> distances;
+//    std::vector<int> inliers;
+//    ClusterNode *n1 = (ClusterNode *)cn1;
+//    ClusterNode *n2 = (ClusterNode *)cn2;
+//    // copy point indices
+//    std::vector<int> pointIndices(n1->_centerIds.size() + n2->_centerIds.size());
+//    int count = 0;
+//    for(int p : n1->_centerIds)
+//        pointIndices[count++] = p;
+//    for(int p : n2->_centerIds)
+//        pointIndices[count++] = p;
+//
+//    if (pointIndices.size() <= 80) {
+////        return 0;
+//        return 1000000;
+//    }
+//    // 
+//    std::cout<<"*********************************"<<std::endl;    
+//    pcl::SampleConsensusModelSphere<PointT>::Ptr
+//        model(new pcl::SampleConsensusModelSphere<PointT> (_cloud,pointIndices));
+//
+//    pcl::RandomSampleConsensus<PointT> ransac (model);
+//    
+//    ransac.setDistanceThreshold (.01);
+//    ransac.computeModel();
+//    ransac.getModelCoefficients(coef2);
+////    ransac.getInliers(inliers);
+//    model->getDistancesToModel(coef2, distances);
+//
+//    double sum = 0;
+//    for(double d : distances){
+//        if(m_util::is_nun(d))
+//            d = 0;
+//        sum += d; 
+//    }
+//    assert(distances.size() > 0);
+//    return sum / distances.size();
+////    return inliers.size();
+//}
+////! a b c d 
+//double ClusterNode::my_fittingPlaneCost(const void *cn1, const void *cn2)
+//{
+//    std::vector<double> distances;
+//    std::vector<int> inliers;
+//    ClusterNode *n1 = (ClusterNode *)cn1;
+//    ClusterNode *n2 = (ClusterNode *)cn2;
+//    // copy point indices
+//    std::vector<int> pointIndices(n1->_centerIds.size() + n2->_centerIds.size());
+//    int count = 0;
+//    for(int p : n1->_centerIds)
+//        pointIndices[count++] = p;
+//    for(int p : n2->_centerIds)
+//        pointIndices[count++] = p;
+//    //
+//    if (pointIndices.size() <= 2) {
+//        return 0;
+//    }
+//    // 
+//    pcl::SampleConsensusModelPlane<PointT>::Ptr
+//        model(new pcl::SampleConsensusModelPlane<PointT> (_cloud, pointIndices));
+//    pcl::RandomSampleConsensus<PointT> ransac (model);
+//    
+//    ransac.setDistanceThreshold (.01);
+//    ransac.computeModel();
+//    ransac.getModelCoefficients(coef1);
+////    ransac.getInliers(inliers);
+//    model->getDistancesToModel(coef1, distances);
+//
+//    double sum = 0;
+//    for(double d : distances){
+//        if(m_util::is_nun(d))
+//            d = 0;
+//        sum += d; 
+//    }
+//    assert(distances.size() > 0);
+//    return sum / distances.size();
+////    return inliers.size();
+//}

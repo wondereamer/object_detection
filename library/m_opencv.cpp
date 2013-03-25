@@ -20,13 +20,17 @@ namespace m_opencv {
     using namespace cv;
     unsigned rgb2uint(unsigned char r, unsigned char g, unsigned char b){
         return  (static_cast<unsigned>(r) << 16 | static_cast<unsigned>(g) << 8 | 
-                 static_cast<unsigned>(b));
+                static_cast<unsigned>(b));
     }
     void uint2rgb(unsigned input, unsigned *r, unsigned *g, unsigned *b){
-
+//        uint32_t rgb =  *reinterpret_cast<int*>(&p.rgb);
+        *r =  (input >> 16) & 0x0000ff;
+        *g =  (input >> 8) & 0x0000ff;
+        *b =  (input) & 0x0000ff;
     }
-    unsigned int random_color()
-    {
+
+    RgbColor RandomColor::random_color(){
+        RgbColor color;
         double r, g, b, l, n;
         r = ((double)rand())/RAND_MAX;
         g = ((double)rand())/RAND_MAX;
@@ -34,12 +38,42 @@ namespace m_opencv {
         l=sqrt(r*r+g*g+b*b);
         n = 1.0/l;
         r *= n; g *= n; b *= n;
-        unsigned int ir = (unsigned int)(r*256); if (ir>256) ir=256;
-        unsigned int ig = (unsigned int)(g*256); if (ig>256) ig=256;
-        unsigned int ib = (unsigned int)(b*256); if (ib>256) ib=256;
-        return ((ir<<24) + (ig<<16) + (ib<<8) + 0x000000ff);
+        color.r = (unsigned char)(r*256); 
+        if (color.r > 256) 
+            color.r = 256;
+        color.g = (unsigned char)(g*256);
+        if (color.g > 256)
+            color.g = 256;
+        color.b = (unsigned char)(b*256);
+        if (color.b > 256)
+            color.b = 256;
+        return color;
     }
-
+    // when there is much color accepted, this function 
+    // will lead to an dead loop
+    RgbColor RandomColor::diff_random_color(){
+        if (_acceptedColors.size() < _defColors.size()) {
+            // usef default color first
+            return _idxDefColors[_acceptedColors.size()]->second;
+        }
+        LuvColor newluv;
+        RgbColor color;
+        while(true){
+            color = random_color();    
+            newluv = rgb2luv(color);
+            int i = 0;
+            while( i < _acceptedColors.size()) {
+                // condition
+                if(LuvColor::color_distance(newluv, _acceptedColors[i]) < _dist){
+                    break;
+                }
+                i++;
+            }
+            if (i == _acceptedColors.size()) 
+                break;
+        }
+        return color;
+    }
     void draw_circle(IplImage *pSrc, int x, int y, int radius, int color_gray){
         CvPoint center;
         center.x = x;
@@ -70,6 +104,11 @@ namespace m_opencv {
                 v.v = m_math::rand_int(min, max);
                 img[y0 + row][x0 + col] = v;
             }
+    }
+    LuvColor rgb2luv(const RgbColor &rgb){
+        LuvColor luvdata;
+        rgb2luv(rgb.r, rgb.g, rgb.b, luvdata);
+        return luvdata;
     }
     void rgb2luv(int R,int G, int B, LuvColor& luvdata)
     {
