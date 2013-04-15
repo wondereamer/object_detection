@@ -197,43 +197,42 @@ namespace m_opencv {
         public:
 
             typedef std::map<std::string, RgbColor> ColorMap;
-            RandomColor(double dist){
+            RandomColor(double dist = 100){
                 _dist = dist;
+
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
-//                                                 RgbColor(234, 16, 7))).first);
+//                                                 RgbColor(0,0,0))).first);
+//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
+//                                                 RgbColor(35,35,35))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#9DD4FF",
-//                                                 RgbColor(28, 166, 205))).first);
+//                                                 RgbColor(70,70,70))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
-//                                                 RgbColor(69, 183, 17))).first);
+//                                                 RgbColor(105,105,105))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#509467",
-//                                                 RgbColor(255, 112, 117))).first);
+//                                                 RgbColor(140,140,140))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
-//                                                 RgbColor(184, 255,92))).first);
+//                                                 RgbColor(175,175,175))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#ED9F9F",
-//                                                 RgbColor(162, 92, 255))).first);
+//                                                 RgbColor(210,210,210))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
-//                                                   RgbColor(137, 242, 218))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#8FBC8F",
-//                                                 RgbColor(162, 210, 101))).first);
+//                                                   RgbColor(245,245,245))).first);
 
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
-                                                 RgbColor(0,0,0))).first);
-               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
-                                                 RgbColor(35,35,35))).first);
+                                                 RgbColor(234, 16, 7))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#9DD4FF",
-                                                 RgbColor(70,70,70))).first);
+                                                 RgbColor(28, 166, 205))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
-                                                 RgbColor(105,105,105))).first);
+                                                 RgbColor(69, 183, 17))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#509467",
-                                                 RgbColor(140,140,140))).first);
+                                                 RgbColor(255, 112, 117))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
-                                                 RgbColor(175,175,175))).first);
+                                                 RgbColor(184, 255,92))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#ED9F9F",
-                                                 RgbColor(210,210,210))).first);
+                                                 RgbColor(162, 92, 255))).first);
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
-                                                   RgbColor(245,245,245))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#8FBC8F",
-//                                                 RgbColor(162, 210, 101))).first);
+                                                   RgbColor(137, 242, 218))).first);
+               _idxDefColors.push_back(_defColors.insert(std::make_pair("#8FBC8F",
+                                                 RgbColor(162, 210, 101))).first);
             }
             RgbColor random_color();
             RgbColor diff_random_color();

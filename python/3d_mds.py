@@ -13,7 +13,7 @@ shifted to avoid overlapping.
 # Author: Nelle Varoquaux <nelle.varoquaux@gmail.com>
 # Licence: BSD
 
-print __doc__
+#print __doc__
 import numpy as np
 
 from matplotlib import pyplot as plt
@@ -39,15 +39,15 @@ def compute(data):
     # Center the data
     #X_true -= X_true.mean()
     #similarities = euclidean_distances(pcdData)
-    print "similarities:" 
-    print similarities
+    #print "similarities:" 
+    #print similarities
     # run mds algorithm
     mds = manifold.MDS(n_components=2, max_iter=300,
                        eps=1e-9, random_state=seed,
                        n_jobs=1)
     pos = mds.fit(similarities).embedding_
-    print "should equal to similarities:" 
-    print euclidean_distances(pos)
+    #print "should equal to similarities:" 
+    #print euclidean_distances(pos)
     #"**************************************************************8" 
     #print " new mds pcd data.." 
     #nmds = manifold.MDS(n_components=3, metric=False,

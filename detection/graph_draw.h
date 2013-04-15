@@ -2,39 +2,37 @@
 
 #define GRAPH_DRAW_H
 #include <string>
+#include <fstream>
 namespace m_graph {
 template < typename Graph >
 class DottyOutput {
 public:
     DottyOutput (Graph *g):_fout(NULL), _g(g){ };
     virtual ~DottyOutput (){ };
-    void write(const std::string &fname){
+    void write(const std::string &fname, bool directed = false){
         assert(_g);
         set_filename(fname);
-        begin_drawing();
-        std::cout<<"********draw*********************"<<std::endl;    
+        begin_drawing(directed);
         typename Graph::EdgeIter ei, ei_end;
         typename Graph::NodeIter ni, ni_end; 
         // draw nodes
         for (tie(ni, ni_end) = _g->get_all_nodes(); ni != ni_end; ni++){
             do_draw_node(*ni);
         }
-        std::cout<<"*****draw************************"<<std::endl;    
         // draw edges
         for (tie(ei, ei_end) = _g->get_all_edges(); ei != ei_end; ei++)
             do_draw_edge(*ei);
-        std::cout<<"*****draw************************"<<std::endl;    
         end_drawing();
-        std::cout<<"*****draw************************"<<std::endl;    
     }
     void set_filename(const std::string &fname){
+        // error when delete
         if(_fout)
             delete _fout;
         else
             _fout = new std::ofstream(fname);
 
     }
-    virtual void begin_drawing(bool directed = true){
+    virtual void begin_drawing(bool directed = false){
         assert(_fout);
         _directed = directed;
         if(_directed)
@@ -43,7 +41,6 @@ public:
             *_fout << "graph A {\n";
         // horizonal graph
         *_fout  << "  rankdir=LR\n"
-                << "size=\"5,3\"\n"
                 << "ratio=\"fill\"\n"
                 << "edge[style=\"bold\"]\n" << "node[shape=\"circle\"]\n";
     }
@@ -66,6 +63,7 @@ public:
        assert(_fout);
        * _fout << "}\n";
        delete _fout;
+       _fout = NULL;
     }
 protected:
     std::ofstream *_fout;

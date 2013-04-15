@@ -7,29 +7,15 @@
 #include <pcl/common/common_headers.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/io/pcd_io.h>
-#include <pcl/visualization/pcl_visualizer.h>
+#include "pcl_visualizer.h" 
 #include <pcl/console/parse.h>
-#include "m_util.h"
+#include <library/m_util.h>
 #include <pcl/surface/gp3.h>
-#include <boost/algorithm/minmax_element.hpp>
 #include <vector>
 // helper function  to create point 
 typedef pcl::PointXYZRGB PointT;
 typedef std::vector<pcl::PointCloud<PointT>::Ptr> CloudVector;
 typedef pcl::PointCloud<PointT>::Ptr PointCloudPtr;
-inline PointT create_point(float x, float y, float z, int r, int g, int b){
-    PointT point;
-    //point.x = x * step;
-    point.x = x ;
-    point.y = y ;
-    point.z = z ;
-
-    uint8_t _r(r), _g(g), _b(b);
-    uint32_t rgb = (static_cast<uint32_t>(_r) << 16 |
-            static_cast<uint32_t>(_g) << 8 | static_cast<uint32_t>(_b));
-    point.rgb = *reinterpret_cast<float*>(&rgb);
-    return point;
-}
 
 //transformPointCloud (output, output, transformation_);
 void transform_pointcloud(const pcl::PointCloud<PointT> &cloud_in,
@@ -38,16 +24,15 @@ void transform_pointcloud(const pcl::PointCloud<PointT> &cloud_in,
 
 void save_cloud(const std::string &fname, PointCloudPtr cloud);
 void read_cloud(const std::string &fname, PointCloudPtr cloud);
+void read_off(const std::string &filename, PointCloudPtr cloud);
 
-inline void camera_info(pcl::visualization::Camera &camera)
-{
+//! return planes and objects
+void segment_plane (const pcl::PointCloud<PointT>::Ptr cloud, pcl::PointCloud<PointT>::Ptr objects, CloudVector* planes);
+void cluster_points(const pcl::PointCloud<PointT>::Ptr cloud, CloudVector *clusters);
+PointCloudPtr down_samples(PointCloudPtr input, float leafSize);
 
-    std::cout<<"focal: "<<camera.focal[0]<<" "<<camera.focal[1]<<" "<<camera.focal[2]<<std::endl;
-    std::cout<<"pos: "<<camera.pos[0]<<" "<<camera.pos[1]<<" "<<camera.pos[2]<<std::endl;
-    std::cout<<"view: "<<camera.view[0]<<" "<<camera.view[1]<<" "<<camera.view[2]<<std::endl;
-    std::cout<<"window size: "<<camera.window_size[0]<<" "<<camera.window_size[1]<<std::endl;
-    std::cout<<"window pos: "<<camera.window_pos[0]<<" "<<camera.window_pos[1]<<std::endl;
-}
+PointT create_point(float x, float y, float z, int r, int g, int b);
+void camera_info(pcl::visualization::Camera &camera);
 //pcl::transformPointCloud
 //enum RenderingProperties
 //69     {
@@ -70,7 +55,6 @@ inline void camera_info(pcl::visualization::Camera &camera)
 //}
 //}
 //***************************************************************
-
 /**
  * @brief an wrapper class to display rgb points
  */
@@ -79,7 +63,7 @@ class VizBlockWorld {
         typedef pcl::PointCloud<PointT> PointCloud;
 
         VizBlockWorld (){
-            _viewer = new pcl::visualization::PCLVisualizer ("3D _viewer");
+            _viewer = new pcl::visualization::PCLVisualizer("3D _viewer");
             // will increase object id automatically, when add new visual element
             _objId = 0;
             set_offset(0, 0, 0);
@@ -89,7 +73,8 @@ class VizBlockWorld {
         void remove_def_cloud( ){
             PointCloudPtr temp(new PointCloud);
             _cloud = temp; }
-        void generte_mesh(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, pcl::PolygonMesh *triangles);
+        void generte_mesh(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+                          pcl::PolygonMesh *triangles, float radius);
         //            _viewer->addCoordinateSystem(1.0); 
         void draw(){ _viewer->initCameraParameters (); }
         // display multiwindow viewer
@@ -98,27 +83,6 @@ class VizBlockWorld {
         //! reset this point to the center of screen.
         void set_view(std::string object){ _viewer->resetCameraViewpoint(object); }
 
-        template < typename T >
-            void move2offset(T cloud, float unit = 1){
-                std::vector<float> xList, yList, zList;
-                for(auto &p : cloud->points ){
-                    xList.push_back(p.x);
-                    yList.push_back(p.y);
-                    zList.push_back(p.z);
-                }
-                assert(cloud->points.size());
-                auto xMinMax = boost::minmax_element(xList.begin(), xList.end());
-                auto yMinMax = boost::minmax_element(yList.begin(), yList.end());
-                auto zMinMax = boost::minmax_element(zList.begin(), zList.end());
-                float centerX = (*xMinMax.first + *xMinMax.second) / 2;
-                float centerY = (*yMinMax.first + *yMinMax.second) / 2;
-                float centerZ = (*zMinMax.first + *zMinMax.second) / 2;
-                for(auto &p : cloud->points ){
-                    p.x = (p.x - centerX) * unit;
-                    p.y = (p.y - centerY) * unit;
-                    p.z = (p.z - centerZ) * unit;
-                }
-            }
         void set_offset(float x, float y, float z){ _x_offset = x; _y_offset = y; _z_offset = z; }
         void set_render(){
             _viewer->setRepresentationToSurfaceForAllActors ();
@@ -235,7 +199,7 @@ class VizBlockWorld {
             _viewer->removePointCloud(id);
         }
         std::string add_cylinder(double centerX, double centerY, double centerZ, double normalX,
-                double normalY, double normalZ, double radius, int viewport = 0){
+                double normalY, double normalZ, double radius, double height, int viewport = 0){
             pcl::ModelCoefficients cylinder_coeff;
             cylinder_coeff.values.resize (7); // We need 7 values
             cylinder_coeff.values[0] = centerX;
@@ -246,10 +210,13 @@ class VizBlockWorld {
             cylinder_coeff.values[5] = normalZ;
             cylinder_coeff.values[6] = radius;
             std::string id = m_util::sth2string<int>(_objId++);
-            _viewer->addCylinder (cylinder_coeff, id, viewport);
+            _viewer->addCylinder (cylinder_coeff, height, id, viewport);
             return id;
         }
-        std::string add_plane(double a, double b, double c, double d, int viewport = 0){
+        std::string add_plane(double a, double b, double c, double d,
+                               double centerX, double centerY, 
+                               double centerZ, int viewport = 0)
+        {
             pcl::ModelCoefficients plane_coeff;
             plane_coeff.values.resize (4); // We need 4 values
             plane_coeff.values[0] =  a;
@@ -257,13 +224,14 @@ class VizBlockWorld {
             plane_coeff.values[2] =  c;
             plane_coeff.values[3] =  d;
             std::string id = m_util::sth2string<int>(_objId++);
-            _viewer->addPlane (plane_coeff, id, viewport);
+            _viewer->addPlane (plane_coeff, centerX, centerY, 
+                               centerZ, id, viewport);
             return id;
         }
         std::string add_plane(double px, double py, double pz, double normalX,
                                double normalY, double normalZ, int viewport = 0){
             double d = 0-px*normalX - py*normalY - pz*normalZ;
-            return add_plane(px, py, pz, d, viewport);
+            return add_plane(normalX, normalY, normalZ, d, px, py, pz, viewport);
 
         }
         std::string add_sphere(double centerX, double centerY, double centerZ,
@@ -337,10 +305,6 @@ class VizBlockWorld {
         float _z_offset;
 };
 
-//! return planes and objects
-void segment_plane (const pcl::PointCloud<PointT>::Ptr cloud, pcl::PointCloud<PointT>::Ptr objects, CloudVector* planes);
-void cluster_points(const pcl::PointCloud<PointT>::Ptr cloud, CloudVector *clusters);
-PointCloudPtr down_samples(PointCloudPtr input);
 void grid_color(VizBlockWorld *viz);
 void grid_color2(VizBlockWorld *viz);
 #endif /* end of include guard: VIZBLOCKWORLD_H */

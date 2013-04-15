@@ -19,8 +19,8 @@
 #include <iostream>
 #include <numeric>
 #include <map>
-#include <m_algorithm.h>
-#include <m_graph.h>
+#include <library/m_algorithm.h>
+#include <library/m_graph.h>
 #include <algorithm>
 #include "util.h" 
 #define  PointF m_geometry::PointF

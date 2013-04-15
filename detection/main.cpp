@@ -3,14 +3,14 @@
 #include <iterator>
 #include <cv.h>
 #include <stdio.h>
-#include "m_algorithm.h"
+#include <library/m_algorithm.h>
 #include <vector>
 #include <map>
 #include <string>
 #include <pcl/io/pcd_io.h>
 #include <xmlrpc-c/base.hpp>
 #include <pcl/io/pcd_io.h>
-#include "m_util.h"
+#include <library/m_util.h>
 #include <boost/filesystem.hpp>
 #include <cassert>
 #include <vector>
@@ -18,7 +18,7 @@
 #include <pcl/console/parse.h>
 #include <pcl/filters/filter.h>
 #include "util.h"
-#include "triangulate.h"
+#include "eye3d.h"
 #include "cluster_node.h" 
 #include "graph.h" 
 #include <boost/algorithm/minmax_element.hpp>
@@ -37,8 +37,8 @@ using namespace boost::filesystem;
 std::string fname;
 vector<string> pcdFiles;
 VizBlockWorld viz;
-MyTriangulation vizMesh(&viz);
-MyTriangulation *vizMesh2 = NULL;
+Eye3D vizMesh(&viz);
+Eye3D *vizMesh2 = NULL;
 string target;
 // 
 std::vector<pcl::PointCloud<PointT>::Ptr> components;
@@ -47,6 +47,11 @@ CloudVector objects;
 //
 int v1(0);
 int v2(1);
+const int MAX_SIZE_OF_OBJECT = 10000;
+//const float MESH_RADIUS = 30;
+const float MESH_RADIUS = 0.025;
+// display zoom
+float ZOOM = 10;
 // file compId
 int id(0);
 int objId(-1);
@@ -56,7 +61,7 @@ void pcd_in_path(const std::string &fname){
         if (exists(p))    // does p actually exist?
         {
             if (is_regular_file(p)){
-                assert(p.extension() == ".pcd");
+                //                assert(p.extension() == ".pcd");
                 std::cout<<"load file:"<<p.string()<<std::endl;
                 pcdFiles.push_back(p.string());
             }
@@ -65,7 +70,7 @@ void pcd_in_path(const std::string &fname){
                 vector<path> files;   
                 copy(directory_iterator(p), directory_iterator(), back_inserter(files));
                 for(path &file : files){
-                    if (file.extension() == ".pcd" ) {
+                    if (file.extension() == ".pcd" || file.extension() == ".off" ) {
                         std::cout<<"load file:"<<file.string()<<std::endl;
                         pcdFiles.push_back(file.string());
                     }
@@ -96,7 +101,7 @@ void slip2next_mesh(const std::string &fname){
     pcl::PolygonMesh meshes;
     //    viz.generte_mesh(points, &meshes);
     //    viz.add_mesh(&meshes);
-    vizMesh.segment_points(points);
+    vizMesh.segment_points(points, MESH_RADIUS);
     vizMesh.viz_next_level();
     //    vizMesh.compute_components();
 
@@ -108,12 +113,17 @@ void segment_mesh(PointCloudPtr points){
     pcl::PolygonMesh meshes;
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud( new pcl::PointCloud<pcl::PointXYZ>);
     pcl::copyPointCloud(*points, *cloud);
-    //    viz.generte_mesh(cloud, &meshes);
     //    viz.add_mesh(&meshes);
-    vizMesh2 = new MyTriangulation(&viz);
-    vizMesh2->segment_points(cloud);
+    vizMesh2 = new Eye3D(&viz);
+//    pcl::PolygonMesh mesh;
+//    viz.generte_mesh(cloud, &meshes, 3);
+//    viz.add_mesh(&mesh);
+//    std::cout<<mesh.polygons.size()<<std::endl;
+    vizMesh2->segment_points(cloud,MESH_RADIUS);
+    std::cout<<"******************1.5**************"<<std::endl;    
     vizMesh2->viz_next_level();
     viz.reset_camera();
+    viz.set_backgroundcolor(0,0,0);
 
 }
 
@@ -128,6 +138,7 @@ void slip2next_cloud(PointCloudPtr cloud, const RgbColor &c){
     }
     viz.push_def_cloud(0, 3);
     viz.reset_camera();
+    viz.set_backgroundcolor(255, 255, 255);
 
 }
 void slip2next_cloud(const std::string &fname){
@@ -141,53 +152,31 @@ void slip2next_cloud(const std::string &fname){
     for(auto &p : cloud->points){
         viz.add_point((float)p.x, (float)p.y, (float)p.z, 255, 0, 0, 1); 
     }
-    //    std::vector<int> inliers;
-    //
-    //    pcl::SampleConsensusModelCylinder<PointT, pcl::Normal>::Ptr
-    //        model(new pcl::SampleConsensusModelCylinder<PointT,pcl::Normal> (cloud));
-    //    pcl::NormalEstimation<PointT, pcl::Normal> ne;
-    //    pcl::search::KdTree<PointT>::Ptr tree (new pcl::search::KdTree<PointT> ());
-    //    pcl::PointCloud<pcl::Normal>::Ptr cloud_normals (new pcl::PointCloud<pcl::Normal>);
-    //    ne.setSearchMethod (tree);
-    //    ne.setInputCloud (cloud);
-    //    ne.setKSearch (50);
-    //    ne.compute (*cloud_normals);
-    //    model->setInputNormals(cloud_normals); 
-    //    std::cout<<"***************cylinder 1********"<<std::endl;    
-    //    //     
-    //    pcl::RandomSampleConsensus<PointT> ransac (model);
-    //    std::cout<<"***************cylinder 1********"<<std::endl;    
-    //    ransac.setDistanceThreshold (.01);
-    //    ransac.computeModel();
-    //    ransac.getInliers(inliers);
-    //
-    //    std::cout<<"***************cylinder 1********"<<std::endl;    
-    //    typedef Eigen::VectorXf Coefficient;
-    //    Coefficient modelCoefficient;
-    //    ransac.getModelCoefficients(modelCoefficient);
-    //
-    //    auto &p = cloud->points;
-    //    for(int i : inliers){
-    //        viz.add_point((float)p[i].x, (float)p[i].y, (float)p[i].z, 255, 0, 0, 1); 
-    //    }
-    //
     viz.push_def_cloud();
+    //    viz.set_backgroundcolor(255, 255, 255);
     //    viz.add_sphere(modelCoefficient[0], modelCoefficient[1], modelCoefficient[2], modelCoefficient[3]);
 
 }
+//! cluster points to components, objects, planes
 void scene_cluster(const std::string &fname){
     // initial
     viz.clear();
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZRGB>);
     viz.set_def_cloud(cloud);
-    // read file
-    PointCloudPtr rgbCloud (new VizBlockWorld::PointCloud);
-    pcl::io::loadPCDFile(fname, *rgbCloud);
+    PointCloudPtr rgbCloud (new pcl::PointCloud<PointT>);
+    // open an "off" file
+    auto range = boost::find_first(fname, ".off");
+    if (range.begin()!= range.end()) {
+        read_off(fname, rgbCloud);
+        std::cout<<"**********off********************"<<std::endl;    
+    }
+    else
+        pcl::io::loadPCDFile(fname, *rgbCloud);
     // down sample points
     //    pcl::PointCloud<PointT>::Ptr cloud_filtered = down_samples(points);
     cluster_points(rgbCloud, &components);
 
-    std::cout<<"*********components size:********"<<std::endl;    
+    std::cout<<"*********components num:********"<<std::endl;    
     std::cout<<components.size()<<std::endl;
     for(auto cluster : components){
         std::cout<<cluster->points.size()<<std::endl;
@@ -204,6 +193,8 @@ void scene_cluster(const std::string &fname){
         }
     }
 
+    std::cout<<"*********planes num:********"<<std::endl;    
+    std::cout<<planes.size()<<std::endl;
     // mark planes green
     for(auto plane : planes){
         for(auto &p: plane->points){
@@ -211,6 +202,8 @@ void scene_cluster(const std::string &fname){
         }
     }
 
+    std::cout<<"*********objects num:********"<<std::endl;    
+    std::cout<<objects.size()<<std::endl;
     // mark  objects red
     for(auto obj : objects){
         for(auto &p: obj->points){
@@ -233,6 +226,7 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         static_cast<pcl::visualization::PCLVisualizer*> (viewer_void);
     if (event.getKeySym () == "n" && event.keyDown () )
     {
+        RefineSegManual::_numComp = 11;
         if ( ::target == "point" )
             slip2next_cloud(pcdFiles[++id]);
         else if ( ::target == "mesh" ){
@@ -245,18 +239,20 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
             isComponent = true;
 
         }else if( ::target == "browse objects" && objId + 1 < objects.size()){
+            std::cout<<"*********************************"<<std::endl;    
+            std::cout<<objects.size()<<std::endl;
             // -> size - 1
             // @@snipet
             ++objId;
             RgbColor c(255, 0, 0);
             // find the first element satisfy the requirement
-            while(objId + 1< objects.size() &&
-                    objects[objId]->points.size() > 90000) 
-                objId++;
-            if(objects[objId]->points.size() <= 90000)
-                slip2next_cloud(objects[objId], c);
+            //            while(objId + 1< objects.size() &&
+            //                    objects[objId]->points.size() > 90000) 
+            //                objId++;
+            //            if(objects[objId]->points.size() <= 90000)
+            slip2next_cloud(objects[objId], c);
             std::cout<<"object: "<<objId<<std::endl;
-            viz.set_backgroundcolor(255, 255, 255);
+            //            viz.set_zackgroundcolor(255, 255, 255);
         }
 
     }else if( event.getKeySym() == "p" && event.keyDown()){
@@ -278,7 +274,8 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         vizMesh2->change_color();
         // add primitive
         if (primitiveId == "" ) {
-            auto &cov =ClusterNode::hierarchyTree.get_node(ClusterNode::rootId).coefficient;
+            auto &cov = ClusterNode::hierarchyTree.get_node(
+                        ClusterNode::hierarchyTree.rootId).coefficient;
             switch(BinaryTree::_currentNode.type) {
                 case HFP_FIT_PLANES:
                     primitiveId = viz.add_plane(cov.point.x, cov.point.y, cov.point.z, 
@@ -289,7 +286,7 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
                     break;
                 case HFP_FIT_CYLINDERS:
                     primitiveId = viz.add_cylinder(cov.point.x, cov.point.y, cov.point.z, 
-                            cov.direction.x, cov.direction.y,cov.direction.z, cov.radius);
+                            cov.direction.x, cov.direction.y,cov.direction.z, cov.radius, 0.2);
                     break;
                 default:
                     assert(false);
@@ -297,9 +294,6 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
             std::cout<<"*********************************"<<std::endl;    
             std::cout<<(double)BinaryTree::_currentNode.type<<std::endl;
             std::cout<<(double)BinaryTree::_currentNode.cost<<std::endl;
-            std::cout<<(double)BinaryTree::_currentNode.cost0<<std::endl;
-            std::cout<<(double)BinaryTree::_currentNode.cost1<<std::endl;
-            std::cout<<(double)BinaryTree::_currentNode.cost2<<std::endl;
 
         }
         else{
@@ -310,20 +304,38 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         std::string fname = m_util::string_format("object_%d", objId);
         std::vector<float> weights;
         segment_mesh(objects[objId]);
-        PointCloudPtr pos(new pcl::PointCloud<PointT>);
-        PointCloudPtr source(new pcl::PointCloud<PointT>);
-        vizMesh2->pos_and_weight(fname, pos, &weights);
-        pcl::copyPointCloud(*pos, *source);
-        vizMesh2->dynamic_EMD(pos, weights, source, weights);
-        viz.set_backgroundcolor(255, 255, 255);
+        //        PointCloudPtr pos(new pcl::PointCloud<PointT>);
+        //        PointCloudPtr source(new pcl::PointCloud<PointT>);
+        //        std::vector<int> leafs;
+        //        vizMesh2->graphic_model(fname, pos, &weights, &leafs);
+        //        pcl::copyPointCloud(*pos, *source);
+        //        vizMesh2->dynamic_EMD(pos, weights, source, weights, leafs);
 
-    }else if( event.getKeySym() == "s" && event.keyDown()){
+    }else if( event.getKeySym() == "z" && event.keyDown()){
         std::string fname = m_util::string_format("object_%d", objId);
         std::vector<float> weights;
         segment_mesh(objects[objId]);
         PointCloudPtr pos(new pcl::PointCloud<PointT>);
         PointCloudPtr source(new pcl::PointCloud<PointT>);
-        vizMesh2->pos_and_weight(fname, pos, &weights);
+        std::vector<int> leafs;
+        Eye3D::TopoGraph graphicModel;
+        vizMesh2->graphic_model(&graphicModel);
+        vizMesh2->viz_components(graphicModel);
+        std::cout<<"*******************6666**********"<<std::endl;    
+        // save subgraph
+        LDotty<typename Eye3D::TopoGraph> dot2(&graphicModel);
+        dot2.write("leafs.dot");
+        std::cout<<"write to "<< fname + "leafs.dot"<<std::endl;
+        // log result
+        std::cout<<"***********node type: *************"<<std::endl;    
+        auto nodes = graphicModel.get_all_nodes();
+        while (nodes.first != nodes.second) {
+            auto &temp = graphicModel.get_node(*nodes.first);
+            std::cout<<"type: "<<(int)temp.type<<std::endl;
+            nodes.first++;
+        }
+        viz.reset_camera();
+        RefineSegManual::_numComp += 2;
 
     }else if( event.getKeySym() == "d" && event.keyDown()){
 
@@ -338,10 +350,23 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         std::vector<float> wT;
         PointCloudPtr target(new pcl::PointCloud<PointT>);
         segment_mesh(objects[t]);
-        vizMesh2->pos_and_weight("temp", target, &wT);
+        std::vector<int> leafs;
+        Eye3D::TopoGraph graphicModel;
+        vizMesh2->graphic_model(&graphicModel);
+        // fill result
+        auto nodes = graphicModel.get_all_nodes();
+        while (nodes.first != nodes.second) {
+            auto &temp = graphicModel.get_node(*nodes.first);
+            wT.push_back(temp.weight);
+            if( temp.is_leaf() )
+                leafs.push_back(1);
+            else 
+                leafs.push_back(0);
+            nodes.first++;
+        }
+        vizMesh2->embedding_graph(target, graphicModel);
         //
         vector<int> s;
-
         s.push_back(6);   // pp
         s.push_back(16); // 
         s.push_back(2); //tiger
@@ -349,14 +374,29 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         s.push_back(22); // ping zi
         for(int id : s){
             std::vector<float> wS;
-            PointCloudPtr source(new pcl::PointCloud<PointT>);
             segment_mesh(objects[id]);
-            vizMesh2->pos_and_weight(fname, source, &wS);
-            std::cerr<<"*********************************"<<std::endl;    
-            std::cerr<<"emd to id: "<<id<<endl
-                     <<vizMesh2->dynamic_EMD(target, wT, source, wS)<<std::endl;
-            viz.set_backgroundcolor(255,255,255);
-            viz.save_screenshot(m_util::sth2string<int>(id)+".PNG");
+            std::vector<int> leafs;
+            Eye3D::TopoGraph graphicModel;
+            vizMesh2->graphic_model(&graphicModel);
+            // fill result
+            auto nodes = graphicModel.get_all_nodes();
+            while (nodes.first != nodes.second) {
+                auto &temp = graphicModel.get_node(*nodes.first);
+                wS.push_back(temp.weight);
+                if( temp.is_leaf() )
+                    leafs.push_back(1);
+                else 
+                    leafs.push_back(0);
+                nodes.first++;
+            }
+            // embedding graph to vectors
+            std::cout<<"*********************************"<<std::endl;    
+            PointCloudPtr source(new pcl::PointCloud<PointT>);
+            vizMesh2->embedding_graph(source, graphicModel);
+            // calculating EMD
+            std::cout<<"emd to id: "<<id<<endl
+                <<vizMesh2->dynamic_EMD(target, wT, source, wS, leafs)<<std::endl;
+            //            viz.set_backgroundcolor(255,255,255);
         }
 
     }
@@ -389,26 +429,40 @@ int main(int argc, char** argv)
         // seperate components and objects
         scene_cluster(pcdFiles[0]);
         // save objects
-        //        for (int i = 0; i < objects.size(); i++) {
-        //            pcl::PCDWriter writer; 
-        //            fname = m_util::string_format("object_%d", i);
-        //            writer.write(fname + ".pcd" , *objects[i]);
-        //            std::cout<<"save points to "<<fname<<std::endl;
-        //        }
+        for (int i = 0; i < objects.size(); i++) {
+            pcl::PCDWriter writer; 
+            fname = m_util::string_format("object_%d", i);
+            writer.write(fname + ".pcd" , *objects[i]);
+            std::cout<<"save points to "<<fname<<std::endl;
+        }
+        viz.set_backgroundcolor(255, 255, 255);
+
     } else if (pcl::console::find_argument(argc, argv, "-of") >= 0){
         ::target = "browse objects";
+        std::cout<<"*******browsing object:**********"<<std::endl;    
         // load objects from files
         m_util::print_list(pcdFiles);
         for(auto &fname : pcdFiles){
-            pcl::PCDReader reader;
             pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
-            reader.read (fname, *cloud);
-            objects.push_back(cloud);
-            std::cout<<"*******************rrrr**********"<<std::endl;    
+            auto range = boost::find_first(fname, ".off");
+            if (range.begin()!= range.end()) 
+                read_off(fname, cloud);
+            else
+                pcl::io::loadPCDFile(fname, *cloud);
+            if (cloud->points.size() > MAX_SIZE_OF_OBJECT) {
+                // down sample points
+                pcl::PointCloud<PointT>::Ptr cloud_filtered = down_samples(cloud, 3.5);
+                objects.push_back(cloud_filtered);
+            }else{
+
+                objects.push_back(cloud);
+            }
         }
+        std::cout<<objects.size()<<std::endl;
+        viz.set_backgroundcolor(255, 255, 255);
     }
 
-//    grid_color2(&viz);
+    //    grid_color2(&viz);
     // display 
     viz.draw();
     viz.display();

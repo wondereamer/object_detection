@@ -21,7 +21,7 @@
 #define MAX_ITERATIONS 500
 #define INFINITY       1e20
 #define EPSILON        1e-6
-#include "m_geometry.h" 
+#include <library/m_geometry.h>
 #include "vizblockworld.h" 
 #include <pcl/common/common_headers.h>
 

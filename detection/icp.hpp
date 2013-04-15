@@ -40,7 +40,7 @@
 
 #include <boost/unordered_map.hpp>
 #include <algorithm>
-#include <m_util.h>
+#include <library/m_util.h>
 #include "vizblockworld.h" 
 #include <cmath>
 float dist(feature_t *F1, feature_t *F2) { 

@@ -18,6 +18,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <library/m_util.h>
 #include "graph_draw.h" 
 /// @todo replace map with unordered_map
 enum vertex_node_t { vertex_node };
@@ -50,6 +51,19 @@ namespace m_graph {
   */
 
 typedef std::vector<std::vector<int> > MatrixGraph;
+
+    /**
+     * @brief vertexing color algorithm from internet:
+     *
+     * http://www.dharwadker.org/vertex_coloring/
+     * @param Graph: matrix graph
+     * @param colorMap: map from color index to string color
+     * @param rst: returned, map from vertex index to string color
+     *
+     * @return: if the algorithm could give an result 
+     */
+    bool vertex_coloring(const MatrixGraph &graph, int colorNum,
+            std::map<int, int> &rst);
 
 /**
  * @brief a helper class carring out some drawing function and algorithms related to graph
@@ -90,7 +104,7 @@ class GraphUtil {
     }
     
     //! print matrix attached to the graph
-    void print_matrix(){
+    void print_matrix() const{
         int V = _g->num_nodes();
         std::cout << "       ";
         for (int k = 0; k < V; ++k)
@@ -111,26 +125,49 @@ class GraphUtil {
     /// @todo strategy model
     //! index map to allNodes list
     void to_matrix_graph( ){
+        create_matrix();
         // get all vertex
         typename Graph::NodeRange nodeRange = _g->get_all_nodes();
-        // map node id to range[0,n]
+        // map node id to vertex num [0,n]
         std::map<typename Graph::NodeId, int> id2index;
         int row = 0;
         for(auto i = nodeRange.first; i != nodeRange.second; i++, row++){
             id2index[*i] = row;
         }
         for(row = 0; nodeRange.first != nodeRange.second; nodeRange.first++, row++){
-            typename Graph::OutEdgeRange outRange = _g->get_out_edges(*nodeRange.first);
+            // for each node
             int row = id2index[*nodeRange.first];
-            for(; outRange.first != outRange.second; outRange.first++){
-                int col = id2index[_g->targetId(*outRange.first)];
+            // get adjacent nodes <out>
+            typename Graph::AdjRange adjRange = _g->get_adj_nodes(*nodeRange.first);
+            for(; adjRange.first != adjRange.second; adjRange.first++){
+                int col = id2index[*adjRange.first];
                 // mark out edge
                 _dMatrix[row][col] = 1;
-                // mark in edge
-                _dMatrix[col][row] = -1;
+                _dMatrix[col][row] = 1;
             }
 
         }
+    }
+
+    bool vertex_coloring(int colorNum, std::map<int, int> &vertex2color)
+    {
+        // map from vertex num to color
+        std::map<int, int> temp;
+        bool rst = m_graph::vertex_coloring(_dMatrix, colorNum, temp);
+        if(rst){
+            std::cout<<"coloring vertex sucess!*****"<<std::endl;
+            auto nodeRange = _g->get_all_nodes();
+            auto ii = temp.begin();
+            for(auto i = nodeRange.first; i != nodeRange.second; 
+                i++, ii++){
+                // map from id to color
+                vertex2color.insert(make_pair(*i, ii->second));
+
+            }
+            return true;
+        }
+        std::cout<<"coloring vertex failed!*****"<<std::endl;
+        return false;
     }
     virtual ~GraphUtil (){ };
 
@@ -140,6 +177,7 @@ class GraphUtil {
     MatrixGraph _dMatrix;                        //!< distance matrix 
 };
 using namespace boost;
+/// @todo subgraph copy
 //#define graph_traits boost::graph_traits
 //#define property_map boost::property_map
 /**
@@ -268,7 +306,7 @@ class BaseGraph
         {
             return boost::vertices(_g);
         }
-
+        //! out node if directed
         inline AdjRange get_adj_nodes(const NodeId& id) const
         {
             return boost::adjacent_vertices(id, _g);
@@ -299,7 +337,7 @@ class BaseGraph
         inline InEdgeRange get_in_edges(const NodeId& id) const{
             return boost::in_edges(id, _g);
         }
-
+        //! will return all edges of undirected graph
         inline OutEdgeRange get_out_edges(const NodeId& id) const{
             return boost::out_edges(id, _g);
         }
@@ -381,6 +419,8 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
                         _node2id.insert(std::make_pair(node, id)).first));
             return id;
         }
+        /// @todo solve this problem
+        //! would reassign id value from 0 if node type is vecS
         inline void remove_node(const NodeId& id)
         {
             _node2id.erase(_id2nodeIdPairPtr[id]);
@@ -389,7 +429,50 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
             remove_vertex(id, this->_g);
         }
 
+        /// @todo is there elegant way of moving this function to parent?
+        void copy_subgraph(const std::vector<NodeId> &ids,
+                           AutoUniGraph<GraphContainer, Node> *subgraph)
+        {
+            std::map<NodeId, NodeId> id2sId;
+            EdgeWeightsMap weights = this->edge_weights();
+            EdgeWeightsMap subWeights = subgraph->edge_weights();
+            for(auto id : ids){
+                auto c = id2sId.find(id);
+                NodeId sId;
+                if( c == id2sId.end()){
+                    // copy current node
+                    auto &node = get_node(id);
+                    sId = subgraph->add_node(node);
+                    id2sId.insert(make_pair(id, sId));
+                }else
+                    sId = c->second;
+                //
+                auto edgeRange = get_out_edges(id);
+                for( ; edgeRange.first != edgeRange.second;
+                       edgeRange.first++){
+                    NodeId nId;
+                    auto adjId = targetId(*edgeRange.first);
+                    auto &adjnode = get_node(adjId);
+                    assert(adjId != id);
+                    /// @todo make this condition more general
+                    if( !adjnode.is_leaf())
+                        continue;
+                    auto nb = id2sId.find(adjId); 
+                    if( nb == id2sId.end()){
+                        // copy  neighbor node
+                        nId = subgraph->add_node(adjnode);
+                        id2sId.insert(make_pair(adjId, nId));
+                    }else
+                        nId = nb->second;
+                    /// @todo make sure unique edge
+                    // copy edge
+                    auto rst = subgraph->add_edge(sId, nId);
+                    if(rst.second)
+                        subWeights[rst.first] = weights[*edgeRange.first];
+                }
+            }
 
+        }
         inline void modify_node(const NodeId& id, const Node& node){
             auto i = _id2nodeIdPairPtr.find(id);
             assert(i != _id2nodeIdPairPtr.end());
@@ -403,10 +486,11 @@ class AutoUniGraph :public BaseGraph<GraphContainer>{
             // return a key of a  map
             return _id2nodeIdPairPtr[id]->first;
         }
-
-        inline const Node& get_node(const NodeId& id) const
+        /// @todo this function doesn't compile !
+        inline  typename std::map<Node, NodeId>::key_type
+        get_node(const NodeId& id) const
         {
-            return _id2nodeIdPairPtr[id]->first;
+            return  _id2nodeIdPairPtr[id]->first;
         }
 
         inline bool contain_node(const Node& node){

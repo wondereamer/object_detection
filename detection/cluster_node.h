@@ -20,6 +20,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <boost/functional/hash.hpp>
+#include <library/m_geometry.h>
 
 // These are constants to be used within the mask 'what_to_fit'
 #define HFP_FIT_PLANES    ((unsigned char)1)
@@ -31,11 +32,12 @@
 // Node of the cluster graph
 //
 //////////////////////////////////////////////////////////////////////////
-class MyTriangulation;
+class Eye3D;
 class ClusterNode;
 struct Coefficient{
     Coefficient(){ }
     Coefficient(Point p, Point d, double r):point(p), direction(d), radius(r){ }
+
     Point point;
     Point direction;                            //!< normal or axis 
     double radius;
@@ -61,64 +63,33 @@ struct TrNode{
         else 
             return false;
     };
-    static bool is_leaf(const TrNode &n){
-        return n.id2 == -1;
+    bool is_leaf() const{
+        return id2 == -1;
     }
-    /// @todo move to triangulate
-    static double geometry_weight(const TrNode &node){
-        // standard TrNode
-        // shape ---- plane, Coefficient----- 
-        // shape
-        double bias = 0;
-        auto &coef = node.coefficient;
-        switch(node.type) {
-            case HFP_FIT_PLANES:
-                {
-                    bias = 0;
-                    //                    // 0 - 3.14
-                    //                    double angle = acos(((float)coef.direction.x * (float)defaultCoef.direction.x + (float)coef.direction.y * (float)defaultCoef.direction.y
-                    //                                + (float)coef.direction.z * (float)defaultCoef.direction.z) /
-                    //                            (sqrt(pow((float)coef.direction.x,2)+pow((float)coef.direction.y, 2)+pow((float)coef.direction.z, 2))*
-                    //                             sqrt(pow((float)defaultCoef.direction.x, 2)+pow((float)defaultCoef.direction.y, 2)+pow((float)defaultCoef.direction.z, 2))));
-                    //                    // 
-                    //                    double dist = sqrt(pow(((float)coef.point.x - (float)defaultCoef.point.x), 2) + pow(((float)coef.point.y-(float)defaultCoef.point.y), 2)
-                    //                            +pow(((float)coef.point.z - (float)defaultCoef.point.z), 2));
-                    //                    bias += angle * 0.7 + atan(dist) * 0.6;
-                    break;
-                }
-            case HFP_FIT_CYLINDERS:
-                bias = 3.14 * 2;
-                break;
-            case HFP_FIT_SPHERES:
-                bias = 3.14 * 4;
-                break;
-            default:
-                assert(false);
-        };        
-        // percent
-
-        return bias;
+    void set_leaf(){
+        id2 = -1;
     }
     public:
     int id1;
-    //! leaf node when id2 == -1
+    //! when id2 == -1, 
     int id2;
     double cost;
-    double cost0;
-    double cost1;
-    double cost2;
-    double percent;
+    double proportion;
     Coefficient coefficient;
     unsigned char type;
     static int numLeafs;
     static Coefficient defaultCoef;
-    // pointer to node of clusterGraph
+    //! pointer to node of clusterGraph
     void **triangles;
+    //! when node is a leaf, #size is useless
     int size;
-    // a trick used in FindComponents
+    //! used in RefineSegManual and RefineSegAuto
     int parentId;
     int friendId;
-    //
+    //! the center of the component
+    m_geometry::PointF3D center;
+    int degree;
+    //!
     double weight;
     double tpWeight;
 };
@@ -197,6 +168,7 @@ class BinaryTree: public HieraTree
         std::stack<NodeId> _outStack;           // could replace stack with vector 
         std::stack<NodeId> _inStack;
         static TrNode _currentNode;
+        NodeId rootId;
 
 };
 
@@ -226,7 +198,7 @@ class ClusterNode : public graphNode
         //! should be invoke before segment every object
         static void reset();
         //! graph -> ClusterNode -> triangles
-        static BinaryTree &cluster(MyTriangulation *tin);
+        static BinaryTree &cluster(Eye3D *tin);
     public:
         int id;                //!< Unique identifier of the node
         int childId;
@@ -242,10 +214,10 @@ class ClusterNode : public graphNode
         // internalNode of the tree have @type attribute setted,
         // but no triangles information attached different from leaf node 
         static BinaryTree hierarchyTree;
-        static BinaryTree::NodeId rootId;
         // pointers to some element in #edgeInfo
         static std::stack<BinaryTree::NodeId> hierarcStack;
         //        static std::map<int, std::vector<double>> size2costs;
+        // members in the instance have different size
         static Coefficient coef1;
         static Coefficient coef2;
         static Coefficient coef3;

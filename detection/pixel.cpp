@@ -1,4 +1,4 @@
-#include "m_util.h" 
+#include <library/m_util.h>
 #include "pixel.h" 
 std::ostream& operator << (std::ostream& out, const GrayPixel2D& t){
         out<<m_util::string_format("[%i, %i: gray=%i]", t._x, t._y, t.get_color().v);

@@ -6,19 +6,20 @@
 #include <unordered_set>
 #include <set>
 #include <vector>
-#include "m_util.h"
+#include <library/m_util.h>
 
 #include <fstream>
 #include <iostream>
 #include <vector>
 #include <iomanip>
-#include "triangulate.h"
+#include "eye3d.h"
 #include <pcl/features/normal_3d.h>
 #include <pcl/sample_consensus/ransac.h>
 
 bool operator == (const TrNode& a, const TrNode &b) {
     return a.id1 == b.id1 && a.id2 == b.id2;
 }
+// #snippet
 std::size_t hash_value(TrNode const &b)
 {
     std::size_t seed =  0;
@@ -57,7 +58,6 @@ Coefficient TrNode::defaultCoef(Point(0,0,0), Point(0,0,1), 1);
 std::unordered_set<TrNode,boost::hash<TrNode>> ClusterNode::edgeInfo;
 std::unordered_map<int, int> ClusterNode::gId2treeId;
 BinaryTree ClusterNode::hierarchyTree;
-BinaryTree::NodeId ClusterNode::rootId;
 BinaryTree::EdgeWeightsMap ClusterNode::weights = hierarchyTree.edge_weights();
 TrNode BinaryTree::_currentNode;
 int ClusterNode::num_triangles = 0;
@@ -399,9 +399,10 @@ void ClusterNode::merge(const void *n1, const void *n2)
             leaf.type = i->type;
             leaf.triangles = c1->triangles.toArray();
             leaf.size = c1->triangles.numels();
+            std::cout<<leaf.size<<std::endl;
             leaf.id1 = TrNode::numLeafs++;
             // mark the node  a leaf
-            leaf.id2 = -1;
+            leaf.set_leaf();
             child1Id = hierarchyTree.add_node(leaf);
         }
         if(i2 != gId2treeId.end()){
@@ -414,7 +415,7 @@ void ClusterNode::merge(const void *n1, const void *n2)
             leaf.triangles = c2->triangles.toArray();
             leaf.size = c2->triangles.numels();
             leaf.id1 = TrNode::numLeafs++;
-            leaf.id2 = -1;
+            leaf.set_leaf();
             child2Id = hierarchyTree.add_node(leaf);
         }
     }
@@ -450,7 +451,7 @@ void ClusterNode::merge(const void *n1, const void *n2)
         // insert a new parent node
         BinaryTree::NodeId parentId = hierarchyTree.add_node(*i);
         hierarchyTree._inStack.push(parentId);
-        rootId = parentId;
+        hierarchyTree.rootId = parentId;
         gId2treeId[c1->id] = parentId;
         // insert edges between child and parent
         auto edge1Id = hierarchyTree.add_edge(parentId, child1Id).first;
@@ -513,9 +514,9 @@ double ClusterNode::edgeCostFunction(const void *cn1, const void *cn2)
         assert(false);
     }
     internalNode.cost = cost;
-    internalNode.cost0 = c1;
-    internalNode.cost1 = c2;
-    internalNode.cost2 = c3;
+//    internalNode.cost0 = c1;
+//    internalNode.cost1 = c2;
+//    internalNode.cost2 = c3;
     internalNode.coefficient = coefficient;
     // update the latest before mergeing,
     // after merging, there would be no cost calculation requirement,
@@ -536,7 +537,7 @@ double ClusterNode::edgeCostFunction(const void *cn1, const void *cn2)
     return cost;
 }
 
-BinaryTree& ClusterNode::cluster(MyTriangulation *tin){
+BinaryTree& ClusterNode::cluster(Eye3D *tin){
     // triangle meshes info
     // the destruction function of clusterGraph will free ClusterNode
     clusterGraph cg(tin->E.numels(), &ClusterNode::edgeCostFunction);

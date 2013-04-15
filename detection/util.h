@@ -15,7 +15,7 @@
 #include <pcl/common/common_headers.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/io/pcd_io.h>
-#include <pcl/visualization/pcl_visualizer.h>
+#include "pcl_visualizer.h" 
 #include <pcl/console/parse.h>
 #include <xmlrpc-c/base.hpp>
 #include <xmlrpc-c/registry.hpp>
@@ -23,11 +23,11 @@
 #include <vector>
 #include <cassert>
 #include <stdlib.h>
-#include "m_util.h" 
+#include <library/m_util.h>
 #include "component.h" 
 #include <list>
-#include <m_opencv.h>
-#include <m_graph.h>
+#include <library/m_opencv.h>
+#include <library/m_graph.h>
 #include <map>
 #include <iostream>
 #include <flann/flann.hpp>

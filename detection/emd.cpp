@@ -18,7 +18,7 @@
 #include <math.h>
 #include <vector>
 #include <string>
-#include <m_util.h>
+#include <library/m_util.h>
 #include <cassert>
 
 #include "emd.h"

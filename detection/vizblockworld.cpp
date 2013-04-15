@@ -3,6 +3,7 @@
 #include <pcl/common/transforms.h>
 #include <boost/algorithm/minmax_element.hpp>
 #include <algorithm>
+#include <boost/algorithm/string.hpp>
 
 // Eigen::Matrix4f t;
 //t<<1, 2, 3, 4,
@@ -26,7 +27,59 @@ void read_cloud(const std::string &filename, PointCloudPtr cloud){
         cout << "read: " << filename << "." << endl;
     } else PCL_ERROR("Problem saving %s.\n", filename.c_str());
 }
-void VizBlockWorld::generte_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, pcl::PolygonMesh *triangles){
+
+inline PointT create_point(float x, float y, float z, int r, int g, int b){
+    PointT point;
+    //point.x = x * step;
+    point.x = x ;
+    point.y = y ;
+    point.z = z ;
+
+    uint8_t _r(r), _g(g), _b(b);
+    uint32_t rgb = (static_cast<uint32_t>(_r) << 16 |
+            static_cast<uint32_t>(_g) << 8 | static_cast<uint32_t>(_b));
+    point.rgb = *reinterpret_cast<float*>(&rgb);
+    return point;
+}
+void read_off(const std::string &filename, PointCloudPtr cloud){
+    std::cout<<filename<<std::endl;
+    std::ifstream in(filename);
+    std::string line;
+    int num = 0, count = 0;
+    while(std::getline(in, line)){
+        num++;
+        vector<string> xyz;
+        boost::trim_right_if(line, boost::is_any_of(" \n"));
+        boost::split(xyz, line, boost::is_space());
+        if(xyz.size() == 3){
+            if(num == 2)
+                // ignore the second line
+                continue;
+            PointT point;
+            point.x = boost::lexical_cast<float>(xyz[0]);
+            point.y = boost::lexical_cast<float>(xyz[1]);
+            point.z = boost::lexical_cast<float>(xyz[2]);
+            cloud->points.push_back(point);
+            count++;
+        }else if(xyz.size() == 4)
+            // ignore mesh information
+            break;
+    };
+    std::cout<<"loaded "<<count<<"points!"<<std::endl;
+}
+
+void camera_info(pcl::visualization::Camera &camera)
+{
+
+    std::cout<<"focal: "<<camera.focal[0]<<" "<<camera.focal[1]<<" "<<camera.focal[2]<<std::endl;
+    std::cout<<"pos: "<<camera.pos[0]<<" "<<camera.pos[1]<<" "<<camera.pos[2]<<std::endl;
+    std::cout<<"view: "<<camera.view[0]<<" "<<camera.view[1]<<" "<<camera.view[2]<<std::endl;
+    std::cout<<"window size: "<<camera.window_size[0]<<" "<<camera.window_size[1]<<std::endl;
+    std::cout<<"window pos: "<<camera.window_pos[0]<<" "<<camera.window_pos[1]<<std::endl;
+}
+void VizBlockWorld::generte_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+                                 pcl::PolygonMesh *triangles, float radius)
+{
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
     pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
@@ -51,7 +104,7 @@ void VizBlockWorld::generte_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud
     pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
 
     // Set the maximum distance between connected points (maximum edge length)
-    gp3.setSearchRadius (0.025);
+    gp3.setSearchRadius (radius);
 
     // Set typical values for the parameters
     gp3.setMu (3.0);
@@ -76,15 +129,15 @@ void VizBlockWorld::generte_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud
         <<states.size()<<std::endl;
 
     // output mesh
-    std::ofstream out("origina.off");
-    out<<"OFF"<<std::endl;
-    out<<cloud->points.size()<<" "<<triangles->polygons.size()<<" "<<0<<std::endl;
-    for(auto &p : cloud->points){
-        out<<p.x<<" "<<p.y<<" "<<p.z<<std::endl;
-    }
-    for(pcl::Vertices &mesh : triangles->polygons){
-        out<<3<<" "<<mesh.vertices[0]<<" "<<mesh.vertices[1]<<" "<<mesh.vertices[2]<<std::endl;
-    };
+//    std::ofstream out("origina.off");
+//    out<<"OFF"<<std::endl;
+//    out<<cloud->points.size()<<" "<<triangles->polygons.size()<<" "<<0<<std::endl;
+//    for(auto &p : cloud->points){
+//        out<<p.x<<" "<<p.y<<" "<<p.z<<std::endl;
+//    }
+//    for(pcl::Vertices &mesh : triangles->polygons){
+//        out<<3<<" "<<mesh.vertices[0]<<" "<<mesh.vertices[1]<<" "<<mesh.vertices[2]<<std::endl;
+//    };
 
 }
 
@@ -194,17 +247,16 @@ void cluster_points(const pcl::PointCloud<PointT>::Ptr cloud, CloudVector *clust
     }
 
 }
-PointCloudPtr down_samples(PointCloudPtr input){
+PointCloudPtr down_samples(PointCloudPtr input, float leafSize){
     // Create the filtering object: downsample the dataset using a leaf size of 1cm
     pcl::VoxelGrid<PointT> vg;
     pcl::PointCloud<PointT>::Ptr output(new pcl::PointCloud<PointT>);
     vg.setInputCloud (input);
-    vg.setLeafSize (0.01f, 0.01f, 0.01f);
+    vg.setLeafSize (leafSize, leafSize, leafSize);
     vg.filter (*output);
     std::cout << "PointCloud after filtering has: " <<output->points.size ()  << " data points." << std::endl; //*
     return output;
 }
-#include <m_util.h> 
 void grid_color(VizBlockWorld *viz){
     PointCloudPtr temp(new VizBlockWorld::PointCloud);
     viz->set_def_cloud(temp);

@@ -97,6 +97,7 @@ namespace m_geometry {
         double z;
         //
         PointF3D():x(0),y(0),z(0) { }
+        PointF3D(double v):x(v), y(v), z(v){ }
         PointF3D(double x0, double y0, double z0):x(x0), y(y0),z(z0){ }
 //        PointF3D(const PointF3D &other):x(other.x), y(other.y), z(other.z){ }
 
@@ -120,6 +121,16 @@ namespace m_geometry {
             x *= num;
             y *= num;
             z *= num;
+            return *this;
+        }
+
+        PointF3D operator / (const PointF3D &other) const{
+            return PointF3D(x / other.x, y / other.y, z / other.z);
+        }
+        PointF3D& operator /= (double num){
+            x /= num;
+            y /= num;
+            z /= num;
             return *this;
         }
         //! do support string like weak order comparing

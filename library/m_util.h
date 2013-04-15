@@ -21,7 +21,7 @@
 #include <set>
 #include <boost/python.hpp>
 #include <boost/python/stl_iterator.hpp>
-
+#include <boost/algorithm/minmax_element.hpp>
 //#include <boost/foreach.hpp>
 //namespace boost
 //{
@@ -204,6 +204,27 @@ namespace m_util {
 
     }
     
+    template < typename T >
+        void boundary(const T &points, typename T::value_type *min,
+                        typename T::value_type *max)
+        {
+            std::vector<float> xList, yList, zList;
+            for(auto &p : points ){
+                xList.push_back(p.x);
+                yList.push_back(p.y);
+                zList.push_back(p.z);
+            }
+            auto xMinMax = boost::minmax_element(xList.begin(), xList.end());
+            auto yMinMax = boost::minmax_element(yList.begin(), yList.end());
+            auto zMinMax = boost::minmax_element(zList.begin(), zList.end());
+            min->x = *xMinMax.first;
+            min->y = *yMinMax.first;
+            min->z = *zMinMax.first;
+            max->x = *xMinMax.second;
+            max->y = *yMinMax.second;
+            max->z = *zMinMax.second;
+        }
+    //! any compare operation apply to "nun" would return true
     bool is_nun(double a);
     double create_nun();
 

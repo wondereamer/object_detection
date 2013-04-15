@@ -11,9 +11,9 @@
 #define PIXEL_H
 
 
-#include "m_opencv.h" 
+#include <library/m_opencv.h>
 #include <cmath>
-#include "m_math.h"
+#include <library/m_math.h>
 #include "component.h"
 using namespace m_opencv;
 /**
