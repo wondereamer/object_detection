@@ -13,8 +13,8 @@ import copy
 
 
 from SimpleXMLRPCServer import SimpleXMLRPCServer
-from m_util import log,Logger
-log.add_level(Logger.INFO)
+#from m_util import log,Logger
+#log.add_level(Logger.INFO)
 
 def discrete_differential(y_list):
     '''docstring for discrete_differential''' 
@@ -35,10 +35,11 @@ def angle_vector(x, y):
     t = math.degrees(math.atan2(y,x))
     return t
 
-def plot_fun(fun, x_list):
+def plot_XY(y_list, x_list):
     '''docstring for plot_fun''' 
     #plt.plot(x_list,fun(x_lsit), 'bo', x_list, fun(x_list), 'k')
-    plt.plot(x_list,fun(x_list), 'k')
+    #plt.plot(x_list, y_list, 'k')
+    plt.plot(x_list, y_list, 'o-')
     plt.xlabel('X')
     plt.xlabel('Y')
     plt.show()
@@ -118,12 +119,12 @@ def draw_force_field(x_list, y_list, width, height):
     plt.savefig("pixel.jpg")
     plt.show()
     return 0
-
-# A simple server with simple arithmetic functions
-server = SimpleXMLRPCServer(("localhost", 8000))
-print "Listening on port 8000..."
-server.register_multicall_functions()
-server.register_function(draw_vectors_2D, 'draw_vectors_2D')
-server.register_function(draw_force_field, 'draw_force_field')
-server.serve_forever()
+if __name__ == '__main__':
+    # A simple server with simple arithmetic functions
+    server = SimpleXMLRPCServer(("localhost", 8000))
+    print "Listening on port 8000..."
+    server.register_multicall_functions()
+    server.register_function(draw_vectors_2D, 'draw_vectors_2D')
+    server.register_function(draw_force_field, 'draw_force_field')
+    server.serve_forever()
 

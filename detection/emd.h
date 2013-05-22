@@ -46,6 +46,9 @@ struct flow_t
   int to;               /* Feature number in signature 2 */
   float amount;         /* Amount of flow from "from" to "to" */
   bool operator < (const flow_t &other) const{
+//      std::cout<<"*************1****"<<std::endl;
+//      other.amount;
+//      std::cout<<"*************2****" <<std::endl;
       return amount < other.amount ? false : true;
   }
 };

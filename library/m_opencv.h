@@ -202,20 +202,20 @@ namespace m_opencv {
 
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
 //                                                 RgbColor(0,0,0))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
-//                                                 RgbColor(35,35,35))).first);
+////               _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
+////                                                 RgbColor(35,35,35))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#9DD4FF",
 //                                                 RgbColor(70,70,70))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
-//                                                 RgbColor(105,105,105))).first);
+////               _idxDefColors.push_back(_defColors.insert(std::make_pair("#D53533",
+////                                                 RgbColor(105,105,105))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#509467",
 //                                                 RgbColor(140,140,140))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
-//                                                 RgbColor(175,175,175))).first);
+////               _idxDefColors.push_back(_defColors.insert(std::make_pair("#A6CD1B",
+////                                                 RgbColor(175,175,175))).first);
 //               _idxDefColors.push_back(_defColors.insert(std::make_pair("#ED9F9F",
 //                                                 RgbColor(210,210,210))).first);
-//               _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
-//                                                   RgbColor(245,245,245))).first);
+////               _idxDefColors.push_back(_defColors.insert(std::make_pair("#373A7F",
+////                                                   RgbColor(245,245,245))).first);
 
                _idxDefColors.push_back(_defColors.insert(std::make_pair("#66BBAE",
                                                  RgbColor(234, 16, 7))).first);

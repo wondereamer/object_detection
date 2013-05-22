@@ -203,7 +203,18 @@ namespace m_util {
         }
 
     }
-    
+
+    template < typename T >
+    void sort_index(const std::vector<T> &in, 
+                    std::map<T, int> *out)
+    {
+        assert(out);
+        out->clear();
+        for (int i = 0; i < in.size(); i++) {
+            out->insert(std::make_pair(in[i], i));
+        }
+    }
+
     template < typename T >
         void boundary(const T &points, typename T::value_type *min,
                         typename T::value_type *max)
@@ -248,6 +259,7 @@ public:
         for(auto &v : vec)
             t->append(v);
     }
+    
     template < typename T >
     void vecs2lists(const std::vector<std::vector<T>> &vecs,
                                                   list *t){

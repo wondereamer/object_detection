@@ -3,13 +3,13 @@
 #define VIZBLOCKWORLD_H
 #include <iostream>
 
+#include <library/m_util.h>
 #include <boost/thread/thread.hpp>
 #include <pcl/common/common_headers.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/io/pcd_io.h>
 #include "pcl_visualizer.h" 
 #include <pcl/console/parse.h>
-#include <library/m_util.h>
 #include <pcl/surface/gp3.h>
 #include <vector>
 // helper function  to create point 
@@ -31,7 +31,20 @@ void segment_plane (const pcl::PointCloud<PointT>::Ptr cloud, pcl::PointCloud<Po
 void cluster_points(const pcl::PointCloud<PointT>::Ptr cloud, CloudVector *clusters);
 PointCloudPtr down_samples(PointCloudPtr input, float leafSize);
 
-PointT create_point(float x, float y, float z, int r, int g, int b);
+
+inline PointT create_point(float x, float y, float z, int r, int g, int b){
+    PointT point;
+    //point.x = x * step;
+    point.x = x ;
+    point.y = y ;
+    point.z = z ;
+
+    uint8_t _r(r), _g(g), _b(b);
+    uint32_t rgb = (static_cast<uint32_t>(_r) << 16 |
+            static_cast<uint32_t>(_g) << 8 | static_cast<uint32_t>(_b));
+    point.rgb = *reinterpret_cast<float*>(&rgb);
+    return point;
+}
 void camera_info(pcl::visualization::Camera &camera);
 //pcl::transformPointCloud
 //enum RenderingProperties
@@ -186,6 +199,7 @@ class VizBlockWorld {
             return id;
         }
         void clear(int viewport = 0){
+            /// @todo clear default cloud
             _objId = 0;
             _viewer->removeAllPointClouds(viewport);
             _viewer->removeAllShapes(viewport);
@@ -305,6 +319,4 @@ class VizBlockWorld {
         float _z_offset;
 };
 
-void grid_color(VizBlockWorld *viz);
-void grid_color2(VizBlockWorld *viz);
 #endif /* end of include guard: VIZBLOCKWORLD_H */

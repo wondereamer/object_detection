@@ -399,7 +399,6 @@ void ClusterNode::merge(const void *n1, const void *n2)
             leaf.type = i->type;
             leaf.triangles = c1->triangles.toArray();
             leaf.size = c1->triangles.numels();
-            std::cout<<leaf.size<<std::endl;
             leaf.id1 = TrNode::numLeafs++;
             // mark the node  a leaf
             leaf.set_leaf();
@@ -437,19 +436,16 @@ void ClusterNode::merge(const void *n1, const void *n2)
     // join two list
     c1->_centerIds.splice(c1->_centerIds.end(), c2->_centerIds);
     c2->_centerIds.clear();
-    //
-    int size = c1Size + c2Size;
-    TrNode me1(c1->id, c2->id);
-    std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
     //    size2costs[size].push_back(i->cost);
-    //
     // create parent node 
     if(c1Size >= LOWER_BOUND || c2Size >= LOWER_BOUND){
-        TrNode me1(c1->id, c2->id);
-        std::unordered_set<TrNode>::iterator i = edgeInfo.find(me1);
+        TrNode temp(c1->id, c2->id);
+        std::unordered_set<TrNode>::iterator i = edgeInfo.find(temp);
+        temp = *i;
+        temp.size = c1Size + c2Size;
         // attributes of parent is set in function #edgeCostFunction
         // insert a new parent node
-        BinaryTree::NodeId parentId = hierarchyTree.add_node(*i);
+        BinaryTree::NodeId parentId = hierarchyTree.add_node(temp);
         hierarchyTree._inStack.push(parentId);
         hierarchyTree.rootId = parentId;
         gId2treeId[c1->id] = parentId;

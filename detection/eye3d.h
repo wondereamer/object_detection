@@ -1,29 +1,3 @@
-/****************************************************************************
- * EfPiSoft                                                                  *
- *                                                                           *
- * Consiglio Nazionale delle Ricerche                                        *
- * Istituto di Matematica Applicata e Tecnologie Informatiche                *
- * Sezione di Genova                                                         *
- * IMATI-GE / CNR                                                            *
- *                                                                           *
- * Authors: Marco Attene                                                     *
- *                                                                           *
- * Copyright(C) 2006: IMATI-GE / CNR                                         *
- *                                                                           *
- * All rights reserved.                                                      *
- *                                                                           *
- * This program is free software; you can redistribute it and/or modify      *
- * it under the terms of the GNU General Public License as published by      *
- * the Free Software Foundation; either version 2 of the License, or         *
- * (at your option) any later version.                                       *
- *                                                                           *
- * This program is distributed in the hope that it will be useful,           *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of            *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
- * GNU General Public License (http://www.gnu.org/licenses/gpl.txt)          *
- * for more details.                                                         *
- *                                                                           *
- ****************************************************************************/
 #ifndef TRIANGULATE_H
 
 #define TRIANGULATE_H
@@ -39,11 +13,13 @@
 #include <pcl/surface/gp3.h>
 #include <library/m_opencv.h>
 #include <library/m_util.h>
+#include <library/m_geometry.h>
 #include <cassert>
 #include <boost/graph/breadth_first_search.hpp>
 #include <stack>
 using m_opencv::RandomColor;
 using m_graph::MatrixGraph;
+using m_geometry::PointF3D;
 class VizBlockWorld;
 typedef pcl::PointXYZRGB PointT;
 typedef pcl::PointCloud<PointT>::Ptr PointCloudPtr;
@@ -62,7 +38,7 @@ class LDotty:public m_graph::DottyOutput<T>
             *(this->_fout)<<m_util::string_format("%d", id);
             if (node.is_leaf()) {
                 // is leaf
-                *(this->_fout)<<"[color = \"red\"][style = \"filled\" ][fixedsize = \"true\" ]" ;
+                *(this->_fout)<<"[color = \"red\"][style = \"filled\" ]" ;
             }
             *(this->_fout)<<"[fixedsize = \"true\" ]"<<std::endl;
         }
@@ -145,7 +121,7 @@ class RefineSegManual : public boost::default_bfs_visitor
             // _btree does not contain triangles information
             void discover_vertex(Vertex u, const Graph & g)
             {
-                if(_compInfo->_num_components < RefineSegManual::_numComp){
+                if(_compInfo->_num_components < 2*RefineSegManual::_numComp-1){
                     auto &tree = ClusterNode::hierarchyTree;
                     auto &node = tree.get_node(u);
                     auto inEdges = tree.get_in_edges(u);
@@ -196,13 +172,21 @@ class RefineSegManual : public boost::default_bfs_visitor
         //            _compInfo._components.clear();
         //        }
 };
-
+static const float FRACTION = 0.03;
 //! find meaningful components for every object, just one time
 class RefineSegAuto : public boost::default_bfs_visitor
 {
     public:
         ComponentsInfo *_compInfo;
         BinaryTree *_btree;
+        static int _numComp;
+        int _objSize;
+//        inline bool is_fraction(int c1, int c2, float parent, float threhold = 0.05)
+        inline bool is_fraction(int c1, int c2, float parent, float threhold = FRACTION)
+        {
+            return c1 / parent < threhold ||
+                   c2 / parent < threhold ;
+        }
 
 
         RefineSegAuto(ComponentsInfo *c, BinaryTree *tr):_compInfo(c),_btree(tr){ }
@@ -211,8 +195,12 @@ class RefineSegAuto : public boost::default_bfs_visitor
             // _btree does not contain triangles information
             void discover_vertex(Vertex u, const Graph & g)
             {
+//                if(_compInfo->_num_components < 2*RefineSegManual::_numComp-1){
+                if(true){
                 auto &tree = ClusterNode::hierarchyTree;
                 auto &node = tree.get_node(u);
+                if(u == tree.rootId)
+                    _objSize = node.size;
                 if ( u == ClusterNode::hierarchyTree.rootId ||
                     node.parentId != -1) {
                     bool enable_divide = true;
@@ -229,6 +217,8 @@ class RefineSegAuto : public boost::default_bfs_visitor
 
                     // id in components tree
                     int id = _btree->add_node(temp);
+
+                    _compInfo->_num_components++;
                     if(inEdges.first != inEdges.second){
                         parent = &tree.get_node(tree.sourceId(*inEdges.first));
                     }
@@ -238,7 +228,7 @@ class RefineSegAuto : public boost::default_bfs_visitor
                         auto &c1 = *child1;
                         auto &c2 = *child2;
                         // whther this component could be divided to two parts
-                        if (c1.type == c2.type) {
+                        if (c1.type == c2.type ) {
                             // snipet
                             auto p1 = c1.coefficient.point;
                             auto p2 = c2.coefficient.point;
@@ -262,7 +252,7 @@ class RefineSegAuto : public boost::default_bfs_visitor
                             float dDiff = acos(cosV) * 180 / 3.14;
                             switch((int)c1.type) {
                                 case HFP_FIT_PLANES:
-                                    if((!m_util::is_nun(dDiff)) && dDiff < 2)
+                                    if((!m_util::is_nun(dDiff)) && dDiff < 10)
                                         enable_divide = false;
                                     else if(node.parentId != -1 && node.parentId != 0 &&
                                              tree.get_node(node.parentId).type == HFP_FIT_PLANES)
@@ -275,30 +265,33 @@ class RefineSegAuto : public boost::default_bfs_visitor
                                         enable_divide = false;
                                     break;
                                 case HFP_FIT_CYLINDERS:
-                                    if((!m_util::is_nun(dDiff)) && dDiff < 25 && rDiff / lR < 0.3)
+                                    if((!m_util::is_nun(dDiff)) && dDiff < 15 && rDiff / lR < 0.3)
                                     {
                                         enable_divide = false;
                                     }
                                     break;
                             }
-                            
+                            if (is_fraction(c1.size, c2.size, _objSize)) 
+                                enable_divide = false;
+                             
                             if (m_util::is_nun(dDiff)) {
                                 enable_divide = false;
                                 if (c1.type == HFP_FIT_SPHERES &&
-                                   (!(rDiff / lR < 0.5 && cDiff / lR < 0.5))) {
+                                   (!(rDiff / lR < 0.5 && cDiff / lR < 0.5)) &&
+                                   !is_fraction(c1.size, c2.size, _objSize)) {
                                     enable_divide = true;
-                                    std::cout<<"divide two similar shape: " 
-                                             <<(int)c1.type<<std::endl;
+//                                    std::cout<<"divide two similar shape: " 
+//                                             <<(int)c1.type<<std::endl;
                                 }else if(c1.type == HFP_FIT_SPHERES)
                                     std::cout<<"merge two similar shape: "
                                              <<(int)c1.type<<std::endl;
                             }else{
-                                if(!enable_divide)
-                                    std::cout<<"merge two similar shape: "
-                                             <<(int)c1.type<<std::endl;
-                                else
-                                    std::cout<<"divide two similar shape: " 
-                                             <<(int)c1.type<<std::endl;
+//                                if(!enable_divide)
+//                                    std::cout<<"merge two similar shape: "
+//                                             <<(int)c1.type<<std::endl;
+//                                else
+//                                    std::cout<<"divide two similar shape: " 
+//                                             <<(int)c1.type<<std::endl;
 
                             }
                                 
@@ -312,7 +305,12 @@ class RefineSegAuto : public boost::default_bfs_visitor
 //                            std::cout<<"rDiff / lR: "<<rDiff/lR<<std::endl;
 //                            std::cout<<"cDiff / lR: "<<cDiff/lR<<std::endl;
 
-                        }
+                        }else if(is_fraction(c1.size, c2.size, _objSize))
+                            enable_divide = false;
+                        // set the minimum number of components
+                        if((_compInfo->_num_components +1)/2 <=2)
+                            enable_divide = true;
+
                     }
 
                     // mark children if divideable or have different types
@@ -324,7 +322,6 @@ class RefineSegAuto : public boost::default_bfs_visitor
                         temp.parentId = id;
                         tree.modify_node(children.second, temp);
 
-                    std::cout<<id<<std::endl;
                     }
                     //
                     if (node.parentId != -1) 
@@ -333,6 +330,7 @@ class RefineSegAuto : public boost::default_bfs_visitor
                     //                    _compInfo->_components.push_back(&node);
                 }
 
+            }
             }
         //        void clear_components(){
         //            _compInfo._num_components = 0;
@@ -347,29 +345,31 @@ class Eye3D :public Triangulation
                 property<edge_weight_t, int> > boostGraph2;
         typedef m_graph::AutoUniGraph<boostGraph2, TrNode> TopoGraph;
 
-        Eye3D (VizBlockWorld *viz):_viz(viz), _s(false), _colorGenerator(50){ }
+        Eye3D (VizBlockWorld *viz):_viz(viz), _s(false), _colorGenerator(50){ 
+            _py.load_file("../python/3d_mds.py");
+        }
+
+        double weight_type(const TrNode &node) const;
+        double weight_propotion(const TrNode &node) const;
+        double weight_degree(const TrNode &node) const;
+        double weight_angle(const TrNode &node) const;
+        double weight_dist(const TrNode &node) const;
         virtual ~Eye3D (){ };
         //-------------------------------------graphic model---------------------------------------------
         //! compute the graph model
         void graphic_model(TopoGraph *leafGraph);
-        double weight_type(const TrNode &node) const;
-        double weight_size(const TrNode &node) const;
-        double weight_degree(const TrNode &node) const;
-        double weight_pos(const TrNode &node) const;
-        double weight_angle(const TrNode &node) const;
         //-------------------------------------matching---------------------------------------------
         // red -- target; green -- source; blue -- result
         //! compute dynamic emd distance and display result
         float dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
-                PointCloudPtr source, const vector<float> &wOutput,
-                const vector<int> &leafs);
+                PointCloudPtr source, const vector<float> &wOutput);
         //! embedding the nodes of graph to vectors
         void embedding_graph(PointCloudPtr pos, const TopoGraph &graph);
         //! segment the object recursively
 
         //! making the segmentation result more sense to human being
         void refine_segmentation(BinaryTree *tree, ComponentsInfo *compInfo, 
-                                 bool isManual = true);
+                                 bool isManual = false);
 
         //-------------------------------------visualize---------------------------------------------
         //! segment the object
@@ -386,6 +386,7 @@ class Eye3D :public Triangulation
         void viz_components(TopoGraph &leafGraph) const;
         void viz_next_level();
         void viz_previous_level();
+        void viz_skeleton(TopoGraph &model)const;
         void change_color();
 
     protected:
@@ -414,9 +415,66 @@ class Eye3D :public Triangulation
 
         // if the mesh segmented
         bool _s;
+        PointF3D _center;
 
 
 };
 
 
+inline double Eye3D::weight_type(const TrNode &node) const
+{
+        // standard TrNode
+        // shape ---- plane, Coefficient----- 
+        // shape
+        double bias = 0;
+        auto &coef = node.coefficient;
+        switch(node.type) {
+            case HFP_FIT_PLANES:
+                {
+                    bias = 0;
+                    //                    // 0 - 3.14
+                    //                    double angle = acos(((float)coef.direction.x * (float)defaultCoef.direction.x + (float)coef.direction.y * (float)defaultCoef.direction.y
+                    //                                + (float)coef.direction.z * (float)defaultCoef.direction.z) /
+                    //                            (sqrt(pow((float)coef.direction.x,2)+pow((float)coef.direction.y, 2)+pow((float)coef.direction.z, 2))*
+                    //                             sqrt(pow((float)defaultCoef.direction.x, 2)+pow((float)defaultCoef.direction.y, 2)+pow((float)defaultCoef.direction.z, 2))));
+                    //                    // 
+                    //                    double dist = sqrt(pow(((float)coef.point.x - (float)defaultCoef.point.x), 2) + pow(((float)coef.point.y-(float)defaultCoef.point.y), 2)
+                    //                            +pow(((float)coef.point.z - (float)defaultCoef.point.z), 2));
+                    //                    bias += angle * 0.7 + atan(dist) * 0.6;
+                    break;
+                }
+            case HFP_FIT_CYLINDERS:
+                bias = 3.14 * 2;
+                break;
+            case HFP_FIT_SPHERES:
+                bias = 3.14 * 4;
+                break;
+            default:
+                assert(false);
+        };        
+        // percent
+
+        return bias;
+}
+
+inline double Eye3D::weight_propotion(const TrNode &node) const
+{
+        return node.proportion;
+}
+
+inline double Eye3D::weight_degree(const TrNode &node) const
+{
+    return node.degree;
+}
+
+inline double Eye3D::weight_angle(const TrNode &node) const
+{
+    return 1 - node.angle;
+
+}
+
+inline double Eye3D::weight_dist(const TrNode &node) const
+{
+    return node.dist;
+}
 #endif /* end of include guard: TRIANGULATE_H */

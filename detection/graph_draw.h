@@ -9,10 +9,12 @@ class DottyOutput {
 public:
     DottyOutput (Graph *g):_fout(NULL), _g(g){ };
     virtual ~DottyOutput (){ };
-    void write(const std::string &fname, bool directed = false){
+    void write(const std::string &fname, bool labelEdge = false, 
+                bool directed = false)
+    {
         assert(_g);
         set_filename(fname);
-        begin_drawing(directed);
+        begin_drawing(labelEdge, directed);
         typename Graph::EdgeIter ei, ei_end;
         typename Graph::NodeIter ni, ni_end; 
         // draw nodes
@@ -32,9 +34,12 @@ public:
             _fout = new std::ofstream(fname);
 
     }
-    virtual void begin_drawing(bool directed = false){
+    virtual void begin_drawing(bool labelEdge = false, 
+                                bool directed = false)
+    {
         assert(_fout);
         _directed = directed;
+        _labelEdge = labelEdge;
         if(_directed)
             *_fout << "digraph A {\n";
         else
@@ -53,11 +58,13 @@ public:
         assert(_fout);
         static typename Graph::EdgeWeightsMap edgeWeights = _g->edge_weights();
         if (_directed) 
-            *_fout <<_g->sourceId(eid) << " -> " << _g->targetId(eid)
-                << "[label=" << edgeWeights[eid] << "]\n";
+            *_fout <<_g->sourceId(eid) << " -> " << _g->targetId(eid);
         else
-            *_fout <<_g->sourceId(eid) << " -- " << _g->targetId(eid)
-                << "[label=" << edgeWeights[eid] << "]\n";
+            *_fout <<_g->sourceId(eid) << " -- " << _g->targetId(eid);
+        if (_labelEdge)
+            *_fout<< "[label=" << edgeWeights[eid] << "]\n";
+        else
+            *_fout<<"\n";
     }
     virtual void end_drawing(){
        assert(_fout);
@@ -69,6 +76,7 @@ protected:
     std::ofstream *_fout;
     Graph *_g;
     bool _directed;
+    bool _labelEdge;
     /* data */
 };
 }; // end of m_graph namespace

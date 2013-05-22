@@ -114,6 +114,7 @@ class IterativeClosestPoint : public Registration<PointSource, PointTarget>
             autoResponse_ = true;
             flow_ = NULL;
             pre_EMD_ = std::numeric_limits<float>::max();
+            best_EMD_ = std::numeric_limits<float>::max();
         };
 
         ~IterativeClosestPoint () {
@@ -166,11 +167,12 @@ class IterativeClosestPoint : public Registration<PointSource, PointTarget>
         std::vector<float> wOutput_;
         PointCloudSource *output_;
     public:
-        // input -> output
+        // input -> output, Bimap make sure one to one correspondence
         BiMap myCorrespondence_;
         float pre_EMD_;
         bool autoResponse_;
         flow_t *flow_;
+        float best_EMD_;
 };
 
 #include "icp.hpp" 

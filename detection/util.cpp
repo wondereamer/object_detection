@@ -4,6 +4,7 @@
 
 #include <boost/thread/thread.hpp>
 #include <sstream>
+#include <boost/foreach.hpp>
 #include "vizblockworld.h" 
 //#include "m_util.h"
 #include <cassert>

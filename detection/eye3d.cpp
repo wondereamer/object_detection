@@ -20,59 +20,9 @@ static int vv2(1);
 static auto &hTree = ClusterNode::hierarchyTree;
 
 
-int RefineSegManual::_numComp = 11;
+int RefineSegManual::_numComp = 6;
+int RefineSegAuto::_numComp = 6;
 
-double Eye3D::weight_type(const TrNode &node) const
-{
-        // standard TrNode
-        // shape ---- plane, Coefficient----- 
-        // shape
-        double bias = 0;
-        auto &coef = node.coefficient;
-        switch(node.type) {
-            case HFP_FIT_PLANES:
-                {
-                    bias = 0;
-                    //                    // 0 - 3.14
-                    //                    double angle = acos(((float)coef.direction.x * (float)defaultCoef.direction.x + (float)coef.direction.y * (float)defaultCoef.direction.y
-                    //                                + (float)coef.direction.z * (float)defaultCoef.direction.z) /
-                    //                            (sqrt(pow((float)coef.direction.x,2)+pow((float)coef.direction.y, 2)+pow((float)coef.direction.z, 2))*
-                    //                             sqrt(pow((float)defaultCoef.direction.x, 2)+pow((float)defaultCoef.direction.y, 2)+pow((float)defaultCoef.direction.z, 2))));
-                    //                    // 
-                    //                    double dist = sqrt(pow(((float)coef.point.x - (float)defaultCoef.point.x), 2) + pow(((float)coef.point.y-(float)defaultCoef.point.y), 2)
-                    //                            +pow(((float)coef.point.z - (float)defaultCoef.point.z), 2));
-                    //                    bias += angle * 0.7 + atan(dist) * 0.6;
-                    break;
-                }
-            case HFP_FIT_CYLINDERS:
-                bias = 3.14 * 2;
-                break;
-            case HFP_FIT_SPHERES:
-                bias = 3.14 * 4;
-                break;
-            default:
-                assert(false);
-        };        
-        // percent
-
-        return bias;
-}
-
-double Eye3D::weight_size(const TrNode &node) const
-{
-}
-
-double Eye3D::weight_degree(const TrNode &node) const
-{
-}
-
-double Eye3D::weight_pos(const TrNode &node) const
-{
-}
-
-double Eye3D::weight_angle(const TrNode &node) const
-{
-}
 void Eye3D::triangles_of_component(int root, std::vector<Triangle*> *triangles)const
 {
 
@@ -98,23 +48,23 @@ void Eye3D::graphic_model(TopoGraph *leafGraph)
     nodes = tree.get_all_nodes();
     while (nodes.first != nodes.second){
         const TrNode &temp = tree.get_node(*nodes.first);
-        // rank weight of target nodes(children)
+        // rank size of target nodes(children)
         std::map<BinaryTree::NodeId, int> id2rank;
-        vector<float> wChildren;                // weights of children 
-        map<float, int> wRank;                  // rank of weight 
+        vector<int> sizeChildren;                // weights of children 
+        map<int, int> sizeRank;                  // rank of weight 
         BinaryTree::OutEdgeRange children = tree.get_out_edges(*nodes.first);
         auto  ctemp = children;
         while( ctemp.first != ctemp.second){
             auto t = tree.targetId(* ctemp.first);
-            wChildren.push_back(tree.get_node(t).weight);
+            sizeChildren.push_back(tree.get_node(t).size);
             ctemp.first++;
         }
-        m_util::rank(wChildren, &wRank);
+        m_util::rank(sizeChildren, &sizeRank);
         ctemp = children;
         while(ctemp.first != ctemp.second){
             auto cId = tree.targetId(*ctemp.first);
-            float w = tree.get_node(cId).weight;
-            id2rank.insert(make_pair(cId, wRank[w]));
+            float w = tree.get_node(cId).size;
+            id2rank.insert(make_pair(cId, sizeRank[w]));
             ctemp.first++;
         }
         // add edges, nodes and set edge weights
@@ -133,10 +83,9 @@ void Eye3D::graphic_model(TopoGraph *leafGraph)
     }
     // save weighted, neighbour connected graph
     LDotty<TopoGraph> dot(&topography);
-    dot.write("topgraphy.dot");
+    dot.write("topgraphy.dot", true);
     std::cout<<"write to "<< "topgraphy.dot"<<std::endl;
     std::cout<<topography.num_nodes()<<std::endl;
-
 
     // copy leafs subgraph
     topography.copy_subgraph(compInfo._leafs , leafGraph);
@@ -148,7 +97,7 @@ void Eye3D::refine_segmentation(BinaryTree *tree, ComponentsInfo *compInfo,
                                 bool isManual)
 {
 
-    std::cout<<"************find meaningful components*********************"<<std::endl;    
+//    std::cout<<"************find meaningful components*********************"<<std::endl;    
     if( isManual ){
         RefineSegManual cmpComponents(compInfo, tree);
         boost::breadth_first_search(hTree.get_container(), 
@@ -170,6 +119,14 @@ void Eye3D::unweighted_graphic_model(BinaryTree *tree, ComponentsInfo *compInfo)
     _viz->clear();
     /// find meaningful components
     refine_segmentation(tree, compInfo);
+    m_graph::DottyOutput<BinaryTree> dot0(tree);
+    dot0.write("tree.dot");
+    std::cout<<"write to "<< "tree.dot"<<std::endl;
+
+    m_graph::DottyOutput<BinaryTree> dot1(&ClusterNode::hierarchyTree);
+    dot1.write("htree.dot");
+    std::cout<<"write to "<< "htree.dot"<<std::endl;
+
     /// compute topographical weight
     auto nodesRange = tree->get_all_nodes();
     BinaryTree::NodeId rootId = 0;
@@ -186,9 +143,14 @@ void Eye3D::unweighted_graphic_model(BinaryTree *tree, ComponentsInfo *compInfo)
         if (rst.first == rst.second) {
             compInfo->_leafs.push_back(*nodeRange.first);
         }
+        auto node = tree->get_node(*nodeRange.first);
         nodeRange.first++;
     };
-    
+//        if(node.size > maxSize) {
+//            maxSize = node.size;
+//            maxId = *leafs.first;
+//        };
+    // connect adjacent leaf nodes 
     for(auto id : compInfo->_leafs){
         CompSet components;
         components.insert(id);
@@ -224,16 +186,46 @@ void Eye3D::unweighted_graphic_model(BinaryTree *tree, ComponentsInfo *compInfo)
                 }
                 t += p;
             }
+            // t/3 == the center of one triangles mesh
             node.center += (t/3);
         }
         const float SIZEBIAS = 3.14 * 4;
-
+        
         node.center /= triangles.size();
-        node.proportion = triangles.size() / (double)ClusterNode::num_triangles;
-        node.weight = weight_type(node) + 1 / node.proportion * SIZEBIAS;
+        node.proportion = node.size / float(hTree.get_node(hTree.rootId).size);
+//        node.weight = weight_type(node) + 1 / node.proportion * SIZEBIAS;
         node.degree = tree->get_degree(id);
+        node.dist = sqrt(pow(node.center.x - _center.x, 2) + pow(node.center.y - _center.y, 2) +
+                         pow(node.center.z - _center.z, 2));
         tree->modify_node(id, node);
+
     }
+    /// angle
+    int maxSize = -1;
+    PointF3D maxCenter; 
+    for(auto id : compInfo->_leafs){
+        TrNode node = tree->get_node(id);
+        if (node.size > maxSize) {
+            maxCenter = node.center;
+        }
+    }
+    // the base line
+    float x0 = _center.x - maxCenter.x;
+    float y0 = _center.y - maxCenter.y;
+    float z0 = _center.z - maxCenter.z;
+    for(auto id : compInfo->_leafs){
+        TrNode node = tree->get_node(id);
+        float x = _center.x - node.center.x;
+        float y = _center.y - node.center.y;
+        float z = _center.z - node.center.z;
+        node.angle = (x*x0 + y*y0 + z*z0) / (sqrt(pow(x0, 2) + pow(y0,2) + pow(z0,2))*
+                                             sqrt(pow(x, 2)+ pow(y, 2) + pow(z, 2)));
+        tree->modify_node(id, node);
+
+    }
+
+
+
 
 }
 
@@ -268,18 +260,18 @@ Eye3D::pos_MDS(PointCloudPtr posNodes, const MatrixGraph &dstMatrix)
     using namespace boost::python;
 //    _viz->set_def_cloud(posNodes);
     // Load the sys module.
-    _py.load_file("../python/3d_mds.py");
     object mds_3d = _py.funObj("compute");
     boost::python::list pyMatrix;
     _py.vecs2lists(dstMatrix, &pyMatrix);
     object pos = mds_3d(pyMatrix);
-//    // pos[i] ---- wNodes[i]
-//    for (int i = 0; i < len(pos); i++) {
-//        // input to icp
-//        _viz->add_point(extract<float>(pos[i][0]), extract<float>(pos[i][1]),
-//                0, 255, 0, 0, 1);
-//    }
-//    _viz->remove_def_cloud();
+    // pos[i] ---- wNodes[i]
+    _viz->set_def_cloud(posNodes);
+    for (int i = 0; i < len(pos); i++) {
+        // input to icp
+        _viz->add_point(extract<float>(pos[i][0]), extract<float>(pos[i][1]),
+                0, 255, 0, 0, 1);
+    }
+    _viz->remove_def_cloud();
 }
 
 void
@@ -293,7 +285,7 @@ Eye3D::embedding_graph(PointCloudPtr pos, const TopoGraph &graph)
 }
 float
 Eye3D::dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
-        PointCloudPtr source, const vector<float> &wOutput, const vector<int> &leafs)
+        PointCloudPtr source, const vector<float> &wOutput)
 {
     _viz->clear();
     float radiusArg = 0.05;
@@ -313,40 +305,34 @@ Eye3D::dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
     icp.align(result);
     std::cout << "has converged:" << icp.hasConverged() << " score: " <<
         icp.getFitnessScore() << std::endl;
-    int size = result.points.size();
-    // rank the weights
-    std::map<float, int> w2rank;
-    std::vector<float> wInputRank;
-    m_util::rank(wInput, &w2rank);
-    for(float w: wInput){
-        wInputRank.push_back(w2rank[w] + 1);
-    }
-    w2rank.clear();
-    std::vector<float> wOutputRank;
-    m_util::rank(wOutput, &w2rank);
-    for(float w: wOutput){
-        wOutputRank.push_back(w2rank[w] + 1);
-    }
-    for (int i = 0; i < size; i++) {
-        int a = 0;
-        int g = 255;
-        if(leafs[i]){
-            // mark leafs different
-            a = 255;
-            g = 0;
-        }
-        _viz->add_sphere(target->points[i].x, target->points[i].y,
-                target->points[i].z, wInputRank[i]* radiusArg, 0, g, a);
-
-        //        _viz->add_sphere(source->points[i].x + 6, source->points[i].y,
-        //                source->points[i].z, wOutputRank[i]* radiusArg, 0, 255, 0);
-
-        _viz->add_sphere(result.points[i].x, result.points[i].y,
-                result.points[i].z, wOutputRank[i] * radiusArg, 255, 0, a);
-    }
-    //    icp.visualize_correspondence(_viz,0);
-    _viz->reset_camera();
-    return icp.pre_EMD_;
+//    /// visualize the align result
+//    int size = result.points.size();
+//    // rank the weights
+//    std::map<float, int> w2rank;
+//    std::vector<float> wInputRank;
+//    m_util::rank(wInput, &w2rank);
+//    for(float w: wInput){
+//        wInputRank.push_back(w2rank[w] + 1);
+//    }
+//    w2rank.clear();
+//    std::vector<float> wOutputRank;
+//    m_util::rank(wOutput, &w2rank);
+//    for(float w: wOutput){
+//        wOutputRank.push_back(w2rank[w] + 1);
+//    }
+//    for (int i = 0; i < size; i++) {
+//        _viz->add_sphere(target->points[i].x,target->points[i].y,
+//                 target->points[i].z, wInputRank[i]* radiusArg, 0, 255, 0);
+//
+//        //        _viz->add_sphere(source->points[i].x + 6, source->points[i].y,
+//        //                source->points[i].z, wOutputRank[i]* radiusArg, 0, 255, 0);
+//
+//        _viz->add_sphere(result.points[i].x, result.points[i].y,
+//                result.points[i].z, wOutputRank[i] * radiusArg, 255, 0, 0);
+//    }
+//    //    icp.visualize_correspondence(_viz,0);
+//    _viz->reset_camera();
+    return icp.best_EMD_;
 }
 //-------------------------------------visualize---------------------------------------------
 std::string Eye3D::viz_component(const std::vector<Triangle*> &triangles,
@@ -413,6 +399,36 @@ void Eye3D::viz_components( TopoGraph &leafGraph) const
 //        }
     }
 }
+void Eye3D::viz_skeleton(TopoGraph &model)const
+{
+
+    // visualize skeleton
+    _viz->clear();
+    PointCloudPtr centers(new pcl::PointCloud<PointT>);
+    _viz->set_def_cloud(centers);
+    _viz->add_point(_center.x, _center.y, _center.z, 255,0,0);
+    auto leafs = model.get_all_nodes();
+    TopoGraph::NodeId maxId = 0;
+    int maxSize = -1;
+    while (leafs.first != leafs.second){
+        auto node = model.get_node(*leafs.first);
+        if(node.size > maxSize) {
+            maxSize = node.size;
+            maxId = *leafs.first;
+        };
+        auto &center = node.center;
+        _viz->add_point(center.x, center.y, center.z, 0,255,0);
+        _viz->add_line(_center.x, _center.y, _center.z,
+                       center.x, center.y, center.z,
+                       0, 255, 0);
+        leafs.first++;
+    }
+    auto p = model.get_node(maxId).center;
+    _viz->add_line(_center.x, _center.y, _center.z,
+            p.x, p.y, p.z, 255, 0, 0);
+    _viz->push_def_cloud(0,9);
+
+}
 void Eye3D::viz_next_level()
 {
     // making sure the object is segmented
@@ -450,27 +466,27 @@ void Eye3D::viz_next_level()
         if (shapeId != "") 
             _viz->remove_shape(shapeId);
         auto &coef = BinaryTree::_currentNode.coefficient;
-        switch((int)BinaryTree::_currentNode.type) {
-            case HFP_FIT_PLANES:
-                std::cout<<"**plane"<<std::endl;
-                shapeId = _viz->add_plane(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
-                            coef.direction.x*ZOOM, coef.direction.y*ZOOM, coef.direction.z*ZOOM);
-                break;
-            case HFP_FIT_SPHERES:
-                std::cout<<"**sphere"<<std::endl;
-                shapeId = _viz->add_sphere(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
-                            coef.radius*ZOOM);
-                break;
-            case HFP_FIT_CYLINDERS:
-                std::cout<<"**clinders"<<std::endl;
-                std::cout<<"bound:"<<bound<<std::endl;
-                shapeId = _viz->add_cylinder(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
-                            coef.direction.x*ZOOM, coef.direction.y*ZOOM, coef.direction.z*ZOOM, 
-                            coef.radius*ZOOM, bound);
-
-                break;
-            
-        }
+//        switch((int)BinaryTree::_currentNode.type) {
+//            case HFP_FIT_PLANES:
+//                std::cout<<"**plane"<<std::endl;
+//                shapeId = _viz->add_plane(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
+//                            coef.direction.x*ZOOM, coef.direction.y*ZOOM, coef.direction.z*ZOOM);
+//                break;
+//            case HFP_FIT_SPHERES:
+//                std::cout<<"**sphere"<<std::endl;
+//                shapeId = _viz->add_sphere(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
+//                            coef.radius*ZOOM);
+//                break;
+//            case HFP_FIT_CYLINDERS:
+//                std::cout<<"**clinders"<<std::endl;
+//                std::cout<<"bound:"<<bound<<std::endl;
+//                shapeId = _viz->add_cylinder(coef.point.x*ZOOM, coef.point.y*ZOOM, coef.point.z*ZOOM,
+//                            coef.direction.x*ZOOM, coef.direction.y*ZOOM, coef.direction.z*ZOOM, 
+//                            coef.radius*ZOOM, bound);
+//
+//                break;
+//            
+//        }
         std::cout<<BinaryTree::_currentNode.cost<<std::endl;
         hTree._outStack.push(trId);
     }
@@ -522,6 +538,7 @@ int Eye3D::load_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl:
     int num_mesh = meshes.polygons.size();
     int num_vertex = num_mesh * 3;
     int i,j,i1,i2,i3;
+    PointF3D center;
     Vertex *v;
     ExtVertex **var = (ExtVertex **)malloc(sizeof(ExtVertex *)*num_vertex);
     if ((fp = fopen("temp" ,"w")) == NULL) return IO_CANTOPEN;
@@ -529,7 +546,11 @@ int Eye3D::load_mesh(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const pcl:
     for(auto &p : cloud->points){
         // the real vertex, would be freed by parent
         V.appendTail(new Vertex(p.x, p.y, p.z));
+        _center.x += p.x;
+        _center.y += p.y;
+        _center.z += p.z;
     }
+    _center /= cloud->points.size();
     //
     i=0; 
     FOREACHVERTEX(v, n) 

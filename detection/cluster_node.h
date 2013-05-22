@@ -89,6 +89,8 @@ struct TrNode{
     //! the center of the component
     m_geometry::PointF3D center;
     int degree;
+    float dist;
+    float angle;
     //!
     double weight;
     double tpWeight;

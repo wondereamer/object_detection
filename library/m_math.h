@@ -35,6 +35,30 @@ namespace m_math {
     inline int rand_int(int min, int max){
         return rand() % (max - min + 1) + min;
     }
+    inline void rand_sample(int min, int max, int num, std::vector<int> *rst)
+    {
+        /// @todo less efficient
+        std::set<int> temp;
+        for (int i = 0; i < num; i++) {
+            int t = rand_int(min, max);
+            while(!temp.insert(t).second)
+                t = rand_int(min, max);
+            rst->push_back(t);
+        }
+    }
+    template < typename T >
+    void rand_sample(std::vector<T> &input, int num, std::vector<T> *rst)
+    {
+        /// @todo less efficient
+        std::set<int> temp;
+        for (int i = 0; i < num; i++) {
+            int t = rand_int(0, input.size() - 1);
+            while(!temp.insert(t).second)
+                t = rand_int(0, input.size() - 1);
+            rst->push_back(input[t]);
+        }
+    }
+    
 
     template < typename T >
         inline double length_edge(T x0, T y0,T z0, T x1, T y1, T z1){

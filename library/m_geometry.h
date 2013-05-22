@@ -127,10 +127,10 @@ namespace m_geometry {
         PointF3D operator / (const PointF3D &other) const{
             return PointF3D(x / other.x, y / other.y, z / other.z);
         }
-        PointF3D& operator /= (double num){
-            x /= num;
-            y /= num;
-            z /= num;
+        PointF3D& operator /= (const PointF3D &other){
+            x /= other.x;
+            y /= other.y;
+            z /= other.z;
             return *this;
         }
         //! do support string like weak order comparing
