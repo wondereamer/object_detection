@@ -30,6 +30,7 @@
 #include <iterator>
 #include <pcl/features/normal_3d.h>
 #include <pcl/sample_consensus/ransac.h>
+#include <fstream>
 
 using namespace std;
 using namespace m_opencv;
@@ -49,12 +50,21 @@ int v1(0);
 int v2(1);
 const int MAX_SIZE_OF_OBJECT = 20000;
 //const float MESH_RADIUS = 30;
+//const float MESH_RADIUS = 0.002;
 const float MESH_RADIUS = 0.025;
 // display zoom
 float ZOOM = 10;
 // file compId
 int id(0);
 int objId(-1);
+
+struct ObjWeights{
+    std::vector<float> pWeights;                  // proportion weight
+    std::vector<float> dWeights;                  // degree weight 
+    std::vector<float> tWeights;                // type weight 
+    std::vector<float> aWeights;                 // angle weight 
+    PointCloudPtr pos;
+};
 
 vector<string>
 list_files(const std::string &fname){
@@ -227,6 +237,39 @@ void scene_cluster(const std::string &fname){
     std::cout<<objects.size()<<std::endl;
     viz.push_def_cloud();
 }
+typedef map<string, ObjWeights> WeightMap;
+
+WeightMap::value_type
+cloud_model(PointCloudPtr cloud, string fname)
+{
+    // down sample points, if necessary
+    pcl::PointCloud<PointT>::Ptr cloud_filtered;
+    if (cloud->points.size() > MAX_SIZE_OF_OBJECT) 
+        cloud_filtered = down_samples(cloud, 0.002);
+    else
+        cloud_filtered = cloud;
+    ObjWeights obj;
+    // build cloud model
+    std::cout<<"segment file:"<<fname<<std::endl;
+    segment_mesh(cloud_filtered);
+    Eye3D::TopoGraph graphicModel;
+    PointCloudPtr source(new pcl::PointCloud<PointT>);
+    vizMesh2->graphic_model(&graphicModel);
+    // get position
+    vizMesh2->embedding_graph(source, graphicModel);
+    // get weight
+    auto nodes = graphicModel.get_all_nodes();
+    while (nodes.first != nodes.second) {
+        auto &temp = graphicModel.get_node(*nodes.first);
+        obj.pWeights.push_back(vizMesh2->weight_propotion(temp));
+        obj.dWeights.push_back(vizMesh2->weight_degree(temp));
+        obj.tWeights.push_back(vizMesh2->weight_type(temp));
+        obj.aWeights.push_back(vizMesh2->weight_angle(temp));
+        nodes.first++;
+    }
+    obj.pos = source;
+    return make_pair(fname, obj);
+}
 
 void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         void* viewer_void) {
@@ -375,15 +418,19 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         int  t = 1;
         string sDir;
         string tDir;
-//        std::cout<<"We are going to compare files in two directory, please input your source path:";
-//        std::cin >> sDir;
-//        std::cout<<"please input your target path:";
-//        std::cin >> tDir;
-        sDir = tDir = "cup";
+        std::cout<<"We are going to compare files in two directory, please input your source path:";
+        std::cin >> sDir;
+        std::cout<<"please input your target path:";
+        std::cin >> tDir;
+//        sDir = tDir = "cup";
         CloudVector tClouds;
         CloudVector sClouds;
         vector<string> sFiles = list_files(sDir);
         vector<string> tFiles = list_files(tDir);
+        // cloud model of target objects
+        WeightMap fname2weightsT;
+        // cloud model of source objects
+        WeightMap fname2weightsS;
         for(auto &fname : tFiles){
             pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
             auto range = boost::find_first(fname, ".off");
@@ -391,12 +438,9 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
                 read_off(fname, cloud);
             else
                 pcl::io::loadPCDFile(fname, *cloud);
-            if (cloud->points.size() > MAX_SIZE_OF_OBJECT) {
-                // down sample points
-                pcl::PointCloud<PointT>::Ptr cloud_filtered = down_samples(cloud, MESH_RADIUS);
-                tClouds.push_back(cloud_filtered);
-            }else
-                tClouds.push_back(cloud);
+
+            // compute the cloud model of object
+            fname2weightsT.insert(cloud_model(cloud, fname));
         }
         for(auto &fname : sFiles){
             pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
@@ -405,101 +449,70 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
                 read_off(fname, cloud);
             else
                 pcl::io::loadPCDFile(fname, *cloud);
-            if (cloud->points.size() > MAX_SIZE_OF_OBJECT) {
-                // down sample points
-                pcl::PointCloud<PointT>::Ptr cloud_filtered = down_samples(cloud, MESH_RADIUS);
-                sClouds.push_back(cloud_filtered);
-            }else
-                sClouds.push_back(cloud);
+            // compute the cloud model of object
+            fname2weightsS.insert(cloud_model(cloud, fname));
 
         }
-        int tIndex = 0;
-        for(auto tCloud : tClouds){
-            // s
-            std::vector<float> pT;                  // proportion weight
-            std::vector<float> dT;                  // degree weight 
-            std::vector<float> tT;                  // type weight 
-            std::vector<float> aT;                  // angle weight 
-            // segment target cloud
-            std::cout<<"segment file:"<<tFiles[tIndex]<<std::endl;
-            segment_mesh(tCloud);
-            std::vector<int> leafs;
-            Eye3D::TopoGraph graphicModel;
-            vizMesh2->graphic_model(&graphicModel);
-            // get position (MDS)
-            PointCloudPtr target(new pcl::PointCloud<PointT>);
-            vizMesh2->embedding_graph(target, graphicModel);
-            // get weight
-            auto nodes = graphicModel.get_all_nodes();
-            while (nodes.first != nodes.second) {
-                auto &temp = graphicModel.get_node(*nodes.first);
-                pT.push_back(vizMesh2->weight_propotion(temp));
-                dT.push_back(vizMesh2->weight_degree(temp));
-                tT.push_back(vizMesh2->weight_type(temp));
-                aT.push_back(vizMesh2->weight_angle(temp));
-                nodes.first++;
+        int all = 0;
+        float total = 0;
+
+        std::ofstream log("similarity.log");
+        std::ofstream pylog("to_py.log");
+        for(auto &t : fname2weightsT)
+        {
+            log << "-------------------------------------------------------------"<<std::endl;
+            pylog << "-------------------------------------------------------------"<<std::endl;
+            log << t.first << std::endl;
+            pylog << t.first << std::endl;
+            int count = 0;
+            float sum = 0;
+            /// @todo remove smallest and biggest
+            for(auto &s : fname2weightsS){
+                // calculating EMD
+                float p = vizMesh2->dynamic_EMD(t.second.pos, t.second.pWeights,
+                                                s.second.pos, s.second.pWeights);
+
+                float a = vizMesh2->dynamic_EMD(t.second.pos, t.second.aWeights,
+                                                s.second.pos, s.second.aWeights);
+
+                float d = vizMesh2->dynamic_EMD(t.second.pos, t.second.dWeights,
+                                                s.second.pos, s.second.dWeights);
+                if (a+p+d > 1000) {
+                    /// @todo there may be some bug if this happen
+                    // ignore this case
+                    std::cout<<m_util::string_format(
+                        "warning: failed to compare object %s to object %s\n",t.first.c_str(), s.first.c_str());
+                    continue;
+                }
+                log<<"emd to file: "<<s.first<<endl
+                    <<"propotion:"
+                    <<p<<" "
+                    <<"degree:"
+                    <<d<<" " 
+                    <<"angle:"
+                    <<a<<" " 
+                    <<"total:"
+                    <<a+p+d<<std::endl;
+                count++;
+                sum += (a+p+d);
+                all++;
             }
-            std::cerr<<"---------------------------------------------------------------------------------------------------"<<std::endl;    
-            std::cerr<<"target file: "<<tFiles[tIndex++]<<std::endl;
 
-            //            //
-            //            vector<int> s;
-            //            s.push_back(0);
-            //            s.push_back(7);
-            //            s.push_back(6);
-            //
-            //            s.push_back(5); 
-            //            s.push_back(1);
-            //            s.push_back(4); // ping zi
-            int sIndex = 0;
-            for(auto sCloud : sClouds){
-                    std::vector<float> pS;                  // proportion weight
-                    std::vector<float> dS;                  // degree weight 
-                    std::vector<float> tS;                  // type weight 
-                    std::vector<float> aS;                  // angle weight 
-                    std::cout<<"segment file:"<<sFiles[sIndex]<<std::endl;
-                    segment_mesh(sCloud);
-                    std::vector<int> leafs;
-                    Eye3D::TopoGraph graphicModel;
-                    PointCloudPtr source(new pcl::PointCloud<PointT>);
-                    vizMesh2->graphic_model(&graphicModel);
-                    // get position
-                    vizMesh2->embedding_graph(source, graphicModel);
-                    // get weight
-                    auto nodes = graphicModel.get_all_nodes();
-                    while (nodes.first != nodes.second) {
-                        auto &temp = graphicModel.get_node(*nodes.first);
-                        pS.push_back(vizMesh2->weight_propotion(temp));
-                        dS.push_back(vizMesh2->weight_degree(temp));
-                        tS.push_back(vizMesh2->weight_type(temp));
-                        aS.push_back(vizMesh2->weight_angle(temp));
-                        nodes.first++;
-                    }
-                    assert(target->points.size() > 0 && source->points.size() > 0);
-                    // embedding graph to vectors
-                    std::cerr<<"*********************************"<<std::endl;    
-                    std::cerr<<"source file: "<<sFiles[sIndex++]<<std::endl;
-                    // calculating EMD
-                    std::cerr<<source->points.size()<<std::endl;
-                    float p = vizMesh2->dynamic_EMD(target, pT, source, pS);
-                    float a = vizMesh2->dynamic_EMD(target, aT, source, aS);
-                    float d = vizMesh2->dynamic_EMD(target, dT, source, dS);
-                    std::cerr<<"emd to id: "<<id<<endl<<"propotion:"<<std::endl
-                        <<p<<std::endl
-                        <<"degree:"<<std::endl
-                        <<d<<std::endl
-                        <<"angle:"<<std::endl
-                        <<a<<std::endl
-                        <<"total:"<<std::endl
-                        <<a+p+d<<std::endl;
-                    //            viz.set_backgroundcolor(255,255,255);
+            assert(count != 0);
+            log << "average: "<< sum/count << std::endl;
+            pylog << sum/count << std::endl;
+            total += sum;
+        }
+        log<<"*********************************"<<std::endl;    
+        log<<"average: "<<total / all<<std::endl;
+        log<<"*********************************"<<std::endl;    
+        pylog<<"*********************************"<<std::endl;    
+        pylog<<total / all<<std::endl;
 
-            }// end of source iteration
-
-        } // end of target iteration
-
+        std::cout<<"Done!"<<std::endl;
 
     }//end of key trigger
+
 
 
 }

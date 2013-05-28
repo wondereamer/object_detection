@@ -19,14 +19,11 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
     output_ = &output;
     assert(target_->points.size() && output.points.size());
     assert(wInput_.size() && wOutput_.size());
-    if (flow_) {
-        assert(false);
-        delete []flow_;
-    }
     float emd_change;
     int flowSize = wInput_.size() + wOutput_.size() - 1;
     flow_ = new flow_t[flowSize];
-    for (int i = 0; i < 100; i++) {
+    int RAND_NUM = 100;
+    for (int i = 0; i < RAND_NUM; i++) {
         /// reset condition
         converged_ = false;
         nr_iterations_ = 0;
@@ -61,6 +58,7 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
         //            std::cout<<"*************correspondences*****"<<std::endl;    
         //            m_util::print_map(myCorrespondence_);
         //            std::cout<<"*********************************"<<std::endl;    
+        int flag = 0;
         /// repeat until convergence
         while (!converged_)        
         {
@@ -74,9 +72,15 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
             int cnt = myCorrespondence_.size();
             if (cnt < min_number_correspondences_)
             {
-                std::cout<<"error: Not enough correspondences found." <<std::endl;
-                converged_ = false;
-                return;
+                flag++;
+                if (flag == RAND_NUM) {
+                    // when we can't find enough correspondences every time, 
+                    // then the algorithm failes.
+                    std::cout<<"error: Not enough correspondences found." <<std::endl;
+                    converged_ = false;
+                    return;
+                }
+                break;
             }
 //            myCorrespondence_.resize(5);
             std::vector<int> source_indices (cnt);  // output 
@@ -118,12 +122,18 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
                 if(myCorrespondence_.size() == 5)
                     break;
             }
+//            if (myCorrespondence_.size() < 3) {
+//                for (int i = 0; i < flowSize; i++) {
+//                    std::cout<<flow_[i].from<<" "<<flow_[i].to<<std::endl;
+//                }
+//            }
 
 
         }
         if(pre_EMD_ < best_EMD_)
             best_EMD_ = pre_EMD_;
     }
+
 }
 
 template <typename PointSource, typename PointTarget> void
