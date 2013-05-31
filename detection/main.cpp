@@ -239,7 +239,7 @@ void scene_cluster(const std::string &fname){
 }
 typedef map<string, ObjWeights> WeightMap;
 
-WeightMap::value_type
+    WeightMap::value_type
 cloud_model(PointCloudPtr cloud, string fname)
 {
     // down sample points, if necessary
@@ -389,22 +389,24 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         Eye3D::TopoGraph graphicModel;
         vizMesh2->graphic_model(&graphicModel);
         vizMesh2->viz_components(graphicModel);
+        // get weight
+        auto nodes = graphicModel.get_all_nodes();
+        while (nodes.first != nodes.second) {
+            auto &temp = graphicModel.get_node(*nodes.first);
+            std::cout<<"angle: "<<vizMesh2->weight_angle(temp)<<" "
+                <<"degree: "<<vizMesh2->weight_degree(temp)<<" " 
+                <<"type: "<<vizMesh2->weight_type(temp)<<" " 
+                <<"proportion: "<<vizMesh2->weight_propotion(temp)<<" " 
+                <<"dist: "<<vizMesh2->weight_dist(temp)<<std::endl;
+            nodes.first++;
+        }
         //        vizMesh2->viz_skeleton(graphicModel);
         viz.reset_camera();
         viz.set_backgroundcolor(255, 255, 255);
-        // save subgraph
+        // save 
         LDotty<typename Eye3D::TopoGraph> dot2(&graphicModel);
-        dot2.write("leafs.dot", true);
+        dot2.write(fname + "leafs.dot", true);
         std::cout<<"write to "<< fname + "leafs.dot"<<std::endl;
-        //        // log result
-        //        std::cout<<"***********node type: *************"<<std::endl;    
-        //        auto nodes = graphicModel.get_all_nodes();
-        //        while (nodes.first != nodes.second) {
-        //            auto &temp = graphicModel.get_node(*nodes.first);
-        //            std::cout<<"type: "<<(int)temp.type<<std::endl;
-        //            nodes.first++;
-        //        }
-        //        viz.reset_camera();
         //        RefineSegManual::_numComp += 2;
 
     }else if( event.getKeySym() == "d" && event.keyDown()){
@@ -418,96 +420,125 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
         int  t = 1;
         string sDir;
         string tDir;
-        std::cout<<"We are going to compare files in two directory, please input your source path:";
-        std::cin >> sDir;
-        std::cout<<"please input your target path:";
-        std::cin >> tDir;
-//        sDir = tDir = "cup";
+        vector<string> dirs;
+        std::cout<<"We are going to files:"<<std::endl;
+        while(true){
+            string temp;
+            std::cin >> temp;
+            if (temp == "0" ) {
+                break;
+            }
+            dirs.push_back(temp);
+        }
         CloudVector tClouds;
         CloudVector sClouds;
-        vector<string> sFiles = list_files(sDir);
-        vector<string> tFiles = list_files(tDir);
-        // cloud model of target objects
-        WeightMap fname2weightsT;
-        // cloud model of source objects
-        WeightMap fname2weightsS;
-        for(auto &fname : tFiles){
-            pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
-            auto range = boost::find_first(fname, ".off");
-            if (range.begin()!= range.end()) 
-                read_off(fname, cloud);
-            else
-                pcl::io::loadPCDFile(fname, *cloud);
+        WeightMap fname2weights;
+        // load files
+        for(auto dir : dirs){
+            vector<string> files = list_files(dir);
+            for(auto &fname : files){
+                pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
+                auto range = boost::find_first(fname, ".off");
+                if (range.begin()!= range.end()) 
+                    read_off(fname, cloud);
+                else
+                    pcl::io::loadPCDFile(fname, *cloud);
 
-            // compute the cloud model of object
-            fname2weightsT.insert(cloud_model(cloud, fname));
-        }
-        for(auto &fname : sFiles){
-            pcl::PointCloud<PointT>::Ptr cloud (new pcl::PointCloud<PointT>);
-            auto range = boost::find_first(fname, ".off");
-            if (range.begin()!= range.end()) 
-                read_off(fname, cloud);
-            else
-                pcl::io::loadPCDFile(fname, *cloud);
-            // compute the cloud model of object
-            fname2weightsS.insert(cloud_model(cloud, fname));
+                // compute the cloud model of object
+                fname2weights.insert(cloud_model(cloud, fname));
+            }
 
         }
-        int all = 0;
-        float total = 0;
 
         std::ofstream log("similarity.log");
         std::ofstream pylog("to_py.log");
-        for(auto &t : fname2weightsT)
-        {
-            log << "-------------------------------------------------------------"<<std::endl;
-            pylog << "-------------------------------------------------------------"<<std::endl;
-            log << t.first << std::endl;
-            pylog << t.first << std::endl;
-            int count = 0;
-            float sum = 0;
-            /// @todo remove smallest and biggest
-            for(auto &s : fname2weightsS){
-                // calculating EMD
-                float p = vizMesh2->dynamic_EMD(t.second.pos, t.second.pWeights,
-                                                s.second.pos, s.second.pWeights);
-
-                float a = vizMesh2->dynamic_EMD(t.second.pos, t.second.aWeights,
-                                                s.second.pos, s.second.aWeights);
-
-                float d = vizMesh2->dynamic_EMD(t.second.pos, t.second.dWeights,
-                                                s.second.pos, s.second.dWeights);
-                if (a+p+d > 1000) {
-                    /// @todo there may be some bug if this happen
-                    // ignore this case
-                    std::cout<<m_util::string_format(
-                        "warning: failed to compare object %s to object %s\n",t.first.c_str(), s.first.c_str());
+        for (int i = 0; i < dirs.size(); i++) {
+            string &dirT = dirs[i] ;
+            vector<string> filesT = list_files(dirT);
+            for (int j = 0; j < dirs.size(); j++) {
+                if (i > j)
                     continue;
-                }
-                log<<"emd to file: "<<s.first<<endl
-                    <<"propotion:"
-                    <<p<<" "
-                    <<"degree:"
-                    <<d<<" " 
-                    <<"angle:"
-                    <<a<<" " 
-                    <<"total:"
-                    <<a+p+d<<std::endl;
-                count++;
-                sum += (a+p+d);
-                all++;
-            }
+                string &dirS = dirs[j] ;
+                vector<string> filesS = list_files(dirS);
+                int all = 0;
+                float total = 0;
+                float totala = 0;
+                float totalp = 0;
+                float totald = 0;
+                for(auto &fileT : filesT)
+                {
+                    log << "-------------------------------------------------------------"<<std::endl;
+                    pylog << "-------------------------------------------------------------"<<std::endl;
+                    auto &wT = fname2weights[fileT];
+                    log << fileT << std::endl;
+                    pylog << fileT << std::endl;
+                    int count = 0;
+                    float sum = 0;
+                    float suma = 0;
+                    float sump = 0;
+                    float sumd = 0;
+                    /// @todo remove smallest and biggest
+                    for(auto &fileS : filesS){
+                        auto &wS = fname2weights[fileS];
+                        // calculating EMD
+                        float p = vizMesh2->dynamic_EMD(wT.pos, wT.pWeights,
+                                wS.pos, wS.pWeights);
 
-            assert(count != 0);
-            log << "average: "<< sum/count << std::endl;
-            pylog << sum/count << std::endl;
-            total += sum;
+                        float a = vizMesh2->dynamic_EMD(wT.pos, wT.aWeights,
+                                wS.pos, wS.aWeights);
+
+                        float d = vizMesh2->dynamic_EMD(wT.pos, wT.dWeights,
+                                wS.pos, wS.dWeights);
+                        if (a<0 || p<0 || d<0) {
+                            std::cout<<m_util::string_format(
+                                    "warning: failed to compare object %s to object %s\n",fileT.c_str(), fileS.c_str());
+                            continue;
+                        }
+                        log<<"emd to file: "<<fileS<<endl
+                            <<"propotion:"
+                            <<p<<" "
+                            <<"degree:"
+                            <<d<<" " 
+                            <<"angle:"
+                            <<a<<" " 
+                            <<"total:"
+                            <<a+p+d<<std::endl;
+                        count++;
+                        sum += (a+p+d);
+                        suma += a;
+                        sump += p;
+                        sumd += d;
+                        all++;
+                    } // end of target file vs. dir
+
+                    assert(count != 0);
+                    log << "average: "<< sum/count << std::endl;
+                    pylog << sum/count << std::endl;
+                    pylog << suma/count << std::endl;
+                    pylog << sump/count << std::endl;
+                    pylog << sumd/count << std::endl;
+                    total += sum;
+                    totala += suma;
+                    totalp += sump;
+                    totald += sumd;
+                } //end of target dir vs. source dir
+                pylog<<"---------------------------------"<<std::endl;    
+                pylog<<total / all<<std::endl
+                    <<totala / all<<std::endl
+                    <<totalp / all<<std::endl
+                    <<totald / all<<std::endl;
+                pylog<<dirT<<std::endl
+                    <<dirS<<std::endl;
+                pylog<<"#################################"<<std::endl;    
+
+                log<<"#################################"<<std::endl;    
+                log<<dirT<<std::endl
+                    <<dirS<<std::endl;
+                log<<"average: "<<total / all<<std::endl;
+                log<<"#################################"<<std::endl;    
+            } // end of target dir vs. all source dir
+            break;
         }
-        log<<"*********************************"<<std::endl;    
-        log<<"average: "<<total / all<<std::endl;
-        log<<"*********************************"<<std::endl;    
-        pylog<<"*********************************"<<std::endl;    
-        pylog<<total / all<<std::endl;
 
         std::cout<<"Done!"<<std::endl;
 

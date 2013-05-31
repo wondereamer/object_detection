@@ -22,35 +22,41 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
     float emd_change;
     int flowSize = wInput_.size() + wOutput_.size() - 1;
     flow_ = new flow_t[flowSize];
-    int RAND_NUM = 100;
-    for (int i = 0; i < RAND_NUM; i++) {
+    std::vector<int*> samples;
+//    samples.push_back
+    const int RAND_NUM = 3;
+    const int RAND_TOTAL = 6;
+    int a[] = { 0, 1, 2};
+    int b[] = { 0, 2, 1};
+    int c[] = { 1, 0, 2};
+    int d[] = { 1, 2, 0};
+    int e[] = { 2, 1, 0};
+    int f[] = { 2, 0, 1};
+    samples.push_back(a);
+    samples.push_back(b);
+    samples.push_back(c);
+    samples.push_back(d);
+    samples.push_back(e);
+    samples.push_back(f);
+    std::vector<pair<float,int>> vecOutput;
+    std::vector<pair<float,int>> spOutput; 
+    std::sort(wInput_.begin(), wInput_.end(), std::greater<float>());
+    std::sort(wOutput_.begin(), wOutput_.end(), std::greater<float>());
+    int flag = 0;
+    for (auto &sample: samples) {
+        /// @todo to interate over all possible case 
+        /// rather than sample 100 times
         /// reset condition
-        converged_ = false;
+        bool stop = false;
         nr_iterations_ = 0;
         emd_change = 10000;
         /// random sample initial correspondences
+        /// sampled first MINIMUM_CRSP elements in #output 
         myCorrespondence_.clear();
         const int MINIMUM_CRSP = 3;
-        std::map<float, int> sInput;
-        std::map<float, int> sOutput;
-        std::vector<pair<float,int>> vecOutput;
-        std::vector<pair<float,int>> spOutput; // sampled first MINIMUM_CRSP elements in #output 
-        m_util::sort_index(wInput_, &sInput);
-        m_util::sort_index(wOutput_, &sOutput);
         // copy the first MINIMUM_CRSP elements in #output
-        auto iter = sOutput.begin();
-        int count = 0;
-        while(iter != sOutput.end() && count++ != MINIMUM_CRSP)
-            vecOutput.push_back(*iter++);
-        // sample the first MINIMUM_CRSP elements in #output
-        m_math::rand_sample(vecOutput, MINIMUM_CRSP, &spOutput);
-        //
-        count = 0;
-        iter = sInput.begin();
-        while(iter != sInput.end() && count != MINIMUM_CRSP){
-            myCorrespondence_.insert(BiValue(iter->second, spOutput[count].second));
-            count++;
-            iter++;
+        for (int i = 0; i < RAND_NUM; i++) {
+            myCorrespondence_.insert(BiValue(i, sample[i]));
         }
         assert(myCorrespondence_.size() == MINIMUM_CRSP);
 
@@ -58,31 +64,26 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
         //            std::cout<<"*************correspondences*****"<<std::endl;    
         //            m_util::print_map(myCorrespondence_);
         //            std::cout<<"*********************************"<<std::endl;    
-        int flag = 0;
         /// repeat until convergence
-        while (!converged_)        
+        while (!stop)        
         {
 
             /// if converged
-            if (nr_iterations_ >= max_iterations_ || emd_change < 0.001)
+            if (emd_change < 0.001)
             {
+                stop = true;
+                converged_ = true;
+                break;
+            }
+            if (nr_iterations_ >= max_iterations_ ){
+                stop = true;
                 break;
             }
             /// transform the points
             int cnt = myCorrespondence_.size();
+            // ignore this sample
             if (cnt < min_number_correspondences_)
-            {
-                flag++;
-                if (flag == RAND_NUM) {
-                    // when we can't find enough correspondences every time, 
-                    // then the algorithm failes.
-                    std::cout<<"error: Not enough correspondences found." <<std::endl;
-                    converged_ = false;
-                    return;
-                }
                 break;
-            }
-//            myCorrespondence_.resize(5);
             std::vector<int> source_indices (cnt);  // output 
             std::vector<int> target_indices (cnt); // input
             int idx = 0;
@@ -119,16 +120,22 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
             for (int i = 0; i < flowSize; i++) {
                 myCorrespondence_.insert(BiValue(flow_[i].from, flow_[i].to));
                 // maximum number of correspondences
+                /// @todo arguments
                 if(myCorrespondence_.size() == 5)
                     break;
             }
-//            if (myCorrespondence_.size() < 3) {
-//                for (int i = 0; i < flowSize; i++) {
-//                    std::cout<<flow_[i].from<<" "<<flow_[i].to<<std::endl;
-//                }
+//            std::cout<<"*********************************"<<std::endl;    
+//            for (int i = 0; i < flowSize; i++) {
+//                std::cout<<flow_[i].from<<" "<<flow_[i].to<<" "<<flow_[i].amount<<std::endl;
 //            }
+//            std::cout<<"***********----------************"<<std::endl;    
+//            for(auto p : myCorrespondence_.left){
+//                 std::cout<<p.first<<" "<<p.second<<std::endl;
+//            }
+//            std::cout<<myCorrespondence_.size()<<std::endl;
+//            assert(myCorrespondence_.size() >= MINIMUM_CRSP);
 
-
+        
         }
         if(pre_EMD_ < best_EMD_)
             best_EMD_ = pre_EMD_;

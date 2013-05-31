@@ -33,17 +33,18 @@ void Eye3D::triangles_of_component(int root, std::vector<Triangle*> *triangles)c
 
 }
 
-void Eye3D::graphic_model(TopoGraph *leafGraph)
+void Eye3D::graphic_model(TopoGraph *topography)
 {
     // Note: BinaryTree is actually a graph type plus binary tree interfaces
     BinaryTree tree;                            // components tree 
     ComponentsInfo compInfo;
+    const int INCREMANT = 5;
+    const int BASIC = 500;
     /// get graph model
     unweighted_graphic_model( &tree , &compInfo);
-    /// assgin weights of each edge and node
-    TopoGraph topography;                       // the final weighted graph model 
+    /// assgin weights of each edge according to the size of node
     auto nodes = tree.get_all_nodes();
-    auto weights = topography.edge_weights();
+    auto weights = topography->edge_weights();
     // copy topographical to final graph model and set edge weights
     nodes = tree.get_all_nodes();
     while (nodes.first != nodes.second){
@@ -70,26 +71,32 @@ void Eye3D::graphic_model(TopoGraph *leafGraph)
         // add edges, nodes and set edge weights
         children = tree.get_out_edges(*nodes.first);
         BinaryTree::OutEdgeRange children2 = tree.get_out_edges(*nodes.first);
-        auto id = topography.add_node(temp);
+        auto id = topography->add_node(temp);
         while(children.first != children.second){
             // add child node
             auto t = tree.targetId(*children.first);
-            TopoGraph::NodeId childId = topography.add_node(tree.get_node(t));
-            // add edge and set weights (equal to rank of weight of children)
-            weights[topography.add_edge(id, childId).first] = id2rank[childId] + 1;
+            TopoGraph::NodeId childId = topography->add_node(tree.get_node(t));
+            // add edge 
+            auto eid = topography->add_edge(id, childId).first;
+            if (topography->get_node(childId).is_leaf() &&
+                temp.is_leaf()) 
+                weights[eid] = BASIC;
+            else
+                // set weights (equal to rank of weight of children)
+                weights[eid] = id2rank[childId] * INCREMANT + BASIC;
             children.first++;
         }
         nodes.first++;
     }
-    // save weighted, neighbour connected graph
-    LDotty<TopoGraph> dot(&topography);
-    dot.write("topgraphy.dot", true);
-    std::cout<<"write to "<< "topgraphy.dot"<<std::endl;
-    std::cout<<topography.num_nodes()<<std::endl;
+//    // save weighted, neighbour connected graph
+//    LDotty<TopoGraph> dot(topography);
+//    dot.write("topgraphy.dot", true);
+//    std::cout<<"write to "<< "topgraphy.dot"<<std::endl;
+//    std::cout<<topography->num_nodes()<<std::endl;
 
-    // copy leafs subgraph
-    topography.copy_subgraph(compInfo._leafs , leafGraph);
-    assert((int)leafGraph->num_nodes() == compInfo._leafs.size());
+//    // copy leafs subgraph
+//    topography.copy_subgraph(compInfo._leafs , leafGraph);
+//    assert((int)leafGraph->num_nodes() == compInfo._leafs.size());
 
 }
 
@@ -122,85 +129,73 @@ void Eye3D::unweighted_graphic_model(BinaryTree *tree, ComponentsInfo *compInfo)
     m_graph::DottyOutput<BinaryTree> dot0(tree);
     dot0.write("tree.dot");
     std::cout<<"write to "<< "tree.dot"<<std::endl;
-
     m_graph::DottyOutput<BinaryTree> dot1(&ClusterNode::hierarchyTree);
     dot1.write("htree.dot");
     std::cout<<"write to "<< "htree.dot"<<std::endl;
 
-    /// compute topographical weight
+    /// 
     auto nodesRange = tree->get_all_nodes();
     BinaryTree::NodeId rootId = 0;
-//    topography_weight(tree, rootId);
     /// connect adjacent components (leafs)
     typedef std::set<BinaryTree::NodeId> CompSet;
     std::map<PointF3D, CompSet> points;
     std::array<PointF3D,3> p3;
     auto nodeRange = tree->get_all_nodes();
-    // find leafs
-    while(nodeRange.first != nodeRange.second){
-        BinaryTree::OutEdgeRange rst = tree->get_out_edges(*nodeRange.first);
-        // if is a leaf
-        if (rst.first == rst.second) {
-            compInfo->_leafs.push_back(*nodeRange.first);
-        }
-        auto node = tree->get_node(*nodeRange.first);
-        nodeRange.first++;
-    };
-//        if(node.size > maxSize) {
-//            maxSize = node.size;
-//            maxId = *leafs.first;
-//        };
+    std::vector<BinaryTree::NodeId> tab;
+    bool onlyLeaf = true;
     // connect adjacent leaf nodes 
-    for(auto id : compInfo->_leafs){
-        CompSet components;
-        components.insert(id);
+    while(nodeRange.first != nodeRange.second){
+        auto id = *nodeRange.first;
         TrNode node = tree->get_node(id);
-        TrianglePtrS triangles;
-        triangles_of_component(node.friendId, &triangles);
-        // mark leaf
-        node.set_leaf();
-        PointF3D center;
-        for(Triangle *t : triangles){
-            auto v1 = t->v1(); 
-            auto v2 = t->v2(); 
-            auto v3 = t->v3(); 
-            p3[0] = PointF3D(v1->x, v1->y, v1->z);
-            p3[1] = PointF3D(v2->x, v2->y, v2->z);
-            p3[2] = PointF3D(v3->x, v3->y, v3->z);
-            PointF3D t;
-            for(auto &p : p3){
-                /// if vertex of an triangles is shared by some components,
-                /// then they are adjacent components
-                // add current component to the containers(owners)
-                auto rst = points.insert(make_pair(p, components));
-                if (!rst.second) {
-                    // there is some other adjacent components contain the point
-                    auto &neighborhood = rst.first->second;
-                    for(auto nbId : neighborhood){
-                        // add edge between adjacent components
-                        if (nbId != id) 
-                            tree->add_edge(id, nbId);
+        if (!onlyLeaf || node.is_leaf()) {
+            CompSet components;
+            components.insert(id);
+            TrianglePtrS triangles;
+            triangles_of_component(node.friendId, &triangles);
+            PointF3D center;
+            for(Triangle *t : triangles){
+                auto v1 = t->v1(); 
+                auto v2 = t->v2(); 
+                auto v3 = t->v3(); 
+                p3[0] = PointF3D(v1->x, v1->y, v1->z);
+                p3[1] = PointF3D(v2->x, v2->y, v2->z);
+                p3[2] = PointF3D(v3->x, v3->y, v3->z);
+                PointF3D t;
+                for(auto &p : p3){
+                    if (node.is_leaf()) {
+                        /// if vertex of an triangles is shared by some components,
+                        /// then they are adjacent components
+                        // add current component to the containers(owners)
+                        auto rst = points.insert(make_pair(p, components));
+                        if (!rst.second) {
+                            // there is some other adjacent components contain the point
+                            auto &neighborhood = rst.first->second;
+                            for(auto nbId : neighborhood){
+                                // add edge between adjacent components
+                                if (nbId != id) 
+                                    tree->add_edge(id, nbId);
+                                
+                            }
+                            // add current component to the containers
+                            neighborhood.insert(id);
+                        }
                     }
-                    // add current component to the containers
-                    neighborhood.insert(id);
+                    t += p;
                 }
-                t += p;
+                // t/3 == the center of one triangles mesh
+                node.center += (t/3);
             }
-            // t/3 == the center of one triangles mesh
-            node.center += (t/3);
+            node.center /= triangles.size();
+            node.proportion = node.size / float(hTree.get_node(hTree.rootId).size);
+            //        node.weight = weight_type(node) + 1 / node.proportion * SIZEBIAS;
+            node.degree = tree->get_degree(id);
+            node.dist = sqrt(pow(node.center.x - _center.x, 2) + pow(node.center.y - _center.y, 2) +
+                    pow(node.center.z - _center.z, 2));
+            tree->modify_node(id, node);
         }
-        const float SIZEBIAS = 3.14 * 4;
-        
-        node.center /= triangles.size();
-        node.proportion = node.size / float(hTree.get_node(hTree.rootId).size);
-//        node.weight = weight_type(node) + 1 / node.proportion * SIZEBIAS;
-        node.degree = tree->get_degree(id);
-        node.dist = sqrt(pow(node.center.x - _center.x, 2) + pow(node.center.y - _center.y, 2) +
-                         pow(node.center.z - _center.z, 2));
-        tree->modify_node(id, node);
-
+        nodeRange.first++;
     }
-    /// angle
+    /// angle, only for leafs
     int maxSize = -1;
     PointF3D maxCenter; 
     for(auto id : compInfo->_leafs){
@@ -303,8 +298,10 @@ Eye3D::dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
     icp.setEuclideanFitnessEpsilon (1e-11);
     icp.setRANSACIterations(0); 
     icp.align(result);
-    std::cout << "has converged:" << icp.hasConverged() << " score: " <<
-        icp.getFitnessScore() << std::endl;
+    if (!icp.hasConverged()) {
+        std::cout << "ICP failed to converged!"<<std::endl;
+        return -1;
+    }
 //    /// visualize the align result
 //    int size = result.points.size();
 //    // rank the weights
@@ -366,8 +363,8 @@ void Eye3D::viz_components( TopoGraph &leafGraph) const
         triangles_of_component(node.friendId, &triangles);
         auto temp = color._defColors.begin();
         for (int i = 0; i < colorMap[index]; temp++, i++) ;
-//        RgbColor c = temp->second;
-        RgbColor c = color.diff_random_color();
+        RgbColor c = temp->second;
+//        RgbColor c = color.diff_random_color();
         color.accept_color(c);
         PointT min, max;
         viz_component(triangles, c, &min, &max);

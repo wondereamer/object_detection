@@ -45,9 +45,20 @@ struct Coefficient{
 
 //typedef Eigen::VectorXf Coefficient;
 struct TrNode{
-    TrNode(){ size = 0; triangles = NULL; parentId = -1;}
+    TrNode(){ 
+        size = 0; 
+        triangles = NULL; 
+        parentId = -1;
+        degree = 0;
+        dist = 0;
+        angle = 0;
+        proportion = 0;
+    }
     TrNode(int id1_, int id2_):id1(id1_), id2(id2_),
-    size(0), triangles(NULL), parentId(-1){ }
+                               size(0), triangles(NULL),
+                               parentId(-1), degree(0),
+                               dist(0), angle(0), proportion(0) {
+    }
     ~TrNode(){
         if(!triangles){
             free(triangles);
@@ -66,15 +77,17 @@ struct TrNode{
     bool is_leaf() const{
         return id2 == -1;
     }
-    void set_leaf(){
-        id2 = -1;
+    void set_leaf(bool v = true){
+        if(v)
+            id2 = -1;
+        else
+            id2 = 1;
     }
     public:
+    // node id of cluster graph
     int id1;
-    //! when id2 == -1, 
     int id2;
     double cost;
-    double proportion;
     Coefficient coefficient;
     unsigned char type;
     static int numLeafs;
@@ -91,6 +104,7 @@ struct TrNode{
     int degree;
     float dist;
     float angle;
+    double proportion;
     //!
     double weight;
     double tpWeight;

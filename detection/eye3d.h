@@ -202,7 +202,7 @@ class RefineSegAuto : public boost::default_bfs_visitor
                 if(u == tree.rootId)
                     _objSize = node.size;
                 if ( u == ClusterNode::hierarchyTree.rootId ||
-                    node.parentId != -1) {
+                    node.parentId != -1) {      // node.parent is a key factor, modified to -1 if undividable
                     bool enable_divide = true;
                     auto inEdges = tree.get_in_edges(u);
                     auto outEdges = tree.get_out_edges(u);
@@ -322,6 +322,12 @@ class RefineSegAuto : public boost::default_bfs_visitor
                         temp.parentId = id;
                         tree.modify_node(children.second, temp);
 
+                    }else{
+                        // mark leaf node in the result
+                        auto temp = _btree->get_node(id);
+                        temp.set_leaf(true);
+                        _btree->modify_node(id, temp);
+                        _compInfo->_leafs.push_back(id);
                     }
                     //
                     if (node.parentId != -1) 
@@ -469,7 +475,9 @@ inline double Eye3D::weight_degree(const TrNode &node) const
 
 inline double Eye3D::weight_angle(const TrNode &node) const
 {
-    return 1 - node.angle;
+    if(!node.is_leaf())
+        return 0;
+    return 1.5 - node.angle;
 
 }
 

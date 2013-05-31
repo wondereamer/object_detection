@@ -73,7 +73,9 @@ def plot_rst(xList, yList, fnameList):
 
 import fileinput                         
 import re
+# source file
 source = []
+# target file
 target = []
 fnamesT = []
 valuesT = []
@@ -90,34 +92,56 @@ for line in fileinput.input(inplace = False):
     else:
        target.append(line)
 
+temp = []
+average = []
+all_average = []
 for i, line in enumerate(source):
     line = line.rstrip("\n")
-    if i < len(source) - 2:
-       if re.findall("[a-zA-Z]+", line):
-           fnamesS.append(line)
-       elif re.findall("[0-9]+", line):
-           valuesS.append(float(line))
-    elif i == len(source) - 1:
-       avS = float(line)
+    if line.startswith('--'):
+        average.append(temp[1])
+    elif line.startswith('##'):
+        print "average" 
+        all_average.append()
+    else:
+        temp.append(line)
 
-for i, line in enumerate(target):
-    line = line.rstrip("\n")
-    if i < len(target) - 2:
-       if re.findall("[a-zA-Z]+", line):
-           fnamesT.append(line)
-       elif re.findall("[0-9]+", line):
-           valuesT.append(float(line))
-    elif i == len(source) - 1:
-       avT = float(line)
+    #if i < len(source) - 2:
+       #if re.findall("[a-zA-Z]+", line):
+           #fnamesS.append(line)
+       #elif re.findall("[0-9]+", line):
+           #valuesS.append(float(line))
+    #elif i == len(source) - 1:
+       #avS = float(line)
+
 
 def plot_XY(y_list, x_list, fnames):
     '''docstring for plot_fun''' 
     #plt.plot(x_list,fun(x_lsit), 'bo', x_list, fun(x_list), 'k')
     #plt.plot(x_list, y_list, 'k')
-    plt.plot(x_list, y_list, 'o-')
+
+    fig = plt.gcf()
+    fig.clf()
+    ax = plt.subplot(111)
+    xy = (0.5, 0.7)
+    offsetbox = TextArea("Test", minimumdescent=False)
+
+    ab = AnnotationBbox(offsetbox, xy,
+                        xybox=(1.02, xy[1]),
+                        xycoords='data',
+                        boxcoords=("axes fraction", "data"),
+                        box_alignment=(0.,0.5),
+                        arrowprops=dict(arrowstyle="->"))
+    plt.plot(x_list, y_list, 'o--')
     plt.xlabel('X')
     plt.xticks(range(len(fnames)), fnames, size='small')
     plt.xlabel('Y')
+    ax.add_artist(ab)
+
+
+
+
+
+
     plt.show()
 
 def plot2XY(y_list, x_list, avS, y_list2, x_list2, avT):
@@ -126,19 +150,30 @@ def plot2XY(y_list, x_list, avS, y_list2, x_list2, avT):
     #plt.plot(x_list, y_list, 'k')
 
 
-    #fig = plt.gcf()
-    #fig.clf()
-    #ax = plt.subplot(111)
-
-
+    fig = plt.gcf()
+    fig.clf()
+    ax = plt.subplot(111)
 
 
     plt.plot(x_list, y_list, 'o-', color = 'red' )
-    plt.plot(x_list2, y_list2, 'o-', color = 'blue' )
+    plt.plot(x_list2, y_list2, 'o--', color = 'blue' )
     plt.plot(x_list2, [avS]*len(x_list2), 'k', color = 'red' )
     plt.plot(x_list, [avT]*len(x_list), 'k', color = 'blue' )
     plt.xlabel('X')
     plt.xlabel('Y')
+    leg =  ax.legend(('Model length', 'Data length'),
+                       'upper center', shadow = True)
+
+    frame  =  leg.get_frame()
+    frame.set_facecolor('0.80')    # set the frame face color to light gray
+
+    # matplotlib.text.Text instances
+    for t in leg.get_texts():
+        t.set_fontsize('small')    # the legend text fontsize
+
+    # matplotlib.lines.Line2D instances
+    for l in leg.get_lines():
+        l.set_linewidth(1.5)  # the legend line width
 
     #xy = (0.5, 0.7)
     #offsetbox = TextArea("Test", minimumdescent=False)

@@ -189,6 +189,8 @@ namespace m_util {
             {
                 std::cout << *iter<<std::endl;
             }
+            if (m.size() == 0) 
+                std::cout<<"Warning: the map have no elements!"<<std::endl;
         }
     template < typename T >
     void rank(const std::vector<T> &input, std::map<T, int> *rst){
