@@ -5,6 +5,7 @@
 #include <library/m_math.h>
 #include "vizblockworld.h" 
 #include <cmath>
+extern bool visualize_EMD;
 float dist(feature_t *F1, feature_t *F2) { 
     return sqrt(pow((F1->x - F2->x), 2) + pow((F1->y - F2->y), 2) + 
             pow((F1->z - F2->z), 2));
@@ -43,6 +44,7 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
     std::sort(wInput_.begin(), wInput_.end(), std::greater<float>());
     std::sort(wOutput_.begin(), wOutput_.end(), std::greater<float>());
     int flag = 0;
+    PointCloudPtr pos(new pcl::PointCloud<PointT>);
     for (auto &sample: samples) {
         /// @todo to interate over all possible case 
         /// rather than sample 100 times
@@ -137,9 +139,15 @@ void IterativeClosestPoint<PointSource, PointTarget>::computeTransformation (Poi
 
         
         }
-        if(pre_EMD_ < best_EMD_)
+        if(pre_EMD_ < best_EMD_){
+            if (visualize_EMD) 
+                pcl::copyPointCloud(output, *pos);
             best_EMD_ = pre_EMD_;
+        }
     }
+    if (visualize_EMD && pos->points.size() > 0) 
+        pcl::copyPointCloud(*pos, output);
+
 
 }
 

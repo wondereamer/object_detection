@@ -15,6 +15,7 @@ using m_geometry::PointF3D;
 typedef pcl::PointXYZRGB PointT;
 typedef std::vector<Triangle*> TrianglePtrS;
 extern float ZOOM;
+extern bool visualize_EMD;
 static int vv1(0);
 static int vv2(1);
 static auto &hTree = ClusterNode::hierarchyTree;
@@ -127,11 +128,11 @@ void Eye3D::unweighted_graphic_model(BinaryTree *tree, ComponentsInfo *compInfo)
     /// find meaningful components
     refine_segmentation(tree, compInfo);
     m_graph::DottyOutput<BinaryTree> dot0(tree);
-    dot0.write("tree.dot");
-    std::cout<<"write to "<< "tree.dot"<<std::endl;
+//    dot0.write("tree.dot");
+//    std::cout<<"write to "<< "tree.dot"<<std::endl;
     m_graph::DottyOutput<BinaryTree> dot1(&ClusterNode::hierarchyTree);
-    dot1.write("htree.dot");
-    std::cout<<"write to "<< "htree.dot"<<std::endl;
+//    dot1.write("htree.dot");
+//    std::cout<<"write to "<< "htree.dot"<<std::endl;
 
     /// 
     auto nodesRange = tree->get_all_nodes();
@@ -283,7 +284,7 @@ Eye3D::dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
         PointCloudPtr source, const vector<float> &wOutput)
 {
     _viz->clear();
-    float radiusArg = 0.05;
+    float radiusArg = 0.5;
     IterativeClosestPoint<PointT, PointT> icp;
     icp.setInputCloud(source);
     icp.setInputWeight(wInput);
@@ -302,33 +303,36 @@ Eye3D::dynamic_EMD(const PointCloudPtr target, const vector<float> &wInput,
         std::cout << "ICP failed to converged!"<<std::endl;
         return -1;
     }
-//    /// visualize the align result
-//    int size = result.points.size();
-//    // rank the weights
-//    std::map<float, int> w2rank;
-//    std::vector<float> wInputRank;
-//    m_util::rank(wInput, &w2rank);
-//    for(float w: wInput){
-//        wInputRank.push_back(w2rank[w] + 1);
-//    }
-//    w2rank.clear();
-//    std::vector<float> wOutputRank;
-//    m_util::rank(wOutput, &w2rank);
-//    for(float w: wOutput){
-//        wOutputRank.push_back(w2rank[w] + 1);
-//    }
-//    for (int i = 0; i < size; i++) {
-//        _viz->add_sphere(target->points[i].x,target->points[i].y,
-//                 target->points[i].z, wInputRank[i]* radiusArg, 0, 255, 0);
-//
-//        //        _viz->add_sphere(source->points[i].x + 6, source->points[i].y,
-//        //                source->points[i].z, wOutputRank[i]* radiusArg, 0, 255, 0);
-//
-//        _viz->add_sphere(result.points[i].x, result.points[i].y,
-//                result.points[i].z, wOutputRank[i] * radiusArg, 255, 0, 0);
-//    }
-//    //    icp.visualize_correspondence(_viz,0);
-//    _viz->reset_camera();
+    if (visualize_EMD) {
+        /// visualize the align result
+        int size = result.points.size();
+        // rank the weights
+        std::map<float, int> w2rank;
+        std::vector<float> wInputRank;
+        m_util::rank(wInput, &w2rank);
+        for(float w: wInput){
+            wInputRank.push_back(w2rank[w] + 1);
+        }
+        w2rank.clear();
+        std::vector<float> wOutputRank;
+        m_util::rank(wOutput, &w2rank);
+        for(float w: wOutput){
+            wOutputRank.push_back(w2rank[w] + 1);
+        }
+        int f = 50;
+        for (int i = 0; i < size; i++) {
+            _viz->add_sphere(target->points[i].x/f,target->points[i].y/f,
+                    target->points[i].z/f, wInputRank[i]* radiusArg, 0, 255, 0);
+
+            //        _viz->add_sphere(source->points[i].x/f, source->points[i].y/f,
+            //                source->points[i].z/f, wOutputRank[i]* radiusArg, 0, 0, 255);
+
+            _viz->add_sphere(result.points[i].x/f, result.points[i].y/f,
+                    result.points[i].z, wOutputRank[i] * radiusArg, 255, 0, 0);
+        }
+        //    icp.visualize_correspondence(_viz,0);
+        _viz->reset_camera();
+    }
     return icp.best_EMD_;
 }
 //-------------------------------------visualize---------------------------------------------

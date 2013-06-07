@@ -40,6 +40,8 @@ std::string fname;
 vector<string> pcdFiles;
 VizBlockWorld viz;
 Eye3D *vizMesh2 = NULL;
+bool visualize_EMD = false;
+bool log_average = false;
 string target;
 // 
 std::vector<pcl::PointCloud<PointT>::Ptr> components;
@@ -50,7 +52,7 @@ int v1(0);
 int v2(1);
 const int MAX_SIZE_OF_OBJECT = 20000;
 //const float MESH_RADIUS = 30;
-//const float MESH_RADIUS = 0.002;
+//const float MESH_RADIUS = 0.005;
 const float MESH_RADIUS = 0.025;
 // display zoom
 float ZOOM = 10;
@@ -63,6 +65,7 @@ struct ObjWeights{
     std::vector<float> dWeights;                  // degree weight 
     std::vector<float> tWeights;                // type weight 
     std::vector<float> aWeights;                 // angle weight 
+    std::vector<float> distWeights;                 // angle weight 
     PointCloudPtr pos;
 };
 
@@ -75,7 +78,7 @@ list_files(const std::string &fname){
         {
             if (is_regular_file(p)){
                 //                assert(p.extension() == ".pcd");
-                std::cout<<"load file:"<<p.string()<<std::endl;
+//                std::cout<<"load file:"<<p.string()<<std::endl;
                 str_files.push_back(p.string());
             }
             else if (is_directory(p))      // is p a directory?
@@ -84,7 +87,7 @@ list_files(const std::string &fname){
                 copy(directory_iterator(p), directory_iterator(), back_inserter(files));
                 for(path &file : files){
                     if (file.extension() == ".pcd" || file.extension() == ".off" ) {
-                        std::cout<<"load file:"<<file.string()<<std::endl;
+//                        std::cout<<"load file:"<<file.string()<<std::endl;
                         str_files.push_back(file.string());
                     }
                 }
@@ -100,6 +103,7 @@ list_files(const std::string &fname){
     {
         cout << ex.what() << '\n';
     }
+    std::sort(str_files.begin(), str_files.end());
     return str_files;
 
 }
@@ -265,6 +269,7 @@ cloud_model(PointCloudPtr cloud, string fname)
         obj.dWeights.push_back(vizMesh2->weight_degree(temp));
         obj.tWeights.push_back(vizMesh2->weight_type(temp));
         obj.aWeights.push_back(vizMesh2->weight_angle(temp));
+        obj.distWeights.push_back(vizMesh2->weight_dist(temp));
         nodes.first++;
     }
     obj.pos = source;
@@ -356,28 +361,26 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
             primitiveId = "";
         }
     }else if( event.getKeySym() == "space" && event.keyDown()){
-        std::string fname = m_util::string_format("object_%d", objId);
-        std::vector<float> weights;
+//        std::string fname = m_util::string_format("object_%d", objId);
+//        std::vector<float> weights;
         segment_mesh(objects[objId]);
-        vizMesh2->viz_next_level();
-        viz.reset_camera();
-        //        viz.set_backgroundcolor(0,0,0);
-        //        PointCloudPtr pos(new pcl::PointCloud<PointT>);
-        //        PointCloudPtr source(new pcl::PointCloud<PointT>);
-        //        Eye3D::TopoGraph graphicModel;
-        //        vizMesh2->graphic_model(&graphicModel);
-        //        vizMesh2->embedding_graph(pos, graphicModel);
-        //        std::vector<float> wS;
-        //        // get weight
-        //        auto nodes = graphicModel.get_all_nodes();
-        //        while (nodes.first != nodes.second) {
-        //            auto &temp = graphicModel.get_node(*nodes.first);
-        //            wS.push_back(temp.proportion);
-        //            nodes.first++;
-        //        }
-        //        pcl::copyPointCloud(*pos, *source);
-        //        vizMesh2->dynamic_EMD(pos,wS, source, wS);
-        viz.set_backgroundcolor(255, 255, 255);
+//        vizMesh2->viz_next_level();
+//        viz.reset_camera();
+//        viz.set_backgroundcolor(0,0,0);
+        PointCloudPtr pos(new pcl::PointCloud<PointT>);
+        Eye3D::TopoGraph graphicModel;
+        vizMesh2->graphic_model(&graphicModel);
+        vizMesh2->embedding_graph(pos, graphicModel);
+        std::vector<float> wS;
+        // get weight
+        auto nodes = graphicModel.get_all_nodes();
+        while (nodes.first != nodes.second) {
+            auto &temp = graphicModel.get_node(*nodes.first);
+            wS.push_back(temp.proportion);
+            nodes.first++;
+        }
+        vizMesh2->dynamic_EMD(pos,wS, pos, wS);
+//        viz.set_backgroundcolor(255, 255, 255);
 
     }else if( event.getKeySym() == "z" && event.keyDown()){
         std::string fname = m_util::string_format("object_%d", objId);
@@ -465,31 +468,43 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
                 float totala = 0;
                 float totalp = 0;
                 float totald = 0;
+                float totaldist = 0;
                 for(auto &fileT : filesT)
                 {
                     log << "-------------------------------------------------------------"<<std::endl;
-                    pylog << "-------------------------------------------------------------"<<std::endl;
+                    if (log_average) {
+                        pylog << "-------------------------------------------------------------"<<std::endl;
+                        pylog << fileT << std::endl;
+                    }
                     auto &wT = fname2weights[fileT];
                     log << fileT << std::endl;
-                    pylog << fileT << std::endl;
                     int count = 0;
                     float sum = 0;
                     float suma = 0;
                     float sump = 0;
                     float sumd = 0;
+                    float sumdist = 0;
                     /// @todo remove smallest and biggest
                     for(auto &fileS : filesS){
+                        if (!log_average) {
+                            pylog << "-------------------------------------------------------------"<<std::endl;
+                            pylog << fileS << std::endl;
+                        }
+                        auto &wT = fname2weights[fileT];
                         auto &wS = fname2weights[fileS];
                         // calculating EMD
-                        float p = vizMesh2->dynamic_EMD(wT.pos, wT.pWeights,
-                                wS.pos, wS.pWeights);
-
                         float a = vizMesh2->dynamic_EMD(wT.pos, wT.aWeights,
                                 wS.pos, wS.aWeights);
 
                         float d = vizMesh2->dynamic_EMD(wT.pos, wT.dWeights,
                                 wS.pos, wS.dWeights);
-                        if (a<0 || p<0 || d<0) {
+
+                        float dist = vizMesh2->dynamic_EMD(wT.pos, wT.distWeights,
+                                wS.pos, wS.distWeights);
+
+                        float p = vizMesh2->dynamic_EMD(wT.pos, wT.pWeights,
+                                wS.pos, wS.pWeights);
+                        if (a<0 || p<0 || d<0 || dist<0) {
                             std::cout<<m_util::string_format(
                                     "warning: failed to compare object %s to object %s\n",fileT.c_str(), fileS.c_str());
                             continue;
@@ -501,32 +516,47 @@ void keyboardEventOccurred (const pcl::visualization::KeyboardEvent &event,
                             <<d<<" " 
                             <<"angle:"
                             <<a<<" " 
+                            <<"dist:"
+                            <<dist<<" " 
                             <<"total:"
-                            <<a+p+d<<std::endl;
+                            <<a+p+d+dist<<std::endl;
+                    if (!log_average) {
+                        pylog << a+p+d+dist << std::endl;
+                        pylog << a << std::endl;
+                        pylog << p << std::endl;
+                        pylog << d << std::endl;
+                        pylog << dist << std::endl;
+                    }
                         count++;
                         sum += (a+p+d);
                         suma += a;
                         sump += p;
                         sumd += d;
+                        sumdist += dist;
                         all++;
                     } // end of target file vs. dir
 
                     assert(count != 0);
                     log << "average: "<< sum/count << std::endl;
-                    pylog << sum/count << std::endl;
-                    pylog << suma/count << std::endl;
-                    pylog << sump/count << std::endl;
-                    pylog << sumd/count << std::endl;
+                    if (log_average) {
+                        pylog << sum/count << std::endl;
+                        pylog << suma/count << std::endl;
+                        pylog << sump/count << std::endl;
+                        pylog << sumd/count << std::endl;
+                        pylog << sumdist/count << std::endl;
+                    }
                     total += sum;
                     totala += suma;
                     totalp += sump;
                     totald += sumd;
+                    totaldist += sumdist;
                 } //end of target dir vs. source dir
                 pylog<<"---------------------------------"<<std::endl;    
                 pylog<<total / all<<std::endl
                     <<totala / all<<std::endl
                     <<totalp / all<<std::endl
-                    <<totald / all<<std::endl;
+                    <<totald / all<<std::endl
+                    <<totaldist / all<<std::endl;
                 pylog<<dirT<<std::endl
                     <<dirS<<std::endl;
                 pylog<<"#################################"<<std::endl;    

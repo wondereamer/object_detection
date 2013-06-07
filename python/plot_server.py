@@ -49,7 +49,7 @@ def draw_vectors_2D(x_list, y_list):
     def x_domain(y_list):
         return range(1, len(y_list) + 1)
 
-    log.info("draw_vectors_2D is working...")
+    #log.info("draw_vectors_2D is working...")
     strengths = []
     angles = []
     yticks = range(0,15)
@@ -67,7 +67,7 @@ def draw_vectors_2D(x_list, y_list):
         plt.quiver(i,t,x,y)
         angles.append(angle_vector(x, y))
 
-    log.info(strengths,"force strengths:")
+    #log.info(strengths,"force strengths:")
     X = range(1,len(strengths) + 1)    
     circle = mpath.Path.unit_circle()
     verts = np.concatenate([circle.vertices[::-1, ...]])
@@ -93,7 +93,7 @@ def draw_vectors_2D(x_list, y_list):
     return 0
 def draw_force_field(x_list, y_list, width, height):
     '''docstring for draw_force_field''' 
-    log.info("draw_force_field is working..." )
+    #log.info("draw_force_field is working..." )
     X = []
     Y = []
     for row in range(0,height):
@@ -121,10 +121,11 @@ def draw_force_field(x_list, y_list, width, height):
     return 0
 if __name__ == '__main__':
     # A simple server with simple arithmetic functions
-    server = SimpleXMLRPCServer(("localhost", 8000))
-    print "Listening on port 8000..."
-    server.register_multicall_functions()
-    server.register_function(draw_vectors_2D, 'draw_vectors_2D')
-    server.register_function(draw_force_field, 'draw_force_field')
-    server.serve_forever()
+    #server = SimpleXMLRPCServer(("localhost", 8000))
+    #print "Listening on port 8000..."
+    #server.register_multicall_functions()
+    #server.register_function(draw_vectors_2D, 'draw_vectors_2D')
+    #server.register_function(draw_force_field, 'draw_force_field')
+    #server.serve_forever()
+    draw_vectors_2D([1,2],[3,4])
 
